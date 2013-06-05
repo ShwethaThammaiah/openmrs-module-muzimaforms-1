@@ -1,23 +1,18 @@
-<%@ include file="/WEB-INF/template/include.jsp"%>
+<%@ include file="/WEB-INF/template/include.jsp" %>
 
-<%@ include file="/WEB-INF/template/header.jsp"%>
+<%@ include file="/WEB-INF/template/header.jsp" %>
 
-<h2><spring:message code="Manage Forms" /></h2>
+<h2><spring:message code="Manage Forms"/></h2>
 
-<br/>
-<table>
-  <tr>
-   <th>Patient Id</th>
-   <th>Name</th>
-   <th>Identifier</th>
-  </tr>
-  <c:forEach var="patient" items="${thePatientList}">
-      <tr>
-        <td>${patient.patientId}</td>
-        <td>${patient.personName}</td>
-        <td>${patient.patientIdentifier}</td>
-      </tr>		
-  </c:forEach>
-</table>
+<div ng-app>
+    <openmrs:htmlInclude file="/moduleResources/html5forms/angular.min.js"/>
 
-<%@ include file="/WEB-INF/template/footer.jsp"%>
+    <div>
+        <label>Name:</label>
+        <input type="text" ng-model="yourName" placeholder="Enter a name here">
+        <hr>
+        <h1>Hello {{yourName}}!</h1>
+    </div>
+</div>
+
+<%@ include file="/WEB-INF/template/footer.jsp" %>

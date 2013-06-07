@@ -1,0 +1,1529 @@
+<div class="row-fluid">
+    <div class="span12">
+        <div class="pull-right"><a href="#/formsList"><i class="icon-remove"></i></a> </div>
+        <form class="jr clearfix" autocomplete="off" id="household_survey" onsubmit="return false;" data-edited="false">
+            <!--This form was created by transforming a javaRosa-style (X)Form using an XSLT sheet created by Aid Web Solutions.-->
+            <section class="form-logo"></section>
+            <h3 id="form-title">household_survey</h3>
+            <fieldset id="jr-preload-items" style="display:none;"><label class=""><br><input autocomplete="off"
+                                                                                             type="hidden"
+                                                                                             name="/household_survey/start"
+                                                                                             data-preload="timestamp"
+                                                                                             data-preload-params="start"
+                                                                                             data-type-xml="dateTime"
+                                                                                             value="2013-06-07T18:16:31.000+06:0-30"></label><label
+                    class=""><br><input autocomplete="off" type="hidden" name="/household_survey/end"
+                                        data-preload="timestamp" data-preload-params="end" data-type-xml="dateTime"
+                                        value="2013-06-07T18:16:31.000+06:0-30"></label><label class=""><br><input
+                    autocomplete="off" type="hidden" name="/household_survey/today" data-preload="date"
+                    data-preload-params="today" data-type-xml="date" value="2013-06-07"></label><label
+                    class=""><br><input autocomplete="off" type="hidden" name="/household_survey/deviceid"
+                                        data-preload="property" data-preload-params="deviceid" data-type-xml="string"
+                                        value="no device properties in enketo"></label><label class=""><br><input
+                    autocomplete="off" type="hidden" name="/household_survey/subscriberid" data-preload="property"
+                    data-preload-params="subscriberid" data-type-xml="string"
+                    value="no device properties in enketo"></label><label class=""><br><input autocomplete="off"
+                                                                                              type="hidden"
+                                                                                              name="/household_survey/simserial"
+                                                                                              data-preload="property"
+                                                                                              data-preload-params="deviceid"
+                                                                                              data-type-xml="string"
+                                                                                              value="no device properties in enketo"></label><label
+                    class=""><br><input autocomplete="off" type="hidden" name="/household_survey/phonenumber"
+                                        data-preload="property" data-preload-params="phonenumber" data-type-xml="string"
+                                        value="no device properties in enketo"></label></fieldset>
+
+
+            <fieldset class="jr-group " name="/household_survey/sectionA"><h4><span lang="" class=" active">Section A - Household Information</span>
+            </h4>
+                <fieldset class="trigger alert alert-block" name="/household_survey/sectionA/note_consent"><span lang=""
+                                                                                                                 class=" active">Administer informed consent. If subject agrees to participate, proceed to questionnaire.</span>
+
+                    <div class="note-value"></div>
+                </fieldset>
+                <label class=""><span lang="" class=" active">A.1.0 Interviewer name</span><br><input autocomplete="off"
+                                                                                                      type="text"
+                                                                                                      name="/household_survey/sectionA/interviewer"
+                                                                                                      data-type-xml="string"><span
+                        class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                        class="jr-required-msg active" lang="">This field is required</span></label><label
+                        class=""><span lang="" class=" active">A.1.1 Enter the household number</span><span
+                        class="required">*</span><br><input autocomplete="off" type="number"
+                                                            name="/household_survey/sectionA/hh_id" required="required"
+                                                            data-type-xml="int"><span class="jr-constraint-msg active"
+                                                                                      lang="">Value not allowed</span><span
+                        class="jr-required-msg active" lang="">This field is required</span></label><label
+                        class="clearfix"><span lang="" class=" active">A.1.2 Collect the GPS coordinates of this household</span><span
+                        lang="" class="jr-hint active">Make sure the precision is less than 25 meters</span><span
+                        class="hint" title="" data-original-title="Make sure the precision is less than 25 meters"><i
+                        class="icon-question-sign"></i></span><br><input autocomplete="off" type="text"
+                                                                         name="/household_survey/sectionA/hh_location"
+                                                                         data-type-xml="geopoint"
+                                                                         style="display: none;">
+
+                    <div class="geopoint widget">
+                        <div class="search-bar">
+                            <button name="geodetect" type="button" class="btn" title="detect current location"
+                                    data-placement="top"><i class="icon-crosshairs"></i></button>
+                            <div class="input-append"><input class="geo ignore" name="search" type="text"
+                                                             placeholder="search for place or address">
+                                <button type="button" class="btn add-on"><i class="icon-search"></i></button>
+                            </div>
+                        </div>
+                        <div class="map-canvas-wrapper">
+                            <div class="map-canvas"
+                                 style="position: relative; background-color: rgb(229, 227, 223); overflow: hidden; -webkit-transform: translateZ(0);">
+                                <div style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0;">
+                                    <div style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0;">
+                                        <div style="position: absolute; left: 0px; top: 0px; z-index: 1; cursor: url(https://maps.gstatic.com/mapfiles/openhand_8_8.cur) 8 8, default; -webkit-transform-origin: 0px 0px; -webkit-transform: matrix(1, 0, 0, 1, 0, 0);">
+                                            <div style="-webkit-transform: translateZ(0); position: absolute; left: 0px; top: 0px; z-index: 200;">
+                                                <div style="-webkit-transform: translateZ(0); position: absolute; left: 0px; top: 0px; z-index: 101;"></div>
+                                            </div>
+                                            <div style="-webkit-transform: translateZ(0); position: absolute; left: 0px; top: 0px; z-index: 201;">
+                                                <div style="-webkit-transform: translateZ(0); position: absolute; left: 0px; top: 0px; z-index: 102;">
+                                                    <div style="position: absolute; left: 0px; top: 0px; z-index: 0;">
+                                                        <div style="position: absolute; left: 0px; top: 0px; z-index: 1;">
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; -webkit-transform: translateZ(0); position: absolute; left: -58px; top: -119px;"></div>
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; -webkit-transform: translateZ(0); position: absolute; left: -58px; top: 137px;"></div>
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; -webkit-transform: translateZ(0); position: absolute; left: 198px; top: -119px;"></div>
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; -webkit-transform: translateZ(0); position: absolute; left: 198px; top: 137px;"></div>
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; -webkit-transform: translateZ(0); position: absolute; left: -314px; top: -119px;"></div>
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; -webkit-transform: translateZ(0); position: absolute; left: -314px; top: 137px;"></div>
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; -webkit-transform: translateZ(0); position: absolute; left: 454px; top: -119px;"></div>
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; -webkit-transform: translateZ(0); position: absolute; left: 454px; top: 137px;"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div style="width: 37px; height: 34px; overflow: hidden; position: absolute; left: 188px; top: 103px; z-index: 137;">
+                                                        <img src="https://maps.gstatic.com/mapfiles/markers2/marker_sprite.png"
+                                                             draggable="false"
+                                                             style="position: absolute; left: -20px; top: 0px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; width: 57px; height: 34px;">
+                                                    </div>
+                                                </div>
+                                                <div style="-webkit-transform: translateZ(0); position: absolute; left: 0px; top: 0px; z-index: 103;">
+                                                    <div style="position: absolute; left: 0px; top: 0px; z-index: -1;">
+                                                        <div style="position: absolute; left: 0px; top: 0px; z-index: 1;">
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; -webkit-transform: translateZ(0); position: absolute; left: -58px; top: -119px;"></div>
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; -webkit-transform: translateZ(0); position: absolute; left: -58px; top: 137px;"></div>
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; -webkit-transform: translateZ(0); position: absolute; left: 198px; top: -119px;"></div>
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; -webkit-transform: translateZ(0); position: absolute; left: 198px; top: 137px;"></div>
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; -webkit-transform: translateZ(0); position: absolute; left: -314px; top: -119px;"></div>
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; -webkit-transform: translateZ(0); position: absolute; left: -314px; top: 137px;"></div>
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; -webkit-transform: translateZ(0); position: absolute; left: 454px; top: -119px;"></div>
+                                                            <div style="width: 256px; height: 256px; overflow: hidden; -webkit-transform: translateZ(0); position: absolute; left: 454px; top: 137px;"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div style="width: 20px; height: 34px; overflow: hidden; position: absolute; left: 188px; top: 103px; z-index: 137;">
+                                                        <img src="https://maps.gstatic.com/mapfiles/markers2/marker_sprite.png"
+                                                             draggable="false"
+                                                             style="position: absolute; left: 0px; top: 0px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; width: 57px; height: 34px;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="-webkit-transform: translateZ(0); position: absolute; left: 0px; top: 0px; z-index: 202;">
+                                                <div style="-webkit-transform: translateZ(0); position: absolute; left: 0px; top: 0px; z-index: 104;"></div>
+                                                <div style="-webkit-transform: translateZ(0); position: absolute; left: 0px; top: 0px; z-index: 105;">
+                                                    <div class="gmnoprint"
+                                                         style="width: 20px; height: 34px; overflow: hidden; position: absolute; opacity: 0.01; left: 188px; top: 103px; z-index: 137;">
+                                                        <img src="https://maps.gstatic.com/mapfiles/markers2/marker_sprite.png"
+                                                             draggable="false" usemap="#gmimap0"
+                                                             style="position: absolute; left: 0px; top: 0px; width: 20px; height: 34px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                                        <map name="gmimap0" id="gmimap0">
+                                                            <area href="javascript:void(0)" log="miw"
+                                                                  coords="9,0,6,1,4,2,2,4,0,8,0,12,1,14,2,16,5,19,7,23,8,26,9,30,9,34,11,34,11,30,12,26,13,24,14,21,16,18,18,16,20,12,20,8,18,4,16,2,15,1,13,0"
+                                                                  shape="poly" title="" style="cursor: pointer;">
+                                                        </map>
+                                                    </div>
+                                                </div>
+                                                <div style="-webkit-transform: translateZ(0); position: absolute; left: 0px; top: 0px; z-index: 106;"></div>
+                                            </div>
+                                            <div style="-webkit-transform: translateZ(0); position: absolute; left: 0px; top: 0px; z-index: 100;">
+                                                <div style="position: absolute; left: 0px; top: 0px; z-index: 0;">
+                                                    <div style="position: absolute; left: 0px; top: 0px; z-index: 1;">
+                                                        <div style="width: 256px; height: 256px; -webkit-transform: translateZ(0); position: absolute; left: -58px; top: -119px;"></div>
+                                                        <div style="width: 256px; height: 256px; -webkit-transform: translateZ(0); position: absolute; left: -58px; top: 137px;"></div>
+                                                        <div style="width: 256px; height: 256px; -webkit-transform: translateZ(0); position: absolute; left: 198px; top: -119px;"></div>
+                                                        <div style="width: 256px; height: 256px; -webkit-transform: translateZ(0); position: absolute; left: 198px; top: 137px;"></div>
+                                                        <div style="width: 256px; height: 256px; -webkit-transform: translateZ(0); position: absolute; left: -314px; top: -119px;"></div>
+                                                        <div style="width: 256px; height: 256px; -webkit-transform: translateZ(0); position: absolute; left: -314px; top: 137px;"></div>
+                                                        <div style="width: 256px; height: 256px; -webkit-transform: translateZ(0); position: absolute; left: 454px; top: -119px;"></div>
+                                                        <div style="width: 256px; height: 256px; -webkit-transform: translateZ(0); position: absolute; left: 454px; top: 137px;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="position: absolute; z-index: 0; left: 0px; top: 0px;">
+                                                <div style="overflow: hidden;"></div>
+                                            </div>
+                                            <div style="position: absolute; left: 0px; top: 0px; z-index: 0;">
+                                                <div style="position: absolute; left: 0px; top: 0px; z-index: 1;">
+                                                    <div style="width: 256px; height: 256px; -webkit-transform: translateZ(0); position: absolute; left: -58px; top: -119px; opacity: 1; transition: opacity 200ms ease-out; -webkit-transition: opacity 200ms ease-out;">
+                                                        <img src="https://mts0.googleapis.com/vt?lyrs=m@218000000&amp;src=apiv3&amp;hl=en-US&amp;x=0&amp;y=0&amp;z=1&amp;s=&amp;style=59,37%7Csmartmaps"
+                                                             draggable="false"
+                                                             style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; -webkit-transform: translateZ(0);">
+                                                    </div>
+                                                    <div style="width: 256px; height: 256px; -webkit-transform: translateZ(0); position: absolute; left: 454px; top: -119px; opacity: 1; transition: opacity 200ms ease-out; -webkit-transition: opacity 200ms ease-out;">
+                                                        <img src="https://mts0.googleapis.com/vt?lyrs=m@218000000&amp;src=apiv3&amp;hl=en-US&amp;x=0&amp;y=0&amp;z=1&amp;s=&amp;style=59,37%7Csmartmaps"
+                                                             draggable="false"
+                                                             style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; -webkit-transform: translateZ(0);">
+                                                    </div>
+                                                    <div style="width: 256px; height: 256px; -webkit-transform: translateZ(0); position: absolute; left: -58px; top: 137px; opacity: 1; transition: opacity 200ms ease-out; -webkit-transition: opacity 200ms ease-out;">
+                                                        <img src="https://mts0.googleapis.com/vt?lyrs=m@218000000&amp;src=apiv3&amp;hl=en-US&amp;x=0&amp;y=1&amp;z=1&amp;s=G&amp;style=59,37%7Csmartmaps"
+                                                             draggable="false"
+                                                             style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; -webkit-transform: translateZ(0);">
+                                                    </div>
+                                                    <div style="width: 256px; height: 256px; -webkit-transform: translateZ(0); position: absolute; left: 454px; top: 137px; opacity: 1; transition: opacity 200ms ease-out; -webkit-transition: opacity 200ms ease-out;">
+                                                        <img src="https://mts0.googleapis.com/vt?lyrs=m@218000000&amp;src=apiv3&amp;hl=en-US&amp;x=0&amp;y=1&amp;z=1&amp;s=G&amp;style=59,37%7Csmartmaps"
+                                                             draggable="false"
+                                                             style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; -webkit-transform: translateZ(0);">
+                                                    </div>
+                                                    <div style="width: 256px; height: 256px; -webkit-transform: translateZ(0); position: absolute; left: 198px; top: -119px; opacity: 1; transition: opacity 200ms ease-out; -webkit-transition: opacity 200ms ease-out;">
+                                                        <img src="https://mts1.googleapis.com/vt?lyrs=m@218000000&amp;src=apiv3&amp;hl=en-US&amp;x=1&amp;y=0&amp;z=1&amp;s=Gal&amp;style=59,37%7Csmartmaps"
+                                                             draggable="false"
+                                                             style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; -webkit-transform: translateZ(0);">
+                                                    </div>
+                                                    <div style="width: 256px; height: 256px; -webkit-transform: translateZ(0); position: absolute; left: -314px; top: -119px; opacity: 1; transition: opacity 200ms ease-out; -webkit-transition: opacity 200ms ease-out;">
+                                                        <img src="https://mts1.googleapis.com/vt?lyrs=m@218000000&amp;src=apiv3&amp;hl=en-US&amp;x=1&amp;y=0&amp;z=1&amp;s=Gal&amp;style=59,37%7Csmartmaps"
+                                                             draggable="false"
+                                                             style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; -webkit-transform: translateZ(0);">
+                                                    </div>
+                                                    <div style="width: 256px; height: 256px; -webkit-transform: translateZ(0); position: absolute; left: 198px; top: 137px; opacity: 1; transition: opacity 200ms ease-out; -webkit-transition: opacity 200ms ease-out;">
+                                                        <img src="https://mts1.googleapis.com/vt?lyrs=m@218000000&amp;src=apiv3&amp;hl=en-US&amp;x=1&amp;y=1&amp;z=1&amp;s=Gali&amp;style=59,37%7Csmartmaps"
+                                                             draggable="false"
+                                                             style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; -webkit-transform: translateZ(0);">
+                                                    </div>
+                                                    <div style="width: 256px; height: 256px; -webkit-transform: translateZ(0); position: absolute; left: -314px; top: 137px; opacity: 1; transition: opacity 200ms ease-out; -webkit-transition: opacity 200ms ease-out;">
+                                                        <img src="https://mts1.googleapis.com/vt?lyrs=m@218000000&amp;src=apiv3&amp;hl=en-US&amp;x=1&amp;y=1&amp;z=1&amp;s=Gali&amp;style=59,37%7Csmartmaps"
+                                                             draggable="false"
+                                                             style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; -webkit-transform: translateZ(0);">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="margin: 2px 5px 2px 2px; z-index: 1000000; position: absolute; left: 0px; bottom: 0px;">
+                                        <a target="_blank"
+                                           href="http://maps.google.com/maps?ll=0,0&amp;z=1&amp;t=m&amp;hl=en-US"
+                                           title="Click to see this area on Google Maps"
+                                           style="position: static; overflow: visible; float: none; display: inline;">
+                                            <div style="width: 62px; height: 24px; cursor: pointer;"><img
+                                                    src="https://maps.gstatic.com/mapfiles/google_white.png"
+                                                    draggable="false"
+                                                    style="position: absolute; left: 0px; top: 0px; width: 62px; height: 24px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                            </div>
+                                        </a></div>
+                                    <div class="gmnoprint"
+                                         style="z-index: 1000001; position: absolute; right: 0px; bottom: 0px;">
+                                        <div draggable="false"
+                                             style="height: 19px; -webkit-user-select: none; line-height: 19px; padding-right: 2px; padding-left: 50px; background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0px, rgba(255, 255, 255, 0.498039) 50px); font-family: Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; background-position: initial initial; background-repeat: initial initial;">
+                                            <a style="color: rgb(68, 68, 68); text-decoration: underline; cursor: pointer; display: none;">Map
+                                                Data</a><span style="display: none;"></span><span
+                                                style="display: none;"> - </span><a
+                                                href="http://www.google.com/intl/en-US_US/help/terms_maps.html"
+                                                target="_blank"
+                                                style="color: rgb(68, 68, 68); text-decoration: underline; cursor: pointer;">Terms
+                                            of Use</a></div>
+                                    </div>
+                                    <div style="background-color: white; padding: 15px 21px; border: 1px solid rgb(171, 171, 171); font-family: Arial, sans-serif; color: rgb(34, 34, 34); -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 16px; box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 16px; z-index: 10000002; display: none; width: 256px; height: 148px; position: absolute; left: 49px; top: 48px;">
+                                        <div style="padding: 0px 0px 10px; font-size: 16px;">Map Data</div>
+                                        <div style="font-size: 13px;"></div>
+                                        <div style="width: 10px; height: 10px; overflow: hidden; position: absolute; opacity: 0.7; right: 12px; top: 12px; z-index: 10000; cursor: pointer;">
+                                            <img src="https://maps.gstatic.com/mapfiles/mv/imgs8.png" draggable="false"
+                                                 style="position: absolute; left: -18px; top: -44px; width: 68px; height: 67px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                        </div>
+                                    </div>
+                                    <div class="gmnoscreen" style="position: absolute; right: 0px; bottom: 0px;">
+                                        <div style="font-family: Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); direction: ltr; text-align: right; background-color: rgb(245, 245, 245);"></div>
+                                    </div>
+                                    <div class="gmnoprint"
+                                         style="font-size: 10px; height: 17px; background-color: rgb(245, 245, 245); border: 1px solid rgb(220, 220, 220); line-height: 19px; display: none; position: absolute; right: 0px; bottom: 0px;">
+                                        <a target="_new" title="Report errors in the road map or imagery to Google"
+                                           href="http://maps.google.com/maps?ll=0,0&amp;z=1&amp;t=m&amp;hl=en-US&amp;skstate=action:mps_dialog$apiref:1&amp;output=classic"
+                                           style="font-family: Arial, sans-serif; font-size: 85%; font-weight: bold; bottom: 1px; padding: 1px 3px; color: rgb(68, 68, 68); text-decoration: none; position: relative;">Report
+                                            a map error</a></div>
+                                    <div class="gmnoprint" draggable="false" controlwidth="22" controlheight="44"
+                                         style="margin: 5px; -webkit-user-select: none; position: absolute; left: 0px; top: 0px;">
+                                        <div class="gmnoprint" controlwidth="0" controlheight="0"
+                                             style="opacity: 0.6; display: none; position: absolute;"><img
+                                                src="https://maps.gstatic.com/mapfiles/rotate2.png" draggable="false"
+                                                title="Rotate map 90 degrees"
+                                                style="-webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; cursor: pointer; width: 22px; height: 22px;">
+                                        </div>
+                                        <div class="gmnoprint" controlwidth="22" controlheight="39"
+                                             style="position: absolute; left: 0px; top: 5px;"><img
+                                                src="https://maps.gstatic.com/mapfiles/szc4.png" draggable="false"
+                                                style="width: 22px; height: 39px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+
+                                            <div title="Zoom in"
+                                                 style="position: absolute; left: 0px; top: 0px; width: 22px; height: 17px; cursor: pointer;"></div>
+                                            <div title="Zoom out"
+                                                 style="position: absolute; left: 0px; top: 18px; width: 22px; height: 17px; cursor: pointer;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="gmnoprint"
+                                         style="margin: 5px; z-index: 0; position: absolute; cursor: pointer; right: 0px; top: 0px;">
+                                        <div style="float: left;">
+                                            <div draggable="false" title="Show street map"
+                                                 style="direction: ltr; overflow: hidden; text-align: center; position: relative; color: rgb(0, 0, 0); font-family: Arial, sans-serif; -webkit-user-select: none; font-size: 13px; background-color: rgb(255, 255, 255); padding: 1px 6px; border: 1px solid rgb(113, 123, 135); -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px; box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px; font-weight: bold; min-width: 28px; background-position: initial initial; background-repeat: initial initial;">
+                                                Map
+                                            </div>
+                                            <div style="background-color: white; z-index: -1; padding-top: 2px; border-width: 0px 1px 1px; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-color: rgb(113, 123, 135); border-bottom-color: rgb(113, 123, 135); border-left-color: rgb(113, 123, 135); -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px; box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px; position: absolute; left: 0px; top: 24px; text-align: left; display: none;">
+                                                <div draggable="false" title="Show street map with terrain"
+                                                     style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; -webkit-user-select: none; font-size: 11px; background-color: rgb(255, 255, 255); padding: 1px 8px 3px 5px; direction: ltr; text-align: left; white-space: nowrap;">
+                                                    <span role="checkbox"
+                                                          style="box-sizing: border-box; position: relative; line-height: 0; font-size: 0px; margin: 0px 5px 0px 0px; display: inline-block; background-color: rgb(255, 255, 255); border: 1px solid rgb(198, 198, 198); border-top-left-radius: 1px; border-top-right-radius: 1px; border-bottom-right-radius: 1px; border-bottom-left-radius: 1px; width: 13px; height: 13px; -webkit-box-shadow: none; box-shadow: none; vertical-align: middle;"><div
+                                                            style="position: absolute; left: 1px; top: -2px; width: 13px; height: 11px; overflow: hidden; display: none;">
+                                                        <img src="https://maps.gstatic.com/mapfiles/mv/imgs8.png"
+                                                             draggable="false"
+                                                             style="position: absolute; left: -52px; top: -44px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; width: 68px; height: 67px;">
+                                                    </div></span><label
+                                                        style="vertical-align: middle; cursor: pointer;">Terrain</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="float: left;">
+                                            <div draggable="false" title="Show satellite imagery"
+                                                 style="direction: ltr; overflow: hidden; text-align: center; position: relative; color: rgb(51, 51, 51); font-family: Arial, sans-serif; -webkit-user-select: none; font-size: 13px; background-color: rgb(255, 255, 255); padding: 1px 6px; border-width: 1px 1px 1px 0px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-top-color: rgb(113, 123, 135); border-right-color: rgb(113, 123, 135); border-bottom-color: rgb(113, 123, 135); -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px; box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px; font-weight: normal; min-width: 51px; background-position: initial initial; background-repeat: initial initial;">
+                                                Satellite
+                                            </div>
+                                            <div style="background-color: white; z-index: -1; padding-top: 2px; border-width: 0px 1px 1px; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-color: rgb(113, 123, 135); border-bottom-color: rgb(113, 123, 135); border-left-color: rgb(113, 123, 135); -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px; box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px; position: absolute; right: 0px; top: 24px; text-align: left; display: none;">
+                                                <div draggable="false" title="Zoom in to show 45 degree view"
+                                                     style="color: rgb(184, 184, 184); font-family: Arial, sans-serif; -webkit-user-select: none; font-size: 11px; background-color: rgb(255, 255, 255); padding: 1px 8px 3px 5px; direction: ltr; text-align: left; white-space: nowrap; display: none;">
+                                                    <span role="checkbox"
+                                                          style="box-sizing: border-box; position: relative; line-height: 0; font-size: 0px; margin: 0px 5px 0px 0px; display: inline-block; background-color: rgb(255, 255, 255); border: 1px solid rgb(241, 241, 241); border-top-left-radius: 1px; border-top-right-radius: 1px; border-bottom-right-radius: 1px; border-bottom-left-radius: 1px; width: 13px; height: 13px; -webkit-box-shadow: none; box-shadow: none; vertical-align: middle;"><div
+                                                            style="position: absolute; left: 1px; top: -2px; width: 13px; height: 11px; overflow: hidden; display: none;">
+                                                        <img src="https://maps.gstatic.com/mapfiles/mv/imgs8.png"
+                                                             draggable="false"
+                                                             style="position: absolute; left: -52px; top: -44px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; width: 68px; height: 67px;">
+                                                    </div></span><label
+                                                        style="vertical-align: middle; cursor: pointer;">45°</label>
+                                                </div>
+                                                <div draggable="false" title="Show imagery with street names"
+                                                     style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; -webkit-user-select: none; font-size: 11px; background-color: rgb(255, 255, 255); padding: 1px 8px 3px 5px; direction: ltr; text-align: left; white-space: nowrap;">
+                                                    <span role="checkbox"
+                                                          style="box-sizing: border-box; position: relative; line-height: 0; font-size: 0px; margin: 0px 5px 0px 0px; display: inline-block; background-color: rgb(255, 255, 255); border: 1px solid rgb(198, 198, 198); border-top-left-radius: 1px; border-top-right-radius: 1px; border-bottom-right-radius: 1px; border-bottom-left-radius: 1px; width: 13px; height: 13px; -webkit-box-shadow: none; box-shadow: none; vertical-align: middle;"><div
+                                                            style="position: absolute; left: 1px; top: -2px; width: 13px; height: 11px; overflow: hidden;">
+                                                        <img src="https://maps.gstatic.com/mapfiles/mv/imgs8.png"
+                                                             draggable="false"
+                                                             style="position: absolute; left: -52px; top: -44px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; width: 68px; height: 67px;">
+                                                    </div></span><label
+                                                        style="vertical-align: middle; cursor: pointer;">Labels</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="geo-inputs"><label class="geo">latitude (x.y °)<input class="ignore" name="lat"
+                                                                                          type="number"
+                                                                                          step="0.0001"></label><label
+                                class="geo">longitude (x.y °)<input class="ignore" name="long" type="number"
+                                                                    step="0.0001"></label><label class="geo"><input
+                                class="ignore" name="alt" type="number" step="0.1">altitude (m)</label><label
+                                class="geo"><input class="ignore" name="acc" type="number" step="0.1">accuracy
+                            (m)</label></div>
+                    </div>
+                    <span class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                            class="jr-required-msg active" lang="">This field is required</span></label>
+                <fieldset class="jr-group " name="/household_survey/sectionA/respondent_questions"><h4><span lang=""
+                                                                                                             class=" active">Respondent</span>
+                </h4><label class="with-media clearfix"><span lang="" class=" active">A.1.3 Take a picture of the structure where the household lives</span><span
+                        lang="" class="jr-hint active">Take a picture of the front of the house</span><span class="hint"
+                                                                                                            title=""
+                                                                                                            data-original-title="Take a picture of the front of the house"><i
+                        class="icon-question-sign"></i></span><br><input autocomplete="off" type="file"
+                                                                         name="/household_survey/sectionA/respondent_questions/hh_photo"
+                                                                         data-type-xml="binary" accept="image/*"
+                                                                         disabled="" class="ignore">
+
+                    <div class="file-feedback text-info">Awaiting user permission to store local data (files)</div>
+                </label><label class=""><span lang="" class=" active">A.1.4 Enter the full name of the respondent</span><span
+                        class="required">*</span><span lang="" class="jr-hint active">First, Middle and Last name</span><span
+                        class="hint" title="" data-original-title="First, Middle and Last name"><i
+                        class="icon-question-sign"></i></span><br><input autocomplete="off" type="text"
+                                                                         name="/household_survey/sectionA/respondent_questions/respondent_name"
+                                                                         required="required"
+                                                                         data-type-xml="string"><span
+                        class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                        class="jr-required-msg active" lang="">This field is required</span></label><label
+                        class=""><span lang=""
+                                       class=" active">A.1.5 Enter the date of birth of the respondent</span><span
+                        class="required">*</span><br><input autocomplete="off" type="date"
+                                                            name="/household_survey/sectionA/respondent_questions/respondent_dob"
+                                                            required="required" data-type-xml="date"
+                                                            style="display: none;">
+
+                    <div class="widget input-append date"><input class="ignore input-small" type="text" value=""
+                                                                 placeholder="yyyy-mm-dd"><span class="add-on"><i
+                            class="icon-calendar"></i></span></div>
+                    <span class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                            class="jr-required-msg active" lang="">This field is required</span></label><label class=""><span
+                        lang="" class=" active">A.1.6 Enter the age of the respondent</span><span
+                        class="required">*</span><span lang="" class="jr-hint active">If respondent does not know put 999</span><span
+                        class="hint" title="" data-original-title="If respondent does not know put 999"><i
+                        class="icon-question-sign"></i></span><br><input autocomplete="off" type="number"
+                                                                         name="/household_survey/sectionA/respondent_questions/respondent_age"
+                                                                         required="required"
+                                                                         data-constraint="(. &gt;= 0 and .&lt;=150) or .=999"
+                                                                         data-type-xml="int"><span lang=""
+                                                                                                   class="jr-constraint-msg active">age has to b between 0 and 150, enter 999 if unknown</span><span
+                        class="jr-required-msg active" lang="">This field is required</span></label>
+                    <fieldset class="restoring-sanity-to-legends ">
+                        <fieldset>
+                            <legend><span lang="" class=" active">A.1.7 Enter the gender of the respondent</span><span
+                                    lang="" class="jr-hint active">(select one)</span><span class="hint" title=""
+                                                                                            data-original-title="(select one)"><i
+                                    class="icon-question-sign"></i></span>
+                            </legend>
+                            <label class="clearfix "><input autocomplete="off" type="radio"
+                                                            name="/household_survey/sectionA/respondent_questions/respondent_gender"
+                                                            value="male" data-type-xml="select1"
+                                                            data-name="/household_survey/sectionA/respondent_questions/respondent_gender"><span
+                                    lang="" class=" active">Male</span></label><label class="clearfix "><input
+                                autocomplete="off" type="radio"
+                                name="/household_survey/sectionA/respondent_questions/respondent_gender" value="female"
+                                data-type-xml="select1"
+                                data-name="/household_survey/sectionA/respondent_questions/respondent_gender"><span
+                                lang="" class=" active">Female</span></label><span class="jr-constraint-msg active"
+                                                                                   lang="">Value not allowed</span><span
+                                class="jr-required-msg active" lang="">This field is required</span></fieldset>
+                    </fieldset>
+                </fieldset>
+                <!--end of group --><label class=""><span lang="" class=" active">A.1.8 How many people live in this household?</span><span
+                        lang="" class="jr-hint active">Including the respondent</span><span class="hint" title=""
+                                                                                            data-original-title="Including the respondent"><i
+                        class="icon-question-sign"></i></span><br><input autocomplete="off" type="number"
+                                                                         name="/household_survey/sectionA/hh_people_nb"
+                                                                         data-type-xml="int"><span
+                        class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                        class="jr-required-msg active" lang="">This field is required</span></label><label
+                        class=""><span lang=""
+                                       class=" active">A.1.9 How many adults live in this household?</span><br><input
+                        autocomplete="off" type="number" name="/household_survey/sectionA/hh_adult_nb"
+                        data-constraint=". &lt;= /household_survey/sectionA/hh_people_nb" data-type-xml="int"><span
+                        lang="" class="jr-constraint-msg active">has to be smaller than or equal to the number of people in the household</span><span
+                        class="jr-required-msg active" lang="">This field is required</span></label>
+                <fieldset class="trigger alert alert-block" name="/household_survey/sectionA/hh_summary_nb_display">
+                    <span lang="" class=" active">The household is composed of <span class="jr-output"
+                                                                                     data-value="/household_survey/sectionA/hh_adult_nb"></span>   adults and <span
+                            class="jr-output" data-value="/household_survey/sectionA/hh_children_nb">NaN</span>   children</span>
+
+                    <div class="note-value"></div>
+                </fieldset>
+                <fieldset class="jr-group " name="/household_survey/sectionA/household_member"><h4><span lang=""
+                                                                                                         class=" active">A.1.10 Household Member</span>
+                </h4>
+                    <fieldset class="jr-repeat " name="/household_survey/sectionA/household_member"><span
+                            class="repeat-number"></span><label class=""><span lang="" class=" active">A.1.10.1 Enter the age of this member</span><br><input
+                            autocomplete="off" type="number"
+                            name="/household_survey/sectionA/household_member/hh_member_age" data-type-xml="int"><span
+                            class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                            class="jr-required-msg active" lang="">This field is required</span></label>
+                        <fieldset class="restoring-sanity-to-legends ">
+                            <fieldset>
+                                <legend><span lang="" class=" active">A.1.10.2 Enter the gender of this member</span>
+                                </legend>
+                                <label class="clearfix "><input autocomplete="off" type="radio"
+                                                                name="/household_survey/sectionA/household_member/hh_member_gender"
+                                                                value="male" data-type-xml="select1"
+                                                                data-name="/household_survey/sectionA/household_member/hh_member_gender"><span
+                                        lang="" class=" active">Male</span></label><label class="clearfix "><input
+                                    autocomplete="off" type="radio"
+                                    name="/household_survey/sectionA/household_member/hh_member_gender" value="female"
+                                    data-type-xml="select1"
+                                    data-name="/household_survey/sectionA/household_member/hh_member_gender"><span
+                                    lang="" class=" active">Female</span></label><span class="jr-constraint-msg active"
+                                                                                       lang="">Value not allowed</span><span
+                                    class="jr-required-msg active" lang="">This field is required</span></fieldset>
+                        </fieldset>
+                        <button type="button" class="btn repeat"><i class="icon-plus"></i></button>
+                        <button type="button" disabled="" class="btn remove"><i class="icon-minus"></i></button>
+                    </fieldset>
+                    <!--end of repeat fieldset with name /household_survey/sectionA/household_member-->
+                </fieldset>
+                <!--end of group -->
+                <fieldset class="restoring-sanity-to-legends ">
+                    <fieldset>
+                        <legend><span lang="" class=" active">A.1.11 This house is …</span><span lang=""
+                                                                                                 class="jr-hint active">(select one)</span><span
+                                class="hint" title="" data-original-title="(select one)"><i
+                                class="icon-question-sign"></i></span>
+                        </legend>
+                        <label class="clearfix "><input autocomplete="off" type="radio"
+                                                        name="/household_survey/sectionA/hh_ownership" value="own"
+                                                        data-type-xml="select1"
+                                                        data-name="/household_survey/sectionA/hh_ownership"><span
+                                lang="" class=" active">Owned</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio" name="/household_survey/sectionA/hh_ownership" value="rent"
+                            data-type-xml="select1" data-name="/household_survey/sectionA/hh_ownership"><span lang=""
+                                                                                                              class=" active">Rented/Leased</span></label><label
+                            class="clearfix "><input autocomplete="off" type="radio"
+                                                     name="/household_survey/sectionA/hh_ownership" value="rent_free"
+                                                     data-type-xml="select1"
+                                                     data-name="/household_survey/sectionA/hh_ownership"><span lang=""
+                                                                                                               class=" active">Rent-Free</span></label><label
+                            class="clearfix "><input autocomplete="off" type="radio"
+                                                     name="/household_survey/sectionA/hh_ownership" value="informal"
+                                                     data-type-xml="select1"
+                                                     data-name="/household_survey/sectionA/hh_ownership"><span lang=""
+                                                                                                               class=" active">Informal Settlement</span></label><label
+                            class="clearfix "><input autocomplete="off" type="radio"
+                                                     name="/household_survey/sectionA/hh_ownership" value="other"
+                                                     data-type-xml="select1"
+                                                     data-name="/household_survey/sectionA/hh_ownership"><span lang=""
+                                                                                                               class=" active">Other</span></label><span
+                            class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                            class="jr-required-msg active" lang="">This field is required</span></fieldset>
+                </fieldset>
+                <label class="jr-branch  disabled" style=""><span lang=""
+                                                                  class=" active">A.1.11.0 Please specify other</span><br><input
+                        autocomplete="off" type="text" name="/household_survey/sectionA/hh_ownership_other"
+                        data-relevant="/household_survey/sectionA/hh_ownership = 'other'" data-type-xml="string"
+                        disabled=""><span class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                        class="jr-required-msg active" lang="">This field is required</span></label>
+            </fieldset>
+            <!--end of group -->
+            <fieldset class="jr-group jr-branch  disabled" name="/household_survey/sectionB"
+                      data-relevant="/household_survey/sectionA/respondent_questions/respondent_age &gt;= 18"
+                      disabled="" style=""><h4><span lang="" class=" active">Section B - Water use practices</span></h4>
+                <fieldset class="trigger alert alert-block" name="/household_survey/sectionB/note_section_b"><span
+                        lang="" class=" active">Section B - Water use practices. This section is composed of 23 questions related to the household usage of water.</span>
+
+                    <div class="note-value"></div>
+                </fieldset>
+                <fieldset class="restoring-sanity-to-legends ">
+                    <fieldset>
+                        <legend><span lang=""
+                                      class=" active">B.1.1 Where do you get the water you use at home?</span><span
+                                class="required">*</span><span lang=""
+                                                               class="jr-hint active">(select all that apply)</span><span
+                                class="hint" title="" data-original-title="(select all that apply)"><i
+                                class="icon-question-sign"></i></span>
+                        </legend>
+                        <label class="clearfix "><input autocomplete="off" type="checkbox"
+                                                        name="/household_survey/sectionB/hh_water_source"
+                                                        value="house_tap" required="required"
+                                                        data-constraint="not(selected(., 'dk') and (selected(.,'house_tap') or selected(.,'bottled') or selected(.,'other')))"
+                                                        data-type-xml="select"><span lang="" class=" active">Household tap</span></label><label
+                            class="clearfix "><input autocomplete="off" type="checkbox"
+                                                     name="/household_survey/sectionB/hh_water_source"
+                                                     value="private_tap" required="required"
+                                                     data-constraint="not(selected(., 'dk') and (selected(.,'house_tap') or selected(.,'bottled') or selected(.,'other')))"
+                                                     data-type-xml="select"><span lang="" class=" active">Private tap in yard</span></label><label
+                            class="clearfix "><input autocomplete="off" type="checkbox"
+                                                     name="/household_survey/sectionB/hh_water_source"
+                                                     value="public_tap" required="required"
+                                                     data-constraint="not(selected(., 'dk') and (selected(.,'house_tap') or selected(.,'bottled') or selected(.,'other')))"
+                                                     data-type-xml="select"><span lang="" class=" active">Public/shared standpipe</span></label><label
+                            class="clearfix "><input autocomplete="off" type="checkbox"
+                                                     name="/household_survey/sectionB/hh_water_source"
+                                                     value="neighbor_tap" required="required"
+                                                     data-constraint="not(selected(., 'dk') and (selected(.,'house_tap') or selected(.,'bottled') or selected(.,'other')))"
+                                                     data-type-xml="select"><span lang=""
+                                                                                  class=" active">Neighbor's tap</span></label><label
+                            class="clearfix "><input autocomplete="off" type="checkbox"
+                                                     name="/household_survey/sectionB/hh_water_source" value="bottled"
+                                                     required="required"
+                                                     data-constraint="not(selected(., 'dk') and (selected(.,'house_tap') or selected(.,'bottled') or selected(.,'other')))"
+                                                     data-type-xml="select"><span lang="" class=" active">Purchased bottle water</span></label><label
+                            class="clearfix "><input autocomplete="off" type="checkbox"
+                                                     name="/household_survey/sectionB/hh_water_source"
+                                                     value="rain_collect" required="required"
+                                                     data-constraint="not(selected(., 'dk') and (selected(.,'house_tap') or selected(.,'bottled') or selected(.,'other')))"
+                                                     data-type-xml="select"><span lang="" class=" active">Rain water collection</span></label><label
+                            class="clearfix "><input autocomplete="off" type="checkbox"
+                                                     name="/household_survey/sectionB/hh_water_source" value="river"
+                                                     required="required"
+                                                     data-constraint="not(selected(., 'dk') and (selected(.,'house_tap') or selected(.,'bottled') or selected(.,'other')))"
+                                                     data-type-xml="select"><span lang="" class=" active">River/Stream/Creek</span></label><label
+                            class="clearfix "><input autocomplete="off" type="checkbox"
+                                                     name="/household_survey/sectionB/hh_water_source" value="spring"
+                                                     required="required"
+                                                     data-constraint="not(selected(., 'dk') and (selected(.,'house_tap') or selected(.,'bottled') or selected(.,'other')))"
+                                                     data-type-xml="select"><span lang="" class=" active">Spring</span></label><label
+                            class="clearfix "><input autocomplete="off" type="checkbox"
+                                                     name="/household_survey/sectionB/hh_water_source"
+                                                     value="ref_station" required="required"
+                                                     data-constraint="not(selected(., 'dk') and (selected(.,'house_tap') or selected(.,'bottled') or selected(.,'other')))"
+                                                     data-type-xml="select"><span lang="" class=" active">Refiling station</span></label><label
+                            class="clearfix "><input autocomplete="off" type="checkbox"
+                                                     name="/household_survey/sectionB/hh_water_source" value="other"
+                                                     required="required"
+                                                     data-constraint="not(selected(., 'dk') and (selected(.,'house_tap') or selected(.,'bottled') or selected(.,'other')))"
+                                                     data-type-xml="select"><span lang=""
+                                                                                  class=" active">Other</span></label><label
+                            class="clearfix "><input autocomplete="off" type="checkbox"
+                                                     name="/household_survey/sectionB/hh_water_source" value="dk"
+                                                     required="required"
+                                                     data-constraint="not(selected(., 'dk') and (selected(.,'house_tap') or selected(.,'bottled') or selected(.,'other')))"
+                                                     data-type-xml="select"><span lang=""
+                                                                                  class=" active">I don't know</span></label><span
+                            class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                            class="jr-required-msg active" lang="">This field is required</span></fieldset>
+                </fieldset>
+                <label class="jr-branch  disabled" style=""><span lang=""
+                                                                  class=" active">B.1.1.0 Please specify other</span><span
+                        class="required">*</span><br><input autocomplete="off" type="text"
+                                                            name="/household_survey/sectionB/hh_water_source_other"
+                                                            required="required"
+                                                            data-relevant="selected(/household_survey/sectionB/hh_water_source, 'other')"
+                                                            data-type-xml="string" disabled=""><span
+                        class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                        class="jr-required-msg active" lang="">This field is required</span></label>
+                <fieldset class="jr-group jr-appearance-field-list" name="/household_survey/sectionB/hh_bottle_group">
+                    <h4><span lang="" class=" active">B.1.2 Bottled water expenditure</span></h4><label
+                        class="jr-branch  disabled" style=""><span lang="" class=" active">B.1.2.1 How much do you spend on bottled water per month</span><span
+                        class="required">*</span><br><input autocomplete="off" type="number"
+                                                            name="/household_survey/sectionB/hh_bottle_group/hh_bottle_expenditure"
+                                                            required="required" data-constraint=".&gt;=0.0"
+                                                            data-relevant="selected(/household_survey/sectionB/hh_water_source, 'bottled')"
+                                                            data-type-xml="decimal" step="any" disabled=""><span
+                        class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                        class="jr-required-msg active" lang="">This field is required</span></label>
+                    <fieldset class="restoring-sanity-to-legends ">
+                        <fieldset>
+                            <legend><span lang="" class=" active">Currency (specify one)</span>
+                            </legend>
+                            <label class="clearfix "><input autocomplete="off" type="radio"
+                                                            name="/household_survey/sectionB/hh_bottle_group/hh_bottle_currency"
+                                                            value="dollars" data-type-xml="select1"
+                                                            data-name="/household_survey/sectionB/hh_bottle_group/hh_bottle_currency"><span
+                                    lang="" class=" active">USD</span></label><label class="clearfix "><input
+                                autocomplete="off" type="radio"
+                                name="/household_survey/sectionB/hh_bottle_group/hh_bottle_currency" value="local"
+                                data-type-xml="select1"
+                                data-name="/household_survey/sectionB/hh_bottle_group/hh_bottle_currency"><span lang=""
+                                                                                                                class=" active">Local currency</span></label><span
+                                class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                                class="jr-required-msg active" lang="">This field is required</span></fieldset>
+                    </fieldset>
+                </fieldset>
+                <!--end of group -->
+                <fieldset class="jr-group jr-appearance-field-list" name="/household_survey/sectionB/hh_bottle_group2">
+                    <h4><span lang="" class=" active">B.1.2 Bottled water expenditure</span></h4><label
+                        class="jr-branch  disabled" style="width: 0px;"><span lang="" class=" active">B.1.2.1 How much do you spend on bottled water per month</span><span
+                        class="required">*</span><br><input autocomplete="off" type="number"
+                                                            name="/household_survey/sectionB/hh_bottle_group2/hh_bottle_expenditure2"
+                                                            required="required" data-constraint=".&gt;=0.0"
+                                                            data-relevant="selected(/household_survey/sectionB/hh_water_source, 'bottled')"
+                                                            data-type-xml="decimal" step="any" disabled=""><span
+                        class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                        class="jr-required-msg active" lang="">This field is required</span></label>
+                    <fieldset class="restoring-sanity-to-legends ">
+                        <fieldset class="jr-appearance-label">
+                            <legend style="width: 35px;"><span lang="" class=" active"> </span>
+                            </legend>
+                            <label class="clearfix " style="width: 0px;"><input autocomplete="off" type="radio"
+                                                                                name="/household_survey/sectionB/hh_bottle_group2/reserved_name_for_field_list_labels_42"
+                                                                                value="dollars" data-type-xml="select1"
+                                                                                data-name="/household_survey/sectionB/hh_bottle_group2/reserved_name_for_field_list_labels_42"><span
+                                    lang="" class=" active">USD</span></label><label class="clearfix "
+                                                                                     style="width: 0px;"><input
+                                autocomplete="off" type="radio"
+                                name="/household_survey/sectionB/hh_bottle_group2/reserved_name_for_field_list_labels_42"
+                                value="local" data-type-xml="select1"
+                                data-name="/household_survey/sectionB/hh_bottle_group2/reserved_name_for_field_list_labels_42"><span
+                                lang="" class=" active">Local currency</span></label><span
+                                class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                                class="jr-required-msg active" lang="">This field is required</span></fieldset>
+                    </fieldset>
+                    <fieldset class="restoring-sanity-to-legends ">
+                        <fieldset class="jr-appearance-list-nolabel">
+                            <legend style="width: 35px;"><span lang="" class=" active">Currency (specify one)</span>
+                            </legend>
+                            <label class="clearfix " style="width: 0px;"><input autocomplete="off" type="radio"
+                                                                                name="/household_survey/sectionB/hh_bottle_group2/hh_bottle_currency2"
+                                                                                value="dollars" data-type-xml="select1"
+                                                                                data-name="/household_survey/sectionB/hh_bottle_group2/hh_bottle_currency2"><span
+                                    lang="" class=" active">USD</span></label><label class="clearfix "
+                                                                                     style="width: 0px;"><input
+                                autocomplete="off" type="radio"
+                                name="/household_survey/sectionB/hh_bottle_group2/hh_bottle_currency2" value="local"
+                                data-type-xml="select1"
+                                data-name="/household_survey/sectionB/hh_bottle_group2/hh_bottle_currency2"><span
+                                lang="" class=" active">Local currency</span></label><span
+                                class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                                class="jr-required-msg active" lang="">This field is required</span></fieldset>
+                    </fieldset>
+                </fieldset>
+                <!--end of group -->
+                <fieldset class="jr-group jr-appearance-field-list" name="/household_survey/sectionB/hh_bottle_group3">
+                    <h4><span lang="" class=" active">B.1.2 Bottled water expenditure</span></h4><label
+                        class="jr-branch  disabled" style=""><span lang="" class=" active">B.1.2.1 How much do you spend on bottled water per month</span><span
+                        class="required">*</span><br><input autocomplete="off" type="number"
+                                                            name="/household_survey/sectionB/hh_bottle_group3/hh_bottle_expenditure3"
+                                                            required="required" data-constraint=".&gt;=0.0"
+                                                            data-relevant="selected(/household_survey/sectionB/hh_water_source, 'bottled')"
+                                                            data-type-xml="decimal" step="any" disabled=""><span
+                        class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                        class="jr-required-msg active" lang="">This field is required</span></label><label
+                        class="jr-appearance-minimal"><span lang=""
+                                                            class=" active">Currency (specify one)</span><br><select
+                        name="/household_survey/sectionB/hh_bottle_group3/hh_bottle_currency3" data-type-xml="select1"
+                        style="display: none;">
+                    <option value="">...</option>
+                    <option value="dollars">USD</option>
+                    <option value="local">Local currency</option>
+                </select>
+
+                    <div class="btn-group bootstrap-select widget"><a class="btn dropdown-toggle clearfix"
+                                                                      data-toggle="dropdown" href="#" '=""><span
+                            class="filter-option pull-left">none selected</span><span
+                            class="caret pull-right"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a tabindex="-1" href="#"><label class="checkbox inline"><input class="ignore"
+                                                                                                type="radio"
+                                                                                                style="display: none;"
+                                                                                                name="38049.81731809676"
+                                                                                                value="dollars">USD</label></a>
+                            </li>
+                            <li><a tabindex="-1" href="#"><label class="checkbox inline"><input class="ignore"
+                                                                                                type="radio"
+                                                                                                style="display: none;"
+                                                                                                name="38049.81731809676"
+                                                                                                value="local">Local
+                                currency</label></a></li>
+                        </ul>
+                    </div><span class="jr-option-translations" style="display:none;">
+                </span><span class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                            class="jr-required-msg active" lang="">This field is required</span></label>
+                </fieldset>
+                <!--end of group -->
+            </fieldset>
+            <!--end of group -->
+            <fieldset class="jr-group " name="/household_survey/sectionC"><h4><span lang="" class=" active">Section C - Geographic Location</span>
+            </h4>
+                <fieldset class="restoring-sanity-to-legends ">
+                    <fieldset>
+                        <legend><span lang="" class=" active">C.1.1 Please select the county</span>
+                        </legend>
+                        <label class="clearfix "><input autocomplete="off" type="radio"
+                                                        name="/household_survey/sectionC/respondent_district_counties"
+                                                        value="bomi" data-type-xml="select1"
+                                                        data-name="/household_survey/sectionC/respondent_district_counties"><span
+                                lang="" class=" active">Bomi</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_counties" value="bong"
+                            data-type-xml="select1" data-name="/household_survey/sectionC/respondent_district_counties"><span
+                            lang="" class=" active">Bong</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_counties" value="gbarpolu"
+                            data-type-xml="select1" data-name="/household_survey/sectionC/respondent_district_counties"><span
+                            lang="" class=" active">Gbarpolu</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_counties" value="grand_bassa"
+                            data-type-xml="select1" data-name="/household_survey/sectionC/respondent_district_counties"><span
+                            lang="" class=" active">Grand Bassa</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_counties"
+                            value="grand_cape_mount_county" data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_counties"><span lang=""
+                                                                                                      class=" active">Grand Cape Mount County</span></label><label
+                            class="clearfix "><input autocomplete="off" type="radio"
+                                                     name="/household_survey/sectionC/respondent_district_counties"
+                                                     value="grand_gedeh" data-type-xml="select1"
+                                                     data-name="/household_survey/sectionC/respondent_district_counties"><span
+                            lang="" class=" active">Grand Gedeh</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_counties" value="grand_kru"
+                            data-type-xml="select1" data-name="/household_survey/sectionC/respondent_district_counties"><span
+                            lang="" class=" active">Grand Kru</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_counties" value="lofa"
+                            data-type-xml="select1" data-name="/household_survey/sectionC/respondent_district_counties"><span
+                            lang="" class=" active">Lofa</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_counties" value="margibi"
+                            data-type-xml="select1" data-name="/household_survey/sectionC/respondent_district_counties"><span
+                            lang="" class=" active">Margibi</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_counties" value="maryland"
+                            data-type-xml="select1" data-name="/household_survey/sectionC/respondent_district_counties"><span
+                            lang="" class=" active">Maryland</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_counties" value="montserrado"
+                            data-type-xml="select1" data-name="/household_survey/sectionC/respondent_district_counties"><span
+                            lang="" class=" active">Montserrado</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_counties" value="nimba"
+                            data-type-xml="select1" data-name="/household_survey/sectionC/respondent_district_counties"><span
+                            lang="" class=" active">Nimba</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_counties" value="river_cess"
+                            data-type-xml="select1" data-name="/household_survey/sectionC/respondent_district_counties"><span
+                            lang="" class=" active">River Cess</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_counties" value="river_gee"
+                            data-type-xml="select1" data-name="/household_survey/sectionC/respondent_district_counties"><span
+                            lang="" class=" active">River Gee</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_counties" value="sinoe"
+                            data-type-xml="select1" data-name="/household_survey/sectionC/respondent_district_counties"><span
+                            lang="" class=" active">Sinoe</span></label><span class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                            class="jr-required-msg active" lang="">This field is required</span></fieldset>
+                </fieldset>
+                <fieldset class="restoring-sanity-to-legends jr-branch  disabled" disabled="" style="">
+                    <fieldset>
+                        <legend><span lang="" class=" active">C.1.2 Please select the district</span>
+                        </legend>
+                        <label class="clearfix "><input autocomplete="off" type="radio"
+                                                        name="/household_survey/sectionC/respondent_district_districts_in_gbarpolu"
+                                                        value="belleh"
+                                                        data-relevant="/household_survey/sectionC/respondent_district_counties='gbarpolu'"
+                                                        data-type-xml="select1"
+                                                        data-name="/household_survey/sectionC/respondent_district_districts_in_gbarpolu"><span
+                                lang="" class=" active">Belleh</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_gbarpolu" value="bokomu"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='gbarpolu'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_gbarpolu"><span
+                            lang="" class=" active">Bokomu</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_gbarpolu" value="bopolu"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='gbarpolu'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_gbarpolu"><span
+                            lang="" class=" active">Bopolu</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_gbarpolu" value="gbarma"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='gbarpolu'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_gbarpolu"><span
+                            lang="" class=" active">Gbarma</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_gbarpolu"
+                            value="gounwolaila"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='gbarpolu'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_gbarpolu"><span
+                            lang="" class=" active">Gounwolaila</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_gbarpolu" value="kongba"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='gbarpolu'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_gbarpolu"><span
+                            lang="" class=" active">Kongba</span></label><span class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                            class="jr-required-msg active" lang="">This field is required</span></fieldset>
+                </fieldset>
+                <fieldset class="restoring-sanity-to-legends jr-branch  disabled" disabled="" style="">
+                    <fieldset>
+                        <legend><span lang="" class=" active">C.1.2 Please select the district</span>
+                        </legend>
+                        <label class="clearfix "><input autocomplete="off" type="radio"
+                                                        name="/household_survey/sectionC/respondent_district_districts_in_grand_gedeh"
+                                                        value="gbarzon"
+                                                        data-relevant="/household_survey/sectionC/respondent_district_counties='grand_gedeh'"
+                                                        data-type-xml="select1"
+                                                        data-name="/household_survey/sectionC/respondent_district_districts_in_grand_gedeh"><span
+                                lang="" class=" active">Gbarzon</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_grand_gedeh"
+                            value="konobo"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='grand_gedeh'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_grand_gedeh"><span
+                            lang="" class=" active">Konobo</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_grand_gedeh"
+                            value="tchien"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='grand_gedeh'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_grand_gedeh"><span
+                            lang="" class=" active">Tchien</span></label><span class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                            class="jr-required-msg active" lang="">This field is required</span></fieldset>
+                </fieldset>
+                <fieldset class="restoring-sanity-to-legends jr-branch  disabled" disabled="" style="">
+                    <fieldset>
+                        <legend><span lang="" class=" active">C.1.2 Please select the district</span>
+                        </legend>
+                        <label class="clearfix "><input autocomplete="off" type="radio"
+                                                        name="/household_survey/sectionC/respondent_district_districts_in_grand_bassa"
+                                                        value="commonwealth_1"
+                                                        data-relevant="/household_survey/sectionC/respondent_district_counties='grand_bassa'"
+                                                        data-type-xml="select1"
+                                                        data-name="/household_survey/sectionC/respondent_district_districts_in_grand_bassa"><span
+                                lang="" class=" active">Commonwealth 1</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_grand_bassa"
+                            value="district_1"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='grand_bassa'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_grand_bassa"><span
+                            lang="" class=" active">District #1</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_grand_bassa"
+                            value="district_2"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='grand_bassa'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_grand_bassa"><span
+                            lang="" class=" active">District #2</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_grand_bassa"
+                            value="district_3"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='grand_bassa'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_grand_bassa"><span
+                            lang="" class=" active">District #3</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_grand_bassa"
+                            value="district_4"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='grand_bassa'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_grand_bassa"><span
+                            lang="" class=" active">District #4</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_grand_bassa"
+                            value="neekreen"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='grand_bassa'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_grand_bassa"><span
+                            lang="" class=" active">Neekreen</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_grand_bassa"
+                            value="owensgrove"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='grand_bassa'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_grand_bassa"><span
+                            lang="" class=" active">Owensgrove</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_grand_bassa"
+                            value="st_john_river"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='grand_bassa'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_grand_bassa"><span
+                            lang="" class=" active">St. John River</span></label><span class="jr-constraint-msg active"
+                                                                                       lang="">Value not allowed</span><span
+                            class="jr-required-msg active" lang="">This field is required</span></fieldset>
+                </fieldset>
+                <fieldset class="restoring-sanity-to-legends jr-branch  disabled" disabled="" style="">
+                    <fieldset>
+                        <legend><span lang="" class=" active">C.1.2 Please select the district</span>
+                        </legend>
+                        <label class="clearfix "><input autocomplete="off" type="radio"
+                                                        name="/household_survey/sectionC/respondent_district_districts_in_river_cess"
+                                                        value="bear_wor_sangbalor"
+                                                        data-relevant="/household_survey/sectionC/respondent_district_counties='river_cess'"
+                                                        data-type-xml="select1"
+                                                        data-name="/household_survey/sectionC/respondent_district_districts_in_river_cess"><span
+                                lang="" class=" active">Bear Wor-Sangbalor</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_river_cess"
+                            value="central_river_cess"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='river_cess'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_river_cess"><span
+                            lang="" class=" active">Central River Cess</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_river_cess" value="dodain"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='river_cess'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_river_cess"><span
+                            lang="" class=" active">Dodain</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_river_cess"
+                            value="fehn_river_zarflahn"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='river_cess'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_river_cess"><span
+                            lang="" class=" active">Fehn River-Zarflahn</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_river_cess"
+                            value="jo_river"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='river_cess'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_river_cess"><span
+                            lang="" class=" active">Jo-River</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_river_cess"
+                            value="nyunwein"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='river_cess'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_river_cess"><span
+                            lang="" class=" active">Nyunwein</span></label><span class="jr-constraint-msg active"
+                                                                                 lang="">Value not allowed</span><span
+                            class="jr-required-msg active" lang="">This field is required</span></fieldset>
+                </fieldset>
+                <fieldset class="restoring-sanity-to-legends jr-branch  disabled" disabled="" style="">
+                    <fieldset>
+                        <legend><span lang="" class=" active">C.1.2 Please select the district</span>
+                        </legend>
+                        <label class="clearfix "><input autocomplete="off" type="radio"
+                                                        name="/household_survey/sectionC/respondent_district_districts_in_grand_kru"
+                                                        value="sasstown"
+                                                        data-relevant="/household_survey/sectionC/respondent_district_counties='grand_kru'"
+                                                        data-type-xml="select1"
+                                                        data-name="/household_survey/sectionC/respondent_district_districts_in_grand_kru"><span
+                                lang="" class=" active">Sasstown</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_grand_kru" value="buah"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='grand_kru'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_grand_kru"><span
+                            lang="" class=" active">Buah</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_grand_kru"
+                            value="upper_kru_coast"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='grand_kru'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_grand_kru"><span
+                            lang="" class=" active">Upper Kru Coast</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_grand_kru"
+                            value="lower_kru_coast"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='grand_kru'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_grand_kru"><span
+                            lang="" class=" active">Lower Kru Coast</span></label><span class="jr-constraint-msg active"
+                                                                                        lang="">Value not allowed</span><span
+                            class="jr-required-msg active" lang="">This field is required</span></fieldset>
+                </fieldset>
+                <fieldset class="restoring-sanity-to-legends jr-branch  disabled" disabled="" style="">
+                    <fieldset>
+                        <legend><span lang="" class=" active">C.1.2 Please select the district</span>
+                        </legend>
+                        <label class="clearfix "><input autocomplete="off" type="radio"
+                                                        name="/household_survey/sectionC/respondent_district_districts_in_grand_cape_mount_county"
+                                                        value="commonwealth_2"
+                                                        data-relevant="/household_survey/sectionC/respondent_district_counties='grand_cape_mount_county'"
+                                                        data-type-xml="select1"
+                                                        data-name="/household_survey/sectionC/respondent_district_districts_in_grand_cape_mount_county"><span
+                                lang="" class=" active">Commonwealth 2</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_grand_cape_mount_county"
+                            value="garwula"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='grand_cape_mount_county'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_grand_cape_mount_county"><span
+                            lang="" class=" active">Garwula</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_grand_cape_mount_county"
+                            value="gola_konneh"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='grand_cape_mount_county'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_grand_cape_mount_county"><span
+                            lang="" class=" active">Gola Konneh</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_grand_cape_mount_county"
+                            value="porkpa"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='grand_cape_mount_county'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_grand_cape_mount_county"><span
+                            lang="" class=" active">Porkpa</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_grand_cape_mount_county"
+                            value="tewor"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='grand_cape_mount_county'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_grand_cape_mount_county"><span
+                            lang="" class=" active">Tewor</span></label><span class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                            class="jr-required-msg active" lang="">This field is required</span></fieldset>
+                </fieldset>
+                <fieldset class="restoring-sanity-to-legends jr-branch  disabled" disabled="" style="">
+                    <fieldset>
+                        <legend><span lang="" class=" active">C.1.2 Please select the district</span>
+                        </legend>
+                        <label class="clearfix "><input autocomplete="off" type="radio"
+                                                        name="/household_survey/sectionC/respondent_district_districts_in_margibi"
+                                                        value="firestone"
+                                                        data-relevant="/household_survey/sectionC/respondent_district_counties='margibi'"
+                                                        data-type-xml="select1"
+                                                        data-name="/household_survey/sectionC/respondent_district_districts_in_margibi"><span
+                                lang="" class=" active">Firestone</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_margibi" value="gibi"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='margibi'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_margibi"><span
+                            lang="" class=" active">Gibi</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_margibi" value="kakata"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='margibi'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_margibi"><span
+                            lang="" class=" active">Kakata</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_margibi"
+                            value="mambah_kaba"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='margibi'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_margibi"><span
+                            lang="" class=" active">Mambah-Kaba</span></label><span class="jr-constraint-msg active"
+                                                                                    lang="">Value not allowed</span><span
+                            class="jr-required-msg active" lang="">This field is required</span></fieldset>
+                </fieldset>
+                <fieldset class="restoring-sanity-to-legends jr-branch  disabled" disabled="" style="">
+                    <fieldset>
+                        <legend><span lang="" class=" active">C.1.2 Please select the district</span>
+                        </legend>
+                        <label class="clearfix "><input autocomplete="off" type="radio"
+                                                        name="/household_survey/sectionC/respondent_district_districts_in_nimba"
+                                                        value="gbehlageh"
+                                                        data-relevant="/household_survey/sectionC/respondent_district_counties='nimba'"
+                                                        data-type-xml="select1"
+                                                        data-name="/household_survey/sectionC/respondent_district_districts_in_nimba"><span
+                                lang="" class=" active">Gbehlageh</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_nimba"
+                            value="saclepea_mah"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='nimba'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_nimba"><span lang=""
+                                                                                                                class=" active">Saclepea Mah</span></label><label
+                            class="clearfix "><input autocomplete="off" type="radio"
+                                                     name="/household_survey/sectionC/respondent_district_districts_in_nimba"
+                                                     value="sanniquellie_mah"
+                                                     data-relevant="/household_survey/sectionC/respondent_district_counties='nimba'"
+                                                     data-type-xml="select1"
+                                                     data-name="/household_survey/sectionC/respondent_district_districts_in_nimba"><span
+                            lang="" class=" active">Sanniquellie Mah</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_nimba" value="tappita"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='nimba'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_nimba"><span lang=""
+                                                                                                                class=" active">Tappita</span></label><label
+                            class="clearfix "><input autocomplete="off" type="radio"
+                                                     name="/household_survey/sectionC/respondent_district_districts_in_nimba"
+                                                     value="yarwein_mehnsonoh"
+                                                     data-relevant="/household_survey/sectionC/respondent_district_counties='nimba'"
+                                                     data-type-xml="select1"
+                                                     data-name="/household_survey/sectionC/respondent_district_districts_in_nimba"><span
+                            lang="" class=" active">Yarwein-Mehnsonoh</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_nimba" value="zoegeh"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='nimba'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_nimba"><span lang=""
+                                                                                                                class=" active">Zoegeh</span></label><span
+                            class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                            class="jr-required-msg active" lang="">This field is required</span></fieldset>
+                </fieldset>
+                <fieldset class="restoring-sanity-to-legends jr-branch  disabled" disabled="" style="">
+                    <fieldset>
+                        <legend><span lang="" class=" active">C.1.2 Please select the district</span>
+                        </legend>
+                        <label class="clearfix "><input autocomplete="off" type="radio"
+                                                        name="/household_survey/sectionC/respondent_district_districts_in_bomi"
+                                                        value="klay"
+                                                        data-relevant="/household_survey/sectionC/respondent_district_counties='bomi'"
+                                                        data-type-xml="select1"
+                                                        data-name="/household_survey/sectionC/respondent_district_districts_in_bomi"><span
+                                lang="" class=" active">Klay</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_bomi" value="klay_2"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='bomi'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_bomi"><span lang=""
+                                                                                                               class=" active">Klay 2</span></label><label
+                            class="clearfix "><input autocomplete="off" type="radio"
+                                                     name="/household_survey/sectionC/respondent_district_districts_in_bomi"
+                                                     value="dewien"
+                                                     data-relevant="/household_survey/sectionC/respondent_district_counties='bomi'"
+                                                     data-type-xml="select1"
+                                                     data-name="/household_survey/sectionC/respondent_district_districts_in_bomi"><span
+                            lang="" class=" active">Dewien</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_bomi" value="suehn_mecca"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='bomi'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_bomi"><span lang=""
+                                                                                                               class=" active">Suehn Mecca</span></label><label
+                            class="clearfix "><input autocomplete="off" type="radio"
+                                                     name="/household_survey/sectionC/respondent_district_districts_in_bomi"
+                                                     value="senjeh"
+                                                     data-relevant="/household_survey/sectionC/respondent_district_counties='bomi'"
+                                                     data-type-xml="select1"
+                                                     data-name="/household_survey/sectionC/respondent_district_districts_in_bomi"><span
+                            lang="" class=" active">Senjeh</span></label><span class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                            class="jr-required-msg active" lang="">This field is required</span></fieldset>
+                </fieldset>
+                <fieldset class="restoring-sanity-to-legends jr-branch  disabled" disabled="" style="">
+                    <fieldset>
+                        <legend><span lang="" class=" active">C.1.2 Please select the district</span>
+                        </legend>
+                        <label class="clearfix "><input autocomplete="off" type="radio"
+                                                        name="/household_survey/sectionC/respondent_district_districts_in_lofa"
+                                                        value="foya"
+                                                        data-relevant="/household_survey/sectionC/respondent_district_counties='lofa'"
+                                                        data-type-xml="select1"
+                                                        data-name="/household_survey/sectionC/respondent_district_districts_in_lofa"><span
+                                lang="" class=" active">Foya</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_lofa" value="kolahun"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='lofa'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_lofa"><span lang=""
+                                                                                                               class=" active">Kolahun</span></label><label
+                            class="clearfix "><input autocomplete="off" type="radio"
+                                                     name="/household_survey/sectionC/respondent_district_districts_in_lofa"
+                                                     value="salayea"
+                                                     data-relevant="/household_survey/sectionC/respondent_district_counties='lofa'"
+                                                     data-type-xml="select1"
+                                                     data-name="/household_survey/sectionC/respondent_district_districts_in_lofa"><span
+                            lang="" class=" active">Salayea</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_lofa" value="vahun"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='lofa'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_lofa"><span lang=""
+                                                                                                               class=" active">Vahun</span></label><label
+                            class="clearfix "><input autocomplete="off" type="radio"
+                                                     name="/household_survey/sectionC/respondent_district_districts_in_lofa"
+                                                     value="voinjama"
+                                                     data-relevant="/household_survey/sectionC/respondent_district_counties='lofa'"
+                                                     data-type-xml="select1"
+                                                     data-name="/household_survey/sectionC/respondent_district_districts_in_lofa"><span
+                            lang="" class=" active">Voinjama</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_lofa" value="zorzor"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='lofa'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_lofa"><span lang=""
+                                                                                                               class=" active">Zorzor</span></label><span
+                            class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                            class="jr-required-msg active" lang="">This field is required</span></fieldset>
+                </fieldset>
+                <fieldset class="restoring-sanity-to-legends jr-branch  disabled" disabled="" style="">
+                    <fieldset>
+                        <legend><span lang="" class=" active">C.1.2 Please select the district</span>
+                        </legend>
+                        <label class="clearfix "><input autocomplete="off" type="radio"
+                                                        name="/household_survey/sectionC/respondent_district_districts_in_river_gee"
+                                                        value="chedepo"
+                                                        data-relevant="/household_survey/sectionC/respondent_district_counties='river_gee'"
+                                                        data-type-xml="select1"
+                                                        data-name="/household_survey/sectionC/respondent_district_districts_in_river_gee"><span
+                                lang="" class=" active">Chedepo</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_river_gee" value="gbeapo"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='river_gee'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_river_gee"><span
+                            lang="" class=" active">Gbeapo</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_river_gee" value="potupo"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='river_gee'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_river_gee"><span
+                            lang="" class=" active">Potupo</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_river_gee" value="sarbo"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='river_gee'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_river_gee"><span
+                            lang="" class=" active">Sarbo</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_river_gee" value="tienpo"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='river_gee'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_river_gee"><span
+                            lang="" class=" active">Tienpo</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_river_gee" value="webbo"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='river_gee'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_river_gee"><span
+                            lang="" class=" active">Webbo</span></label><span class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                            class="jr-required-msg active" lang="">This field is required</span></fieldset>
+                </fieldset>
+                <fieldset class="restoring-sanity-to-legends jr-branch  disabled" disabled="" style="">
+                    <fieldset>
+                        <legend><span lang="" class=" active">C.1.2 Please select the district</span>
+                        </legend>
+                        <label class="clearfix "><input autocomplete="off" type="radio"
+                                                        name="/household_survey/sectionC/respondent_district_districts_in_montserrado"
+                                                        value="careysburg"
+                                                        data-relevant="/household_survey/sectionC/respondent_district_counties='montserrado'"
+                                                        data-type-xml="select1"
+                                                        data-name="/household_survey/sectionC/respondent_district_districts_in_montserrado"><span
+                                lang="" class=" active">Careysburg</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_montserrado"
+                            value="greater_monrovia"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='montserrado'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_montserrado"><span
+                            lang="" class=" active">Greater Monrovia</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_montserrado"
+                            value="st_paul_river"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='montserrado'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_montserrado"><span
+                            lang="" class=" active">St. Paul River</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_montserrado" value="todee"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='montserrado'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_montserrado"><span
+                            lang="" class=" active">Todee</span></label><span class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                            class="jr-required-msg active" lang="">This field is required</span></fieldset>
+                </fieldset>
+                <fieldset class="restoring-sanity-to-legends jr-branch  disabled" disabled="" style="">
+                    <fieldset>
+                        <legend><span lang="" class=" active">C.1.2 Please select the district</span>
+                        </legend>
+                        <label class="clearfix "><input autocomplete="off" type="radio"
+                                                        name="/household_survey/sectionC/respondent_district_districts_in_maryland"
+                                                        value="gwelekpoken"
+                                                        data-relevant="/household_survey/sectionC/respondent_district_counties='maryland'"
+                                                        data-type-xml="select1"
+                                                        data-name="/household_survey/sectionC/respondent_district_districts_in_maryland"><span
+                                lang="" class=" active">Gwelekpoken</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_maryland" value="harper"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='maryland'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_maryland"><span
+                            lang="" class=" active">Harper</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_maryland"
+                            value="karluway_1"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='maryland'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_maryland"><span
+                            lang="" class=" active">Karluway #1</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_maryland"
+                            value="karluway_2"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='maryland'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_maryland"><span
+                            lang="" class=" active">Karluway #2</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_maryland" value="nyonken"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='maryland'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_maryland"><span
+                            lang="" class=" active">Nyonken</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_maryland"
+                            value="pleebo_sodoken"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='maryland'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_maryland"><span
+                            lang="" class=" active">Pleebo/Sodoken</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_maryland" value="whojah"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='maryland'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_maryland"><span
+                            lang="" class=" active">Whojah</span></label><span class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                            class="jr-required-msg active" lang="">This field is required</span></fieldset>
+                </fieldset>
+                <fieldset class="restoring-sanity-to-legends jr-branch  disabled" disabled="" style="">
+                    <fieldset>
+                        <legend><span lang="" class=" active">C.1.2 Please select the district</span>
+                        </legend>
+                        <label class="clearfix "><input autocomplete="off" type="radio"
+                                                        name="/household_survey/sectionC/respondent_district_districts_in_bong"
+                                                        value="boinsen"
+                                                        data-relevant="/household_survey/sectionC/respondent_district_counties='bong'"
+                                                        data-type-xml="select1"
+                                                        data-name="/household_survey/sectionC/respondent_district_districts_in_bong"><span
+                                lang="" class=" active">Boinsen</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_bong" value="fuamah"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='bong'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_bong"><span lang=""
+                                                                                                               class=" active">Fuamah</span></label><label
+                            class="clearfix "><input autocomplete="off" type="radio"
+                                                     name="/household_survey/sectionC/respondent_district_districts_in_bong"
+                                                     value="jorquelleh"
+                                                     data-relevant="/household_survey/sectionC/respondent_district_counties='bong'"
+                                                     data-type-xml="select1"
+                                                     data-name="/household_survey/sectionC/respondent_district_districts_in_bong"><span
+                            lang="" class=" active">Jorquelleh</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_bong" value="kokoyah"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='bong'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_bong"><span lang=""
+                                                                                                               class=" active">Kokoyah</span></label><label
+                            class="clearfix "><input autocomplete="off" type="radio"
+                                                     name="/household_survey/sectionC/respondent_district_districts_in_bong"
+                                                     value="kpaai"
+                                                     data-relevant="/household_survey/sectionC/respondent_district_counties='bong'"
+                                                     data-type-xml="select1"
+                                                     data-name="/household_survey/sectionC/respondent_district_districts_in_bong"><span
+                            lang="" class=" active">Kpaai</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_bong" value="panta"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='bong'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_bong"><span lang=""
+                                                                                                               class=" active">Panta</span></label><label
+                            class="clearfix "><input autocomplete="off" type="radio"
+                                                     name="/household_survey/sectionC/respondent_district_districts_in_bong"
+                                                     value="salala"
+                                                     data-relevant="/household_survey/sectionC/respondent_district_counties='bong'"
+                                                     data-type-xml="select1"
+                                                     data-name="/household_survey/sectionC/respondent_district_districts_in_bong"><span
+                            lang="" class=" active">Salala</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_bong" value="suakoko"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='bong'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_bong"><span lang=""
+                                                                                                               class=" active">Suakoko</span></label><label
+                            class="clearfix "><input autocomplete="off" type="radio"
+                                                     name="/household_survey/sectionC/respondent_district_districts_in_bong"
+                                                     value="tukpahblees"
+                                                     data-relevant="/household_survey/sectionC/respondent_district_counties='bong'"
+                                                     data-type-xml="select1"
+                                                     data-name="/household_survey/sectionC/respondent_district_districts_in_bong"><span
+                            lang="" class=" active">Tukpahblees</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_bong"
+                            value="yeallequellah"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='bong'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_bong"><span lang=""
+                                                                                                               class=" active">Yeallequellah</span></label><label
+                            class="clearfix "><input autocomplete="off" type="radio"
+                                                     name="/household_survey/sectionC/respondent_district_districts_in_bong"
+                                                     value="zota"
+                                                     data-relevant="/household_survey/sectionC/respondent_district_counties='bong'"
+                                                     data-type-xml="select1"
+                                                     data-name="/household_survey/sectionC/respondent_district_districts_in_bong"><span
+                            lang="" class=" active">Zota</span></label><span class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                            class="jr-required-msg active" lang="">This field is required</span></fieldset>
+                </fieldset>
+                <fieldset class="restoring-sanity-to-legends jr-branch  disabled" disabled="" style="">
+                    <fieldset>
+                        <legend><span lang="" class=" active">C.1.2 Please select the district</span>
+                        </legend>
+                        <label class="clearfix "><input autocomplete="off" type="radio"
+                                                        name="/household_survey/sectionC/respondent_district_districts_in_sinoe"
+                                                        value="bodae"
+                                                        data-relevant="/household_survey/sectionC/respondent_district_counties='sinoe'"
+                                                        data-type-xml="select1"
+                                                        data-name="/household_survey/sectionC/respondent_district_districts_in_sinoe"><span
+                                lang="" class=" active">Bodae</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_sinoe" value="bokon"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='sinoe'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_sinoe"><span lang=""
+                                                                                                                class=" active">Bokon</span></label><label
+                            class="clearfix "><input autocomplete="off" type="radio"
+                                                     name="/household_survey/sectionC/respondent_district_districts_in_sinoe"
+                                                     value="butaw"
+                                                     data-relevant="/household_survey/sectionC/respondent_district_counties='sinoe'"
+                                                     data-type-xml="select1"
+                                                     data-name="/household_survey/sectionC/respondent_district_districts_in_sinoe"><span
+                            lang="" class=" active">Butaw</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_sinoe" value="dugbe_river"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='sinoe'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_sinoe"><span lang=""
+                                                                                                                class=" active">Dugbe River</span></label><label
+                            class="clearfix "><input autocomplete="off" type="radio"
+                                                     name="/household_survey/sectionC/respondent_district_districts_in_sinoe"
+                                                     value="greenville"
+                                                     data-relevant="/household_survey/sectionC/respondent_district_counties='sinoe'"
+                                                     data-type-xml="select1"
+                                                     data-name="/household_survey/sectionC/respondent_district_districts_in_sinoe"><span
+                            lang="" class=" active">Greenville</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_sinoe" value="jaedae"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='sinoe'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_sinoe"><span lang=""
+                                                                                                                class=" active">Jaedae</span></label><label
+                            class="clearfix "><input autocomplete="off" type="radio"
+                                                     name="/household_survey/sectionC/respondent_district_districts_in_sinoe"
+                                                     value="jaedepo"
+                                                     data-relevant="/household_survey/sectionC/respondent_district_counties='sinoe'"
+                                                     data-type-xml="select1"
+                                                     data-name="/household_survey/sectionC/respondent_district_districts_in_sinoe"><span
+                            lang="" class=" active">Jaedepo</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_sinoe" value="juarzon"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='sinoe'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_sinoe"><span lang=""
+                                                                                                                class=" active">Juarzon</span></label><label
+                            class="clearfix "><input autocomplete="off" type="radio"
+                                                     name="/household_survey/sectionC/respondent_district_districts_in_sinoe"
+                                                     value="kpayan"
+                                                     data-relevant="/household_survey/sectionC/respondent_district_counties='sinoe'"
+                                                     data-type-xml="select1"
+                                                     data-name="/household_survey/sectionC/respondent_district_districts_in_sinoe"><span
+                            lang="" class=" active">Kpayan</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_sinoe"
+                            value="kulu_shaw_boe"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='sinoe'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_sinoe"><span lang=""
+                                                                                                                class=" active">Kulu Shaw Boe</span></label><label
+                            class="clearfix "><input autocomplete="off" type="radio"
+                                                     name="/household_survey/sectionC/respondent_district_districts_in_sinoe"
+                                                     value="plahn_nyarn"
+                                                     data-relevant="/household_survey/sectionC/respondent_district_counties='sinoe'"
+                                                     data-type-xml="select1"
+                                                     data-name="/household_survey/sectionC/respondent_district_districts_in_sinoe"><span
+                            lang="" class=" active">Plahn Nyarn</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_sinoe" value="pynes_town"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='sinoe'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_sinoe"><span lang=""
+                                                                                                                class=" active">Pynes Town</span></label><label
+                            class="clearfix "><input autocomplete="off" type="radio"
+                                                     name="/household_survey/sectionC/respondent_district_districts_in_sinoe"
+                                                     value="sanquin_1"
+                                                     data-relevant="/household_survey/sectionC/respondent_district_counties='sinoe'"
+                                                     data-type-xml="select1"
+                                                     data-name="/household_survey/sectionC/respondent_district_districts_in_sinoe"><span
+                            lang="" class=" active">Sanquin 1</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_sinoe" value="sanquin_2"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='sinoe'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_sinoe"><span lang=""
+                                                                                                                class=" active">Sanquin 2</span></label><label
+                            class="clearfix "><input autocomplete="off" type="radio"
+                                                     name="/household_survey/sectionC/respondent_district_districts_in_sinoe"
+                                                     value="sanquin_3"
+                                                     data-relevant="/household_survey/sectionC/respondent_district_counties='sinoe'"
+                                                     data-type-xml="select1"
+                                                     data-name="/household_survey/sectionC/respondent_district_districts_in_sinoe"><span
+                            lang="" class=" active">Sanquin 3</span></label><label class="clearfix "><input
+                            autocomplete="off" type="radio"
+                            name="/household_survey/sectionC/respondent_district_districts_in_sinoe" value="seekon"
+                            data-relevant="/household_survey/sectionC/respondent_district_counties='sinoe'"
+                            data-type-xml="select1"
+                            data-name="/household_survey/sectionC/respondent_district_districts_in_sinoe"><span lang=""
+                                                                                                                class=" active">Seekon</span></label><label
+                            class="clearfix "><input autocomplete="off" type="radio"
+                                                     name="/household_survey/sectionC/respondent_district_districts_in_sinoe"
+                                                     value="wedjah"
+                                                     data-relevant="/household_survey/sectionC/respondent_district_counties='sinoe'"
+                                                     data-type-xml="select1"
+                                                     data-name="/household_survey/sectionC/respondent_district_districts_in_sinoe"><span
+                            lang="" class=" active">Wedjah</span></label><span class="jr-constraint-msg active" lang="">Value not allowed</span><span
+                            class="jr-required-msg active" lang="">This field is required</span></fieldset>
+                </fieldset>
+            </fieldset>
+            <!--end of group -->
+
+            <fieldset id="jr-calculated-items" style="display:none;"><label class=""><br><input autocomplete="off"
+                                                                                                type="hidden"
+                                                                                                name="/household_survey/formhub/uuid"
+                                                                                                data-calculate="'e739c7790d9f47239bbc91b341f16b17'"
+                                                                                                data-type-xml="string"
+                                                                                                value="e739c7790d9f47239bbc91b341f16b17"></label><label
+                    class=""><br><input autocomplete="off" type="hidden"
+                                        name="/household_survey/sectionA/hh_children_nb"
+                                        data-calculate="/household_survey/sectionA/hh_people_nb - /household_survey/sectionA/hh_adult_nb"
+                                        data-type-xml="string" value="NaN"></label><label class=""><br><input
+                    autocomplete="off" type="hidden" name="/household_survey/sectionC/respondent_district"
+                    data-calculate="if(/household_survey/sectionC/respondent_district_counties='gbarpolu', /household_survey/sectionC/respondent_district_districts_in_gbarpolu, if(/household_survey/sectionC/respondent_district_counties='grand_gedeh', /household_survey/sectionC/respondent_district_districts_in_grand_gedeh, if(/household_survey/sectionC/respondent_district_counties='grand_bassa', /household_survey/sectionC/respondent_district_districts_in_grand_bassa, if(/household_survey/sectionC/respondent_district_counties='river_cess', /household_survey/sectionC/respondent_district_districts_in_river_cess, if(/household_survey/sectionC/respondent_district_counties='grand_kru', /household_survey/sectionC/respondent_district_districts_in_grand_kru, if(/household_survey/sectionC/respondent_district_counties='grand_cape_mount_county', /household_survey/sectionC/respondent_district_districts_in_grand_cape_mount_county, if(/household_survey/sectionC/respondent_district_counties='margibi', /household_survey/sectionC/respondent_district_districts_in_margibi, if(/household_survey/sectionC/respondent_district_counties='nimba', /household_survey/sectionC/respondent_district_districts_in_nimba, if(/household_survey/sectionC/respondent_district_counties='bomi', /household_survey/sectionC/respondent_district_districts_in_bomi, if(/household_survey/sectionC/respondent_district_counties='lofa', /household_survey/sectionC/respondent_district_districts_in_lofa, if(/household_survey/sectionC/respondent_district_counties='river_gee', /household_survey/sectionC/respondent_district_districts_in_river_gee, if(/household_survey/sectionC/respondent_district_counties='montserrado', /household_survey/sectionC/respondent_district_districts_in_montserrado, if(/household_survey/sectionC/respondent_district_counties='maryland', /household_survey/sectionC/respondent_district_districts_in_maryland, if(/household_survey/sectionC/respondent_district_counties='bong', /household_survey/sectionC/respondent_district_districts_in_bong, if(/household_survey/sectionC/respondent_district_counties='sinoe', /household_survey/sectionC/respondent_district_districts_in_sinoe, 'ERROR')))))))))))))))"
+                    data-type-xml="string" value="ERROR"></label></fieldset>
+        </form>
+    </div>
+</div>

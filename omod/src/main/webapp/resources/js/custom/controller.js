@@ -1,3 +1,4 @@
+
 function FormCtrl($scope) {
     $scope.forms = [
         {name: 'Patient Registration Form', description: 'Form for registering patients', selected: false, tags: ['Registration', 'Patient']},

@@ -12,12 +12,8 @@
 
 <h2><spring:message code="Manage Forms"/></h2>
 
-<div class="bootstrap-scope">
-        <div class="row-fluid">
-            <div class="span12" ng-app="html5forms">
-                <div ng-view></div>
-            </div>
-        </div>
+<div class="bootstrap-scope" ng-app="html5forms">
+    <div ng-view></div>
 </div>
 
 <%@ include file="/WEB-INF/template/footer.jsp" %>

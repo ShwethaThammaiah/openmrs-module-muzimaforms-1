@@ -2,3 +2,7 @@
     text-align: center; /* center checkbox horizontally */
     vertical-align: middle; /* center checkbox vertically */
 }
+
+.border{
+    border: 1px solid #ddd;
+}

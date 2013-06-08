@@ -1,15 +1,15 @@
-<div ng-controller="FormCtrl">
+<div class="border">
     <div class="well-small">
         <span><a class="btn">Add</a></span>
         <span><button class="btn" ng-click="deleteForm()">Delete</button></span>
     </div>
     <div>
-        <table class="table table-striped table-hover ng-scope" >
-            <tr ng-repeat="form in forms">
+        <table class="table table-hover">
+            <tr ng-repeat="form in forms"  ng-click="selectForm(form.id)">
                 <td>
                     <input type="checkbox" ng-model="form.selected">
                 </td>
-                <td>
+                <td >
                     <div>
                         <strong>{{form.name}}</strong>
                     </div>

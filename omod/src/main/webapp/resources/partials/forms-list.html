@@ -1,12 +1,16 @@
 <div class="border">
-    <div class="well-small">
-        <span><a class="btn">Add</a></span>
-        <span><button class="btn" ng-click="deleteForm()">Delete</button></span>
+    <div class="well-small" style="background-color: #eeeeee">
+        <span><button class="btn btn-success">Add</button></span>
+        <span><button class="btn btn-danger" ng-click="deleteForm()">Delete</button></span>
+        <div class="input-append pull-right">
+            <input class="span8" id="appendedInputButton" type="text" ng-model="searchQuery">
+            <button class="btn" type="button">Search</button>
+        </div>
     </div>
     <div>
         <table class="table table-hover">
-            <tr ng-repeat="form in forms"  ng-click="selectForm(form.id)">
-                <td>
+            <tr ng-repeat="form in forms | filter:searchQuery"  ng-click="selectForm(form.id)">
+                <td style="text-align: center; vertical-align: middle">
                     <input type="checkbox" ng-model="form.selected">
                 </td>
                 <td >
@@ -17,17 +21,13 @@
                         <small>{{form.description}}</small>
                     </div>
                     <div>
-                        <span style="margin-right: 2px" class="label" ng-repeat="tag in form.tags">{{tag}}</span>
+                        <span style="margin-right: 2px" class="label" ng-repeat="tag in form.tags" ng-style="getTagStyle(tag)">{{tag.name}}</span>
                     </div>
                 </td>
-                <td>
-                    <a class="btn" href="#">
-                        <i class="icon-cog"></i></a>
-
-                </td>
-                <td>
-                    <a class="btn" href="#/preview">
-                        <i class="icon-eye-open"></i></a>
+                <td  style="text-align: center; vertical-align: middle">
+                    <button class="btn" href="#">
+                        <i class="icon-cogs"></i>
+                    </button>
                 </td>
             </tr>
         </table>

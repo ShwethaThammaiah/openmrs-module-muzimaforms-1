@@ -15,11 +15,9 @@
 <div class="bootstrap-scope" ng-app="html5forms">
 
     <div class="row-fluid" ng-controller="FormCtrl">
-        <div class="span8" data-ng-include data-src="'../../moduleResources/html5forms/partials/form-preview.html'"></div>
-        <div class="span4" data-ng-include data-src="'../../moduleResources/html5forms/partials/forms-list.html'"></div>
+        <div class="span7" data-ng-include data-src="'../../moduleResources/html5forms/partials/form-preview.html'"></div>
+        <div class="span5" data-ng-include data-src="'../../moduleResources/html5forms/partials/forms-list.html'"></div>
     </div>
-
-    <%--<div ng-view></div>--%>
 </div>
 
 <%@ include file="/WEB-INF/template/footer.jsp" %>

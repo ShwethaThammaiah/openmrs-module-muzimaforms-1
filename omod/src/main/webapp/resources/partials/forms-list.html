@@ -7,7 +7,7 @@
     </div>
     <div>
         <table class="table table-hover">
-            <tr ng-repeat="form in forms | filter:searchQuery"  ng-click="selectForm(form.id)">
+            <tr ng-repeat="form in forms | filter:searchQuery"  ng-click="select(form.id)">
                 <td style="text-align: center; vertical-align: middle">
                     <input type="checkbox" ng-model="form.selected">
                 </td>

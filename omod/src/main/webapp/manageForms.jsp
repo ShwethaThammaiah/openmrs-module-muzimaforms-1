@@ -7,8 +7,8 @@
 <openmrs:htmlInclude file="/moduleResources/html5forms/styles/font-awesome/css/font-awesome.min.css"/>
 <openmrs:htmlInclude file="/moduleResources/html5forms/js/angular/angular.min.js"/>
 
-<openmrs:htmlInclude file="/moduleResources/html5forms/js/custom/controller.js"/>
 <openmrs:htmlInclude file="/moduleResources/html5forms/js/custom/app.js"/>
+<openmrs:htmlInclude file="/moduleResources/html5forms/js/custom/controller.js"/>
 
 <h2><spring:message code="Manage Forms"/></h2>
 

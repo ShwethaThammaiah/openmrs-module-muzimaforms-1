@@ -1,15 +1,15 @@
 function FormCtrl($scope) {
     $scope.labels = [
-        {name: 'Registration', color: '#b94a48'},
-        {name: 'Patient', color: '#f89406'},
-        {name: 'Encounter', color: '#468847'},
-        {name: 'Observation', color: '#33B5E5'},
-        {name: 'HIV', color: '#f84600'},
-        {name: 'PMTCT', color: '#207178'},
-        {name: 'Ante-Natal', color: '#1693a5'},
-        {name: 'Pediatric', color: '#c19652'},
-        {name: 'Outreach', color: '#7faf1b'},
-        {name: 'Locator', color: '#01d2ff'}
+        {id: '1' ,name: 'Registration', color: '#b94a48'},
+        {id: '2' ,name: 'Patient', color: '#f89406'},
+        {id: '3' ,name: 'Encounter', color: '#468847'},
+        {id: '4' ,name: 'Observation', color: '#33B5E5'},
+        {id: '5' ,name: 'HIV', color: '#f84600'},
+        {id: '6' ,name: 'PMTCT', color: '#207178'},
+        {id: '7' ,name: 'Ante-Natal', color: '#1693a5'},
+        {id: '8' ,name: 'Pediatric', color: '#c19652'},
+        {id: '9' ,name: 'Outreach', color: '#7faf1b'},
+        {id: '10' ,name: 'Locator', color: '#01d2ff'}
     ];
 
     $scope.forms = [
@@ -47,5 +47,4 @@ function FormCtrl($scope) {
         }
         return tagStyle;
     };
-
 }

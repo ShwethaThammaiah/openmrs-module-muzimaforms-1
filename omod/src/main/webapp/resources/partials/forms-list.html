@@ -1,8 +1,6 @@
 <div class="border">
-    <div class="well-small" style="background-color: #eeeeee">
-        <span><button class="btn btn-success">Add</button></span>
-        <span><button class="btn btn-danger" ng-click="deleteForm()">Delete</button></span>
-        <div class="input-append pull-right">
+    <div class="well-small header_background" >
+        <div class="input-append" style="margin-top: 2%">
             <input class="span8" id="appendedInputButton" type="text" ng-model="searchQuery">
             <button class="btn" type="button">Search</button>
         </div>
@@ -21,10 +19,10 @@
                         <small>{{form.description}}</small>
                     </div>
                     <div>
-                        <span style="margin-right: 2px" class="label" ng-repeat="tag in form.tags" ng-style="getTagStyle(tag)">{{tag.name}}</span>
+                        <span class="label tag" ng-repeat="tag in form.tags" ng-style="getTagStyle(tag)">{{tag.name}}</span>
                     </div>
                 </td>
-                <td  style="text-align: center; vertical-align: middle">
+                <td style="text-align: center; vertical-align: middle">
                     <button class="btn" href="#">
                         <i class="icon-cogs"></i>
                     </button>

@@ -6,3 +6,16 @@
 .border{
     border: 1px solid #ddd;
 }
+
+.header_background{
+    background-color: #eeeeee;
+}
+
+.tag{
+    margin-right: 2px;
+}
+
+.table-element{
+    text-align: center;
+    vertical-align: middle;
+}

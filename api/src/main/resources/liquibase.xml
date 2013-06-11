@@ -13,28 +13,17 @@
         for a list of supported elements and attributes
     -->
  
- 	<!-- Uncomment this and edit the values below to use this file
- 	
-	<changeSet id="mymoduleid-2010-05-25-15:50" author="bwolfe">
-		<preConditions onFail="MARK_RAN">
-			<not><tableExists tableName="mymoduleid_myobject"/></not>
-		</preConditions>
+
+	<changeSet id="html5form-2013-06-11-12:30" author="ThoughtWorks">
 		<comment>
-			Creating the mymoduleid_myobject table
+			Table for tags
 		</comment>
-		<createTable tableName="mymoduleid_myobject">
-			<column name="mymoduleid_myobject_id" type="int">
+		<createTable tableName="html5forms_tag">
+			<column name="html5forms_tag_id" type="int">
 				<constraints primaryKey="true" nullable="false"/>
 			</column>
-			<column name="firstname" type="varchar(255)"/>
-			<column name="lastname" type="varchar(255)"/>
-			<column name="username" type="varchar(255)">
-				<constraints unique="true" nullable="false"/>
-			</column>
-			<column name="testid" type="int" />
+			<column name="name" type="varchar(255)"/>
 		</createTable>
     </changeSet>
-    
-    -->
- 
+
 </databaseChangeLog>

@@ -40,7 +40,7 @@
             <button class="btn" type="button">Search</button>
         </div>
     </div>
-    <div class="row-fluid open-box" ng-repeat="form in forms | filter:searchQuery">
+    <div class="row-fluid open-box" ng-repeat="form in forms | filter:searchQuery" ng-click="select(form.id)">
         <div class="span11">
             <div class="table-content">
                 <strong>{{form.name}}</strong>

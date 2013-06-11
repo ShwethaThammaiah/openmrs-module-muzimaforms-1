@@ -10,7 +10,7 @@ import java.util.Map;
 
 
 @Controller
-@RequestMapping(value = "module/html5forms/tag.form")
+@RequestMapping(value = "module/html5forms/tags.form")
 
 public class TagController {
     @RequestMapping(method = RequestMethod.GET)

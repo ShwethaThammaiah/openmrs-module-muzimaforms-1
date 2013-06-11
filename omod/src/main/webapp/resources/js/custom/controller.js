@@ -1,5 +1,5 @@
 function FormCtrl($scope, FormService, TagService) {
-    $scope.tags = TagService.tags;
+    $scope.tags = TagService.tags();
     $scope.forms = FormService.forms;
 
     $scope.selectedFormId = $scope.forms[0].id;

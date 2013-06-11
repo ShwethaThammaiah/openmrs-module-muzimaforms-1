@@ -3,13 +3,28 @@ describe('Html5Forms controllers', function () {
     beforeEach(module('html5forms'));
 
     describe('FormsCtrl', function () {
-        var scope, ctrl, formService, tagService;
+        var scope, ctrl, tagService, httpBackend;
+        beforeEach(inject(function (_$httpBackend_, _TagService_, $rootScope, $controller) {
+            httpBackend = _$httpBackend_;
 
-        beforeEach(inject(function (_FormService_, _TagService_, $rootScope, $controller) {
+            httpBackend.expectGET('tags.form').
+                respond({
+                    1: { name: 'Registration'},
+                    2: { name: 'Patient'},
+                    3: { name: 'Encounter'},
+                    4: { name: 'Observation'},
+                    5: { name: 'Hiv'},
+                    6: { name: 'PMTCT'},
+                    7: { name: 'Ante-Natal'},
+                    8: { name: 'Pediatric'},
+                    9: { name: 'Locator'}
+                });
+
             tagService = _TagService_;
-            formService = _FormService_;
             scope = $rootScope.$new();
             ctrl = $controller(FormCtrl, {$scope: scope});
+
+            httpBackend.flush();
         }));
 
         it('should assign tags to scope', function () {

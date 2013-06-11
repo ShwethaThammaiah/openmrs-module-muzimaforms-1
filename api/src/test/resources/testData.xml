@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <html5forms_tag html5forms_tag_id="1" name="Registration"/>
+    <html5forms_tag html5forms_tag_id="2" name="Patient"/>
+    <html5forms_tag html5forms_tag_id="3" name="Encounter"/>
+</dataset>

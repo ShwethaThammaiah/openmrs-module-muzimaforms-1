@@ -74,6 +74,12 @@
                 <type>pom</type>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test-mvc</artifactId>
+                <version>1.0.0.M2</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -107,6 +113,12 @@
             <name>OpenMRS Nexus Repository</name>
             <url>http://mavenrepo.openmrs.org/nexus/content/repositories/public</url>
         </repository>
+        <repository>
+            <id>spring-test-repo</id>
+            <name>Spring Test Repository</name>
+            <url>http://repo.springsource.org/libs-snapshot</url>
+        </repository>
+
     </repositories>
 
     <pluginRepositories>

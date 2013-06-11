@@ -22,16 +22,5 @@ describe('Html5Forms services', function () {
             service = _TagService_;
         }));
 
-        it('should assign color to tag', function () {
-            expect(service.tags[2].color).toBeUndefined();
-            service.tagColor(2);
-            expect(service.tags[2].color).toBeDefined();
-        });
-
-        it('should not assign new color to tag if color is already assigned', function () {
-            service.tags[2].color = '#333333';
-            service.tagColor(2);
-            expect(service.tags[2].color).toEqual('#333333');
-        });
     });
 });

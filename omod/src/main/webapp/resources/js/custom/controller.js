@@ -12,9 +12,16 @@ function FormCtrl($scope, FormService, TagService) {
         $scope.selectedFormId = id;
     };
 
-    $scope.getTagStyle = function (tagId) {
-        console.log(TagService.tagColor(tagId));
-        return  {'background-color': TagService.tagColor(tagId)};
+    var tagColor = function (tagId) {
+        var tag = $scope.tags[tagId];
+        if (!tag.color) {
+            tag.color = 'rgb(' + Math.floor(Math.random()*200) + ',' + Math.floor(Math.random()*200) + ',' + Math.floor(Math.random()*200) + ')';
+        }
+        return tag.color;
+    };
+
+    $scope.tagStyle = function (tagId) {
+        return  {'background-color': tagColor(tagId)};
     };
 
 }

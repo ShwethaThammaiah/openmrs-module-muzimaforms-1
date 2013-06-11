@@ -1,4 +1,4 @@
-var html5formsModule = angular.module('html5forms', []);
+var html5formsModule = angular.module('html5forms', ['ngResource']);
 
 html5formsModule.
     config(['$routeProvider', function ($routeProvider) {
@@ -23,7 +23,7 @@ html5formsModule.factory('FormService', function () {
     return service;
 });
 
-html5formsModule.factory('TagService', function () {
+html5formsModule.factory('TagService', function ($resource) {
     var service = {};
 
     service.tags = {
@@ -37,18 +37,6 @@ html5formsModule.factory('TagService', function () {
         8: { name: 'Pediatric'},
         9: { name: 'Locator'}
     };
-
-    service.tagColor = function (tagId) {
-        var tag = this.tags[tagId];
-        if (!tag.color) {
-            tag.color = generateRandomColor();
-        }
-        return tag.color;
-    };
-
-    function generateRandomColor(){
-        return 'rgb(' + Math.floor(Math.random()*256) + ',' + Math.floor(Math.random()*256) + ',' + Math.floor(Math.random()*256) + ')';
-    }
 
     return service;
 });

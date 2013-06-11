@@ -19,7 +19,7 @@
                         <small>{{form.description}}</small>
                     </div>
                     <div>
-                        <span class="label tag" ng-repeat="tagId in form.tags" ng-style="getTagStyle(tagId)">{{tags[tagId].name}}</span>
+                        <span class="label tag" ng-repeat="tagId in form.tags" ng-style="tagStyle(tagId)">{{tags[tagId].name}}</span>
                     </div>
                 </td>
                 <td style="text-align: center; vertical-align: middle">

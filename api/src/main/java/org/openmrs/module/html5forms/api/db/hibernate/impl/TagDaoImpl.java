@@ -1,6 +1,7 @@
 package org.openmrs.module.html5forms.api.db.hibernate.impl;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.classic.Session;
 import org.openmrs.module.html5forms.Tag;
 import org.openmrs.module.html5forms.api.db.hibernate.TagDAO;
 
@@ -14,6 +15,15 @@ public class TagDAOImpl implements TagDAO {
     }
 
     public List<Tag> getAll() {
-        return (List<Tag>)factory.getCurrentSession().createCriteria(Tag.class).list();
+        return (List<Tag>) session().createCriteria(Tag.class).list();
     }
+
+    public void add(Tag tag) {
+        session().save(tag);
+    }
+
+    private Session session() {
+        return factory.getCurrentSession();
+    }
+
 }

@@ -4,6 +4,12 @@ public class Tag {
     private Integer id;
     private String name;
 
+    public Tag() { } // Used by hibernate
+
+    public Tag(String name) {
+        this.name = name;
+    }
+
     public Integer getId() {
         return id;
     }

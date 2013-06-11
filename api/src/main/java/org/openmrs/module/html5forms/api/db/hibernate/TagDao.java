@@ -5,5 +5,7 @@ import org.openmrs.module.html5forms.Tag;
 import java.util.List;
 
 public interface TagDAO {
-    public List<Tag> getAll();
+    List<Tag> getAll();
+
+    void add(Tag tag);
 }

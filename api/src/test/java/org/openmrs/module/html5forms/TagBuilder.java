@@ -9,9 +9,8 @@ public class TagBuilder extends Builder<Tag> {
 
     @Override
     public Tag instance() {
-        Tag tag = new Tag();
+        Tag tag = new Tag(name);
         tag.setId(id);
-        tag.setName(name);
         return tag;
     }
 

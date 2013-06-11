@@ -1,33 +1,70 @@
-<div class="border">
-    <div class="well-small header_background" >
+<!--<div class="border" xmlns="http://www.w3.org/1999/html">-->
+<!--<div class="well-small header_background" >-->
+<!--<div class="input-append" style="margin-top: 2%">-->
+<!--<input class="span8" type="text" ng-model="searchQuery">-->
+<!--<button class="btn" type="button">Search</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div>-->
+<!--<table class="table table-hover">-->
+<!--<tr ng-repeat="form in forms | filter:searchQuery" ng-click="select(form.id)">-->
+<!--<td style="text-align: center; vertical-align: middle">-->
+<!--<input type="checkbox" ng-model="form.selected">-->
+<!--</td>-->
+<!--<td >-->
+<!--<div>-->
+<!--<strong>{{form.name}}</strong>-->
+<!--</div>-->
+<!--<div>-->
+<!--<small>{{form.description}}</small>-->
+<!--</div>-->
+<!--<div>-->
+<!--<span class="label tag" ng-repeat="tagId in form.tags" ng-style="tagStyle(tagId)">{{tags[tagId].name}}</span>-->
+<!--</div>-->
+<!--</td>-->
+<!--<td style="text-align: center; vertical-align: middle">-->
+<!--<a class="btn" href="#/editForm/{{form.id}}">-->
+<!--<i class="icon-cogs" style="color: #333333"></i>-->
+<!--</a>-->
+<!--</td>-->
+<!--</tr>-->
+<!--</table>-->
+<!--</div>-->
+
+<!--</div>-->
+
+<div>
+    <div class="well-small header_background border">
         <div class="input-append" style="margin-top: 2%">
-            <input class="span8" id="appendedInputButton" type="text" ng-model="searchQuery">
+            <input class="span8" type="text" ng-model="searchQuery">
             <button class="btn" type="button">Search</button>
         </div>
     </div>
-    <div>
-        <table class="table table-hover">
-            <tr ng-repeat="form in forms | filter:searchQuery"  ng-click="select(form.id)">
-                <td style="text-align: center; vertical-align: middle">
-                    <input type="checkbox" ng-model="form.selected">
-                </td>
-                <td >
-                    <div>
-                        <strong>{{form.name}}</strong>
-                    </div>
-                    <div>
-                        <small>{{form.description}}</small>
-                    </div>
-                    <div>
-                        <span class="label tag" ng-repeat="tagId in form.tags" ng-style="tagStyle(tagId)">{{tags[tagId].name}}</span>
-                    </div>
-                </td>
-                <td style="text-align: center; vertical-align: middle">
-                    <a class="btn" href="#/editForm/{{form.id}}">
-                        <i class="icon-cogs" style="color: #333333"></i>
-                    </a>
-                </td>
-            </tr>
-        </table>
+    <div class="row-fluid open-box" ng-repeat="form in forms | filter:searchQuery">
+        <div class="span11">
+            <div class="table-content">
+                <strong>{{form.name}}</strong>
+            </div>
+            <div collapse="!editMode">
+                <div class="table-content">
+                    <small>{{form.description}}</small>
+                </div>
+                <div class="table-content">
+                    <span class="label tag" ng-repeat="tagId in form.tags" ng-style="tagStyle(tagId)">{{tags[tagId].name}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="span1">
+            <a class="btn" ng-click="editMode = !editMode" style="color: inherit"><i class="icon-cogs"></i></a>
+        </div>
+        <div class="row-fluid" collapse="editMode">
+            <div class="span12">
+                <form>
+                    <fieldset>
+                        <textarea style="width: 100%" placeholder="Type Description..">{{form.description}}</textarea>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
     </div>
 </div>

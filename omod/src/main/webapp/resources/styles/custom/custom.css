@@ -29,3 +29,7 @@
 .table-content {
     margin: 5px;
 }
+
+.active-form {
+    background-color: #F8F8F8;
+}

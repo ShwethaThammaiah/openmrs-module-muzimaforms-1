@@ -14,6 +14,10 @@ function FormCtrl($scope, FormService, TagService) {
         $scope.selectedFormId = id;
     };
 
+    $scope.activeClass = function(id){
+        return id === $scope.selectedFormId ? 'active-form' : undefined;
+    };
+
     var tagColor = function (tagId) {
         var tag = $scope.tags[tagId];
         if (!tag.color) {

@@ -3,12 +3,11 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="org.openmrs.module.html5forms">
+
     <class name="Tag" table="html5forms_tag">
-
-        <id name="id" type="java.lang.Integer"	column="html5forms_tag_id" unsaved-value="0">
-            <generator class="native" />
+        <id name="id" type="java.lang.Integer" column="html5forms_tag_id" unsaved-value="0">
+            <generator class="native"/>
         </id>
-        <property name="name" type="java.lang.String" not-null="true" length="255" />
-
+        <property name="name" type="java.lang.String" not-null="true" length="255"/>
     </class>
 </hibernate-mapping>

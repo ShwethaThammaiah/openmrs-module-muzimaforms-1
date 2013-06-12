@@ -13,14 +13,7 @@
 	<description>API project for html5forms</description>
 
 	<dependencies>
-		<!-- 
-		Add other dependencies from lib:
-		<dependency>
-			<groupId>org.other.library</groupId>
-			<artifactId>library-name</artifactId>
-		</dependency>
-		-->
-		
+
 		<dependency>
 			<groupId>org.openmrs.api</groupId>
 			<artifactId>openmrs-api</artifactId>
@@ -46,6 +39,7 @@
 			<artifactId>openmrs-test</artifactId>
 			<type>pom</type>
 		</dependency>
+
 	</dependencies>
 	
 	<build>

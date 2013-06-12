@@ -21,7 +21,7 @@ public class TagServiceTest extends BaseModuleContextSensitiveTest {
     @Before
     public void setUp() throws Exception {
         service = Context.getService(TagService.class);
-        executeDataSet("testData.xml");
+        executeDataSet("tagTestData.xml");
     }
 
     @Test

@@ -2,10 +2,10 @@ package org.openmrs.module.html5forms;
 
 import java.util.List;
 
-public class XForms {
-    List<XForm> list;
+public class HTML5Forms {
+    List<HTML5Form> list;
 
-    public XForms(List<XForm> list) {
+    public HTML5Forms(List<HTML5Form> list) {
         this.list = list;
     }
 }

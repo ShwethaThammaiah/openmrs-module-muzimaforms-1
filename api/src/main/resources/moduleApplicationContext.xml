@@ -38,7 +38,7 @@
     <bean parent="serviceContext">
         <property name="moduleService">
             <list>
-                <value>org.openmrs.module.html5forms.api.XFormService</value>
+                <value>org.openmrs.module.html5forms.api.HTML5FormService</value>
                 <bean
                         class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
                     <property name="transactionManager">
@@ -47,7 +47,7 @@
                     <property name="target">
                         <bean class="org.openmrs.module.html5forms.api.impl.XFormServiceImpl">
                             <constructor-arg>
-                                <bean class="org.openmrs.module.html5forms.api.db.hibernate.impl.XFromDAOImpl">
+                                <bean class="org.openmrs.module.html5forms.api.db.hibernate.impl.HTML5FromDAOImpl">
                                     <constructor-arg ref="sessionFactory"/>
                                 </bean>
                             </constructor-arg>

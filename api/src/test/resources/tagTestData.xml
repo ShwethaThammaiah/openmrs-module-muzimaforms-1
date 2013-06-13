@@ -3,4 +3,5 @@
     <html5forms_tag html5forms_tag_id="1" name="Registration"/>
     <html5forms_tag html5forms_tag_id="2" name="Patient"/>
     <html5forms_tag html5forms_tag_id="3" name="Encounter"/>
+    <html5forms_tag html5forms_tag_id="4" name="HIV"/>
 </dataset>

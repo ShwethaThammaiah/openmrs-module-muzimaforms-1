@@ -21,6 +21,7 @@ public class HTML5FormServiceTest extends BaseModuleContextSensitiveTest {
     @Before
     public void setUp() throws Exception {
         service = Context.getService(HTML5FormService.class);
+        executeDataSet("tagTestData.xml");
         executeDataSet("xformTestData.xml");
     }
 

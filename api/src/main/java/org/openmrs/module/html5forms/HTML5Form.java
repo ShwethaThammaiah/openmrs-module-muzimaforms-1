@@ -1,10 +1,21 @@
 package org.openmrs.module.html5forms;
 
+import java.util.Set;
+
 public class HTML5Form {
     private Integer id;
     private String name;
     private String description;
     private XForm xform;
+    private Tags tags;
+
+    public Tags getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = new Tags(tags);
+    }
 
     public XForm getXform() {
         return xform;

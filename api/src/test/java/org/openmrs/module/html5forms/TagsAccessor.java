@@ -1,6 +1,6 @@
 package org.openmrs.module.html5forms;
 
-import java.util.List;
+import java.util.Collection;
 
 public class TagsAccessor {
     private Tags tags;
@@ -9,7 +9,7 @@ public class TagsAccessor {
         this.tags = tags;
     }
 
-    public List<Tag> getList() {
+    public Collection<Tag> getList() {
         return tags.list;
     }
 }

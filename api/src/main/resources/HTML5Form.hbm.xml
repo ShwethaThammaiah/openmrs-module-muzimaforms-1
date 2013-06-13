@@ -8,6 +8,11 @@
         <id name="id" type="java.lang.Integer" column="form_id"/>
         <property name="name" type="java.lang.String" not-null="true" length="255"/>
         <property name="description" type="java.lang.String" not-null="true" length="255"/>
-        <one-to-one  fetch="select" outer-join="false" name="xform" class="XForm" foreign-key="form_id"/>
+        <one-to-one name="xform" class="XForm" foreign-key="form_id"/>
+        <set name="tags" table="html5forms_form_tag_mapping">
+            <key column="form_id" not-null="true"/>
+            <many-to-many column="tag_id" class="Tag"/>
+        </set>
+
     </class>
 </hibernate-mapping>

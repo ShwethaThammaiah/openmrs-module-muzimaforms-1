@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="org.openmrs.module.html5forms">
+
+    <class name="TagMapping" table="html5forms_form_tag_mapping">
+        <composite-id>
+            <key-property name="formId" column="form_id" type="integer"/>
+            <key-property name="tagId" column="tag_id" type="integer"/>
+        </composite-id>
+    </class>
+</hibernate-mapping>

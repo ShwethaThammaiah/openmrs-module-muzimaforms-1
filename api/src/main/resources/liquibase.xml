@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
- 
+
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
- 
+
     <!--
     	See http://wiki.openmrs.org/display/docs/Module+liquibase+File for 
     	documentation on this file.
@@ -12,18 +12,33 @@
         See http://www.liquibase.org/manual/home#available_database_refactorings
         for a list of supported elements and attributes
     -->
- 
 
-	<changeSet id="html5form-2013-06-11-12:30" author="ThoughtWorks">
-		<comment>
-			Table for tags
-		</comment>
-		<createTable tableName="html5forms_tag">
-			<column name="html5forms_tag_id" type="int">
-				<constraints primaryKey="true" nullable="false"/>
-			</column>
-			<column name="name" type="varchar(255)"/>
-		</createTable>
+
+    <changeSet id="html5form-2013-06-11-12:30" author="ThoughtWorks">
+        <comment>
+            Table for tags
+        </comment>
+        <createTable tableName="html5forms_tag">
+            <column name="html5forms_tag_id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="html5form-2013-06-12-05:30" author="ThoughtWorks">
+        <comment>
+            Table for tags to form mapping
+        </comment>
+        <createTable tableName="html5forms_form_tag_mapping">
+            <column name="form_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tag_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey columnNames="form_id,tag_id" constraintName="html5forms_form_tag_mapping_form_id_pk" tableName="html5forms_form_tag_mapping"/>
     </changeSet>
 
 </databaseChangeLog>

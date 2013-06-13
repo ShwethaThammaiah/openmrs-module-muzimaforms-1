@@ -13,7 +13,7 @@ public class HTML5Form {
         return tags;
     }
 
-    public void setTags(Set<Tag> tags) {
+    public void setTags(Set<HTML5FormTag> tags) {
         this.tags = new Tags(tags);
     }
 

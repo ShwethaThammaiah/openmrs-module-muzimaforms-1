@@ -1,6 +1,7 @@
 package org.openmrs.module.html5forms.api;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.html5forms.HTML5Form;
@@ -14,6 +15,7 @@ import static org.junit.Assert.assertThat;
 import static org.openmrs.module.html5forms.HTML5FormBuilder.html5Form;
 import static org.openmrs.module.html5forms.XFormBuilder.xForm;
 
+@Ignore
 public class HTML5FormServiceTest extends BaseModuleContextSensitiveTest {
 
     private HTML5FormService service;

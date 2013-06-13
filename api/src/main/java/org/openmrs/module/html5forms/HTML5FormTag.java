@@ -1,12 +1,12 @@
 package org.openmrs.module.html5forms;
 
-public class Tag {
+public class HTML5FormTag {
     private Integer id;
     private String name;
 
-    public Tag() { } // Used by hibernate
+    public HTML5FormTag() { } // Used by hibernate
 
-    public Tag(String name) {
+    public HTML5FormTag(String name) {
         this.name = name;
     }
 
@@ -31,7 +31,7 @@ public class Tag {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Tag tag = (Tag) o;
+        HTML5FormTag tag = (HTML5FormTag) o;
 
         if (id != null ? !id.equals(tag.id) : tag.id != null) return false;
         if (name != null ? !name.equals(tag.name) : tag.name != null) return false;

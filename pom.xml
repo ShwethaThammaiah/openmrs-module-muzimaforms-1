@@ -147,6 +147,19 @@
                 <deploy.path>${openmrs.standalone.path}/tomcat/webapps/openmrs-standalone</deploy.path>
             </properties>
         </profile>
+        <profile>
+            <id>gogo.configuration</id>
+            <activation>
+                <property>
+                    <name>user</name>
+                    <value>gogo</value>
+                </property>
+            </activation>
+            <properties>
+                <openmrs.standalone.path>/Users/Admin/work/openmrs-standalone</openmrs.standalone.path>
+                <deploy.path>${openmrs.standalone.path}/tomcat/webapps/openmrs-standalone</deploy.path>
+            </properties>
+        </profile>
 
         <profile>
             <id>deploy-web</id>

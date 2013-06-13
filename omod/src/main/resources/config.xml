@@ -53,7 +53,14 @@
 		</description>
 	</globalProperty>
 	/Required Global Properties -->
-	
+     <require_modules>
+         <require_module version="4.1.0.0">
+             org.openmrs.module.xforms
+         </require_module>
+     </require_modules>
+    <!--<mappingFiles>-->
+        <!--HTML5Forms_Tag.hbm.xml-->
+    <!--</mappingFiles>-->
 	<!--
 	<dwr>
 		<allow>

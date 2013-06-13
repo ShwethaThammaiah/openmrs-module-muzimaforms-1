@@ -9,7 +9,7 @@ public class TagsAccessor {
         this.tags = tags;
     }
 
-    public Collection<Tag> getList() {
+    public Collection<HTML5FormTag> getList() {
         return tags.list;
     }
 }

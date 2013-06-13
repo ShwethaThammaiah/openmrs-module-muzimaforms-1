@@ -3,7 +3,7 @@ package org.openmrs.module.html5forms.api;
 import org.junit.Before;
 import org.junit.Test;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.html5forms.Tag;
+import org.openmrs.module.html5forms.HTML5FormTag;
 import org.openmrs.module.html5forms.TagsAccessor;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 
@@ -26,7 +26,7 @@ public class TagServiceTest extends BaseModuleContextSensitiveTest {
 
     @Test
     public void getAll_shouldGetAllTags() throws Exception {
-        Collection<Tag> list = new TagsAccessor(service.getAll()).getList();
+        Collection<HTML5FormTag> list = new TagsAccessor(service.getAll()).getList();
         assertThat(list.contains(tag().withId(1).withName("Registration").instance()), is(true));
         assertThat(list.contains(tag().withId(2).withName("Patient").instance()), is(true));
         assertThat(list.contains(tag().withId(3).withName("Encounter").instance()), is(true));
@@ -34,9 +34,9 @@ public class TagServiceTest extends BaseModuleContextSensitiveTest {
 
     @Test
     public void add_shouldAddTag() throws Exception {
-        Tag tag = service.add("Observation");
+        HTML5FormTag tag = service.add("Observation");
         assertThat(tag.getId(), notNullValue());
-        Collection<Tag> list = new TagsAccessor(service.getAll()).getList();
+        Collection<HTML5FormTag> list = new TagsAccessor(service.getAll()).getList();
         assertThat(list.contains(tag().withId(tag.getId()).withName("Observation").instance()), is(true));
     }
 

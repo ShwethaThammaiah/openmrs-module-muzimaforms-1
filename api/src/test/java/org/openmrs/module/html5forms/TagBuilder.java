@@ -1,6 +1,6 @@
 package org.openmrs.module.html5forms;
 
-public class TagBuilder extends Builder<Tag> {
+public class TagBuilder extends Builder<HTML5FormTag> {
     private Integer id;
     private String name;
 
@@ -8,8 +8,8 @@ public class TagBuilder extends Builder<Tag> {
     }
 
     @Override
-    public Tag instance() {
-        Tag tag = new Tag(name);
+    public HTML5FormTag instance() {
+        HTML5FormTag tag = new HTML5FormTag(name);
         tag.setId(id);
         return tag;
     }

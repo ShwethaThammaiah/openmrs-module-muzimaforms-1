@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.html5forms.HTML5Form;
 import org.openmrs.module.html5forms.HTML5FromsAccessor;
-import org.openmrs.module.html5forms.HTML5XForm;
 import org.openmrs.module.html5forms.HTML5XForms;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 
@@ -43,6 +42,7 @@ public class HTML5FormServiceTest extends BaseModuleContextSensitiveTest {
     @Test
     public void getXform_shouldLoadForm() throws Exception {
         HTML5XForms xform = service.getXForms();
-        assertThat(xform.getList().size(), is(2));
+        assertThat(xform.getList().size(), is(3));
     }
+
 }

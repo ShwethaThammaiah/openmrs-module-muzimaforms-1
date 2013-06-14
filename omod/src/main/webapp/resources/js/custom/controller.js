@@ -6,6 +6,17 @@ function FormCtrl($scope, FormService, TagService) {
 
 //    $scope.selectedFormId = $scope.forms[0].id;
 
+    $scope.hasForms = function(){
+        return ($scope.list().length > 0);
+    };
+
+    $scope.list =  function(){
+        if($scope.forms && $scope.forms.list){
+            return $scope.forms.list;
+        }
+        return [];
+    };
+
     $scope.getPreviewFormPath = function () {
         return '../../moduleResources/html5forms/html5forms/form-' + $scope.selectedFormId + '.html';
     };

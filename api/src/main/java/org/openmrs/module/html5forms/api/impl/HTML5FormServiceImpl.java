@@ -17,6 +17,7 @@ public class HTML5FormServiceImpl extends BaseOpenmrsService implements HTML5For
         return new HTML5Forms(dao.getAll());
     }
 
+    //TODO: Handle records which do not have a form in the forms table.
     public HTML5XForms getXForms() {
         return new HTML5XForms(dao.getXForms());
     }

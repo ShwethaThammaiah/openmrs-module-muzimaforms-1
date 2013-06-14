@@ -9,7 +9,7 @@ html5formsModule.
 
 html5formsModule.factory('FormService', function ($resource) {
     return $resource('forms.form', {}, {
-        forms: {method: 'GET', isArray:true}
+        forms: {method: 'GET'}
     });
 });
 

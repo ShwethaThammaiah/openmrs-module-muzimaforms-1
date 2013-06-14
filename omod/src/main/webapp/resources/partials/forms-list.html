@@ -56,15 +56,15 @@
             <!--</span>-->
             <!--<input type="search" class="tagbox-input" placeholder="Add Tag ...">-->
             <!--</div>-->
-            <div class="span10 tagsinput" style="height: 100%">
+            <div id="tagsinput_tagsinput" class="span11 tagsinput" style="height: 100%">
                 <span ng-repeat="tagId in form.tags">
-                    <span class="tag">
+                    <span class="tag" ng-style="tagStyle(tagId)">
                         <span>{{tags[tagId].name}}</span>
                         <a class="tagsinput-remove-link"></a>
                     </span>
                 </span>
 
-                <div class="tagsinput-add-container">
+                <div class="tagsinput-add-container" id="tagsinput_addTag">
                     <div class="tagsinput-add"></div>
                     <input id="tagsinput_tag" value="" data-default="" style="color: rgb(102, 102, 102); width: 12px;">
                 </div>

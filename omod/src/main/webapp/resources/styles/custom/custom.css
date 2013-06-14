@@ -19,7 +19,7 @@
 }
 
 .header_background {
-    background-color: #eeeeee;
+    background-color: #34495e;
 }
 
 .tagsinput{
@@ -29,11 +29,18 @@
     padding: 3px 1px 1px 3px;
 }
 
-.tag {
+.tagsinput .tag {
     margin-right: 2px;
     margin-bottom: 2px;
     padding: 3px 10px 5px 16px;
     line-height: 10px;
+}
+
+.tagsinput .tag:hover {
+    background-color: #16a085;
+    color: #ffffff;
+    padding-left: 12px;
+    padding-right: 20px;
 }
 
 .table-element {
@@ -54,7 +61,7 @@
 }
 
 .active-xform {
-    background-color: #cccccc;
+    background-color: #BDC3C7;
 }
 
 .label{

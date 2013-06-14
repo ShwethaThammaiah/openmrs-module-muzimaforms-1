@@ -13,13 +13,27 @@
     border-left: 1px solid #ddd;
 }
 
+.search-box{
+    width: 200px;
+    height: 15px;
+}
+
 .header_background {
     background-color: #eeeeee;
 }
 
+.tagsinput{
+    border: 1px solid #1abc9c;
+    height: 75px;
+    margin-bottom: 5px;
+    padding: 3px 1px 1px 3px;
+}
+
 .tag {
     margin-right: 2px;
-    margin-top: 2px;
+    margin-bottom: 2px;
+    padding: 3px 10px 5px 16px;
+    line-height: 10px;
 }
 
 .table-element {
@@ -28,6 +42,10 @@
 }
 
 .padded-content {
+    margin: 16px 16px;
+}
+
+.padded-table-content {
     margin: 5px 16px;
 }
 

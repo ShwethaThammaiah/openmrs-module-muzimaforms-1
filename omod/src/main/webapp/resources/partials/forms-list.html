@@ -1,13 +1,11 @@
 <div>
-    <div class="well-small header_background border clearfix">
-        <div class="input-append" ng-show="hasForms()">
-            <span><input type="search" ng-model="searchQuery"></span>
-            <span class="add-on" style="color: #777777"><i class="icon-search"></i></span>
-        </div>
-        <div class="pull-right" ng-switch on="importMode">
+    <div class="header_background border clearfix">
+        <span><input class="padded-content" type="search" ng-model="searchQuery" style="width: 200px;height: 15px"
+                     placeholder="Search..."></span>
+        <span class="pull-right padded-content" ng-switch on="importMode">
             <div ng-switch-when="false" ng-include="'import'"></div>
             <div ng-switch-when="true" ng-include="'done'"></div>
-        </div>
+        </span>
 
         <script type="text/ng-template" id="import">
             <a class="btn btn-info" ng-click="import()" style="color: #ffffff"><i class="icon-plus"> Import</i></a>
@@ -22,41 +20,55 @@
 
     <div collapse="!importMode" class="open-box" ng-repeat="form in xForms() | filter:searchQuery"
          ng-click="selectXForm(form.id)" ng-class="activeXForm(form.id)">
-        <div class="padded-content">
+        <div class="padded-table-content">
             <strong>{{form.name}}</strong>
         </div>
-        <div class="padded-content">
+        <div class="padded-table-content">
             <small>{{form.description}}</small>
         </div>
     </div>
 
     <div collapse="importMode" class="row-fluid open-box" ng-show="hasForms()"
          ng-repeat="form in forms() | filter:searchQuery" ng-click="selectForm(form.id)" ng-class="activeForm(form.id)">
-        <div class="span10 padded-content">
-            <div class="padded-content">
+        <div class="span10 padded-table-content">
+            <div class="padded-table-content">
                 <strong>{{form.name}}</strong>
             </div>
-            <div class="padded-content">
+            <div class="padded-table-content">
                 <small>{{form.description}}</small>
             </div>
             <div collapse="!editMode">
-                <div class="padded-content">
+                <div class="padded-table-content">
                 <span class="label tag" ng-repeat="tagId in form.tags"
                       ng-style="tagStyle(tagId)">{{tags[tagId].name}}</span>
                 </div>
             </div>
         </div>
-        <div class="span1 padded-content">
+        <div class="span1 padded-table-content">
             <a class="btn btn-success" ng-click="editMode = !editMode" style="color: #ffffff"><i class="icon-cogs"></i></a>
         </div>
-        <div class="row-fluid padded-content" collapse="editMode">
-            <div class="span11 tagbox">
-                <span style="display: inline-block; padding-right: 2px;" ng-repeat="tagId in form.tags">
-                    <span class="label label-delete" ng-style="tagStyle(tagId)">
-                        {{tags[tagId].name}}
-                    </span><span class="label label-delete-icon" ng-style="tagStyle(tagId)"><i class="icon-remove"></i></span>
+        <div class="row-fluid padded-table-content" collapse="editMode">
+            <!--<div class="span11 tagbox">-->
+            <!--<span style="display: inline-block; padding-right: 2px;" ng-repeat="tagId in form.tags">-->
+            <!--<span class="label label-delete" ng-style="tagStyle(tagId)">-->
+            <!--{{tags[tagId].name}}-->
+            <!--</span><span class="label label-delete-icon" ng-style="tagStyle(tagId)"><i class="icon-remove"></i></span>-->
+            <!--</span>-->
+            <!--<input type="search" class="tagbox-input" placeholder="Add Tag ...">-->
+            <!--</div>-->
+            <div class="span10 tagsinput" style="height: 100%">
+                <span ng-repeat="tagId in form.tags">
+                    <span class="tag">
+                        <span>{{tags[tagId].name}}</span>
+                        <a class="tagsinput-remove-link"></a>
+                    </span>
                 </span>
-                <input type="search" class="tagbox-input" placeholder="Add Tag ...">
+
+                <div class="tagsinput-add-container">
+                    <div class="tagsinput-add"></div>
+                    <input id="tagsinput_tag" value="" data-default="" style="color: rgb(102, 102, 102); width: 12px;">
+                </div>
+
             </div>
         </div>
     </div>

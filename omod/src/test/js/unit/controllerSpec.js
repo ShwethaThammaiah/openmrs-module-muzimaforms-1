@@ -59,6 +59,11 @@ describe('Html5Forms controllers', function () {
             expect(scope.importMode).toBe(true);
             scope.done();
             expect(scope.importMode).toBe(false);
+
+            scope.import();
+            expect(scope.importMode).toBe(true);
+            scope.cancelImport();
+            expect(scope.importMode).toBe(false);
         });
 
         it('should assign color to active form', function(){

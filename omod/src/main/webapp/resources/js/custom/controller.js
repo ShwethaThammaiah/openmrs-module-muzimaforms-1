@@ -18,6 +18,10 @@ function FormCtrl($scope, FormService, XFormService, TagService) {
         $scope.importMode = false;
     };
 
+    $scope.cancelImport = function(){
+        $scope.importMode = false;
+    };
+
     $scope.hasForms = function(){
         return ($scope.forms().length > 0);
     };

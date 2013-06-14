@@ -28,6 +28,11 @@ describe('Html5Forms controllers', function () {
                     {"id":"5","name":"Pediatric Summary Form","description":"Form for capturing pediatric summary","selected":false,"tags":[9]},
                     {"id":"6","name":"Outreach Adult Locator Form","description":"","selected":false,"tags":[3,4,8]}]});
 
+            httpBackend.expectGET('xforms.form').
+                respond({ list : [{"id":"1","name":"Patient Registration Form","description":"Form for registering patients","selected":false},
+                    {"id":"2","name":"PMTCT Ante-Natal Care Form","description":"","selected":false},
+                    {"id":"3","name":"Outreach Adult Locator Form","description":"","selected":false}]});
+
             tagService = _TagService_;
             formService = _FormService_;
             scope = $rootScope.$new();
@@ -42,7 +47,10 @@ describe('Html5Forms controllers', function () {
 
         it('should assign forms to scope', function () {
             expect(scope.hasForms()).toBe(true);
-            expect(scope.hasForms()).toBe(true);
+        });
+
+        it('should assign xforms to scope', function () {
+            expect(scope.hasXForms()).toBe(true);
         });
 
         it('should assign color to empty tag', function () {

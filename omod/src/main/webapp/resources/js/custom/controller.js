@@ -1,18 +1,31 @@
-function FormCtrl($scope, FormService, TagService) {
+function FormCtrl($scope, FormService, XFormService, TagService) {
     $scope.tags = TagService.tags();
-    $scope.forms = FormService.forms();
+    var forms = FormService.forms();
+    var xForms = XFormService.xForms();
 
     $scope.editMode = true;
+    $scope.importMode = false;
 
 //    $scope.selectedFormId = $scope.forms[0].id;
 
     $scope.hasForms = function(){
-        return ($scope.list().length > 0);
+        return ($scope.forms().length > 0);
     };
 
-    $scope.list =  function(){
-        if($scope.forms && $scope.forms.list){
-            return $scope.forms.list;
+    $scope.hasXForms = function(){
+        return ($scope.xForms().length > 0);
+    };
+
+    $scope.forms =  function(){
+        if(forms && forms.list){
+            return forms.list;
+        }
+        return [];
+    };
+
+    $scope.xForms =  function(){
+        if(xForms && xForms.list){
+            return xForms.list;
         }
         return [];
     };

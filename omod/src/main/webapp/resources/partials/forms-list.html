@@ -5,11 +5,13 @@
             <span class="add-on" style="color: #777777"><i class="icon-search"></i></span>
         </div>
         <div class="pull-right">
-            <a class="btn btn-success"  style="color: #ffffff"><i class="icon-plus"> Import</i></a>
+            <a class="btn btn-success" ng-click="importMode = !importMode" style="color: #ffffff"><i class="icon-plus"> Import</i></a>
         </div>
     </div>
 
-    <div ng-show="hasForms()" class="row-fluid open-box" ng-repeat="form in list() | filter:searchQuery" ng-click="select(form.id)"
+
+
+    <div ng-show="hasForms()" class="row-fluid open-box" ng-repeat="form in forms() | filter:searchQuery" ng-click="select(form.id)"
          ng-class="activeClass(form.id)">
         <div class="span10">
             <div class="padded-content">
@@ -40,7 +42,18 @@
         </div>
     </div>
 
-    <div ng-show="!hasForms()" class="open-box">
+    <div collapse="!importMode" class="row-fluid open-box" ng-repeat="form in xForms() | filter:searchQuery" ng-click="select(form.id)">
+        <div class="span10">
+            <div class="padded-content">
+                <strong>{{form.name}}</strong>
+            </div>
+            <div class="padded-content">
+                <small>{{form.description}}</small>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="!hasForms() && !importMode" class="open-box">
         <div>Please import forms</div>
     </div>
 </div>

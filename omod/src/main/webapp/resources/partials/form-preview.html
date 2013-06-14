@@ -1,3 +1,6 @@
-<div>
+<div ng-show="hasForms()">
     <div data-ng-include src="getPreviewFormPath()"></div>
+</div>
+<div ng-show="!hasForms()">
+    <div> No Preview Available</div>
 </div>

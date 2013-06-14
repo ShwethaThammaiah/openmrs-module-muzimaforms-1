@@ -1,12 +1,5 @@
 <div class="row-fluid" ng-controller="FormCtrl">
-    <div ng-show="hasForms()">
         <div class="span7" data-ng-include
              data-src="'../../moduleResources/html5forms/partials/form-preview.html'"></div>
         <div class="span5" data-ng-include data-src="'../../moduleResources/html5forms/partials/forms-list.html'"></div>
-    </div>
-    <div ng-show="!hasForms()" class="row-fluid">
-        <div class="span12">
-            <a class="btn btn-large btn-warning" style="color: #ffffff">Import</a>
-        </div>
-    </div>
 </div>

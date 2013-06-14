@@ -14,25 +14,35 @@
         </script>
 
         <script type="text/ng-template" id="done">
-            <a class="btn btn-danger" ng-click="cancelImport()" style="color: #ffffff"><i class="icon-remove"> Cancel</i></a>
+            <a class="btn btn-danger" ng-click="cancelImport()" style="color: #ffffff"><i class="icon-remove">
+                Cancel</i></a>
             <a class="btn btn-success" ng-click="done()" style="color: #ffffff"><i class="icon-ok"> Done</i></a>
         </script>
     </div>
 
-    <div ng-show="hasForms()" class="row-fluid open-box" ng-repeat="form in forms() | filter:searchQuery">
-        <div ng-click="selectForm(form.id)" ng-class="activeForm(form.id)">
-            <div class="span10">
+    <div collapse="!importMode" class="open-box" ng-repeat="form in xForms() | filter:searchQuery"
+         ng-click="selectXForm(form.id)" ng-class="activeXForm(form.id)">
+        <div class="padded-content">
+            <strong>{{form.name}}</strong>
+        </div>
+        <div class="padded-content">
+            <small>{{form.description}}</small>
+        </div>
+    </div>
+
+    <div collapse="importMode" class="row-fluid open-box" ng-show="hasForms()"
+         ng-repeat="form in forms() | filter:searchQuery" ng-click="selectForm(form.id)" ng-class="activeForm(form.id)">
+        <div class="span10 padded-content">
+            <div class="padded-content">
+                <strong>{{form.name}}</strong>
+            </div>
+            <div class="padded-content">
+                <small>{{form.description}}</small>
+            </div>
+            <div collapse="!editMode">
                 <div class="padded-content">
-                    <strong>{{form.name}}</strong>
-                </div>
-                <div class="padded-content">
-                    <small>{{form.description}}</small>
-                </div>
-                <div collapse="!editMode">
-                    <div class="padded-content">
                 <span class="label tag" ng-repeat="tagId in form.tags"
                       ng-style="tagStyle(tagId)">{{tags[tagId].name}}</span>
-                    </div>
                 </div>
             </div>
         </div>
@@ -49,16 +59,6 @@
                 <input type="search" class="tagbox-input" placeholder="Add Tag ...">
             </div>
         </div>
-    </div>
-
-    <div collapse="!importMode" class="open-box" ng-repeat="form in xForms() | filter:searchQuery" ng-click="selectXForm(form.id)"
-         ng-class="activeXForm(form.id)">
-            <div class="padded-content">
-                <strong>{{form.name}}</strong>
-            </div>
-            <div class="padded-content">
-                <small>{{form.description}}</small>
-            </div>
     </div>
 
     <div ng-show="!hasForms() && !importMode" class="open-box">

@@ -8,6 +8,14 @@ function FormCtrl($scope, FormService, XFormService, TagService) {
 
 //    $scope.selectedFormId = $scope.forms[0].id;
 
+    $scope.import = function(){
+        $scope.importMode = true;
+    };
+
+    $scope.done = function(){
+        $scope.importMode = false;
+    };
+
     $scope.hasForms = function(){
         return ($scope.forms().length > 0);
     };

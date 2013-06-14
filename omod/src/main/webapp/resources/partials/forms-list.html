@@ -4,10 +4,21 @@
             <span><input type="search" ng-model="searchQuery"></span>
             <span class="add-on" style="color: #777777"><i class="icon-search"></i></span>
         </div>
-        <div class="pull-right">
-            <a class="btn btn-success" ng-click="importMode = !importMode" style="color: #ffffff"><i class="icon-plus"> Import</i></a>
+        <div class="pull-right" ng-switch on="importMode">
+            <div ng-switch-when="false" ng-include="'import'"></div>
+            <div ng-switch-when="true" ng-include="'done'"></div>
         </div>
+
+        <script type="text/ng-template" id="import">
+            <a class="btn btn-info" ng-click="import()" style="color: #ffffff"><i class="icon-plus"> Import</i></a>
+        </script>
+
+        <script type="text/ng-template" id="done">
+            <a class="btn btn-success" ng-click="done()" style="color: #ffffff"><i class="icon-ok"> Done</i></a>
+        </script>
     </div>
+
+
 
 
 

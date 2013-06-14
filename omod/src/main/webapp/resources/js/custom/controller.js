@@ -29,6 +29,5 @@ function FormCtrl($scope, FormService, TagService) {
     $scope.tagStyle = function (tagId) {
         return  {'background-color': tagColor(tagId)};
     };
-
 }
 

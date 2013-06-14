@@ -19,6 +19,7 @@
 
 .tag {
     margin-right: 2px;
+    margin-top: 2px;
 }
 
 .table-element {
@@ -26,10 +27,54 @@
     vertical-align: middle;
 }
 
-.table-content {
-    margin: 5px;
+.padded-content {
+    margin: 5px 16px;
 }
 
 .active-form {
     background-color: #F8F8F8;
 }
+
+.label{
+    font-size: 13px;
+}
+
+.tagbox{
+    display: inline-block;
+    width: auto;
+    height: auto;
+    min-width: 16px;
+    padding: 0 5px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    text-align: left;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+.label-delete{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    padding-right: 2px;
+}
+
+.label-delete-icon{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding-left: 2px;
+    padding-top: 1px;
+    font-size: 14.1px;
+}
+
+input.tagbox-input,
+input.tagbox-input:focus,
+input.tagbox-input:hover,
+input.tagbox-input:active
+{
+    border: none;
+    box-shadow: none;
+}
+

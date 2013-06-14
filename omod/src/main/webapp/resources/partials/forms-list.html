@@ -18,28 +18,25 @@
         </script>
     </div>
 
-
-
-
-
-    <div ng-show="hasForms()" class="row-fluid open-box" ng-repeat="form in forms() | filter:searchQuery" ng-click="select(form.id)"
-         ng-class="activeClass(form.id)">
-        <div class="span10">
-            <div class="padded-content">
-                <strong>{{form.name}}</strong>
-            </div>
-            <div class="padded-content">
-                <small>{{form.description}}</small>
-            </div>
-            <div collapse="!editMode">
+    <div ng-show="hasForms()" class="row-fluid open-box" ng-repeat="form in forms() | filter:searchQuery">
+        <div ng-click="selectForm(form.id)" ng-class="activeForm(form.id)">
+            <div class="span10">
                 <div class="padded-content">
+                    <strong>{{form.name}}</strong>
+                </div>
+                <div class="padded-content">
+                    <small>{{form.description}}</small>
+                </div>
+                <div collapse="!editMode">
+                    <div class="padded-content">
                 <span class="label tag" ng-repeat="tagId in form.tags"
                       ng-style="tagStyle(tagId)">{{tags[tagId].name}}</span>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="span1 padded-content">
-                <a class="btn btn-success" ng-click="editMode = !editMode" style="color: #ffffff"><i class="icon-cogs"></i></a>
+            <a class="btn btn-success" ng-click="editMode = !editMode" style="color: #ffffff"><i class="icon-cogs"></i></a>
         </div>
         <div class="row-fluid padded-content" collapse="editMode">
             <div class="span11 tagbox">
@@ -53,15 +50,14 @@
         </div>
     </div>
 
-    <div collapse="!importMode" class="row-fluid open-box" ng-repeat="form in xForms() | filter:searchQuery" ng-click="select(form.id)">
-        <div class="span10">
+    <div collapse="!importMode" class="open-box" ng-repeat="form in xForms() | filter:searchQuery" ng-click="selectXForm(form.id)"
+         ng-class="activeXForm(form.id)">
             <div class="padded-content">
                 <strong>{{form.name}}</strong>
             </div>
             <div class="padded-content">
                 <small>{{form.description}}</small>
             </div>
-        </div>
     </div>
 
     <div ng-show="!hasForms() && !importMode" class="open-box">

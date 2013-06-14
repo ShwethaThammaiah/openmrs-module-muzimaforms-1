@@ -2,6 +2,8 @@ function FormCtrl($scope, FormService, XFormService, TagService) {
     $scope.tags = TagService.tags();
     var forms = FormService.forms();
     var xForms = XFormService.xForms();
+    var selectedXForms = [];
+    var selectedFormId;
 
     $scope.editMode = true;
     $scope.importMode = false;
@@ -42,12 +44,26 @@ function FormCtrl($scope, FormService, XFormService, TagService) {
         return '../../moduleResources/html5forms/html5forms/form-' + $scope.selectedFormId + '.html';
     };
 
-    $scope.select = function (id) {
-        $scope.selectedFormId = id;
+    $scope.selectForm = function (id) {
+        selectedFormId = id;
     };
 
-    $scope.activeClass = function(id){
-        return id === $scope.selectedFormId ? 'active-form' : undefined;
+    $scope.selectXForm = function (id) {
+        var indexOfId = selectedXForms.indexOf(id);
+        if(indexOfId >= 0){
+            selectedXForms.splice(indexOfId, 1);
+        }else{
+            selectedXForms.push(id);
+        }
+    };
+
+    $scope.activeXForm = function (id) {
+        var indexOfId = selectedXForms.indexOf(id);
+        return indexOfId >=0 ? 'active-xform' : undefined;
+    };
+
+    $scope.activeForm = function(id){
+        return id === selectedFormId ? 'active-form' : undefined;
     };
 
     var tagColor = function (tagId) {

@@ -53,6 +53,32 @@ describe('Html5Forms controllers', function () {
             expect(scope.hasXForms()).toBe(true);
         });
 
+        it('should toggle importMode', function () {
+            expect(scope.importMode).toBe(false);
+            scope.import();
+            expect(scope.importMode).toBe(true);
+            scope.done();
+            expect(scope.importMode).toBe(false);
+        });
+
+        it('should assign color to active form', function(){
+            expect(scope.activeForm(1)).toBeUndefined();
+            scope.selectForm(1);
+            expect(scope.activeForm(1)).toBe('active-form');
+        });
+
+        it('should assign color to active xForm', function(){
+            expect(scope.activeXForm(1)).toBeUndefined();
+            scope.selectXForm(1);
+            expect(scope.activeXForm(1)).toBe('active-xform');
+            scope.selectXForm(1);
+            expect(scope.activeXForm(1)).toBeUndefined();
+        });
+
+        it('should add selected Xform to the selected XForms list', function () {
+            expect(scope);
+        });
+
         it('should assign color to empty tag', function () {
             expect(scope.tags[2].color).toBeUndefined();
             var tagStyle = scope.tagStyle(2);

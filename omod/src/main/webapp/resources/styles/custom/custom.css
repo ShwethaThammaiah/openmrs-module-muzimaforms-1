@@ -35,6 +35,10 @@
     background-color: #F8F8F8;
 }
 
+.active-xform {
+    background-color: #cccccc;
+}
+
 .label{
     font-size: 13px;
 }

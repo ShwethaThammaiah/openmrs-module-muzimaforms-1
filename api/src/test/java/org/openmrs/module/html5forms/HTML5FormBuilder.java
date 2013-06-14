@@ -1,10 +1,12 @@
 package org.openmrs.module.html5forms;
 
+import org.openmrs.module.xforms.Xform;
+
 public class HTML5FormBuilder extends Builder<HTML5Form> {
     private Integer id;
     private String name;
     private String description;
-    private XForm xform;
+    private Xform xform;
 
     private HTML5FormBuilder() {
     }

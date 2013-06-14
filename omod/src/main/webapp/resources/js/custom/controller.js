@@ -1,10 +1,10 @@
 function FormCtrl($scope, FormService, TagService) {
     $scope.tags = TagService.tags();
-    $scope.forms = FormService.forms;
+    $scope.forms = FormService.forms();
 
     $scope.editMode = true;
 
-    $scope.selectedFormId = $scope.forms[0].id;
+//    $scope.selectedFormId = $scope.forms[0].id;
 
     $scope.getPreviewFormPath = function () {
         return '../../moduleResources/html5forms/html5forms/form-' + $scope.selectedFormId + '.html';

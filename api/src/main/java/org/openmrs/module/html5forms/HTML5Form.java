@@ -1,27 +1,50 @@
 package org.openmrs.module.html5forms;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.openmrs.Form;
+import org.openmrs.module.xforms.Xform;
+
 import java.util.Set;
 
 public class HTML5Form {
     private Integer id;
     private String name;
     private String description;
-    private XForm xform;
-    private Tags tags;
+    private Form form;
+    private Xform xform;
 
-    public Tags getTags() {
-        return tags;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        HTML5Form html5Form = (HTML5Form) o;
+
+        if (id != null ? !id.equals(html5Form.id) : html5Form.id != null) return false;
+
+        return true;
     }
 
-    public void setTags(Set<HTML5FormTag> tags) {
-        this.tags = new Tags(tags);
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 
-    public XForm getXform() {
+    @JsonIgnore
+    public Form getForm() {
+        return form;
+    }
+
+    public void setForm(Form form) {
+        this.form = form;
+    }
+
+    @JsonIgnore
+    public Xform getXform() {
         return xform;
     }
 
-    public void setXform(XForm xform) {
+    public void setXform(Xform xform) {
         this.xform = xform;
     }
 
@@ -33,19 +56,11 @@ public class HTML5Form {
     }
 
     public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+        return getForm().getDescription();
     }
 
     public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        return getForm().getName();
     }
 
     public Integer getId() {
@@ -56,28 +71,5 @@ public class HTML5Form {
         this.id = id;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        HTML5Form html5Form = (HTML5Form) o;
-
-        if (description != null ? !description.equals(html5Form.description) : html5Form.description != null)
-            return false;
-        if (id != null ? !id.equals(html5Form.id) : html5Form.id != null) return false;
-        if (name != null ? !name.equals(html5Form.name) : html5Form.name != null) return false;
-        if (xform != null ? !xform.equals(html5Form.xform) : html5Form.xform != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (xform != null ? xform.hashCode() : 0);
-        return result;
-    }
 }

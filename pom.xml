@@ -80,6 +80,18 @@
                 <version>1.0.0.M2</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>org.openmrs.module</groupId>
+                <artifactId>xforms</artifactId>
+                <version>3.9.5</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.jcraft</groupId>
+                <artifactId>jzlib</artifactId>
+                <version>1.1.2</version>
+                <scope>provided</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -148,11 +160,11 @@
             </properties>
         </profile>
         <profile>
-            <id>gogo.configuration</id>
+            <id>rnjn.configuration</id>
             <activation>
                 <property>
                     <name>user</name>
-                    <value>gogo</value>
+                    <value>rnjn</value>
                 </property>
             </activation>
             <properties>

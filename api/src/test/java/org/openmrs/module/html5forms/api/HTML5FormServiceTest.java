@@ -15,7 +15,6 @@ import static org.junit.Assert.assertThat;
 import static org.openmrs.module.html5forms.HTML5FormBuilder.html5Form;
 import static org.openmrs.module.html5forms.XFormBuilder.xForm;
 
-@Ignore
 public class HTML5FormServiceTest extends BaseModuleContextSensitiveTest {
 
     private HTML5FormService service;
@@ -23,12 +22,11 @@ public class HTML5FormServiceTest extends BaseModuleContextSensitiveTest {
     @Before
     public void setUp() throws Exception {
         service = Context.getService(HTML5FormService.class);
-        executeDataSet("tagTestData.xml");
         executeDataSet("xformTestData.xml");
     }
 
     @Test
-    public void getAll_shouldGetAllTags() throws Exception {
+    public void getAll_shouldGetAllForms() throws Exception {
         List<HTML5Form> list = new HTML5FromsAccessor(service.getAll()).getList();
         assertThat(list.contains(html5Form().withId(1).withName("Registration Form").withDescription("Form for registration")
                 .withXFrom(xForm().withId(1))

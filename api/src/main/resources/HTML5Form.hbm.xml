@@ -3,16 +3,9 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="org.openmrs.module.html5forms">
-
-    <class name="HTML5Form" table="form">
+    <class name="HTML5Form" table="html5forms_form">
         <id name="id" type="java.lang.Integer" column="form_id"/>
-        <property name="name" type="java.lang.String" not-null="true" length="255"/>
-        <property name="description" type="java.lang.String" not-null="true" length="255"/>
-        <one-to-one name="xform" class="XForm" foreign-key="form_id"/>
-        <set name="tags" table="html5forms_form_tag_mapping">
-            <key column="form_id" not-null="true"/>
-            <many-to-many column="tag_id" class="Tag"/>
-        </set>
-
+        <one-to-one name="form" class="org.openmrs.Form" foreign-key="form_id" constrained="true"/>
+        <one-to-one name="xform" class="org.openmrs.module.xforms.Xform" foreign-key="form_id" constrained="true" />
     </class>
 </hibernate-mapping>

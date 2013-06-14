@@ -1,6 +1,8 @@
 package org.openmrs.module.html5forms;
 
-public class XFormBuilder extends Builder<XForm>{
+import org.openmrs.module.xforms.Xform;
+
+public class XFormBuilder extends Builder<Xform>{
 
     private Integer id;
 
@@ -9,9 +11,9 @@ public class XFormBuilder extends Builder<XForm>{
     }
 
     @Override
-    protected XForm instance() {
-        XForm xForm = new XForm();
-        xForm.setId(id);
+    protected Xform instance() {
+        Xform xForm = new Xform();
+        xForm.setFormId(id);
         return xForm;
     }
 

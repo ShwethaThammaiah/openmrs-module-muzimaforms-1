@@ -51,8 +51,10 @@
         <dependency>
             <groupId>org.openmrs.module</groupId>
             <artifactId>xforms</artifactId>
-            <version>3.9.5</version>
-            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jzlib</artifactId>
         </dependency>
     </dependencies>
 

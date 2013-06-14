@@ -41,4 +41,16 @@
         <addPrimaryKey columnNames="form_id,tag_id" constraintName="html5forms_form_tag_mapping_form_id_pk" tableName="html5forms_form_tag_mapping"/>
     </changeSet>
 
+    <changeSet id="html5form-2013-06-13-07:15" author="ThoughtWorks">
+        <comment>
+            Table for forms
+        </comment>
+        <createTable tableName="html5forms_form">
+            <column name="form_id" type="int">
+                <constraints nullable="true"/>
+            </column>
+         </createTable>
+        <addPrimaryKey columnNames="form_id" constraintName="html5forms_form_id_pk" tableName="html5forms_form"/>
+    </changeSet>
+
 </databaseChangeLog>

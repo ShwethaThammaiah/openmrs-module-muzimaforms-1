@@ -3,6 +3,8 @@ package org.openmrs.module.html5forms.web.controller;
 import org.openmrs.Form;
 import org.openmrs.api.FormService;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.html5forms.HTML5Forms;
+import org.openmrs.module.html5forms.api.HTML5FormService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,9 +21,8 @@ import java.util.Map;
 public class HTML5FormsController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public List<Form> forms() {
-        FormService service = Context.getService(FormService.class);
-        return service.getAllForms();
+    public HTML5Forms forms() {
+        HTML5FormService service = Context.getService(HTML5FormService.class);
+        return service.getAll();
     }
-
 }

@@ -20,10 +20,6 @@
 				<value>classpath:test-hibernate.cfg.xml</value>
 			</list>
 		</property>
-		<property name="mappingJarLocations">
-			<ref bean="mappingJarResources" />
-		</property>
-		<!--  default properties must be set in the hibernate.default.properties -->
 	</bean>
 	
 </beans>

@@ -39,8 +39,16 @@
 			<artifactId>openmrs-test</artifactId>
 			<type>pom</type>
 		</dependency>
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>xforms</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jzlib</artifactId>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 	
 	<build>
 		<resources>

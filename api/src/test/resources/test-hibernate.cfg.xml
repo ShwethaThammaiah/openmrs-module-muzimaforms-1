@@ -6,9 +6,7 @@
 <hibernate-configuration>
     <session-factory>
         <mapping resource="HTML5FormTag.hbm.xml" />
-        <!--<mapping resource="HTML5Form.hbm.xml" />-->
-        <!--<mapping resource="XForms.hbm.xml" />-->
-        <!--<mapping resource="TagMapping.hbm.xml" />-->
-        <!--<mapping resource="MockXForms.hbm.xml" />-->
+        <mapping resource="HTML5Form.hbm.xml" />
+        <mapping resource="Xform.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

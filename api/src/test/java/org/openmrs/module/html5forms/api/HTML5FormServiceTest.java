@@ -1,11 +1,12 @@
 package org.openmrs.module.html5forms.api;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.html5forms.HTML5Form;
 import org.openmrs.module.html5forms.HTML5FromsAccessor;
+import org.openmrs.module.html5forms.HTML5XForm;
+import org.openmrs.module.html5forms.HTML5XForms;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 
 import java.util.List;
@@ -37,5 +38,11 @@ public class HTML5FormServiceTest extends BaseModuleContextSensitiveTest {
         assertThat(list.contains(html5Form().withId(3).withName("Ante-Natal Form").withDescription("Form for ante-natal care")
                 .instance()), is(true));
         assertThat(list.size(), is(3));
+    }
+
+    @Test
+    public void getXform_shouldLoadForm() throws Exception {
+        HTML5XForms xform = service.getXForms();
+        assertThat(xform.getList().size(), is(2));
     }
 }

@@ -60,6 +60,7 @@
      </require_modules>
     <mappingFiles>
         HTML5Form.hbm.xml
+        HTML5XForm.hbm.xml
     </mappingFiles>
 	<!--
 	<dwr>

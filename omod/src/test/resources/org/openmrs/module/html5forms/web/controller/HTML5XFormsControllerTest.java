@@ -9,7 +9,7 @@ import org.openmrs.test.BaseModuleContextSensitiveTest;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-public class HTML5FormsControllerTest extends BaseModuleContextSensitiveTest {
+public class HTML5XFormsControllerTest extends BaseModuleContextSensitiveTest {
     @Before
     public void setUp() throws Exception {
         executeDataSet("xformomodTestData.xml");
@@ -17,10 +17,9 @@ public class HTML5FormsControllerTest extends BaseModuleContextSensitiveTest {
     }
 
     @Test
-    public void testForms() throws Exception {
-        HTML5FormsController controller = new HTML5FormsController();
-        HTML5Forms forms = controller.forms();
-        assertThat(forms.getList().size(), is(3));
+    public void testXForms() throws Exception {
+        HTML5XFormsController controller = new HTML5XFormsController();
+        HTML5XForms forms = controller.xForms();
+        assertThat(forms.getList().size(), is(2));
     }
-
 }

@@ -6,6 +6,7 @@
 <hibernate-configuration>
     <session-factory>
         <mapping resource="HTML5FormTag.hbm.xml" />
+        <mapping resource="HTML5XForm.hbm.xml" />
         <mapping resource="HTML5Form.hbm.xml" />
         <mapping resource="Xform.hbm.xml" />
     </session-factory>

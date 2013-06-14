@@ -45,9 +45,9 @@
                         <ref bean="transactionManager"/>
                     </property>
                     <property name="target">
-                        <bean class="org.openmrs.module.html5forms.api.impl.XFormServiceImpl">
+                        <bean class="org.openmrs.module.html5forms.api.impl.HTML5FormServiceImpl">
                             <constructor-arg>
-                                <bean class="org.openmrs.module.html5forms.api.db.hibernate.impl.HTML5FromDAOImpl">
+                                <bean class="org.openmrs.module.html5forms.api.db.hibernate.impl.HTML5FormDAOImpl">
                                     <constructor-arg ref="sessionFactory"/>
                                 </bean>
                             </constructor-arg>

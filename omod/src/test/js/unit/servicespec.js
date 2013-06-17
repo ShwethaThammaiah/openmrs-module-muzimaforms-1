@@ -9,9 +9,6 @@ describe('Html5Forms services', function () {
             service = _FormService_;
         }));
 
-        it('should assign colors to tags', function () {
-
-        });
 
     });
 

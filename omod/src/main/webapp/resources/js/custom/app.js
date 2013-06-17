@@ -9,13 +9,14 @@ html5formsModule.
 
 html5formsModule.factory('FormService', function ($resource) {
     return $resource('forms.form', {}, {
-        forms: {method: 'GET'}
+        forms: {method: 'GET', isArray:true},
+        save: {method: 'POST', data : {id : '@id'}}
     });
 });
 
 html5formsModule.factory('XFormService', function ($resource) {
     return $resource('xforms.form', {}, {
-        xForms: {method: 'GET'}
+        xForms: {method: 'GET', isArray:true}
     });
 });
 

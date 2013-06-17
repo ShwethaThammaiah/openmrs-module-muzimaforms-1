@@ -393,7 +393,7 @@ angular.module('ngResource', ['ng']).
           }
 
           var value = this instanceof Resource ? this : (action.isArray ? [] : new Resource(data));
-          $http({
+            $http({
             method: action.method,
             url: route.url(extend({}, extractParams(data, action.params || {}), params)),
             data: data
@@ -401,13 +401,13 @@ angular.module('ngResource', ['ng']).
               var data = response.data;
 
               if (data) {
-                if (action.isArray) {
+                   if (action.isArray) {
                   value.length = 0;
                   forEach(data, function(item) {
                     value.push(new Resource(item));
                   });
                 } else {
-                  copy(data, value);
+                      copy(data, value);
                 }
               }
               (success||noop)(value, response.headers);

@@ -24,8 +24,7 @@
 		<point>org.openmrs.admin.list</point>
 		<class>org.openmrs.module.html5forms.extension.html.AdminList</class>
 	</extension>
-	
-	
+
 	<!-- AOP
 	<advice>
 		<point>org.openmrs.api.FormService</point>

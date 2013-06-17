@@ -4,7 +4,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.openmrs.module.html5forms.HTML5Form;
 import org.openmrs.module.html5forms.HTML5XForm;
-import org.openmrs.module.html5forms.HTML5XForms;
 import org.openmrs.module.html5forms.api.db.hibernate.HTML5FormDAO;
 
 import java.util.List;
@@ -26,6 +25,10 @@ public class HTML5FormDAOImpl implements HTML5FormDAO {
     public List<HTML5XForm> getXForms() {
         return (List<HTML5XForm>) session().createCriteria(HTML5XForm.class).list();
 
+    }
+
+    public void saveForm(HTML5Form form) {
+        session().saveOrUpdate(form);
     }
 
     private Session session() {

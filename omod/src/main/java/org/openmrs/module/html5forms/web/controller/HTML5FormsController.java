@@ -1,20 +1,15 @@
 package org.openmrs.module.html5forms.web.controller;
 
-import org.openmrs.Form;
-import org.openmrs.api.FormService;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.html5forms.*;
+import org.openmrs.module.html5forms.HTML5Form;
 import org.openmrs.module.html5forms.api.HTML5FormService;
-import org.openmrs.module.xforms.Xform;
-import org.openmrs.module.xforms.XformsService;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 @Controller
@@ -23,15 +18,15 @@ import java.util.Map;
 public class HTML5FormsController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public HTML5Forms forms() {
+    public List<HTML5Form> forms() {
         HTML5FormService service = Context.getService(HTML5FormService.class);
         return service.getAll();
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.POST, value="form")
     @ResponseBody
-    public HTML5XForms xForms() {
+    public void create(@RequestBody HTML5Form form) {
         HTML5FormService service = Context.getService(HTML5FormService.class);
-        return service.getXForms();
+        service.saveForm(form);
     }
 }

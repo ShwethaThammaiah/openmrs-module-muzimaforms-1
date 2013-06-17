@@ -18,7 +18,7 @@
         </script>
     </div>
 
-    <div collapse="!importMode" class="open-box" ng-repeat="form in xForms() | filter:searchQuery"
+    <div collapse="!importMode" class="open-box" ng-repeat="form in xForms | filter:searchQuery"
          ng-click="selectXForm(form.id)" ng-class="activeXForm(form.id)">
         <div class="padded-table-content">
             <strong>{{form.name}}</strong>
@@ -29,7 +29,7 @@
     </div>
 
     <div collapse="importMode" class="row-fluid open-box" ng-show="hasForms()"
-         ng-repeat="form in forms() | filter:searchQuery" ng-click="selectForm(form.id)" ng-class="activeForm(form.id)">
+         ng-repeat="form in forms | filter:searchQuery" ng-click="selectForm(form.id)" ng-class="activeForm(form.id)">
         <div class="span10 padded-table-content">
             <div class="padded-table-content">
                 <strong>{{form.name}}</strong>

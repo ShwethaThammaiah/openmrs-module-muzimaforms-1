@@ -8,4 +8,5 @@ import java.util.List;
 public interface HTML5FormDAO {
     public List<HTML5Form> getAll();
     public List<HTML5XForm> getXForms();
+    void saveForm(HTML5Form form);
 }

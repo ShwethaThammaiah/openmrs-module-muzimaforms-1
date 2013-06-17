@@ -4,8 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.html5forms.HTML5Form;
-import org.openmrs.module.html5forms.HTML5FromsAccessor;
-import org.openmrs.module.html5forms.HTML5XForms;
+import org.openmrs.module.html5forms.HTML5XForm;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 
 import java.util.List;
@@ -27,7 +26,7 @@ public class HTML5FormServiceTest extends BaseModuleContextSensitiveTest {
 
     @Test
     public void getAll_shouldGetAllForms() throws Exception {
-        List<HTML5Form> list = new HTML5FromsAccessor(service.getAll()).getList();
+        List<HTML5Form> list = service.getAll();
         assertThat(list.contains(html5Form().withId(1).withName("Registration Form").withDescription("Form for registration")
                 .withXFrom(xForm().withId(1))
                 .instance()), is(true));
@@ -41,8 +40,8 @@ public class HTML5FormServiceTest extends BaseModuleContextSensitiveTest {
 
     @Test
     public void getXform_shouldLoadForm() throws Exception {
-        HTML5XForms xform = service.getXForms();
-        assertThat(xform.getList().size(), is(3));
+        List<HTML5XForm> xform = service.getXForms();
+        assertThat(xform.size(), is(3));
     }
 
 }

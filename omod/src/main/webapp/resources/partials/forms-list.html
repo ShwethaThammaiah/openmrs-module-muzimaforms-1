@@ -1,5 +1,5 @@
 <div>
-    <div class="header_background border clearfix">
+    <div class="header_background border">
         <span><input class="padded-content" type="search" ng-model="searchQuery" style="width: 200px;height: 15px"
                      placeholder="Search..."></span>
         <span class="pull-right padded-content" ng-switch on="importMode">
@@ -39,7 +39,7 @@
             </div>
             <div collapse="!editMode">
                 <div class="padded-table-content">
-                <span class="label tag" ng-repeat="tagId in form.tags"
+                <span class="label tag" ng-repeat="tagId in form.tags" style="padding-right: 2px"
                       ng-style="tagStyle(tagId)">{{tags[tagId].name}}</span>
                 </div>
             </div>

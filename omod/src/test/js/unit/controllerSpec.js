@@ -45,12 +45,11 @@ describe('Html5Forms controllers', function () {
         var expectGetXForms = function () {
             httpBackend.expectGET('xforms.form').
                 respond(
-                { "list": [
+                [
                     {"id": "1", "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false},
                     {"id": "2", "name": "PMTCT Ante-Natal Care Form", "description": "", "selected": false},
                     {"id": "3", "name": "Outreach Adult Locator Form", "description": "", "selected": false}
                 ]
-                }
             );
         };
 

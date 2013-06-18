@@ -4,12 +4,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.html5forms.HTML5Form;
+import org.openmrs.module.html5forms.HTML5FormTag;
 import org.openmrs.module.html5forms.HTML5XForm;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 
 import java.util.List;
+import java.util.Set;
 
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.matchers.JUnitMatchers.hasItem;
 import static org.openmrs.module.html5forms.FormBuilder.form;
@@ -56,4 +59,23 @@ public class HTML5FormServiceTest extends BaseModuleContextSensitiveTest {
         assertThat(xform.size(), is(3));
     }
 
+    @Test
+    public void saveForm_shouldAssignAnExistingTag() {
+        service.saveForm(html5Form().withId(1).with(tag().withId(1).withName("Registration")).instance());
+        List<HTML5Form> list = service.getAll();
+        assertThat(list, hasItem(html5Form().withId(1).with(tag().withId(1).withName("Registration")).instance()));
+    }
+
+    @Test
+    public void saveForm_shouldAssignANewTag() {
+        HTML5Form form = html5Form().withId(1).with(tag().withName("New Tag")).with(tag().withName("Another Tag")).instance();
+        service.saveForm(form);
+        Set<HTML5FormTag> formTags = form.getTags();
+        assertThat(formTags.size(), is(2));
+        HTML5FormTag newTag = (HTML5FormTag) formTags.toArray()[0];
+        assertThat(newTag.getId(), notNullValue());
+        TagService tagService = Context.getService(TagService.class);
+        List<HTML5FormTag> tags = tagService.getAll();
+        assertThat(tags, hasItem(newTag));
+    }
 }

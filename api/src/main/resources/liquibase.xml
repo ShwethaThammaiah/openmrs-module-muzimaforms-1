@@ -19,7 +19,7 @@
             Table for tags
         </comment>
         <createTable tableName="html5forms_tag">
-            <column name="html5forms_tag_id" type="int">
+            <column name="html5forms_tag_id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(255)"/>

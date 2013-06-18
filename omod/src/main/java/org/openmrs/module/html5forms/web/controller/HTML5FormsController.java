@@ -29,4 +29,11 @@ public class HTML5FormsController {
         HTML5FormService service = Context.getService(HTML5FormService.class);
         service.saveForm(form);
     }
+
+    @RequestMapping(method = RequestMethod.PUT, value="form")
+    @ResponseBody
+    public void update(@RequestBody HTML5Form form) {
+        HTML5FormService service = Context.getService(HTML5FormService.class);
+        service.saveForm(form);
+    }
 }

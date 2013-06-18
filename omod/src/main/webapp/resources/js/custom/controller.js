@@ -80,5 +80,13 @@ function FormCtrl($scope, FormService, XFormService, TagService) {
     $scope.tagStyle = function (tagId) {
         return  {'background-color': tagColor(tagId)};
     };
+
+    $scope.tagNames = function(){
+        var tagNames = [];
+        angular.forEach($scope.tags, function(tag){
+            tagNames.push(tag.name);
+        });
+        return tagNames;
+    }
 }
 

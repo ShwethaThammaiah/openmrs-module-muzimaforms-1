@@ -22,7 +22,7 @@ html5formsModule.factory('XFormService', function ($resource) {
 
 html5formsModule.factory('TagService', function ($resource) {
     return $resource('tags.form', {}, {
-        tags: {method: 'GET'}
+        tags: {method: 'GET', isArray:true }
     });
 });
 

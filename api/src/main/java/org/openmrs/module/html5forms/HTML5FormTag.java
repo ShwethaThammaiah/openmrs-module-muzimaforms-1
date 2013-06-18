@@ -1,8 +1,20 @@
 package org.openmrs.module.html5forms;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 public class HTML5FormTag {
     private Integer id;
     private String name;
+    private HTML5Form form;
+
+    @JsonIgnore
+    public HTML5Form getForm() {
+        return form;
+    }
+
+    public void setForm(HTML5Form form) {
+        this.form = form;
+    }
 
     public HTML5FormTag() { } // Used by hibernate
 

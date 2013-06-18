@@ -5,7 +5,11 @@
 <hibernate-mapping package="org.openmrs.module.html5forms">
     <class name="HTML5Form" table="html5forms_form">
         <id name="id" type="java.lang.Integer" column="form_id"/>
-        <one-to-one name="form" class="org.openmrs.Form" foreign-key="form_id"/>
-        <one-to-one name="xform" class="org.openmrs.module.xforms.Xform" foreign-key="form_id"/>
+        <one-to-one cascade="none" name="form" class="org.openmrs.Form" foreign-key="form_id"/>
+        <one-to-one cascade="none" name="xform" class="org.openmrs.module.xforms.Xform" foreign-key="form_id"/>
+        <set name="tags" table="html5forms_form_tag_mapping">
+            <key column="form_id" not-null="true"/>
+            <many-to-many column="tag_id" class="HTML5FormTag"/>
+        </set>
     </class>
 </hibernate-mapping>

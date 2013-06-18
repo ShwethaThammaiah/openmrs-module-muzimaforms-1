@@ -2,14 +2,12 @@ package org.openmrs.module.html5forms;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.openmrs.Form;
-import org.openmrs.module.xforms.Xform;
 
 public class HTML5XForm {
     private Integer id;
     private String name;
     private String description;
     private Form form;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -36,7 +34,8 @@ public class HTML5XForm {
         this.form = form;
     }
 
-    public HTML5XForm(){}    // used by hibernate
+    public HTML5XForm() {
+    }    // used by hibernate
 
     public HTML5XForm(String name, String description) {
         this.name = name;
@@ -58,4 +57,5 @@ public class HTML5XForm {
     public void setId(Integer id) {
         this.id = id;
     }
+
 }

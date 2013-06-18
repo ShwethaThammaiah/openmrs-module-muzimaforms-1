@@ -60,6 +60,7 @@
     <mappingFiles>
         HTML5Form.hbm.xml
         HTML5XForm.hbm.xml
+        HTML5FormTag.hbm.xml
     </mappingFiles>
 	<!--
 	<dwr>

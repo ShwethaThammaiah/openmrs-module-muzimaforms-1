@@ -2,9 +2,10 @@ package org.openmrs.module.html5forms.api.impl;
 
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.html5forms.HTML5FormTag;
-import org.openmrs.module.html5forms.Tags;
 import org.openmrs.module.html5forms.api.TagService;
 import org.openmrs.module.html5forms.api.db.hibernate.TagDAO;
+
+import java.util.List;
 
 public class TagServiceImpl extends BaseOpenmrsService implements TagService {
     private TagDAO dao;
@@ -13,8 +14,8 @@ public class TagServiceImpl extends BaseOpenmrsService implements TagService {
         this.dao = dao;
     }
 
-    public Tags getAll() {
-        return new Tags(dao.getAll());
+    public List<HTML5FormTag> getAll() {
+        return dao.getAll();
     }
 
     public HTML5FormTag add(String name) {

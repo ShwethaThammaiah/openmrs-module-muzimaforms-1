@@ -48,27 +48,21 @@
             <a class="btn btn-success" ng-click="editMode = !editMode" style="color: #ffffff"><i class="icon-cogs"></i></a>
         </div>
         <div class="row-fluid padded-table-content" collapse="editMode">
-            <!--<div class="span11 tagbox">-->
-            <!--<span style="display: inline-block; padding-right: 2px;" ng-repeat="tagId in form.tags">-->
-            <!--<span class="label label-delete" ng-style="tagStyle(tagId)">-->
-            <!--{{tags[tagId].name}}-->
-            <!--</span><span class="label label-delete-icon" ng-style="tagStyle(tagId)"><i class="icon-remove"></i></span>-->
-            <!--</span>-->
-            <!--<input type="search" class="tagbox-input" placeholder="Add Tag ...">-->
-            <!--</div>-->
-            <div id="tagsinput_tagsinput" class="span11 tagsinput" style="height: 100%">
-                <span ng-repeat="tagId in form.tags">
-                    <span class="tag" ng-style="tagStyle(tagId)">
-                        <span>{{tags[tagId].name}}</span>
-                        <a class="tagsinput-remove-link"></a>
-                    </span>
+            <div class="span11">
+                <input type="search" placeholder="Add Tag ...">
+            </div>
+        </div>
+        <div class="row-fluid padded-table-content" collapse="editMode">
+            <div class="span11">
+            <span style="padding-right: 2px;" ng-repeat="tagId in form.tags">
+                <span class="label label-delete" ng-style="tagStyle(tagId)">
+                  {{tags[tagId].name}}
                 </span>
-
-                <div class="tagsinput-add-container" id="tagsinput_addTag">
-                    <div class="tagsinput-add"></div>
-                    <input id="tagsinput_tag" value="" data-default="" style="color: rgb(102, 102, 102); width: 12px;">
-                </div>
-
+                <span class="label label-delete-icon" ng-style="tagStyle(tagId)">
+                    <i class="icon-remove"></i>
+                </span>
+            </span>
+            <input type="text" ng-model="typeaheadValue" bs-typeahead="tags">
             </div>
         </div>
     </div>

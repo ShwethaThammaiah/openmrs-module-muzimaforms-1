@@ -1,6 +1,5 @@
 package org.openmrs.module.html5forms.web.controller;
 
-import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.openmrs.module.html5forms.HTML5XForm;
@@ -22,15 +21,13 @@ public class HTML5XFormsControllerTest extends BaseModuleContextSensitiveTest {
         executeDataSet("xformomodTestData.xml");
         HTML5XFormsController controller = new HTML5XFormsController();
         List<HTML5XForm> forms = controller.xForms();
-        assertThat(forms.size(), is(2));
+        assertThat(forms.size(), is(3));
     }
 
     @Test
     public void testNoXFormsData() throws Exception {
         HTML5XFormsController controller = new HTML5XFormsController();
         List<HTML5XForm> forms = controller.xForms();
-        ObjectMapper mapper = new ObjectMapper();
-        System.out.println(mapper.writeValueAsString(forms));
-
+        assertThat(forms.size(), is(0));
     }
 }

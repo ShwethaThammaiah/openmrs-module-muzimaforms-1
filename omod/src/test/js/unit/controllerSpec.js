@@ -23,7 +23,7 @@ describe('Html5Forms controllers', function () {
                 respond(
                     [
                         {"id": "1", "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false },
-                        { "id": "2", "name": "PMTCT Ante-Natal Care Form", "description": "", "selected": false, "tags": [1, 5, 2, 7] },
+                        {"id": "2", "name": "PMTCT Ante-Natal Care Form", "description": "", "selected": false, "tags": [1, 5, 2, 7] },
                         {"id": "3", "name": "Encounter Form", "description": "Form for capturing patient encounters", "selected": false, "tags": [2, 5]},
                         {"id": "4", "name": "Adult Initial HIV Encounter Form", "description": "Form for capturing initial HIV encounter for an adult", "selected": false, "tags": [2, 4, 6, 8]},
                         {"id": "5", "name": "Pediatric Summary Form", "description": "Form for capturing pediatric summary", "selected": false, "tags": [9]},

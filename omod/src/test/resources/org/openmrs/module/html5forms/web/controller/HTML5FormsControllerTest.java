@@ -14,7 +14,6 @@ public class HTML5FormsControllerTest extends BaseModuleContextSensitiveTest {
     @Before
     public void setUp() throws Exception {
         executeDataSet("xformomodTestData.xml");
-
     }
 
     @Test

@@ -56,6 +56,10 @@
             <groupId>com.jcraft</groupId>
             <artifactId>jzlib</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path-assert</artifactId>
+        </dependency>
     </dependencies>
 
 	<build>

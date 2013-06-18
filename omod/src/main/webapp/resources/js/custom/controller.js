@@ -16,8 +16,8 @@ function FormCtrl($scope, FormService, XFormService, TagService) {
     $scope.done = function () {
         angular.forEach($scope.selectedXForms, function (value) {
             console.log("Submitted form with id:" + value);
-            FormService.save({id: value}, function(){
-                $scope.forms = FormService.forms(function(){
+            FormService.save({id: value}, function () {
+                $scope.forms = FormService.forms(function () {
                     $scope.importMode = false;
                 });
             });
@@ -81,12 +81,45 @@ function FormCtrl($scope, FormService, XFormService, TagService) {
         return  {'background-color': tagColor(tagId)};
     };
 
-    $scope.tagNames = function(){
+    $scope.tagNames = function () {
         var tagNames = [];
-        angular.forEach($scope.tags, function(tag){
+        angular.forEach($scope.tags, function (tag) {
             tagNames.push(tag.name);
         });
         return tagNames;
-    }
+    };
+
+    //TODO use a library function
+    var contains = function (array, condition) {
+        var conditionSatisfied = false;
+        angular.forEach(array, function (value) {
+            if (condition(value)) {
+                conditionSatisfied = true;
+            }
+        });
+        return conditionSatisfied;
+    };
+
+    $scope.saveTag = function (formId, newTag) {
+        if(newTag === ""){
+            return;
+        }
+        var tagToBeAdded = {"name": newTag};
+        angular.forEach($scope.tags, function (tag) {
+            if (tag.name === newTag) {
+                angular.extend(tagToBeAdded, tag);
+            }
+        });
+        angular.forEach($scope.forms, function (form) {
+                if (form.id == formId) {
+                    if (!contains(form.tags, function (tag) {
+                        return angular.lowercase(tag.name) === angular.lowercase(newTag);
+                    })) {
+                        form.tags.push(tagToBeAdded);
+                    }
+                }
+            }
+        );
+    };
 }
 

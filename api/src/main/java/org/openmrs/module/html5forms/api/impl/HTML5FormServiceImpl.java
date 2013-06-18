@@ -27,4 +27,8 @@ public class HTML5FormServiceImpl extends BaseOpenmrsService implements HTML5For
     public void saveForm(HTML5Form form) {
         dao.saveForm(form);
     }
+
+    public HTML5Form findById(Integer id) {
+        return dao.findById(id);
+    }
 }

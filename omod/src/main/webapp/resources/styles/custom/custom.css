@@ -22,26 +22,30 @@
     background-color: #34495e;
 }
 
-.tagsinput{
-    border: 1px solid #1abc9c;
-    height: 75px;
-    margin-bottom: 5px;
-    padding: 3px 1px 1px 3px;
+.form-tag {
+    padding-right: 2px;
 }
 
-.tagsinput .tag {
-    margin-right: 2px;
-    margin-bottom: 2px;
-    padding: 3px 10px 5px 16px;
-    line-height: 10px;
-}
+/*.tagsinput{*/
+    /*border: 1px solid #1abc9c;*/
+    /*height: 75px;*/
+    /*margin-bottom: 5px;*/
+    /*padding: 3px 1px 1px 3px;*/
+/*}*/
 
-.tagsinput .tag:hover {
-    background-color: #16a085;
-    color: #ffffff;
-    padding-left: 12px;
-    padding-right: 20px;
-}
+/*.tagsinput .tag {*/
+    /*margin-right: 2px;*/
+    /*margin-bottom: 2px;*/
+    /*padding: 3px 10px 5px 16px;*/
+    /*line-height: 10px;*/
+/*}*/
+
+/*.tagsinput .tag:hover {*/
+    /*background-color: #16a085;*/
+    /*color: #ffffff;*/
+    /*padding-left: 12px;*/
+    /*padding-right: 20px;*/
+/*}*/
 
 .table-element {
     text-align: center;

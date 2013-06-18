@@ -4,13 +4,14 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 import org.openmrs.Form;
 import org.openmrs.module.xforms.Xform;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class HTML5Form {
     private Integer id;
     private Form form;
     private Xform xform;
-    private Set<HTML5FormTag> tags;
+    private Set<HTML5FormTag> tags = new HashSet<HTML5FormTag>();
 
 
     @JsonIgnore

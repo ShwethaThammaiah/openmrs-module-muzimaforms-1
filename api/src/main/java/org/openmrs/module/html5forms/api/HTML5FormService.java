@@ -16,4 +16,6 @@ public interface HTML5FormService extends OpenmrsService {
 
     @Transactional
     void saveForm(HTML5Form form);
+
+    HTML5Form findById(Integer id);
 }

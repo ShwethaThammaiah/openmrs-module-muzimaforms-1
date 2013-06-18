@@ -78,4 +78,15 @@ public class HTML5FormServiceTest extends BaseModuleContextSensitiveTest {
         List<HTML5FormTag> tags = tagService.getAll();
         assertThat(tags, hasItem(newTag));
     }
+
+    @Test
+    public void findById_shouldFindFormById() {
+        HTML5Form form = service.findById(1);
+        assertThat(form, is(html5Form().withId(1)
+                .with(tag().withId(1).withName("Registration"))
+                .with(tag().withId(2).withName("Patient"))
+                .with(xForm().withId(1))
+                .with(form().withId(1).withName("Registration Form").withDescription("Form for registration"))
+                .instance()));
+    }
 }

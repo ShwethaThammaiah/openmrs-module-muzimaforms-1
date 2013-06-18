@@ -31,6 +31,10 @@ public class HTML5FormDAOImpl implements HTML5FormDAO {
         session().saveOrUpdate(form);
     }
 
+    public HTML5Form findById(Integer id) {
+        return (HTML5Form) session().get(HTML5Form.class, id);
+    }
+
     private Session session() {
         return factory.getCurrentSession();
     }

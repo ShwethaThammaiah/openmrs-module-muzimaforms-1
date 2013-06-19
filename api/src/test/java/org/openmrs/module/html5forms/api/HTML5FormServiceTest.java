@@ -56,7 +56,8 @@ public class HTML5FormServiceTest extends BaseModuleContextSensitiveTest {
     @Test
     public void getXform_shouldLoadForm() throws Exception {
         List<HTML5XForm> xform = service.getXForms();
-        assertThat(xform.size(), is(3));
+        assertThat(xform.size(), is(1));
+        assertThat(xform.get(0).getId(), is(0));
     }
 
     @Test

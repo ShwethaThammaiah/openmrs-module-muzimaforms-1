@@ -23,8 +23,7 @@ public class HTML5FormDAOImpl implements HTML5FormDAO {
 
     //TODO: Move this to a named query
     public List<HTML5XForm> getXForms() {
-        return (List<HTML5XForm>) session().createCriteria(HTML5XForm.class).list();
-
+        return (List<HTML5XForm>) session().createQuery("from HTML5XForm where id not in (select id from HTML5Form)").list();
     }
 
     public void saveForm(HTML5Form form) {

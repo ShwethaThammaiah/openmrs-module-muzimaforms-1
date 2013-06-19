@@ -15,8 +15,6 @@ import java.util.List;
 @RequestMapping(value = "module/html5forms/xforms.form")
 
 public class HTML5XFormsController {
-
-
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<HTML5XForm> xForms() {

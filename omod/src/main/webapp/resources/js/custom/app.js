@@ -7,22 +7,28 @@ html5formsModule.
             otherwise({redirectTo: '/forms'});
     }]);
 
-html5formsModule.factory('FormService', function ($resource) {
+html5formsModule.factory('FormsService', function ($resource) {
     return $resource('forms.form', {}, {
-        forms: {method: 'GET', isArray:true},
-        save: {method: 'POST', data : {id : '@id'}}
+        "all": {method: 'GET', isArray:true}
+    });
+});
+
+html5formsModule.factory('FormService', function ($resource) {
+    return $resource('form.form', {}, {
+        "get": {method: 'GET', data : {id : '@id'}},
+        "save": {method: 'POST', data : {id : '@id'}}
     });
 });
 
 html5formsModule.factory('XFormService', function ($resource) {
     return $resource('xforms.form', {}, {
-        xForms: {method: 'GET', isArray:true}
+        "all": {method: 'GET', isArray:true}
     });
 });
 
 html5formsModule.factory('TagService', function ($resource) {
     return $resource('tags.form', {}, {
-        tags: {method: 'GET', isArray:true }
+        "all": {method: 'GET', isArray:true }
     });
 });
 

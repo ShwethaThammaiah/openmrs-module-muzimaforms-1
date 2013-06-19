@@ -1,7 +1,7 @@
 'use strict';
-function FormCtrl($scope, FormService, XFormService, TagService) {
-    $scope.tags = TagService.tags();
-    $scope.forms = FormService.forms();
+function FormCtrl($scope, FormsService, FormService, XFormService, TagService) {
+    $scope.tags = TagService.all();
+    $scope.forms = FormsService.all();
     $scope.xForms = [];
     $scope.selectedXForms = [];
     $scope.editMode = true;
@@ -9,19 +9,19 @@ function FormCtrl($scope, FormService, XFormService, TagService) {
 
     $scope.import = function () {
         $scope.importMode = true;
-        $scope.xForms = XFormService.xForms();
+        $scope.xForms = XFormService.all();
     };
 
     //TODO: Use promises
     $scope.done = function () {
         angular.forEach($scope.selectedXForms, function (value) {
-            console.log("Submitted form with id:" + value);
             FormService.save({id: value}, function () {
-                $scope.forms = FormService.forms(function () {
-                    $scope.importMode = false;
+                FormService.get({id: value}, function(form){
+                    $scope.forms.push(form);
                 });
             });
         });
+        $scope.importMode = false;
     };
 
     $scope.cancelImport = function () {

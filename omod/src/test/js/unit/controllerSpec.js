@@ -7,17 +7,22 @@ describe('Html5Forms controllers', function () {
         var expextGetTags = function () {
             httpBackend.expectGET('tags.form').
                 respond([
-                    {"id": 1, "name":"Registration"},
-                    {"id": 2, "name":"Patient"},
-                    {"id": 3, "name":"PMTCT"}
+                    {"id": 1, "name": "Registration"},
+                    {"id": 2, "name": "Patient"},
+                    {"id": 3, "name": "PMTCT"}
                 ]);
         };
         var expectGetForms = function () {
             httpBackend.expectGET("forms.form").
                 respond(
                     [
-                        {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false,"tags": [{"id": 1, "name":"Registration"}, {"id": 2, "name":"Patient"}]  },
-                        {"id": 2, "name": "PMTCT Ante-Natal Care Form", "description": "", "selected": false, "tags": [{"id": 1, "name":"Registration"}] }
+                        {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
+                            {"id": 1, "name": "Registration"},
+                            {"id": 2, "name": "Patient"}
+                        ]  },
+                        {"id": 2, "name": "PMTCT Ante-Natal Care Form", "description": "", "selected": false, "tags": [
+                            {"id": 1, "name": "Registration"}
+                        ] }
                     ]);
         };
 
@@ -64,17 +69,28 @@ describe('Html5Forms controllers', function () {
             expect(scope.importMode).toBe(true);
         });
 
-//        it('should post selected xform ids when clicked on done', function () {
-//            httpBackend.expectPOST('forms.form', {id: "2").respond(201);
-//            httpBackend.expectPOST('forms.form', {id: "3"}).respond(201);
-//            scope.selectXForm('2');
-//            scope.selectXForm('3');
-//            scope.importMode = true;
-//            expectGetForms();
-//            scope.done();
-//            httpBackend.flush();
-//            expect(scope.importMode).toBe(false);
-//        });
+        it('should post selected xform ids when clicked on done', function () {
+            httpBackend.expectPOST('form.form', {'id': '4'}).respond(200);
+            httpBackend.expectPOST('form.form', {'id': '5'}).respond(200);
+            httpBackend.expectGET('form.form?id=4').
+                respond(
+                {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients"}
+            )
+
+            httpBackend.expectGET('form.form?id=5').
+                respond(
+                {"id": 2, "name": "Patient Registration Form", "description": "Form for registering patients"}
+            );
+
+            scope.selectXForm('4');
+            scope.selectXForm('5');
+            scope.importMode = true;
+
+            scope.done();
+            httpBackend.flush();
+            expect(scope.importMode).toBe(false);
+
+        });
 
         it('cancel should toggle imortMode', function () {
             scope.importMode = true;
@@ -121,38 +137,38 @@ describe('Html5Forms controllers', function () {
         });
 
         it('should save a non existing tag', function () {
-            expect(scope.forms[0].tags[0]).toEqual({"id": 1, "name":"Registration"});
-            expect(scope.forms[0].tags[1]).toEqual({"id": 2, "name":"Patient"});
+            expect(scope.forms[0].tags[0]).toEqual({"id": 1, "name": "Registration"});
+            expect(scope.forms[0].tags[1]).toEqual({"id": 2, "name": "Patient"});
             scope.saveTag(1, "Encounter");
-            expect(scope.forms[0].tags[0]).toEqual({"id": 1, "name":"Registration"});
-            expect(scope.forms[0].tags[1]).toEqual({"id": 2, "name":"Patient"});
-            expect(scope.forms[0].tags[2]).toEqual({"name":"Encounter"});
+            expect(scope.forms[0].tags[0]).toEqual({"id": 1, "name": "Registration"});
+            expect(scope.forms[0].tags[1]).toEqual({"id": 2, "name": "Patient"});
+            expect(scope.forms[0].tags[2]).toEqual({"name": "Encounter"});
         });
 
         it('should save an existing tag', function () {
-            expect(scope.forms[0].tags[0]).toEqual({"id": 1, "name":"Registration"});
-            expect(scope.forms[0].tags[1]).toEqual({"id": 2, "name":"Patient"});
-            scope.saveTag(1,"PMTCT");
-            expect(scope.forms[0].tags[0]).toEqual({"id": 1, "name":"Registration"});
-            expect(scope.forms[0].tags[1]).toEqual({"id": 2, "name":"Patient"});
-            expect(scope.forms[0].tags[2]).toEqual({"id": 3, "name":"PMTCT"});
+            expect(scope.forms[0].tags[0]).toEqual({"id": 1, "name": "Registration"});
+            expect(scope.forms[0].tags[1]).toEqual({"id": 2, "name": "Patient"});
+            scope.saveTag(1, "PMTCT");
+            expect(scope.forms[0].tags[0]).toEqual({"id": 1, "name": "Registration"});
+            expect(scope.forms[0].tags[1]).toEqual({"id": 2, "name": "Patient"});
+            expect(scope.forms[0].tags[2]).toEqual({"id": 3, "name": "PMTCT"});
         });
 
         it('should ignore an already added tag and should ignore case', function () {
-            expect(scope.forms[0].tags[0]).toEqual({"id": 1, "name":"Registration"});
-            expect(scope.forms[0].tags[1]).toEqual({"id": 2, "name":"Patient"});
-            scope.saveTag(1,"registration");
-            expect(scope.forms[0].tags[0]).toEqual({"id": 1, "name":"Registration"});
-            expect(scope.forms[0].tags[1]).toEqual({"id": 2, "name":"Patient"});
+            expect(scope.forms[0].tags[0]).toEqual({"id": 1, "name": "Registration"});
+            expect(scope.forms[0].tags[1]).toEqual({"id": 2, "name": "Patient"});
+            scope.saveTag(1, "registration");
+            expect(scope.forms[0].tags[0]).toEqual({"id": 1, "name": "Registration"});
+            expect(scope.forms[0].tags[1]).toEqual({"id": 2, "name": "Patient"});
             expect(scope.forms[0].tags.length).toBe(2);
         });
 
         it('should not add empty tag', function () {
-            expect(scope.forms[0].tags[0]).toEqual({"id": 1, "name":"Registration"});
-            expect(scope.forms[0].tags[1]).toEqual({"id": 2, "name":"Patient"});
-            scope.saveTag(1,"");
-            expect(scope.forms[0].tags[0]).toEqual({"id": 1, "name":"Registration"});
-            expect(scope.forms[0].tags[1]).toEqual({"id": 2, "name":"Patient"});
+            expect(scope.forms[0].tags[0]).toEqual({"id": 1, "name": "Registration"});
+            expect(scope.forms[0].tags[1]).toEqual({"id": 2, "name": "Patient"});
+            scope.saveTag(1, "");
+            expect(scope.forms[0].tags[0]).toEqual({"id": 1, "name": "Registration"});
+            expect(scope.forms[0].tags[1]).toEqual({"id": 2, "name": "Patient"});
             expect(scope.forms[0].tags.length).toBe(2);
         });
     });

@@ -117,16 +117,17 @@ describe('Html5Forms controllers', function () {
         });
 
         it('should assign color to empty tag', function () {
-            expect(scope.tags[2].color).toBeUndefined();
+            expect(scope.tagColorMap[2]).toBeUndefined();
             var tagStyle = scope.tagStyle(2);
             expect(tagStyle['background-color']).toBeDefined();
-            expect(scope.tags[2].color).toBeDefined();
+            expect(scope.tagColorMap[2].color).toBeDefined();
         });
 
         it('should not assign new color to tag if color is already assigned', function () {
-            scope.tags[2].color = '#333333';
+            scope.tagColorMap[2] = {};
+            scope.tagColorMap[2].color = '#333333';
             scope.tagStyle(2);
-            expect(scope.tags[2].color).toEqual('#333333');
+            expect(scope.tagColorMap[2].color).toEqual('#333333');
         });
 
         it('should return tag names', function () {

@@ -6,6 +6,7 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService) {
     $scope.selectedXForms = [];
     $scope.editMode = true;
     $scope.importMode = false;
+    $scope.tagColorMap = {};
 
     $scope.import = function () {
         $scope.importMode = true;
@@ -70,11 +71,12 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService) {
     };
 
     var tagColor = function (tagId) {
-        var tag = $scope.tags[tagId];
-        if (!tag.color) {
-            tag.color = 'rgb(' + Math.floor(Math.random() * 200) + ',' + Math.floor(Math.random() * 200) + ',' + Math.floor(Math.random() * 200) + ')';
+        var tag = $scope.tagColorMap[tagId];
+        if (!tag) {
+            $scope.tagColorMap[tagId] = {};
+            $scope.tagColorMap[tagId].color = 'rgb(' + Math.floor(Math.random() * 200) + ',' + Math.floor(Math.random() * 200) + ',' + Math.floor(Math.random() * 200) + ')';
         }
-        return tag.color;
+        return $scope.tagColorMap[tagId].color;
     };
 
     $scope.tagStyle = function (tagId) {

@@ -16,7 +16,7 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService) {
     $scope.done = function () {
         angular.forEach($scope.selectedXForms, function (value) {
             FormService.save({id: value}, function () {
-                FormService.get({id: value}, function(form){
+                FormService.get({id: value}, function (form) {
                     $scope.forms.push(form);
                 });
             });
@@ -100,8 +100,8 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService) {
         return conditionSatisfied;
     };
 
-    $scope.saveTag = function (formId, newTag) {
-        if(newTag === ""){
+    $scope.saveTag = function (form, newTag) {
+        if (newTag === "") {
             return;
         }
         var tagToBeAdded = {"name": newTag};
@@ -110,16 +110,34 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService) {
                 angular.extend(tagToBeAdded, tag);
             }
         });
-        angular.forEach($scope.forms, function (form) {
-                if (form.id == formId) {
-                    if (!contains(form.tags, function (tag) {
-                        return angular.lowercase(tag.name) === angular.lowercase(newTag);
-                    })) {
-                        form.tags.push(tagToBeAdded);
+        if (!contains(form.tags, function (tag) {
+            return angular.lowercase(tag.name) === angular.lowercase(newTag);
+        })) {
+            form.tags.push(tagToBeAdded);
+            FormService.save(form, function () {
+                FormService.get({id: form.id}, function (savedForm) {
+                    angular.extend(form, savedForm);
+                    if (!tagToBeAdded.id) {
+                        $scope.tags = TagService.all();
                     }
-                }
-            }
-        );
+                });
+            });
+        }
     };
+
+    //TODO: Pull out a common function
+    $scope.removeTag = function (form, tagToRemove) {
+        angular.forEach(form.tags, function (tag, index) {
+            if (tag.name === tagToRemove.name) {
+                form.tags.splice(index, 1);
+                FormService.save(form, function () {
+                    FormService.get({id: form.id}, function (savedForm) {
+                        angular.extend(form, savedForm);
+                    });
+                });
+            }
+        });
+
+    }
 }
 

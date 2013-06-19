@@ -37,30 +37,22 @@
             <div class="padded-table-content">
                 <small>{{form.description}}</small>
             </div>
-            <div collapse="!editMode">
-                <div class="padded-table-content">
-                    <span class="label form-tag" ng-repeat="tag in form.tags"
-                          ng-style="tagStyle(tag.id)">{{tag.name}}</span>
-                </div>
+            <div class="padded-table-content">
+                    <span ng-repeat="tag in form.tags">
+                        <span class="label form-tag" ng-style="tagStyle(tag.id)">
+                            <span>{{tag.name}} </span><span ng-click="removeTag(form, tag)"><i class="icon-remove"></i></span>
+                        </span>
+                    </span>
             </div>
         </div>
         <div class="span1 padded-table-content">
-            <a class="btn btn-success" ng-click="editMode = !editMode" style="color: #ffffff"><i class="icon-cogs"></i></a>
+            <a class="btn btn-small" ng-click="editMode = !editMode" style="color: #ffffff"><i
+                    class="icon-edit"></i></a>
         </div>
-        <div class="row-fluid padded-table-content" collapse="editMode">
-            <div class="span11">
-            <span ng-repeat="tag in form.tags">
-                <span class="label label-delete" ng-style="tagStyle(tag.id)"> {{tag.name}} </span>
-                <span class="label label-delete-icon" ng-style="tagStyle(tag.id)">
-                    <i class="icon-remove"></i>
-                </span>
-            </span>
-            </div>
-        </div>
-
-        <div collapse="editMode" class="row-fluid">
-            <form class="span11" ng-submit="saveTag(form.id, newTag)"><input name="newTag" ng-model="newTag" type="text" ng-trim="true"
-                                        placeholder="Enter a tag...">
+        <div collapse="editMode" class="row-fluid padded-table-content">
+            <form class="span10" ng-submit="saveTag(form, newTag)"><input name="newTag" ng-model="newTag" type="text"
+                                                                             ng-trim="true"
+                                                                             placeholder="Enter a tag...">
             </form>
         </div>
     </div>

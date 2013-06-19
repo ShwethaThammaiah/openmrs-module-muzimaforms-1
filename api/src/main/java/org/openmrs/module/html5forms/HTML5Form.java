@@ -1,12 +1,14 @@
 package org.openmrs.module.html5forms;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.openmrs.Form;
 import org.openmrs.module.xforms.Xform;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class HTML5Form {
     private Integer id;
     private Form form;

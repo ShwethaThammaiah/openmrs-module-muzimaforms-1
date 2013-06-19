@@ -23,29 +23,8 @@
 }
 
 .form-tag {
-    padding-right: 2px;
+    margin-top: 4px;
 }
-
-/*.tagsinput{*/
-    /*border: 1px solid #1abc9c;*/
-    /*height: 75px;*/
-    /*margin-bottom: 5px;*/
-    /*padding: 3px 1px 1px 3px;*/
-/*}*/
-
-/*.tagsinput .tag {*/
-    /*margin-right: 2px;*/
-    /*margin-bottom: 2px;*/
-    /*padding: 3px 10px 5px 16px;*/
-    /*line-height: 10px;*/
-/*}*/
-
-/*.tagsinput .tag:hover {*/
-    /*background-color: #16a085;*/
-    /*color: #ffffff;*/
-    /*padding-left: 12px;*/
-    /*padding-right: 20px;*/
-/*}*/
 
 .table-element {
     text-align: center;
@@ -69,45 +48,11 @@
 }
 
 .label{
-    font-size: 13px;
+    font-size: 11px;
 }
 
-.tagbox{
-    display: inline-block;
-    width: auto;
+.row-fluid input[type="text"]{
     height: auto;
-    min-width: 16px;
-    padding: 0 5px;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 20px;
-    text-align: left;
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    vertical-align: middle;
 }
 
-.label-delete{
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    padding-right: 2px;
-}
-
-.label-delete-icon{
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    padding-left: 2px;
-    padding-top: 1px;
-    font-size: 14.1px;
-}
-
-input.tagbox-input,
-input.tagbox-input:focus,
-input.tagbox-input:hover,
-input.tagbox-input:active
-{
-    border: none;
-    box-shadow: none;
-}
 

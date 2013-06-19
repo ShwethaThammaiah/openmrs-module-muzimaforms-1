@@ -1,7 +1,9 @@
 package org.openmrs.module.html5forms;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class HTML5FormTag {
     private Integer id;
     private String name;

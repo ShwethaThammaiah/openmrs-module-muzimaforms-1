@@ -74,7 +74,7 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService) {
         var tag = $scope.tagColorMap[tagId];
         if (!tag) {
             $scope.tagColorMap[tagId] = {};
-            $scope.tagColorMap[tagId].color = 'rgb(' + Math.floor(Math.random() * 200) + ',' + Math.floor(Math.random() * 200) + ',' + Math.floor(Math.random() * 200) + ')';
+            $scope.tagColorMap[tagId].color = 'rgb(' + (50 + Math.floor(Math.random() * 150)) + ',' + (50 + Math.floor(Math.random() * 150)) + ',' + (50 + Math.floor(Math.random() * 150)) + ')';
         }
         return $scope.tagColorMap[tagId].color;
     };
@@ -108,7 +108,7 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService) {
         }
         var tagToBeAdded = {"name": newTag};
         angular.forEach($scope.tags, function (tag) {
-            if (tag.name === newTag) {
+            if (angular.lowercase(tag.name) === angular.lowercase(newTag)) {
                 angular.extend(tagToBeAdded, tag);
             }
         });

@@ -1,7 +1,24 @@
 'use strict';
 function FormCtrl($scope, FormsService, FormService, XFormService, TagService) {
+
+    $scope.getHTML5Forms = function() {
+        var html5forms =  [];
+        FormsService.all(function(forms){
+            angular.forEach(forms, function(form){
+                html5forms.push({
+                    form: form,
+                    newTag: ""
+                });
+            });
+            $scope.forms = forms;
+        });
+
+        return html5forms;
+    };
+
     $scope.tags = TagService.all();
-    $scope.forms = FormsService.all();
+
+    $scope.html5forms = $scope.getHTML5Forms();
     $scope.xForms = [];
     $scope.selectedXForms = [];
     $scope.editMode = true;
@@ -18,7 +35,10 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService) {
         angular.forEach($scope.selectedXForms, function (value) {
             FormService.save({id: value}, function () {
                 FormService.get({id: value}, function (form) {
-                    $scope.forms.push(form);
+                    $scope.html5forms.push({
+                        form:form,
+                        newTag: ""
+                    });
                 });
             });
         });
@@ -34,7 +54,7 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService) {
     };
 
     $scope.hasForms = function () {
-        return $scope.forms.length > 0;
+        return $scope.html5forms.length > 0;
     };
 
     $scope.xForms = function () {
@@ -102,10 +122,13 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService) {
         return conditionSatisfied;
     };
 
-    $scope.saveTag = function (form, newTag) {
+    $scope.saveTag = function (html5form) {
+        var form = html5form.form;
+        var newTag = html5form.newTag;
         if (newTag === "") {
             return;
         }
+
         var tagToBeAdded = {"name": newTag};
         angular.forEach($scope.tags, function (tag) {
             if (angular.lowercase(tag.name) === angular.lowercase(newTag)) {
@@ -125,6 +148,8 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService) {
                 });
             });
         }
+
+        html5form.newTag = "";
     };
 
     //TODO: Pull out a common function

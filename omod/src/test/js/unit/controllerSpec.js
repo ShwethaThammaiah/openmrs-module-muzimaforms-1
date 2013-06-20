@@ -181,7 +181,7 @@ describe('Html5Forms controllers', function () {
                 "id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
                     {"id": 1, "name": "Registration"},
                     {"id": 2, "name": "Patient"},
-                    {"name": "PMTCT", "id": 3}
+                    {"id": 3, "name": "PMTCT"}
                 ]}).respond(200);
 
             httpBackend.expectGET('form.form?id=1').

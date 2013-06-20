@@ -1,24 +1,20 @@
 'use strict';
-function FormCtrl($scope, FormsService, FormService, XFormService, TagService) {
+function FormCtrl($scope, FormsService, FormService, XFormService, TagService, _) {
 
-    $scope.getHTML5Forms = function() {
-        var html5forms =  [];
+    $scope.loadHTML5Forms = function() {
         FormsService.all(function(forms){
-            angular.forEach(forms, function(form){
-                html5forms.push({
+            $scope.forms = forms;
+            $scope.html5forms = _.map(forms, function(form){
+                return {
                     form: form,
                     newTag: ""
-                });
+                };
             });
-            $scope.forms = forms;
         });
-
-        return html5forms;
     };
 
     $scope.tags = TagService.all();
-
-    $scope.html5forms = $scope.getHTML5Forms();
+    $scope.loadHTML5Forms();
     $scope.xForms = [];
     $scope.selectedXForms = [];
     $scope.editMode = true;
@@ -50,18 +46,11 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService) {
     };
 
     $scope.hasXForms = function () {
-        return $scope.xForms.length > 0;
+        return !_.isEmpty($scope.xForms);
     };
 
     $scope.hasForms = function () {
-        return $scope.html5forms.length > 0;
-    };
-
-    $scope.xForms = function () {
-        if (xForms && xForms.list) {
-            return xForms.list;
-        }
-        return [];
+        return !_.isEmpty($scope.html5forms);
     };
 
     $scope.getPreviewFormPath = function () {
@@ -111,33 +100,23 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService) {
         return tagNames;
     };
 
-    //TODO use a library function
-    var contains = function (array, condition) {
-        var conditionSatisfied = false;
-        angular.forEach(array, function (value) {
-            if (condition(value)) {
-                conditionSatisfied = true;
-            }
+    var caseInsensitiveFind = function(tags, newTag) {
+        return _.find(tags, function (tag) {
+            return angular.lowercase(tag.name) === angular.lowercase(newTag);
         });
-        return conditionSatisfied;
     };
 
     $scope.saveTag = function (html5form) {
+        if (html5form.newTag === "")
+            return;
+
         var form = html5form.form;
         var newTag = html5form.newTag;
-        if (newTag === "") {
-            return;
-        }
 
-        var tagToBeAdded = {"name": newTag};
-        angular.forEach($scope.tags, function (tag) {
-            if (angular.lowercase(tag.name) === angular.lowercase(newTag)) {
-                angular.extend(tagToBeAdded, tag);
-            }
-        });
-        if (!contains(form.tags, function (tag) {
-            return angular.lowercase(tag.name) === angular.lowercase(newTag);
-        })) {
+        var tagToBeAdded =  caseInsensitiveFind($scope.tags,newTag);
+        if(!tagToBeAdded) tagToBeAdded = {"name": newTag};
+
+        if (!caseInsensitiveFind(form.tags, tagToBeAdded)) {
             form.tags.push(tagToBeAdded);
             FormService.save(form, function () {
                 FormService.get({id: form.id}, function (savedForm) {
@@ -152,7 +131,6 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService) {
         html5form.newTag = "";
     };
 
-    //TODO: Pull out a common function
     $scope.removeTag = function (form, tagToRemove) {
         angular.forEach(form.tags, function (tag, index) {
             if (tag.name === tagToRemove.name) {

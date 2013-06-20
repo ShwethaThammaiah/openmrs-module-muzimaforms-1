@@ -1,20 +1,40 @@
 'use strict';
-function FormCtrl($scope, FormsService, FormService, XFormService, TagService, _) {
+function FormCtrl($scope, FormsService, FormService, XFormService, TagService, _, $q) {
 
-    $scope.loadHTML5Forms = function() {
-        FormsService.all(function(forms){
-            $scope.forms = forms;
-            $scope.html5forms = _.map(forms, function(form){
-                return {
-                    form: form,
-                    newTag: ""
-                };
-            });
+    var getTags = function(){
+        var dTags = $q.defer();
+        TagService.all(function(data){
+            dTags.resolve(data);
+        });
+        return dTags.promise;
+    };
+
+    var setTags = function(data) {
+        $scope.tags = data;
+        return data;
+    };
+
+    var getForms = function(){
+        var dForms = $q.defer();
+        FormsService.all(function(data){
+            dForms.resolve(data);
+        });
+        return dForms.promise;
+    };
+
+    var setHTML5Forms = function(data) {
+        $scope.forms = data;
+        $scope.html5forms = _.map(data, function(form){
+            return {
+                form: form,
+                newTag: ""
+            };
         });
     };
 
-    $scope.tags = TagService.all();
-    $scope.loadHTML5Forms();
+    getTags().then(setTags);
+    getForms().then(setHTML5Forms);
+
     $scope.xForms = [];
     $scope.selectedXForms = [];
     $scope.editMode = true;

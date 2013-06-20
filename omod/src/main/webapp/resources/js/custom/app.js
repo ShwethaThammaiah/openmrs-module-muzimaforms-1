@@ -12,6 +12,7 @@ html5formsModule.factory('_', function () {
 });
 
 html5formsModule.factory('FormsService', function ($resource) {
+
     return $resource('forms.form', {}, {
         "all": {method: 'GET', isArray: true}
     });

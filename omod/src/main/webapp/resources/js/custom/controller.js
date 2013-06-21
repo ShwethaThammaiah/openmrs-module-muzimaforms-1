@@ -42,7 +42,7 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService, _
         var savePromises = [];
         _.each($scope.selectedXForms, function (value) {
             savePromises.push(FormService.save({id: value}));
-            });
+        });
         var allSaved = $q.all(savePromises);
         allSaved.then(FormsService.all).then(setHTML5Forms);
         $scope.importMode = false;
@@ -61,7 +61,7 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService, _
     };
 
     $scope.getPreviewFormPath = function () {
-        if($scope.selectedFormId)
+        if ($scope.selectedFormId)
             return '../../moduleResources/html5forms/html5forms/form-' + $scope.selectedFormId + '.html';
     };
 
@@ -162,7 +162,6 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService, _
     };
 
 
-//    });
     return {
         loadData: loadData
     };

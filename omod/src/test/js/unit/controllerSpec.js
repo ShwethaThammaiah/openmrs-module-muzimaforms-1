@@ -238,24 +238,24 @@ describe('Html5Forms controllers', function () {
 
         it('should remove tag', function () {
             ctrl.loadData().then(function (data) {
-            httpBackend.expectPOST('form.form', {
-                "id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
-                    {"id": 2, "name": "Patient"}
-                ]}).respond(200);
+                httpBackend.expectPOST('form.form', {
+                    "id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
+                        {"id": 2, "name": "Patient"}
+                    ]}).respond(200);
 
-            httpBackend.expectGET('form.form?id=1').
-                respond(
-                {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
-                    {"id": 2, "name": "Patient"}
-                ]}
-            );
+                httpBackend.expectGET('form.form?id=1').
+                    respond(
+                    {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
+                        {"id": 2, "name": "Patient"}
+                    ]}
+                );
 
-            expect(scope.html5forms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
-            expect(scope.html5forms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
-            scope.removeTag(scope.html5forms[0].form, scope.tags[0]);
-            httpBackend.flush();
-            expect(scope.html5forms[0].form.tags[0]).toEqual({"id": 2, "name": "Patient"});
-            expect(scope.html5forms[0].form.tags.length).toBe(1);
+                expect(scope.html5forms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
+                expect(scope.html5forms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
+                scope.removeTag(scope.html5forms[0].form, scope.tags[0]);
+                httpBackend.flush();
+                expect(scope.html5forms[0].form.tags[0]).toEqual({"id": 2, "name": "Patient"});
+                expect(scope.html5forms[0].form.tags.length).toBe(1);
             });
         });
     });

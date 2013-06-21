@@ -7,6 +7,12 @@
     border: 1px solid #ddd;
 }
 
+.tag-filter-box {
+    border: 1px solid #ddd;
+    background-color: #c9d1d1;
+    width: 100%;
+}
+
 .open-box {
     border-bottom: 1px solid #ddd;
     border-right: 1px solid #ddd;

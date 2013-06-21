@@ -18,7 +18,7 @@
         </script>
     </div>
 
-    <div collapse="importMode" ng-show="tagFilterActive()" class="border tag-filter-box">
+    <div collapse="importMode" ng-show="tagFilterActive()" class="tag-filter-box">
         <div class="padded-content">
             <span> Filter: </span>
             <span ng-repeat="tag in activeTagFilters">
@@ -50,8 +50,8 @@
             </div>
         </div>
         <div class="span1 padded-table-content">
-            <a class="btn btn-small" ng-click="editMode = !editMode" style="color: #ffffff"><i
-                    class="icon-edit"></i></a>
+            <a class="btn btn-inverse" ng-click="editMode = !editMode" style="color: #ffffff"><i
+                    class="icon-tags"></i></a>
         </div>
         <div collapse="editMode" class="row-fluid padded-table-content">
             <form class="span10" ng-submit="saveTag(html5form)"><input name="newTag" ng-model="html5form.newTag"

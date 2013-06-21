@@ -2,6 +2,7 @@
 <%@ include file="/WEB-INF/template/header.jsp" %>
 
 
+<openmrs:htmlInclude file="/moduleResources/html5forms/js/jquery/jquery.js"/>
 <openmrs:htmlInclude file="/moduleResources/html5forms/styles/flatui/bootstrap/css/bootstrap.css"/>
 <openmrs:htmlInclude file="/moduleResources/html5forms/styles/flatui/js/bootstrap.min.js"/>
 <openmrs:htmlInclude file="/moduleResources/html5forms/js/angular/angular.js"/>

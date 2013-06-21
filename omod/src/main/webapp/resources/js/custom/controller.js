@@ -1,39 +1,32 @@
 'use strict';
 function FormCtrl($scope, FormsService, FormService, XFormService, TagService, _, $q) {
+    var tagsPromise = TagService.all();
+    var formsPromise = FormsService.all();
+    var xFormsPromise = XFormService.all();
 
-    var getTags = function(){
-        var dTags = $q.defer();
-        TagService.all(function(data){
-            dTags.resolve(data);
-        });
-        return dTags.promise;
+    var dataLoaded = $q.all([tagsPromise, formsPromise, xFormsPromise]);
+
+    var setTags = function (result) {
+        console.log(JSON.stringify(result.data));
+        $scope.tags = result.data;
+    };
+    var setXForms = function (result) {
+        console.log(JSON.stringify(result.data));
+
+        $scope.xForms = result.data;
     };
 
-    var setTags = function(data) {
-        $scope.tags = data;
-        return data;
-    };
+    var setHTML5Forms = function (result) {
+        console.log(JSON.stringify(result.data));
 
-    var getForms = function(){
-        var dForms = $q.defer();
-        FormsService.all(function(data){
-            dForms.resolve(data);
-        });
-        return dForms.promise;
-    };
-
-    var setHTML5Forms = function(data) {
-        $scope.forms = data;
-        $scope.html5forms = _.map(data, function(form){
+        $scope.forms = result.data;
+        $scope.html5forms = _.map(result.data, function (form) {
             return {
                 form: form,
                 newTag: ""
             };
         });
     };
-
-    getTags().then(setTags);
-    getForms().then(setHTML5Forms);
 
     $scope.xForms = [];
     $scope.selectedXForms = [];
@@ -43,21 +36,15 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService, _
 
     $scope.import = function () {
         $scope.importMode = true;
-        $scope.xForms = XFormService.all();
     };
 
-    //TODO: Use promises
     $scope.done = function () {
-        angular.forEach($scope.selectedXForms, function (value) {
-            FormService.save({id: value}, function () {
-                FormService.get({id: value}, function (form) {
-                    $scope.html5forms.push({
-                        form:form,
-                        newTag: ""
-                    });
-                });
+        var savePromises = [];
+        _.each($scope.selectedXForms, function (value) {
+            savePromises.push(FormService.save({id: value}));
             });
-        });
+        var allSaved = $q.all(savePromises);
+        allSaved.then(FormsService.all).then(setHTML5Forms);
         $scope.importMode = false;
     };
 
@@ -74,7 +61,8 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService, _
     };
 
     $scope.getPreviewFormPath = function () {
-        return '../../moduleResources/html5forms/html5forms/form-' + $scope.selectedFormId + '.html';
+        if($scope.selectedFormId)
+            return '../../moduleResources/html5forms/html5forms/form-' + $scope.selectedFormId + '.html';
     };
 
     $scope.selectForm = function (id) {
@@ -120,7 +108,7 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService, _
         return tagNames;
     };
 
-    var caseInsensitiveFind = function(tags, newTag) {
+    var caseInsensitiveFind = function (tags, newTag) {
         return _.find(tags, function (tag) {
             return angular.lowercase(tag.name) === angular.lowercase(newTag);
         });
@@ -133,8 +121,8 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService, _
         var form = html5form.form;
         var newTag = html5form.newTag;
 
-        var tagToBeAdded =  caseInsensitiveFind($scope.tags,newTag);
-        if(!tagToBeAdded) tagToBeAdded = {"name": newTag};
+        var tagToBeAdded = caseInsensitiveFind($scope.tags, newTag);
+        if (!tagToBeAdded) tagToBeAdded = {"name": newTag};
 
         if (!caseInsensitiveFind(form.tags, tagToBeAdded)) {
             form.tags.push(tagToBeAdded);
@@ -162,7 +150,21 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService, _
                 });
             }
         });
-
     }
+
+    tagsPromise.then(setTags);
+    formsPromise.then(setHTML5Forms);
+    xFormsPromise.then(setXForms);
+
+
+    var loadData = function () {
+        return dataLoaded;
+    };
+
+
+//    });
+    return {
+        loadData: loadData
+    };
 }
 

@@ -3,6 +3,7 @@ basePath = '../../../';
 files = [
   JASMINE,
   JASMINE_ADAPTER,
+  'main/webapp/resources/js/jquery/jquery.js',
   'main/webapp/resources/js/angular/angular.js',
   'main/webapp/resources/js/angular/angular-resource.js',
   'main/webapp/resources/js/angular/ui-bootstrap-0.3.0.js',

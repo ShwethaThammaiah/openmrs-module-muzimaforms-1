@@ -3,12 +3,28 @@ var html5formsModule = angular.module('html5forms', ['ui.bootstrap']);
 html5formsModule.
     config(['$routeProvider', function ($routeProvider) {
         $routeProvider.
-            when('/forms', {templateUrl: '../../moduleResources/html5forms/partials/forms.html', controller: FormCtrl}).
+            when('/forms', {templateUrl: '../../moduleResources/html5forms/partials/forms.html'}).
             otherwise({redirectTo: '/forms'});
     }]);
 
 html5formsModule.factory('_', function () {
     return window._;
+});
+
+
+html5formsModule.factory('FormService', function ($http) {
+
+    var get = function (id) {
+        return $http.get('form.form?id=' + id);
+    };
+    var save = function (form) {
+        return $http.post('form.form', form);
+    };
+
+    return {
+        get: get,
+        save: save
+    }
 });
 
 html5formsModule.factory('FormsService', function ($http) {
@@ -17,19 +33,6 @@ html5formsModule.factory('FormsService', function ($http) {
     };
     return {
         all: all
-    }
-});
-
-html5formsModule.factory('FormService', function ($http) {
-    var get = function () {
-        return $http.get('form.form');
-    };
-    var save = function (form) {
-        return $http.post('form.form', form);
-    }
-    return {
-        get: get,
-        save: save
     };
 });
 

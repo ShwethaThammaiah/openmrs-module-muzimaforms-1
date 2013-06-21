@@ -22,7 +22,7 @@
 
 <div class="bootstrap-scope" ng-app="html5forms">
 
-    <div ng-view></div>
+    <div ng-view ></div>
 
 </div>
 

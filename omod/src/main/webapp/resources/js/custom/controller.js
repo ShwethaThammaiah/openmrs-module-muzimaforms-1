@@ -1,24 +1,24 @@
 'use strict';
-function FormCtrl($scope, FormsService, FormService, XFormService, TagService, _, $q) {
-    var tagsPromise = TagService.all();
-    var formsPromise = FormsService.all();
-    var xFormsPromise = XFormService.all();
-
-    var dataLoaded = $q.all([tagsPromise, formsPromise, xFormsPromise]);
+function FormCtrl($scope, FormService, FormsService, XFormService, TagService, _, $q) {
+    var tagsPromise = function () {
+        return TagService.all();
+    }
+    var formsPromise = function () {
+        return FormsService.all();
+    }
+    var xFormsPromise = function () {
+        return XFormService.all();
+    }
 
     var setTags = function (result) {
-        console.log(JSON.stringify(result.data));
         $scope.tags = result.data;
     };
     var setXForms = function (result) {
-        console.log(JSON.stringify(result.data));
-
         $scope.xForms = result.data;
+
     };
 
     var setHTML5Forms = function (result) {
-        console.log(JSON.stringify(result.data));
-
         $scope.forms = result.data;
         $scope.html5forms = _.map(result.data, function (form) {
             return {
@@ -28,14 +28,20 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService, _
         });
     };
 
-    $scope.xForms = [];
-    $scope.selectedXForms = [];
-    $scope.editMode = true;
-    $scope.importMode = false;
-    $scope.tagColorMap = {};
+    $scope.init = function () {
+
+        $scope.selectedXForms = [];
+        $scope.editMode = true;
+        $scope.importMode = false;
+        $scope.tagColorMap = {};
+
+        tagsPromise().then(setTags);
+        formsPromise().then(setHTML5Forms);
+    };
 
     $scope.import = function () {
         $scope.importMode = true;
+        xFormsPromise().then(setXForms);
     };
 
     $scope.done = function () {
@@ -130,12 +136,13 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService, _
                 FormService.get({id: form.id}, function (savedForm) {
                     angular.extend(form, savedForm);
                     if (!tagToBeAdded.id) {
-                        $scope.tags = TagService.all();
+                        TagService.all().then(function (result) {
+                            $scope.tags = result.data;
+                        });
                     }
                 });
             });
         }
-
         html5form.newTag = "";
     };
 
@@ -150,20 +157,6 @@ function FormCtrl($scope, FormsService, FormService, XFormService, TagService, _
                 });
             }
         });
-    }
-
-    tagsPromise.then(setTags);
-    formsPromise.then(setHTML5Forms);
-    xFormsPromise.then(setXForms);
-
-
-    var loadData = function () {
-        return dataLoaded;
-    };
-
-
-    return {
-        loadData: loadData
     };
 }
 

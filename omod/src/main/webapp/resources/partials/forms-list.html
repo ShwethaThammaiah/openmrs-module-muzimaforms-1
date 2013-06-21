@@ -1,4 +1,4 @@
-<div>
+<div ng-controller="FormCtrl" ng-init="load()">
     <div class="header_background border">
         <span><input class="padded-content" type="search" ng-model="searchQuery" style="width: 200px;height: 15px"
                      placeholder="Search..."></span>
@@ -8,7 +8,7 @@
         </span>
 
         <script type="text/ng-template" id="import">
-            <a href="#" class="btn btn-info" ng-click="import()" style="color: #ffffff"><i class="icon-plus"> Import</i></a>
+            <a class="btn btn-info" ng-click="import()" style="color: #ffffff"><i class="icon-plus"> Import</i></a>
         </script>
 
         <script type="text/ng-template" id="done">

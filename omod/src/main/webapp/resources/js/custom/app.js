@@ -1,4 +1,4 @@
-var html5formsModule = angular.module('html5forms', ['ui.bootstrap']);
+var html5formsModule = angular.module('html5forms', ['ui.bootstrap','html5filters']);
 
 html5formsModule.
     config(['$routeProvider', function ($routeProvider) {

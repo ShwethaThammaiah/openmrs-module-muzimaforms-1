@@ -12,6 +12,7 @@
 <openmrs:htmlInclude file="/moduleResources/html5forms/js/angular/angular-strap.js"/>
 <openmrs:htmlInclude file="/moduleResources/html5forms/styles/flatui/css/flat-ui.css"/>
 <openmrs:htmlInclude file="/moduleResources/html5forms/styles/font-awesome/css/font-awesome.min.css"/>
+<openmrs:htmlInclude file="/moduleResources/html5forms/styles/animate/animate.css"/>
 
 <openmrs:htmlInclude file="/moduleResources/html5forms/styles/custom/custom.css"/>
 <openmrs:htmlInclude file="/moduleResources/html5forms/js/underscore/underscore-min.js"/>

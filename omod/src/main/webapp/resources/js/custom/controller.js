@@ -166,5 +166,6 @@ function FormCtrl($scope, FormService, FormsService, XFormService, TagService, _
         });
         $scope.activeTagFilters = _.union($scope.activeTagFilters, [tag]);
     };
+
 }
 

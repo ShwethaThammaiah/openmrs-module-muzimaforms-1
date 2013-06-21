@@ -39,16 +39,16 @@ html5formsModule.factory('FormsService', function ($http) {
 html5formsModule.factory('XFormService', function ($http) {
     var all = function () {
         return $http.get('xforms.form');
-    }
+    };
     return {
         all: all
-    }
+    };
 });
 
 
 html5formsModule.factory('TagService', function ($http) {
     var all = function () {
         return $http.get('tags.form');
-    }
-    return {all: all}
+    };
+    return {all: all};
 });

@@ -2,13 +2,13 @@
 function FormCtrl($scope, FormService, FormsService, XFormService, TagService, _, $q) {
     var getTags = function () {
         return TagService.all();
-    }
+    };
     var getForms = function () {
         return FormsService.all();
-    }
+    };
     var getXForms = function () {
         return XFormService.all();
-    }
+    };
     var setTags = function (result) {
         $scope.tags = result.data;
     };
@@ -32,6 +32,7 @@ function FormCtrl($scope, FormService, FormsService, XFormService, TagService, _
         $scope.editMode = true;
         $scope.importMode = false;
         $scope.tagColorMap = {};
+        $scope.activeTagFilters = [];
 
         getTags().then(setTags);
         getForms().then(setForms);
@@ -149,6 +150,21 @@ function FormCtrl($scope, FormService, FormsService, XFormService, TagService, _
                     });
             }
         });
+    };
+
+    $scope.tagFilterActive = function () {
+        return !_.isEmpty($scope.activeTagFilters);
+    };
+
+    $scope.removeTagFilter = function (tag) {
+        $scope.activeTagFilters = _.without($scope.activeTagFilters, tag);
+    };
+
+    $scope.addTagFilter = function (tagToAdd) {
+        var tag = _.find($scope.tags, function (tag) {
+            return tag.id === tagToAdd.id;
+        });
+        $scope.activeTagFilters = _.union($scope.activeTagFilters, [tag]);
     };
 }
 

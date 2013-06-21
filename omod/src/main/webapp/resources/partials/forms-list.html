@@ -18,8 +18,21 @@
         </script>
     </div>
 
+    <div collapse="importMode" ng-show="tagFilterActive()" class="border tag-filter-box">
+        <div class="padded-content">
+            <span> Filter: </span>
+            <span ng-repeat="tag in activeTagFilters">
+                  <span class="label form-tag" ng-style="tagStyle(tag.id)">
+                       <span>{{tag.name}} </span><span ng-click="removeTagFilter(tag)"><i
+                          class="icon-remove"></i></span>
+                  </span>
+            </span>
+        </div>
+    </div>
+
     <div collapse="importMode" class="row-fluid open-box" ng-show="hasForms()"
-         ng-repeat="html5form in html5forms | filter:searchQuery" ng-click="selectForm(html5form.form.id)" ng-class="activeForm(html5form.form.id)">
+         ng-repeat="html5form in html5forms | filter:searchQuery | tagFilter:activeTagFilters" ng-click="selectForm(html5form.form.id)"
+         ng-class="activeForm(html5form.form.id)">
         <div class="span10 padded-table-content">
             <div class="padded-table-content">
                 <strong>{{html5form.form.name}}</strong>
@@ -30,7 +43,8 @@
             <div class="padded-table-content">
                     <span ng-repeat="tag in html5form.form.tags">
                         <span class="label form-tag" ng-style="tagStyle(tag.id)">
-                            <span>{{tag.name}} </span><span ng-click="removeTag(html5form.form, tag)"><i class="icon-remove"></i></span>
+                            <span ng-click="addTagFilter(tag)">{{tag.name}} </span><span ng-click="removeTag(html5form.form, tag)"><i
+                                class="icon-remove"></i></span>
                         </span>
                     </span>
             </div>
@@ -40,9 +54,10 @@
                     class="icon-edit"></i></a>
         </div>
         <div collapse="editMode" class="row-fluid padded-table-content">
-            <form class="span10" ng-submit="saveTag(html5form)"><input name="newTag" ng-model="html5form.newTag" type="text"
-                                                                             ng-trim="true"
-                                                                             placeholder="Enter a tag...">
+            <form class="span10" ng-submit="saveTag(html5form)"><input name="newTag" ng-model="html5form.newTag"
+                                                                       type="text"
+                                                                       ng-trim="true"
+                                                                       placeholder="Enter a tag...">
             </form>
         </div>
     </div>

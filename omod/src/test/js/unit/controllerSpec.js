@@ -325,5 +325,35 @@ describe('Html5Forms controllers', function () {
             expect(scope.html5forms[0].form.tags[0]).toEqual({"id": 2, "name": "Patient"});
             expect(scope.html5forms[0].form.tags.length).toBe(1);
         });
+
+        it('should add tag filter to active tag filters', function(){
+           timeout.flush();
+           expect(scope.activeTagFilters.length).toBe(0);
+           scope.addTagFilter({"id": 2, "name": "Patient"});
+           expect(scope.activeTagFilters.length).toBe(1);
+           expect(scope.activeTagFilters[0].name).toBe("Patient");
+        });
+
+        it('should not add tag filter if already added', function(){
+            timeout.flush();
+            scope.activeTagFilters = [scope.tags[1]];
+            scope.addTagFilter(scope.tags[1]);
+            expect(scope.activeTagFilters.length).toBe(1);
+        });
+
+        it('should remove tagfilter', function(){
+            timeout.flush();
+            scope.activeTagFilters = [scope.tags[1]];
+            scope.removeTagFilter(scope.tags[1]);
+            expect(scope.activeTagFilters.length).toBe(0);
+        });
+
+        it('should return false if active tag list is empty and true otherwise', function(){
+            timeout.flush();
+            scope.activeTagFilters = [scope.tags[1]];
+            expect(scope.tagFilterActive()).toBe(true);
+            scope.activeTagFilters = [];
+            expect(scope.tagFilterActive()).toBe(false);
+        });
     });
 });

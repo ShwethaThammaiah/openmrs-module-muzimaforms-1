@@ -1,5 +1,6 @@
 describe('Html5Forms controllers', function () {
 
+
     beforeEach(module('html5forms'));
 
     describe('FormsCtrl', function () {
@@ -27,7 +28,10 @@ describe('Html5Forms controllers', function () {
 
         var FormService = {
             save: function (form) {
-                return;
+                return null;
+            },
+            get: function (id) {
+                return null;
             }
         };
 
@@ -170,67 +174,97 @@ describe('Html5Forms controllers', function () {
             expect(tagNames[2]).toBe('PMTCT');
         });
 
+
         it('should save a non existing tag', function () {
-//TODO : Spy and test
-//            httpBackend.expectPOST('form.form', {
-//                "id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
-//                    {"id": 1, "name": "Registration"},
-//                    {"id": 2, "name": "Patient"},
-//                    {"name": "Encounter"}
-//                ]}).respond(200);
-
-            FormService.get = function (id) {
-                return {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
-                    {"id": 1, "name": "Registration"},
-                    {"id": 2, "name": "Patient"},
-                    {"id": 4, "name": "Encounter"}
-                ]}
-            };
-
-
             timeout.flush();
             expect(scope.html5forms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
             expect(scope.html5forms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
+
+            var unsavedForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
+                {"id": 1, "name": "Registration"},
+                {"id": 2, "name": "Patient"},
+                {"name": "Encounter"}
+            ]};
+            var savedForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
+                {"id": 1, "name": "Registration"},
+                {"id": 2, "name": "Patient"},
+                {"id": 4, "name": "Encounter"}
+            ]};
+
             scope.html5forms[0].newTag = "Encounter";
 
+            var getPromise = function (response) {
+                response = response || "";
+                var deferredForSave = q.defer();
+                deferredForSave.resolve(response);
+                return deferredForSave.promise;
+            };
+
+            spyOn(FormService, "save").andReturn(getPromise(""));
+            spyOn(FormService, "get").andReturn(getPromise(savedForm));
+            spyOn(TagService, "all").andReturn(getPromise({
+                data: [
+                    {"id": 1, "name": "Registration"},
+                    {"id": 2, "name": "Patient"},
+                    {"id": 3, "name": "PMTCT"},
+                    {"id": 4, "name": "Encounter"}
+                ]}));
 
             scope.saveTag(scope.html5forms[0]);
+            scope.$apply();
 
-            TagService.tags.push(
-                {"id": 4, "name": "Encounter"}
-            );
+            expect(FormService.save).toHaveBeenCalled();
+            expect(FormService.get).toHaveBeenCalled();
+
             expect(scope.html5forms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
             expect(scope.html5forms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
-            expect(scope.html5forms[0].form.tags[2].name).toEqual("Encounter");
-            expect(scope.html5forms[0].form.tags.length).toBe(3);
-            expect(scope.tags.length).toBe(4);
-            expect(scope.tags[3].name).toBe("Encounter");
+            expect(scope.html5forms[0].form.tags[2]).toEqual({"id": 4, "name": "Encounter"});
+
         });
 
         it('should save an existing tag', function () {
-//TODO : Spy and test
-//            httpBackend.expectPOST('form.form', {
-//                "id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
-//                    {"id": 1, "name": "Registration"},
-//                    {"id": 2, "name": "Patient"},
-//                    {"id": 3, "name": "PMTCT"}
-//                ]}).respond(200);
-
-            FormService.get = function (id) {
-                return {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
-                    {"id": 1, "name": "Registration"},
-                    {"id": 2, "name": "Patient"},
-                    {"id": 3, "name": "PMTCT"}
-                ]};
-            };
             timeout.flush();
             expect(scope.html5forms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
             expect(scope.html5forms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
+
+            var unsavedForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
+                {"id": 1, "name": "Registration"},
+                {"id": 2, "name": "Patient"}
+            ]};
+            var savedForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
+                {"id": 1, "name": "Registration"},
+                {"id": 2, "name": "Patient"},
+                {"id": 3, "name": "PMCMT"}
+            ]};
+
             scope.html5forms[0].newTag = "PMTCT";
+
+
+            var getPromise = function (response) {
+                response = response || "";
+                var deferredForSave = q.defer();
+                deferredForSave.resolve(response);
+                return deferredForSave.promise;
+            };
+
+            spyOn(FormService, "save").andReturn(getPromise(""));
+            spyOn(FormService, "get").andReturn(getPromise(savedForm));
+            spyOn(TagService, "all").andReturn(getPromise({
+                data: [
+                    {"id": 1, "name": "Registration"},
+                    {"id": 2, "name": "Patient"},
+                    {"id": 3, "name": "PMTCT"}
+                ]}));
+
             scope.saveTag(scope.html5forms[0]);
+            scope.$apply();
+            expect(FormService.save).toHaveBeenCalledWith(savedForm);
+            expect(FormService.get).toHaveBeenCalled();
+
             expect(scope.html5forms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
             expect(scope.html5forms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
-            expect(scope.html5forms[0].form.tags[2]).toEqual({"id": 3, "name": "PMTCT"});
+            expect(scope.html5forms[0].form.tags[2]).toEqual({"id": 3, "name": "PMCMT"});
+
         });
 
         it('should ignore an already added tag and should ignore case', function () {
@@ -256,16 +290,38 @@ describe('Html5Forms controllers', function () {
         });
 
         it('should remove tag', function () {
-            FormService.get = function (id) {
-                return {
-                    "id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
-                        {"id": 2, "name": "Patient"}
-                    ]};
-            };
             timeout.flush();
+            var oldForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
+                {"id": 1, "name": "Registration"},
+                {"id": 2, "name": "Patient"}
+            ]};
+            var newForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
+                {"id": 2, "name": "Patient"}
+            ]};
+
+            var getPromise = function (response) {
+                response = response || "";
+                var deferredForSave = q.defer();
+                deferredForSave.resolve(response);
+                return deferredForSave.promise;
+            };
+
+            spyOn(FormService, "save").andReturn(getPromise(""));
+            spyOn(FormService, "get").andReturn(getPromise(newForm));
+            spyOn(TagService, "all").andReturn(getPromise({
+                data: [
+                    {"id": 1, "name": "Registration"},
+                    {"id": 2, "name": "Patient"},
+                    {"id": 3, "name": "PMTCT"}
+                ]}));
+
             expect(scope.html5forms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
             expect(scope.html5forms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
+            expect(scope.html5forms[0].form.tags.length).toBe(2);
             scope.removeTag(scope.html5forms[0].form, scope.tags[0]);
+            scope.$apply();
+            expect(FormService.save).toHaveBeenCalledWith(newForm);
+            expect(FormService.get).toHaveBeenCalled();
             expect(scope.html5forms[0].form.tags[0]).toEqual({"id": 2, "name": "Patient"});
             expect(scope.html5forms[0].form.tags.length).toBe(1);
         });

@@ -1,15 +1,14 @@
 'use strict';
 function FormCtrl($scope, FormService, FormsService, XFormService, TagService, _, $q) {
-    var tagsPromise = function () {
+    var getTags = function () {
         return TagService.all();
     }
-    var formsPromise = function () {
+    var getForms = function () {
         return FormsService.all();
     }
-    var xFormsPromise = function () {
+    var getXForms = function () {
         return XFormService.all();
     }
-
     var setTags = function (result) {
         $scope.tags = result.data;
     };
@@ -17,8 +16,7 @@ function FormCtrl($scope, FormService, FormsService, XFormService, TagService, _
         $scope.xForms = result.data;
 
     };
-
-    var setHTML5Forms = function (result) {
+    var setForms = function (result) {
         $scope.forms = result.data;
         $scope.html5forms = _.map(result.data, function (form) {
             return {
@@ -35,22 +33,20 @@ function FormCtrl($scope, FormService, FormsService, XFormService, TagService, _
         $scope.importMode = false;
         $scope.tagColorMap = {};
 
-        tagsPromise().then(setTags);
-        formsPromise().then(setHTML5Forms);
+        getTags().then(setTags);
+        getForms().then(setForms);
     };
 
     $scope.import = function () {
         $scope.importMode = true;
-        xFormsPromise().then(setXForms);
+        getXForms().then(setXForms);
     };
 
     $scope.done = function () {
-        var savePromises = [];
-        _.each($scope.selectedXForms, function (value) {
-            savePromises.push(FormService.save({id: value}));
-        });
-        var allSaved = $q.all(savePromises);
-        allSaved.then(FormsService.all).then(setHTML5Forms);
+        var allSaved = $q.all(_.map($scope.selectedXForms, function (value) {
+            return FormService.save({id: value});
+        }));
+        allSaved.then(FormsService.all).then(setForms);
         $scope.importMode = false;
     };
 
@@ -121,40 +117,36 @@ function FormCtrl($scope, FormService, FormsService, XFormService, TagService, _
     };
 
     $scope.saveTag = function (html5form) {
-        if (html5form.newTag === "")
-            return;
-
+        if (html5form.newTag === "") return;
         var form = html5form.form;
         var newTag = html5form.newTag;
-
-        var tagToBeAdded = caseInsensitiveFind($scope.tags, newTag);
-        if (!tagToBeAdded) tagToBeAdded = {"name": newTag};
-
-        if (!caseInsensitiveFind(form.tags, tagToBeAdded)) {
-            form.tags.push(tagToBeAdded);
-            FormService.save(form, function () {
-                FormService.get({id: form.id}, function (savedForm) {
-                    angular.extend(form, savedForm);
-                    if (!tagToBeAdded.id) {
-                        TagService.all().then(function (result) {
-                            $scope.tags = result.data;
-                        });
-                    }
-                });
-            });
-        }
+        var tagToBeAdded = caseInsensitiveFind($scope.tags, newTag) || {"name": newTag};
         html5form.newTag = "";
+        if (caseInsensitiveFind(form.tags, tagToBeAdded)) return;
+        form.tags.push(tagToBeAdded);
+        FormService.save(form)
+            .then(function (result) {
+                return FormService.get(form.id);
+            })
+            .then(function (savedForm) {
+                angular.extend(form, savedForm);
+                if (!tagToBeAdded.id)
+                    getTags().then(setTags);
+            });
+
     };
 
     $scope.removeTag = function (form, tagToRemove) {
         angular.forEach(form.tags, function (tag, index) {
             if (tag.name === tagToRemove.name) {
                 form.tags.splice(index, 1);
-                FormService.save(form, function () {
-                    FormService.get({id: form.id}, function (savedForm) {
+                FormService.save(form)
+                    .then(function (result) {
+                        return FormService.get(form.id);
+                    })
+                    .then(function (savedForm) {
                         angular.extend(form, savedForm);
                     });
-                });
             }
         });
     };

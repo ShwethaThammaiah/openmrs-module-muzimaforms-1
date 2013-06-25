@@ -123,7 +123,7 @@ function FormCtrl($scope, FormService, FormsService, XFormService, TagService, _
         var newTag = html5form.newTag;
         var tagToBeAdded = caseInsensitiveFind($scope.tags, newTag) || {"name": newTag};
         html5form.newTag = "";
-        if (caseInsensitiveFind(form.tags, tagToBeAdded)) return;
+        if (caseInsensitiveFind(form.tags, tagToBeAdded.name)) return;
         form.tags.push(tagToBeAdded);
         FormService.save(form)
             .then(function (result) {

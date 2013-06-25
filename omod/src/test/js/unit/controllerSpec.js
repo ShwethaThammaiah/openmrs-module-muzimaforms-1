@@ -108,29 +108,40 @@ describe('Html5Forms controllers', function () {
             scope.import();
             expect(scope.importMode).toBe(true);
         });
-//
-//        it('should post selected xform ids when clicked on done', function () {
-////                httpBackend.expectPOST('form.form', {'id': '4'}).respond(200);
-////                httpBackend.expectPOST('form.form', {'id': '5'}).respond(200);
-//                httpBackend.expectGET('form.form?id=4').
-//                    respond(
-//                    {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients"}
-//                )
-//
-//                httpBackend.expectGET('form.form?id=5').
-//                    respond(
-//                    {"id": 2, "name": "Patient Registration Form", "description": "Form for registering patients"}
-//                );
-//
-//                scope.selectXForm('4');
-//                scope.selectXForm('5');
-//                scope.importMode = true;
-//
-//                scope.done();
-//                httpBackend.flush();
-//                expect(scope.importMode).toBe(false);
-//            });
-//        });
+
+        it('should post selected xform ids when clicked on done', function () {
+
+            timeout.flush();
+            var getPromise = function (response) {
+                response = response || "";
+                var deferredForSave = q.defer();
+                deferredForSave.resolve(response);
+                return deferredForSave.promise;
+            };
+
+            spyOn(FormService, "save").andReturn(getPromise(""));
+            spyOn(FormsService, "all").andCallFake(function (param) {
+                return getPromise({data: [
+                    {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
+                        {"id": 1, "name": "Registration"},
+                        {"id": 2, "name": "Patient"}
+                    ]  },
+                    {"id": 2, "name": "PMTCT Ante-Natal Care Form", "description": "", "selected": false, "tags": [
+                        {"id": 1, "name": "Registration"}
+                    ] }
+                ]});
+            });
+            scope.selectXForm('4');
+            scope.selectXForm('5');
+            scope.importMode = true;
+
+            scope.done();
+            scope.$apply();
+            expect(FormService.save).toHaveBeenCalledWith({'id': '4'});
+            expect(FormService.save).toHaveBeenCalledWith({'id': '5'});
+            expect(FormsService.all).toHaveBeenCalled();
+            expect(scope.importMode).toBe(false);
+        });
 
         it('cancel should toggle imortMode', function () {
             scope.importMode = true;
@@ -356,4 +367,5 @@ describe('Html5Forms controllers', function () {
             expect(scope.tagFilterActive()).toBe(false);
         });
     });
-});
+})
+;

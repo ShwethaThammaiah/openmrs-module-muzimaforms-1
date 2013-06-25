@@ -5,6 +5,7 @@ import org.openmrs.module.html5forms.HTML5Form;
 import org.openmrs.module.html5forms.HTML5XForm;
 import org.openmrs.module.html5forms.api.HTML5FormService;
 import org.openmrs.module.html5forms.api.db.hibernate.HTML5FormDAO;
+import org.openmrs.module.xforms.Xform;
 
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class HTML5FormServiceImpl extends BaseOpenmrsService implements HTML5For
     }
 
     public void saveForm(HTML5Form form) {
+        Xform xform = form.getXform();
         dao.saveForm(form);
     }
 

@@ -120,17 +120,15 @@ describe('Html5Forms controllers', function () {
             };
 
             spyOn(FormService, "save").andReturn(getPromise(""));
-            spyOn(FormsService, "all").andCallFake(function (param) {
-                return getPromise({data: [
-                    {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
-                        {"id": 1, "name": "Registration"},
-                        {"id": 2, "name": "Patient"}
-                    ]  },
-                    {"id": 2, "name": "PMTCT Ante-Natal Care Form", "description": "", "selected": false, "tags": [
-                        {"id": 1, "name": "Registration"}
-                    ] }
-                ]});
-            });
+            spyOn(FormsService, "all").andReturn(getPromise({data: [
+                {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
+                    {"id": 1, "name": "Registration"},
+                    {"id": 2, "name": "Patient"}
+                ]  },
+                {"id": 2, "name": "PMTCT Ante-Natal Care Form", "description": "", "selected": false, "tags": [
+                    {"id": 1, "name": "Registration"}
+                ] }
+            ]}));
             scope.selectXForm('4');
             scope.selectXForm('5');
             scope.importMode = true;
@@ -337,29 +335,29 @@ describe('Html5Forms controllers', function () {
             expect(scope.html5forms[0].form.tags.length).toBe(1);
         });
 
-        it('should add tag filter to active tag filters', function(){
-           timeout.flush();
-           expect(scope.activeTagFilters.length).toBe(0);
-           scope.addTagFilter({"id": 2, "name": "Patient"});
-           expect(scope.activeTagFilters.length).toBe(1);
-           expect(scope.activeTagFilters[0].name).toBe("Patient");
+        it('should add tag filter to active tag filters', function () {
+            timeout.flush();
+            expect(scope.activeTagFilters.length).toBe(0);
+            scope.addTagFilter({"id": 2, "name": "Patient"});
+            expect(scope.activeTagFilters.length).toBe(1);
+            expect(scope.activeTagFilters[0].name).toBe("Patient");
         });
 
-        it('should not add tag filter if already added', function(){
+        it('should not add tag filter if already added', function () {
             timeout.flush();
             scope.activeTagFilters = [scope.tags[1]];
             scope.addTagFilter(scope.tags[1]);
             expect(scope.activeTagFilters.length).toBe(1);
         });
 
-        it('should remove tagfilter', function(){
+        it('should remove tagfilter', function () {
             timeout.flush();
             scope.activeTagFilters = [scope.tags[1]];
             scope.removeTagFilter(scope.tags[1]);
             expect(scope.activeTagFilters.length).toBe(0);
         });
 
-        it('should return false if active tag list is empty and true otherwise', function(){
+        it('should return false if active tag list is empty and true otherwise', function () {
             timeout.flush();
             scope.activeTagFilters = [scope.tags[1]];
             expect(scope.tagFilterActive()).toBe(true);
@@ -367,5 +365,4 @@ describe('Html5Forms controllers', function () {
             expect(scope.tagFilterActive()).toBe(false);
         });
     });
-})
-;
+});

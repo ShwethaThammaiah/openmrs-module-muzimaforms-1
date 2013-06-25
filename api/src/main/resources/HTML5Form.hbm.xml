@@ -11,5 +11,7 @@
             <key column="form_id" not-null="true"/>
             <many-to-many column="tag_id" class="HTML5FormTag"/>
         </set>
+        <property name="model" column="model" />
+        <property name="html" column="form"/>
     </class>
 </hibernate-mapping>

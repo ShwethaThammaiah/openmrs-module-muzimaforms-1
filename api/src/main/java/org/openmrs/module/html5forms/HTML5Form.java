@@ -15,6 +15,24 @@ public class HTML5Form {
     private Xform xform;
     private Set<HTML5FormTag> tags = new HashSet<HTML5FormTag>();
 
+    String model;
+    String html;
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getHtml() {
+        return html;
+    }
+
+    public void setHtml(String html) {
+        this.html = html;
+    }
 
     @JsonIgnore
     public Form getForm() {

@@ -10,6 +10,8 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import java.io.IOException;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.*;
@@ -39,11 +41,9 @@ public class HTML5FormControllerTest {
     }
 
     @Test
-    public void create_shouldSaveAForm() {
+    public void create_shouldSaveAForm() throws IOException {
         HTML5Form html5Form = new HTML5Form(){{setId(5);}};
-
         html5FormController.create(html5Form);
-
         verify(service).saveForm(html5Form);
     }
 }

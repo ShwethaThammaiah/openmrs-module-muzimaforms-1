@@ -58,10 +58,10 @@
             adding new columns to html5forms
         </comment>
         <addColumn tableName="html5forms_form">
-            <column name="model" type="longtext"></column>
+            <column name="model" type="text"></column>
         </addColumn>
         <addColumn tableName="html5forms_form">
-            <column name="form" type="longtext"></column>
+            <column name="form" type="text"></column>
         </addColumn>
     </changeSet>
 

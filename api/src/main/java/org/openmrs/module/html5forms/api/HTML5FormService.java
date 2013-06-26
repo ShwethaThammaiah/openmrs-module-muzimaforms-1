@@ -5,6 +5,7 @@ import org.openmrs.module.html5forms.HTML5Form;
 import org.openmrs.module.html5forms.HTML5XForm;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface HTML5FormService extends OpenmrsService {
@@ -15,7 +16,7 @@ public interface HTML5FormService extends OpenmrsService {
     List<HTML5XForm> getXForms();
 
     @Transactional
-    void saveForm(HTML5Form form);
+    void saveForm(HTML5Form form) throws IOException;
 
     HTML5Form findById(Integer id);
 }

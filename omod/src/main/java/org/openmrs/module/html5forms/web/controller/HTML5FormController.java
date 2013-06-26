@@ -6,6 +6,8 @@ import org.openmrs.module.html5forms.api.HTML5FormService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+
 
 @Controller
 @RequestMapping(value = "module/html5forms/form.form")
@@ -21,7 +23,7 @@ public class HTML5FormController {
 
     @RequestMapping(method = RequestMethod.POST, value="form")
     @ResponseBody
-    public void create(@RequestBody HTML5Form form) {
+    public void create(@RequestBody HTML5Form form) throws IOException {
         HTML5FormService service = Context.getService(HTML5FormService.class);
         service.saveForm(form);
     }

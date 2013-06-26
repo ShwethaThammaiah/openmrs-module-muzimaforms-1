@@ -3,13 +3,10 @@
 <!-- Beans to add to the current Application context definition -->
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-  		    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+  		    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" id="html5FormsConfig">
-        <property name="location" value="classpath:/config.properties"/>
-    </bean>
     <bean parent="serviceContext">
         <property name="moduleService">
             <list>
@@ -38,6 +35,23 @@
             </list>
         </property>
     </bean>
+
+    <bean id="html5FormDAO" class="org.openmrs.module.html5forms.api.db.hibernate.impl.HTML5FormDAOImpl">
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
+
+    <bean id="enketoService" class="org.openmrs.module.html5forms.api.impl.EnketoServiceImpl">
+        <constructor-arg>
+            <bean id="enketoServiceClient" class="org.openmrs.module.html5forms.enketo.EnketoClient">
+                <constructor-arg name="enketoServiceUri"
+                                 value="http://10.4.33.189/transform/get_html_form"/>
+                <constructor-arg name="defaultHttpClient">
+                    <bean id="defaultHttpClient" class="org.apache.http.impl.client.DefaultHttpClient"></bean>
+                </constructor-arg>
+            </bean>
+        </constructor-arg>
+    </bean>
+
     <bean parent="serviceContext">
         <property name="moduleService">
             <list>
@@ -49,41 +63,10 @@
                     </property>
                     <property name="target">
                         <bean class="org.openmrs.module.html5forms.api.impl.HTML5FormServiceImpl">
-                            <constructor-arg>
-                                <bean class="org.openmrs.module.html5forms.api.db.hibernate.impl.HTML5FormDAOImpl">
-                                    <constructor-arg ref="sessionFactory"/>
-                                </bean>
-                            </constructor-arg>
+                            <constructor-arg name="dao" ref="html5FormDAO"/>
+                            <constructor-arg name="enketoService" ref="enketoService"/>
                         </bean>
                     </property>
-                    <property name="preInterceptors">
-                        <ref bean="serviceInterceptors"/>
-                    </property>
-                    <property name="transactionAttributeSource">
-                        <ref bean="transactionAttributeSource"/>
-                    </property>
-                </bean>
-            </list>
-        </property>
-    </bean>
-    <bean parent="serviceContext">
-        <property name="moduleService">
-            <list>
-                <value>org.openmrs.module.html5forms.api.EnketoService</value>
-                <bean
-                        class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-                <property name="transactionManager">
-                    <ref bean="transactionManager"/>
-                </property>
-                <property name="target">
-                <bean class="org.openmrs.module.html5forms.api.impl.EnketoServiceImpl">
-                    <constructor-arg>
-                        <bean class="org.openmrs.module.html5forms.enketo.EnketoClient">
-                            <constructor-arg value="${html5FormsConfig.enketoServiceUri}" />
-                        </bean>
-                    </constructor-arg>
-                </bean>
-                </property>
                     <property name="preInterceptors">
                         <ref bean="serviceInterceptors"/>
                     </property>

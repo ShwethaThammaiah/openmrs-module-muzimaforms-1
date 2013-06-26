@@ -15,6 +15,7 @@ public class EnketoServiceImpl extends BaseOpenmrsService implements EnketoServi
     }
 
     public String transform(String xFormXml) throws IOException {
-        return enketoClient.transform(xFormXml);
+        String transform = enketoClient.transform(xFormXml);
+        return transform;
     }
 }

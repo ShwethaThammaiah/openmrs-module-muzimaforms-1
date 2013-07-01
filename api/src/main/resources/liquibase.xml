@@ -12,6 +12,7 @@
         See http://www.liquibase.org/manual/home#available_database_refactorings
         for a list of supported elements and attributes
     -->
+    <property name="clob.type" value="longtext"/>
 
 
     <changeSet id="html5form-2013-06-11-12:30" author="ThoughtWorks">
@@ -52,7 +53,7 @@
          </createTable>
         <addPrimaryKey columnNames="form_id" constraintName="html5forms_form_id_pk" tableName="html5forms_form"/>
     </changeSet>
-    
+
     <changeSet id="html5form-2013-06-25-18:15" author="ThoughtWorks">
         <comment>
             adding new columns to html5forms
@@ -65,4 +66,26 @@
         </addColumn>
     </changeSet>
 
+   <changeSet id="html5form-2013-07-1-18:15" author="ThoughtWorks">
+        <comment>
+            removing columns
+        </comment>
+       <dropColumn columnName="form"
+                       tableName="html5forms_form"/>
+       <dropColumn columnName="model"
+                       tableName="html5forms_form"/>
+    </changeSet>
+
+
+    <changeSet id="html5form-2013-07-1-20:15" author="ThoughtWorks">
+        <comment>
+            adding new columns to html5forms
+        </comment>
+        <addColumn tableName="html5forms_form">
+            <column name="model" type="${clob.type}"></column>
+        </addColumn>
+        <addColumn tableName="html5forms_form">
+            <column name="form" type="${clob.type}"></column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

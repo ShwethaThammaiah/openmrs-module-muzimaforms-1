@@ -5,7 +5,6 @@ import org.hibernate.SessionFactory;
 import org.openmrs.module.html5forms.HTML5Form;
 import org.openmrs.module.html5forms.HTML5XForm;
 import org.openmrs.module.html5forms.api.db.hibernate.HTML5FormDAO;
-import org.openmrs.module.html5forms.api.impl.EnketoServiceImpl;
 import org.openmrs.module.xforms.Xform;
 
 import java.util.List;
@@ -15,9 +14,6 @@ public class HTML5FormDAOImpl implements HTML5FormDAO {
 
     public HTML5FormDAOImpl(SessionFactory factory) {
         this.factory = factory;
-    }
-
-    public HTML5FormDAOImpl(HTML5FormDAOImpl html5FormDAO, EnketoServiceImpl enketoService) {
     }
 
     public List<HTML5Form> getAll() {

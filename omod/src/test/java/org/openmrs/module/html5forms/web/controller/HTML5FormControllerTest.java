@@ -1,5 +1,6 @@
 package org.openmrs.module.html5forms.web.controller;
 
+import org.dom4j.DocumentException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,7 +10,11 @@ import org.openmrs.module.html5forms.api.HTML5FormService;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.xpath.XPathExpressionException;
 import java.io.IOException;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -41,9 +46,10 @@ public class HTML5FormControllerTest {
     }
 
     @Test
-    public void create_shouldSaveAForm() throws IOException {
+    public void create_shouldSaveAForm() throws IOException, TransformerException, SAXException, ParserConfigurationException, XPathExpressionException, DocumentException {
         HTML5Form html5Form = new HTML5Form(){{setId(5);}};
         html5FormController.create(html5Form);
         verify(service).saveForm(html5Form);
     }
+
 }

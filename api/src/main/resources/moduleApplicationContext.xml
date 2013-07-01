@@ -40,17 +40,7 @@
         <constructor-arg ref="sessionFactory"/>
     </bean>
 
-    <bean id="enketoService" class="org.openmrs.module.html5forms.api.impl.EnketoServiceImpl">
-        <constructor-arg>
-            <bean id="enketoServiceClient" class="org.openmrs.module.html5forms.enketo.EnketoClient">
-                <constructor-arg name="enketoServiceUri"
-                                 value="http://10.4.33.189/transform/get_html_form"/>
-                <constructor-arg name="defaultHttpClient">
-                    <bean id="defaultHttpClient" class="org.apache.http.impl.client.DefaultHttpClient"></bean>
-                </constructor-arg>
-            </bean>
-        </constructor-arg>
-    </bean>
+
 
     <bean parent="serviceContext">
         <property name="moduleService">
@@ -64,7 +54,7 @@
                     <property name="target">
                         <bean class="org.openmrs.module.html5forms.api.impl.HTML5FormServiceImpl">
                             <constructor-arg name="dao" ref="html5FormDAO"/>
-                            <constructor-arg name="enketoService" ref="enketoService"/>
+                            <constructor-arg name="html5Transformer" ref="xform2HtmlTransformer"/>
                         </bean>
                     </property>
                     <property name="preInterceptors">
@@ -77,5 +67,12 @@
             </list>
         </property>
     </bean>
+    <bean id="xform2HtmlTransformer" class="org.openmrs.module.html5forms.xForm2Html5Transform.EnketoXslTransformer">
+        <constructor-arg name="transformerFactory" ref="transformerFactory"/>
+        <constructor-arg name="transforms" ref="xform2html5XSLPipeline"/>
+    </bean>
+    <bean id="transformerFactory" class="net.sf.saxon.TransformerFactoryImpl" />
+    <bean id="xform2html5XSLPipeline" class="org.openmrs.module.html5forms.xForm2Html5Transform.XslTransformPipeline"
+          factory-method="xform2HTML5Pipeline"/>
 
 </beans>

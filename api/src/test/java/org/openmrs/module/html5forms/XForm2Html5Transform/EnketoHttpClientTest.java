@@ -1,16 +1,22 @@
-package org.openmrs.module.html5forms.enketo;
+package org.openmrs.module.html5forms.xForm2Html5Transform;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.ProtocolVersion;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.BasicHttpEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHttpResponse;
 import org.apache.http.message.BasicStatusLine;
+import org.dom4j.DocumentException;
 import org.junit.Test;
+import org.openmrs.module.html5forms.api.impl.EnketoResult;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathExpressionException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -20,15 +26,22 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class EnketoClientTest {
+public class EnketoHttpClientTest {
     @Test
-    public void transform_shouldCallEnketoServer() throws IOException {
+    public void transform_shouldCallEnketoServer() throws IOException, ParserConfigurationException, XPathExpressionException, DocumentException, SAXException {
         HttpClient httpClient = mock(HttpClient.class);
         when(httpClient.execute(any(HttpPost.class))).thenReturn(getBasicHttpResponse());
 
-        EnketoClient enketoClient = new EnketoClient("http://10.4.33.189/transform/get_html_form", httpClient);
-        String result = enketoClient.transform(getSampleXForm());
-        assertThat(result, is(IOUtils.toString(getConvertedXForm())));
+        EnketoHttpClient enketoHttpClient = new EnketoHttpClient("http://10.4.33.189/transform/get_html_form", httpClient);
+        EnketoResult result = enketoHttpClient.transform(getSampleXForm());
+        assertThat(result.getResult(), is(IOUtils.toString(getConvertedXForm())));
+    }
+
+    @Test
+    public void transform_integrationTest() throws IOException, ParserConfigurationException {
+        EnketoHttpClient enketoHttpClient = new EnketoHttpClient("http://10.4.33.189/transform/get_html_form",
+                new DefaultHttpClient());
+        EnketoResult result = enketoHttpClient.transform(getTestXForm());
     }
 
     private BasicHttpResponse getBasicHttpResponse() throws IOException {
@@ -44,6 +57,12 @@ public class EnketoClientTest {
     private String getSampleXForm() throws IOException {
         ApplicationContext context = new ClassPathXmlApplicationContext();
         return IOUtils.toString(context.getResource("/enketoSampleRequest.xml").getInputStream());
+    }
+
+
+    private String getTestXForm() throws IOException {
+        ApplicationContext context = new ClassPathXmlApplicationContext();
+        return IOUtils.toString(context.getResource("/test-xform4webclient.xml").getInputStream());
     }
 
     private InputStream getConvertedXForm() throws IOException {

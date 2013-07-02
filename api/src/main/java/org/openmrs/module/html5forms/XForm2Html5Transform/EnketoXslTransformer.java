@@ -17,19 +17,18 @@ import java.util.Stack;
 
 public class EnketoXslTransformer extends XForm2Html5Transformer {
 
-    private Stack<File> transforms;
+    private XslTransformPipeline transformPipeline;
     private SAXTransformerFactory transformerFactory;
 
 
-    public EnketoXslTransformer(TransformerFactory transformerFactory, Stack<File> transforms) {
-        this.transforms = transforms;
+    public EnketoXslTransformer(TransformerFactory transformerFactory, XslTransformPipeline transformPipeline) {
+        this.transformPipeline = transformPipeline;
         this.transformerFactory = (SAXTransformerFactory) transformerFactory;
         transformerFactory.setAttribute("http://saxon.sf.net/feature/version-warning", Boolean.FALSE);
-
-
     }
 
     public EnketoResult transform(String xformXml) throws IOException, TransformerException, ParserConfigurationException {
+        Stack<File> transforms = transformPipeline.get();
         if (transforms.isEmpty()) return new EnketoResult("");
 
         StringWriter writer = new StringWriter();

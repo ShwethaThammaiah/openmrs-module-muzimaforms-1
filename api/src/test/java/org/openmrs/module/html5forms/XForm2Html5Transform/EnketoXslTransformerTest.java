@@ -48,21 +48,20 @@ public class EnketoXslTransformerTest {
         when(transformerFactory.newTemplates(Matchers.<Source>anyObject())).thenReturn(new TemplatesImpl());
         doNothing().when(transformerHandler).setResult(Matchers.<Result>anyObject());
 
-        Stack<File> transformers = xslTransformPipeline().push(getXform2JRTransformer()).get();
+        XslTransformPipeline transformers = xslTransformPipeline().push(getXform2JRTransformer());
         EnketoXslTransformer enketoXslTransformer = new EnketoXslTransformer(transformerFactory, transformers);
 
         EnketoResult transformed = enketoXslTransformer.transform(getSampleXForm());
         verify(transformerFactory, times(1)).newTransformer();
         verify(transformerHandler, times(1)).setResult(result.capture());
-        assertThat(transformers.size(), is(0));
     }
 
 
     @Test
     public void transform_shouldPerformSuccessiveTransforms() throws Exception {
 
-        Stack<File> transformers = xslTransformPipeline().push(getXform2JRTransformer())
-                .push(getHtml5Transformer()).get();
+        XslTransformPipeline transformers = xslTransformPipeline().push(getXform2JRTransformer())
+                .push(getHtml5Transformer());
 
         ArgumentCaptor<Result> result = ArgumentCaptor.forClass(Result.class);
 
@@ -76,15 +75,14 @@ public class EnketoXslTransformerTest {
         EnketoResult transformed = enketoXslTransformer.transform(getSampleXForm());
         verify(transformerFactory, times(1)).newTransformer();
         verify(transformerHandler, times(2)).setResult(result.capture());
-        assertThat(transformers.size(), is(0));
     }
 
 
     @Test
     public void transform_shouldTransformXFormToModel() throws Exception {
 
-        Stack<File> transformers = xslTransformPipeline().push(getXform2JRTransformer())
-                .push(getHtml5Transformer()).get();
+        XslTransformPipeline transformers = xslTransformPipeline().push(getXform2JRTransformer())
+                .push(getHtml5Transformer());
 
         ArgumentCaptor<Result> result = ArgumentCaptor.forClass(Result.class);
 
@@ -98,7 +96,6 @@ public class EnketoXslTransformerTest {
         EnketoResult transformed = enketoXslTransformer.transform(getSampleXForm());
         verify(transformerFactory, times(1)).newTransformer();
         verify(transformerHandler, times(2)).setResult(result.capture());
-        assertThat(transformers.size(), is(0));
     }
 
     @Test
@@ -108,9 +105,7 @@ public class EnketoXslTransformerTest {
         when(transformerFactory.newTransformerHandler(Matchers.<Source>anyObject())).thenReturn(transformerHandler);
         doNothing().when(transformerHandler).setResult(Matchers.<Result>anyObject());
 
-        Stack<File> transformers = xslTransformPipeline().get();
-
-        EnketoXslTransformer enketoXslTransformer = new EnketoXslTransformer(transformerFactory, transformers);
+        EnketoXslTransformer enketoXslTransformer = new EnketoXslTransformer(transformerFactory, xslTransformPipeline());
         EnketoResult transformed = enketoXslTransformer.transform(getSampleXForm());
         assertThat(transformed.hasResult(), is(false));
         verify(transformerFactory, times(0)).newTransformer(Matchers.<Source>anyObject());
@@ -120,13 +115,16 @@ public class EnketoXslTransformerTest {
     @Test
     public void transform_integrationTest() throws IOException, TransformerException, ParserConfigurationException, DocumentException {
 
-        Stack<File> transformers = xslTransformPipeline()
+        XslTransformPipeline transformers = xslTransformPipeline()
                 .push(getXform2JRTransformer())
-                .push(getHtml5Transformer())
-                .get();
+                .push(getHtml5Transformer()) ;
         EnketoXslTransformer enketoXslTransformer = new EnketoXslTransformer(TransformerFactory.newInstance(), transformers);
         EnketoResult transform = enketoXslTransformer.transform(getSampleXForm());
         assertThat(transform.hasResult() , is(true));
+
+        transform = enketoXslTransformer.transform(getSampleXForm());
+        assertThat(transform.hasResult() , is(true));
+
 //        System.out.println(transform);
 
     }

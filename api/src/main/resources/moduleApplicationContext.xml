@@ -69,7 +69,7 @@
     </bean>
     <bean id="xform2HtmlTransformer" class="org.openmrs.module.html5forms.xForm2Html5Transform.EnketoXslTransformer">
         <constructor-arg name="transformerFactory" ref="transformerFactory"/>
-        <constructor-arg name="transforms" ref="xform2html5XSLPipeline"/>
+        <constructor-arg name="transformPipeline" ref="xform2html5XSLPipeline"/>
     </bean>
     <bean id="transformerFactory" class="net.sf.saxon.TransformerFactoryImpl" />
     <bean id="xform2html5XSLPipeline" class="org.openmrs.module.html5forms.xForm2Html5Transform.XslTransformPipeline"

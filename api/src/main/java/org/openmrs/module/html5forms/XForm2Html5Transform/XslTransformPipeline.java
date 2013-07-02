@@ -30,19 +30,23 @@ public class XslTransformPipeline {
     }
 
     public Stack<File> get() {
+        Queue<File> clonedTransforms = new LinkedList<File>();
         Stack<File> pipeline = new Stack<File>();
         while(!transforms.isEmpty()){
-           pipeline.add(transforms.poll());
+            File transform = transforms.poll();
+            clonedTransforms.add(transform);
+            pipeline.add(transform);
         }
+        transforms = clonedTransforms;
         return pipeline;
     }
 
 
-    public static Stack<File> xform2HTML5Pipeline() throws IOException {
+    public static XslTransformPipeline xform2HTML5Pipeline() throws IOException {
         XslTransformPipeline pipeline = new XslTransformPipeline();
         pipeline.push(getXslFile("/xform2jr.xsl"))
                 .push(getXslFile("jr2html5_php5.xsl"));
-        return pipeline.get();
+        return pipeline;
     }
 
     private static File getXslFile(String fileName) throws IOException {

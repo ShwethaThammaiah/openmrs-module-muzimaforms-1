@@ -7,6 +7,7 @@
 <openmrs:htmlInclude file="/moduleResources/html5forms/styles/flatui/js/bootstrap.min.js"/>
 <openmrs:htmlInclude file="/moduleResources/html5forms/js/angular/angular.js"/>
 <openmrs:htmlInclude file="/moduleResources/html5forms/js/angular/angular-resource.js"/>
+<openmrs:htmlInclude file="/moduleResources/html5forms/js/angular/angular-sanitize.js"/>
 <openmrs:htmlInclude file="/moduleResources/html5forms/js/angular/ui-bootstrap-0.3.0.js"/>
 <%--<openmrs:htmlInclude file="/moduleResources/html5forms/styles/bootstrap/css/bootstrap.css"/>--%>
 <openmrs:htmlInclude file="/moduleResources/html5forms/js/angular/angular-strap.js"/>
@@ -24,7 +25,7 @@
 
 <div class="bootstrap-scope" ng-app="html5forms">
 
-    <div ng-view ></div>
+    <div ng-view></div>
 
 </div>
 

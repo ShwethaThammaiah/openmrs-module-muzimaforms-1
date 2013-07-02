@@ -64,8 +64,12 @@ function FormCtrl($scope, FormService, FormsService, XFormService, TagService, _
     };
 
     $scope.getPreviewFormPath = function () {
-        if ($scope.selectedFormId)
-            return '../../moduleResources/html5forms/html5forms/form-' + $scope.selectedFormId + '.html';
+        if (!$scope.selectedFormId)  return "";
+        var form = _.find($scope.forms, function (form) {
+            return form.id == $scope.selectedFormId
+        });
+        return form.html;
+//        return '../../moduleResources/html5forms/html5forms/form-' + $scope.selectedFormId + '.html';
     };
 
     $scope.selectForm = function (id) {

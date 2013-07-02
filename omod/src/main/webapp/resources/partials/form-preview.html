@@ -2,7 +2,8 @@
     <div class="header_background border" style="text-align: center">
         <h3 style="color: #ffffff">Forms Preview</h3>
     </div>
-    <div data-ng-include src="getPreviewFormPath()"></div>
+    <!--<div data-ng-include src="getPreviewFormPath()"></div>-->
+    <div ng-bind-html-unsafe="getPreviewFormPath()"></div>
 </div>
 <div ng-show="!hasForms()">
     <div> No Preview Available</div>

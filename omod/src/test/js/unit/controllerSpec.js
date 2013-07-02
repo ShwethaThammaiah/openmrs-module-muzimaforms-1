@@ -12,7 +12,9 @@ describe('Html5Forms controllers', function () {
                 timeout(function () {
                     deferred.resolve({
                         data: [
-                            {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
+                            {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
+                                "html":"foo",
+                                "selected": false, "tags": [
                                 {"id": 1, "name": "Registration"},
                                 {"id": 2, "name": "Patient"}
                             ]  },
@@ -69,7 +71,6 @@ describe('Html5Forms controllers', function () {
                 return deferred.promise;
             }
         };
-
 
         beforeEach(inject(function ($rootScope, $controller, $q, $timeout) {
             q = $q;
@@ -236,11 +237,15 @@ describe('Html5Forms controllers', function () {
             expect(scope.html5forms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
             expect(scope.html5forms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
 
-            var unsavedForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
+            var unsavedForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
+                "html": "foo",
+                "selected": false, "tags": [
                 {"id": 1, "name": "Registration"},
                 {"id": 2, "name": "Patient"}
             ]};
-            var savedForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
+            var savedForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
+                "html": "foo",
+                "selected": false, "tags": [
                 {"id": 1, "name": "Registration"},
                 {"id": 2, "name": "Patient"},
                 {"id": 3, "name": "PMCMT"}
@@ -300,11 +305,14 @@ describe('Html5Forms controllers', function () {
 
         it('should remove tag', function () {
             timeout.flush();
-            var oldForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
+            var oldForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
+                "selected": false, "tags": [
                 {"id": 1, "name": "Registration"},
                 {"id": 2, "name": "Patient"}
             ]};
-            var newForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
+            var newForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
+                "html": "foo",
+                "selected": false, "tags": [
                 {"id": 2, "name": "Patient"}
             ]};
 
@@ -363,6 +371,12 @@ describe('Html5Forms controllers', function () {
             expect(scope.tagFilterActive()).toBe(true);
             scope.activeTagFilters = [];
             expect(scope.tagFilterActive()).toBe(false);
+        });
+
+        it('should present the form preview', function () {
+            timeout.flush();
+            scope.selectForm(1);
+            expect(scope.getFormPreview()).toBe("foo");
         });
     });
 });

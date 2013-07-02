@@ -36,6 +36,7 @@ function FormCtrl($scope, FormService, FormsService, XFormService, TagService, _
 
         getTags().then(setTags);
         getForms().then(setForms);
+
     };
 
     $scope.import = function () {
@@ -63,7 +64,7 @@ function FormCtrl($scope, FormService, FormsService, XFormService, TagService, _
         return !_.isEmpty($scope.html5forms);
     };
 
-    $scope.getPreviewForm = function () {
+    $scope.getFormPreview = function () {
         if (!$scope.selectedFormId)  return "";
         var form = _.find($scope.forms, function (form) {
             return form.id == $scope.selectedFormId

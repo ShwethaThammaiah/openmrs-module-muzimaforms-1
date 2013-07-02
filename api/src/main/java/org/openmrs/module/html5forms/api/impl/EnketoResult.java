@@ -1,6 +1,5 @@
 package org.openmrs.module.html5forms.api.impl;
 
-import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
 
@@ -14,22 +13,23 @@ public class EnketoResult {
     private String transform;
     DocumentBuilder documentBuilder;
     XPathFactory xPathFactory;
-    private Document document;
 
-    public EnketoResult(String transform) throws ParserConfigurationException, DocumentException {
+    public EnketoResult(String transform) throws ParserConfigurationException {
         this.transform = transform;
         documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
         xPathFactory = XPathFactory.newInstance();
-        document = new SAXReader().read(new StringReader(transform));
     }
 
-    public String getForm() {
+
+    public String getForm() throws DocumentException {
         if (!hasResult()) return "";
+        org.dom4j.Document document = new SAXReader().read(new StringReader(transform));
         return document.getRootElement().element("form").asXML();
     }
 
-    public String getModel() {
+    public String getModel() throws DocumentException {
         if (!hasResult()) return "";
+        org.dom4j.Document document = new SAXReader().read(new StringReader(transform));
         return document.getRootElement().element("model").asXML();
     }
 

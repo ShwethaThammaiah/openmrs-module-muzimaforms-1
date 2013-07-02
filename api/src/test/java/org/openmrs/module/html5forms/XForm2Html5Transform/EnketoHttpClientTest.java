@@ -9,6 +9,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHttpResponse;
 import org.apache.http.message.BasicStatusLine;
 import org.dom4j.DocumentException;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openmrs.module.html5forms.api.impl.EnketoResult;
 import org.springframework.context.ApplicationContext;
@@ -38,7 +39,8 @@ public class EnketoHttpClientTest {
     }
 
     @Test
-    public void transform_integrationTest() throws IOException, ParserConfigurationException {
+    @Ignore
+    public void transform_integrationTest() throws IOException, ParserConfigurationException, DocumentException {
         EnketoHttpClient enketoHttpClient = new EnketoHttpClient("http://10.4.33.189/transform/get_html_form",
                 new DefaultHttpClient());
         EnketoResult result = enketoHttpClient.transform(getTestXForm());

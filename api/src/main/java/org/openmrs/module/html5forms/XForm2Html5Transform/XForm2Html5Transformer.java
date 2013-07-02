@@ -1,6 +1,7 @@
 package org.openmrs.module.html5forms.xForm2Html5Transform;
 
 import org.apache.commons.io.FileUtils;
+import org.dom4j.DocumentException;
 import org.openmrs.module.html5forms.api.impl.EnketoResult;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -10,7 +11,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 public abstract class XForm2Html5Transformer {
-    public abstract EnketoResult transform(String xformXml) throws IOException, TransformerException, ParserConfigurationException;
+    public abstract EnketoResult transform(String xformXml) throws IOException, TransformerException, ParserConfigurationException, DocumentException;
 
     protected File createTempFile(String xformXml) throws IOException {
         UUID uuid = UUID.randomUUID();

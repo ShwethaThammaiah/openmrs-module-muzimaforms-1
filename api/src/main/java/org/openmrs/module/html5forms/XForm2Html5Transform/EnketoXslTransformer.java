@@ -1,6 +1,7 @@
 package org.openmrs.module.html5forms.xForm2Html5Transform;
 
 
+import org.dom4j.DocumentException;
 import org.openmrs.module.html5forms.api.impl.EnketoResult;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -27,7 +28,7 @@ public class EnketoXslTransformer extends XForm2Html5Transformer {
         transformerFactory.setAttribute("http://saxon.sf.net/feature/version-warning", Boolean.FALSE);
     }
 
-    public EnketoResult transform(String xformXml) throws IOException, TransformerException, ParserConfigurationException {
+    public EnketoResult transform(String xformXml) throws IOException, TransformerException, ParserConfigurationException, DocumentException {
         Stack<File> transforms = transformPipeline.get();
         if (transforms.isEmpty()) return new EnketoResult("");
 

@@ -18,7 +18,8 @@ public class HTML5FormTag {
         this.form = form;
     }
 
-    public HTML5FormTag() { } // Used by hibernate
+    public HTML5FormTag() {
+    } // Used by hibernate
 
     public HTML5FormTag(String name) {
         this.name = name;

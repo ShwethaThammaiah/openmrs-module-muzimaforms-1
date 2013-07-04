@@ -2,7 +2,7 @@ package org.openmrs.module.html5forms;
 
 import org.openmrs.module.xforms.Xform;
 
-public class XFormBuilder extends Builder<Xform>{
+public class XFormBuilder extends Builder<Xform> {
 
     private Integer id;
     private String xFormXml;
@@ -24,7 +24,7 @@ public class XFormBuilder extends Builder<Xform>{
         return this;
     }
 
-    public XFormBuilder withXFormXml(String xFormXml){
+    public XFormBuilder withXFormXml(String xFormXml) {
         this.xFormXml = xFormXml;
         return this;
     }

@@ -20,7 +20,7 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Context.class)
-public class HTML5XFormsControllerTest{
+public class HTML5XFormsControllerTest {
     private HTML5XFormsController html5XFormsController;
     private HTML5FormService service;
 
@@ -34,8 +34,12 @@ public class HTML5XFormsControllerTest{
 
     @Test
     public void xForms_shouldReturnXForms() throws Exception {
-        HTML5XForm xForm1 = new HTML5XForm(){{setId(1);}};
-        HTML5XForm xForm2 = new HTML5XForm(){{setId(2);}};
+        HTML5XForm xForm1 = new HTML5XForm() {{
+            setId(1);
+        }};
+        HTML5XForm xForm2 = new HTML5XForm() {{
+            setId(2);
+        }};
 
         when(service.getXForms()).thenReturn(asList(xForm1, xForm2));
 

@@ -25,31 +25,31 @@ import java.util.Map;
  * /metadata/config.xml file.
  */
 public class AdminList extends AdministrationSectionExt {
-	
-	/**
-	 * @see org.openmrs.module.web.extension.AdministrationSectionExt#getMediaType()
-	 */
-	public Extension.MEDIA_TYPE getMediaType() {
-		return Extension.MEDIA_TYPE.html;
-	}
-	
-	/**
-	 * @see org.openmrs.module.web.extension.AdministrationSectionExt#getTitle()
-	 */
-	public String getTitle() {
-		return "HTML5 Forms";
-	}
-	
-	/**
-	 * @see org.openmrs.module.web.extension.AdministrationSectionExt#getLinks()
-	 */
-	public Map<String, String> getLinks() {
-		
-		Map<String, String> map = new HashMap<String, String>();
-		
-		map.put("module/html5forms/manageforms.form", "Manage Forms");
-		
-		return map;
-	}
+
+    /**
+     * @see org.openmrs.module.web.extension.AdministrationSectionExt#getMediaType()
+     */
+    public Extension.MEDIA_TYPE getMediaType() {
+        return Extension.MEDIA_TYPE.html;
+    }
+
+    /**
+     * @see org.openmrs.module.web.extension.AdministrationSectionExt#getTitle()
+     */
+    public String getTitle() {
+        return "HTML5 Forms";
+    }
+
+    /**
+     * @see org.openmrs.module.web.extension.AdministrationSectionExt#getLinks()
+     */
+    public Map<String, String> getLinks() {
+
+        Map<String, String> map = new HashMap<String, String>();
+
+        map.put("module/html5forms/manageforms.form", "Manage Forms");
+
+        return map;
+    }
 
 }

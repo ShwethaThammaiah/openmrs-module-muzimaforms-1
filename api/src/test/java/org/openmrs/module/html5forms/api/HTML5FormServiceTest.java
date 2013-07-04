@@ -21,10 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static org.junit.matchers.JUnitMatchers.hasItem;
 import static org.mockito.Mockito.*;
 import static org.openmrs.module.html5forms.FormBuilder.form;
 import static org.openmrs.module.html5forms.HTML5FormBuilder.html5Form;

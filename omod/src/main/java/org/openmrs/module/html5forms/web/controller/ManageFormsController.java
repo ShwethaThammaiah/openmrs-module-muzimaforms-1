@@ -31,56 +31,61 @@ import java.util.Collection;
 @Controller
 @RequestMapping(value = "module/html5forms/manageforms.form")
 public class ManageFormsController {
-	
-	/** Logger for this class and subclasses */
-	protected final Log log = LogFactory.getLog(getClass());
-	
-	/** Success form view name */
-	private final String SUCCESS_FORM_VIEW = "/module/html5forms/manageForms";
-	
-	/**
-	 * Initially called after the formBackingObject method to get the landing form name  
-	 * @return String form view name
-	 */
-	@RequestMapping(method = RequestMethod.GET)
-	public String showForm(){
-		return SUCCESS_FORM_VIEW;
-	}
 
-	/**
-	 * All the parameters are optional based on the necessity  
-	 * 
-	 * @param httpSession
-	 * @param anyRequestObject
-	 * @param errors
-	 * @return
-	 */
-	@RequestMapping(method = RequestMethod.POST)
-	public String onSubmit(HttpSession httpSession,
-	                               @ModelAttribute("anyRequestObject") Object anyRequestObject, BindingResult errors) {
-		
-		if (errors.hasErrors()) {
-			// return error view
-		}
-		
-		return SUCCESS_FORM_VIEW;
-	}
-	
-	/**
-	 * This class returns the form backing object. This can be a string, a boolean, or a normal java
-	 * pojo. The bean name defined in the ModelAttribute annotation and the type can be just
-	 * defined by the return type of this method
-	 */
-	@ModelAttribute("thePatientList")
-	protected Collection<Patient> formBackingObject(HttpServletRequest request) throws Exception {
-		// get all patients that have an identifier "101" (from the demo sample data)
-		// see http://resources.openmrs.org/doc/index.html?org/openmrs/api/PatientService.html for
-		// a list of all PatientService methods
-		Collection<Patient> patients = Context.getPatientService().getPatients("101");
-		
-		// this object will be made available to the jsp page under the variable name
-		// that is defined in the @ModuleAttribute tag
-		return patients;
-	}
-	
+    /**
+     * Logger for this class and subclasses
+     */
+    protected final Log log = LogFactory.getLog(getClass());
+
+    /**
+     * Success form view name
+     */
+    private final String SUCCESS_FORM_VIEW = "/module/html5forms/manageForms";
+
+    /**
+     * Initially called after the formBackingObject method to get the landing form name
+     *
+     * @return String form view name
+     */
+    @RequestMapping(method = RequestMethod.GET)
+    public String showForm() {
+        return SUCCESS_FORM_VIEW;
+    }
+
+    /**
+     * All the parameters are optional based on the necessity
+     *
+     * @param httpSession
+     * @param anyRequestObject
+     * @param errors
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST)
+    public String onSubmit(HttpSession httpSession,
+                           @ModelAttribute("anyRequestObject") Object anyRequestObject, BindingResult errors) {
+
+        if (errors.hasErrors()) {
+            // return error view
+        }
+
+        return SUCCESS_FORM_VIEW;
+    }
+
+    /**
+     * This class returns the form backing object. This can be a string, a boolean, or a normal java
+     * pojo. The bean name defined in the ModelAttribute annotation and the type can be just
+     * defined by the return type of this method
+     */
+    @ModelAttribute("thePatientList")
+    protected Collection<Patient> formBackingObject(HttpServletRequest request) throws Exception {
+        // get all patients that have an identifier "101" (from the demo sample data)
+        // see http://resources.openmrs.org/doc/index.html?org/openmrs/api/PatientService.html for
+        // a list of all PatientService methods
+        Collection<Patient> patients = Context.getPatientService().getPatients("101");
+
+        // this object will be made available to the jsp page under the variable name
+        // that is defined in the @ModuleAttribute tag
+        return patients;
+    }
+
 }

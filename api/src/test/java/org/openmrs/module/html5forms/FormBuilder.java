@@ -2,7 +2,7 @@ package org.openmrs.module.html5forms;
 
 import org.openmrs.Form;
 
-public class FormBuilder extends Builder<Form>{
+public class FormBuilder extends Builder<Form> {
 
     private Integer id;
     private String name;
@@ -17,7 +17,7 @@ public class FormBuilder extends Builder<Form>{
         return form;
     }
 
-    public static FormBuilder form(){
+    public static FormBuilder form() {
         return new FormBuilder();
     }
 

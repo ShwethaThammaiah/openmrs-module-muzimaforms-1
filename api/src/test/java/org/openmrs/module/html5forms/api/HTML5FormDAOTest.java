@@ -1,15 +1,12 @@
 package org.openmrs.module.html5forms.api;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.html5forms.HTML5Form;
 import org.openmrs.module.html5forms.HTML5FormTag;
 import org.openmrs.module.html5forms.HTML5XForm;
-import org.openmrs.module.html5forms.XFormBuilder;
 import org.openmrs.module.html5forms.api.db.hibernate.HTML5FormDAO;
-import org.openmrs.module.html5forms.api.db.hibernate.impl.HTML5FormDAOImpl;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 
 import java.io.IOException;
@@ -20,7 +17,6 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.matchers.JUnitMatchers.hasItem;
-import static org.mockito.Mockito.*;
 import static org.openmrs.module.html5forms.FormBuilder.form;
 import static org.openmrs.module.html5forms.HTML5FormBuilder.html5Form;
 import static org.openmrs.module.html5forms.HTML5FormTagBuilder.tag;
@@ -38,7 +34,7 @@ public class HTML5FormDAOTest extends BaseModuleContextSensitiveTest {
     }
 
     @Test
-    public void getAll_shouldGetAll(){
+    public void getAll_shouldGetAll() {
         List<HTML5Form> list = dao.getAll();
         assertThat(list, hasItem(html5Form().withId(1)
                 .with(tag().withId(1).withName("Registration"))
@@ -60,12 +56,13 @@ public class HTML5FormDAOTest extends BaseModuleContextSensitiveTest {
     }
 
     @Test
-    public void getXForms_shouldGetXForms(){
+    public void getXForms_shouldGetXForms() {
         List<HTML5XForm> all = dao.getXForms();
         assertThat(all.size(), is(1));
     }
+
     @Test
-    public void findById_shouldFindById(){
+    public void findById_shouldFindById() {
         HTML5Form form = dao.findById(1);
         assertThat(form, is(html5Form().withId(1)
                 .with(tag().withId(1).withName("Registration"))
@@ -74,8 +71,9 @@ public class HTML5FormDAOTest extends BaseModuleContextSensitiveTest {
                 .with(form().withId(1).withName("Registration Form").withDescription("Form for registration"))
                 .instance()));
     }
+
     @Test
-    public void saveForm_shouldSaveForm(){
+    public void saveForm_shouldSaveForm() {
         dao.saveForm(html5Form().withId(1).with(tag().withId(1).withName("Registration")).instance());
         List<HTML5Form> list = dao.getAll();
         assertThat(list, hasItem(html5Form().withId(1).with(tag().withId(1).withName("Registration")).instance()));

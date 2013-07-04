@@ -2,15 +2,12 @@ package org.openmrs.module.html5forms.api.impl;
 
 import org.dom4j.DocumentException;
 import org.junit.Test;
-import org.springframework.test.annotation.ExpectedException;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
-
 import java.io.IOException;
 
-import static junit.framework.Assert.assertEquals;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.isEmptyOrNullString;
 import static org.junit.Assert.assertThat;
@@ -30,7 +27,7 @@ public class EnketoResultTest {
     public void getForm_shouldGetForm() throws ParserConfigurationException, XPathExpressionException, SAXException, IOException, DocumentException {
         String result = "<root><model><x/><y/></model><form><ul><li/><li/></ul></form></root>";
         EnketoResult enketoResult = new EnketoResult(result);
-        assertThat(enketoResult.getForm(), is("<form><ul><li/><li/></ul></form>"))  ;
+        assertThat(enketoResult.getForm(), is("<form><ul><li/><li/></ul></form>"));
     }
 
     @Test

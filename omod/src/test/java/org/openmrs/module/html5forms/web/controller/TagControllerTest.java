@@ -36,8 +36,12 @@ public class TagControllerTest {
 
     @Test
     public void tags_shouldReturnTags() throws IOException {
-        HTML5FormTag tag1 = new HTML5FormTag() {{ setId(1); }};
-        HTML5FormTag tag2 = new HTML5FormTag() {{ setId(2); }};
+        HTML5FormTag tag1 = new HTML5FormTag() {{
+            setId(1);
+        }};
+        HTML5FormTag tag2 = new HTML5FormTag() {{
+            setId(2);
+        }};
 
         when(service.getAll()).thenReturn(asList(tag1, tag2));
 

@@ -22,7 +22,7 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Context.class)
-public class HTML5FormsControllerTest{
+public class HTML5FormsControllerTest {
     private HTML5FormsController html5FormsController;
     private HTML5FormService service;
 
@@ -36,13 +36,17 @@ public class HTML5FormsControllerTest{
 
     @Test
     public void forms_shouldGetAllForms() throws Exception {
-        HTML5Form html5Form1 = new HTML5Form(){{setId(1);}};
-        HTML5Form html5Form2 = new HTML5Form(){{setId(2);}};
+        HTML5Form html5Form1 = new HTML5Form() {{
+            setId(1);
+        }};
+        HTML5Form html5Form2 = new HTML5Form() {{
+            setId(2);
+        }};
 
         when(service.getAll()).thenReturn(asList(html5Form1, html5Form2));
         List<HTML5Form> forms = html5FormsController.forms();
 
         assertThat(forms.size(), is(2));
-        assertThat(forms, hasItems(html5Form1,html5Form2));
+        assertThat(forms, hasItems(html5Form1, html5Form2));
     }
 }

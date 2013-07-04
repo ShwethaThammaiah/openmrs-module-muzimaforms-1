@@ -32,7 +32,7 @@ public class XslTransformPipeline {
     public Stack<File> get() {
         Queue<File> clonedTransforms = new LinkedList<File>();
         Stack<File> pipeline = new Stack<File>();
-        while(!transforms.isEmpty()){
+        while (!transforms.isEmpty()) {
             File transform = transforms.poll();
             clonedTransforms.add(transform);
             pipeline.add(transform);

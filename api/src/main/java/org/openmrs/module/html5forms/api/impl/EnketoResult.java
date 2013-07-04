@@ -20,7 +20,6 @@ public class EnketoResult {
         xPathFactory = XPathFactory.newInstance();
     }
 
-
     public String getForm() throws DocumentException {
         if (!hasResult()) return "";
         org.dom4j.Document document = new SAXReader().read(new StringReader(transform));
@@ -32,7 +31,6 @@ public class EnketoResult {
         org.dom4j.Document document = new SAXReader().read(new StringReader(transform));
         return document.getRootElement().element("model").asXML();
     }
-
 
     public String getResult() throws DocumentException {
         return transform;

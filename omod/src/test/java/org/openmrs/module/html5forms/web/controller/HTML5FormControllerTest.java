@@ -38,7 +38,9 @@ public class HTML5FormControllerTest {
 
     @Test
     public void get_shouldReturnFormWithGivenId() throws Exception {
-        HTML5Form html5Form = new HTML5Form(){{setId(1);}};
+        HTML5Form html5Form = new HTML5Form() {{
+            setId(1);
+        }};
 
         when(service.findById(1)).thenReturn(html5Form);
 
@@ -47,7 +49,9 @@ public class HTML5FormControllerTest {
 
     @Test
     public void create_shouldSaveAForm() throws IOException, TransformerException, SAXException, ParserConfigurationException, XPathExpressionException, DocumentException {
-        HTML5Form html5Form = new HTML5Form(){{setId(5);}};
+        HTML5Form html5Form = new HTML5Form() {{
+            setId(5);
+        }};
         html5FormController.create(html5Form);
         verify(service).saveForm(html5Form);
     }

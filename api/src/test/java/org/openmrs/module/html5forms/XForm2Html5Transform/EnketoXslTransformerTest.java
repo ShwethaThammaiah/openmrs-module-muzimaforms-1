@@ -18,10 +18,8 @@ import javax.xml.transform.sax.TransformerHandler;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.IOException;
-import java.util.Stack;
 
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 import static org.openmrs.module.html5forms.xForm2Html5Transform.XslTransformPipeline.xslTransformPipeline;
@@ -117,15 +115,34 @@ public class EnketoXslTransformerTest {
 
         XslTransformPipeline transformers = xslTransformPipeline()
                 .push(getXform2JRTransformer())
-                .push(getHtml5Transformer()) ;
+                .push(getHtml5Transformer());
         EnketoXslTransformer enketoXslTransformer = new EnketoXslTransformer(TransformerFactory.newInstance(), transformers);
         EnketoResult transform = enketoXslTransformer.transform(getSampleXForm());
-        assertThat(transform.hasResult() , is(true));
+        assertThat(transform.hasResult(), is(true));
 
         transform = enketoXslTransformer.transform(getSampleXForm());
-        assertThat(transform.hasResult() , is(true));
+        assertThat(transform.hasResult(), is(true));
 
-//        System.out.println(transform);
+        System.out.println(transform.getResult());
+
+    }
+
+    @Test
+    public void transform_integrationTest_tojson() throws IOException, TransformerException, ParserConfigurationException, DocumentException {
+
+        XslTransformPipeline transformers = xslTransformPipeline()
+                .push(getXform2JRTransformer())
+                .push(getHtml5Transformer())
+                .push(getXml2JsonTransformer());
+
+        EnketoXslTransformer enketoXslTransformer = new EnketoXslTransformer(TransformerFactory.newInstance(), transformers);
+        EnketoResult transform = enketoXslTransformer.transform(getSampleXForm());
+        assertThat(transform.hasResult(), is(true));
+
+        transform = enketoXslTransformer.transform(getSampleXForm());
+        assertThat(transform.hasResult(), is(true));
+
+//        System.out.println(transform.getResult());
 
     }
 
@@ -138,9 +155,15 @@ public class EnketoXslTransformerTest {
         ApplicationContext context = new ClassPathXmlApplicationContext();
         return context.getResource("/xform2jr.xsl").getFile();
     }
+
     private File getHtml5Transformer() throws IOException {
         ApplicationContext context = new ClassPathXmlApplicationContext();
         return context.getResource("/jr2html5_php5.xsl").getFile();
+    }
+
+    private File getXml2JsonTransformer() throws IOException {
+        ApplicationContext context = new ClassPathXmlApplicationContext();
+        return context.getResource("/xml2json.xsl").getFile();
     }
 
 }

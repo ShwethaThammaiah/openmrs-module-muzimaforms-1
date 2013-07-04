@@ -2,7 +2,6 @@ package org.openmrs.module.html5forms.api.impl;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.log4j.Logger;
 import org.dom4j.DocumentException;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.html5forms.HTML5Form;

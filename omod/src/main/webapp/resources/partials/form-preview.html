@@ -4,6 +4,6 @@
     </div>
     <div ng-bind-html-unsafe="getFormPreview()"></div>
 </div>
-<div ng-show="!hasForms()">
-    <div> No Preview Available</div>
+<div ng-show="!hasForms() || !getFormPreview())">
+    <div><h4>No Preview Available</h4></div>
 </div>

@@ -8,6 +8,7 @@ public class HTML5XForm {
     private String name;
     private String description;
     private Form form;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

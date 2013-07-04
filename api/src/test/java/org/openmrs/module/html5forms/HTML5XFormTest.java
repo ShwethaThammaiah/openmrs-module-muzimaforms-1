@@ -8,7 +8,7 @@ package org.openmrs.module.html5forms;
  * To change this template use File | Settings | File Templates.
  */
 public class HTML5XFormTest {
-    public void testHTML5XFormLoad(){
+    public void testHTML5XFormLoad() {
 
     }
 }

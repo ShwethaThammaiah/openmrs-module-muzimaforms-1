@@ -1,8 +1,5 @@
 describe('Html5Forms controllers', function () {
-
-
     beforeEach(module('html5forms'));
-
     describe('FormsCtrl', function () {
         var scope, ctrl, q, timeout;
 
@@ -34,7 +31,9 @@ describe('Html5Forms controllers', function () {
             },
             get: function (id) {
                 return null;
-            }
+            },
+            selectForm: function(id){},
+            getSelectedForm: function(){}
         };
 
 
@@ -76,7 +75,7 @@ describe('Html5Forms controllers', function () {
             q = $q;
             timeout = $timeout;
             scope = $rootScope.$new();
-            ctrl = $controller(FormCtrl, {
+            ctrl = $controller(FormsCtrl, {
                 $scope: scope,
                 TagService: TagService,
                 FormService: FormService,
@@ -152,6 +151,13 @@ describe('Html5Forms controllers', function () {
             expect(scope.activeForm(1)).toBeUndefined();
             scope.selectForm(1);
             expect(scope.activeForm(1)).toBe('active-form');
+        });
+
+        it('should save selected form to form service', function(){
+            spyOn(FormService, "selectForm");
+            spyOn(FormService, "getSelectedForm");
+            scope.selectForm(234);
+            expect(FormService.selectForm).toHaveBeenCalledWith(234);
         });
 
         it('should assign color to active xForm', function () {

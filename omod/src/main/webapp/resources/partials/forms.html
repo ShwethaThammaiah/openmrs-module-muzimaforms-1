@@ -1,5 +1,8 @@
-<div class="row-fluid" ng-controller="FormCtrl" ng-init="init()">
-        <div class="span6" data-ng-include
-             data-src="'../../moduleResources/html5forms/partials/form-preview.html'"></div>
-        <div class="span5 offset1" data-ng-include data-src="'../../moduleResources/html5forms/partials/forms-list.html'"></div>
+<div class="container-fluid" ng-controller="FormsCtrl" ng-init="init()">
+    <div class="row-fluid">
+        <div class="span4" data-ng-include data-src="'../../moduleResources/html5forms/partials/forms-list.html'">
+        </div>
+        <div class="span8" data-ng-include data-src="'../../moduleResources/html5forms/partials/form-preview.html'">
+        </div>
+    </div>
 </div>

@@ -4,6 +4,7 @@ html5formsModule.
     config(['$routeProvider', function ($routeProvider) {
         $routeProvider.
             when('/forms', {templateUrl: '../../moduleResources/html5forms/partials/forms.html'}).
+            when('/form', {templateUrl: '../../moduleResources/html5forms/partials/form.html'}).
             otherwise({redirectTo: '/forms'});
     }]);
 
@@ -14,6 +15,16 @@ html5formsModule.factory('_', function () {
 
 html5formsModule.factory('FormService', function ($http) {
 
+    var selectedFormId;
+
+    var selectForm = function(id){
+        selectedFormId = id;
+    };
+
+    var getSelectedForm = function(){
+        return selectedFormId;
+    };
+
     var get = function (id) {
         return $http.get('form.form?id=' + id);
     };
@@ -23,7 +34,9 @@ html5formsModule.factory('FormService', function ($http) {
 
     return {
         get: get,
-        save: save
+        save: save,
+        selectForm: selectForm,
+        getSelectedForm: getSelectedForm
     }
 });
 

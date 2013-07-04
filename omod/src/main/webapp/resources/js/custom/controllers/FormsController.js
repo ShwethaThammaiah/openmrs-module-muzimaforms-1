@@ -1,5 +1,18 @@
 'use strict';
-function FormCtrl($scope, FormService, FormsService, XFormService, TagService, _, $q) {
+function FormsCtrl($scope, FormService, FormsService, XFormService, TagService, _, $q) {
+    $scope.init = function () {
+
+        $scope.selectedXForms = [];
+        $scope.editMode = true;
+        $scope.importMode = false;
+        $scope.tagColorMap = {};
+        $scope.activeTagFilters = [];
+
+        getTags().then(setTags);
+        getForms().then(setForms);
+
+    };
+
     var getTags = function () {
         return TagService.all();
     };
@@ -26,18 +39,6 @@ function FormCtrl($scope, FormService, FormsService, XFormService, TagService, _
         });
     };
 
-    $scope.init = function () {
-
-        $scope.selectedXForms = [];
-        $scope.editMode = true;
-        $scope.importMode = false;
-        $scope.tagColorMap = {};
-        $scope.activeTagFilters = [];
-
-        getTags().then(setTags);
-        getForms().then(setForms);
-
-    };
 
     $scope.import = function () {
         $scope.importMode = true;
@@ -74,6 +75,7 @@ function FormCtrl($scope, FormService, FormsService, XFormService, TagService, _
 
     $scope.selectForm = function (id) {
         $scope.selectedFormId = id;
+        FormService.selectForm(id);
     };
 
     $scope.selectXForm = function (id) {

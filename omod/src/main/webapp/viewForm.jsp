@@ -17,9 +17,8 @@
 
 <openmrs:htmlInclude file="/moduleResources/html5forms/styles/custom/custom.css"/>
 <openmrs:htmlInclude file="/moduleResources/html5forms/js/underscore/underscore-min.js"/>
-<openmrs:htmlInclude file="/moduleResources/html5forms/js/custom/filters.js"/>
 <openmrs:htmlInclude file="/moduleResources/html5forms/js/custom/app.js"/>
-<openmrs:htmlInclude file="/moduleResources/html5forms/js/custom/controllers/FormsController.js"/>
+<openmrs:htmlInclude file="/moduleResources/html5forms/js/custom/FormController.js"/>
 
 <h2><spring:message code="Manage Forms"/></h2>
 

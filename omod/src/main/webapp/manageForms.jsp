@@ -20,6 +20,7 @@
 <openmrs:htmlInclude file="/moduleResources/html5forms/js/custom/filters.js"/>
 <openmrs:htmlInclude file="/moduleResources/html5forms/js/custom/app.js"/>
 <openmrs:htmlInclude file="/moduleResources/html5forms/js/custom/controllers/FormsController.js"/>
+<openmrs:htmlInclude file="/moduleResources/html5forms/js/custom/controllers/FormController.js"/>
 
 <h2><spring:message code="Manage Forms"/></h2>
 

@@ -48,7 +48,6 @@ public class AdminList extends AdministrationSectionExt {
         Map<String, String> map = new HashMap<String, String>();
 
         map.put("module/html5forms/manageforms.form", "Manage Forms");
-
         return map;
     }
 

@@ -139,9 +139,10 @@ describe('Html5Forms controllers', function () {
             expect(FormService.save).toHaveBeenCalledWith({'id': '5'});
             expect(FormsService.all).toHaveBeenCalled();
             expect(scope.importMode).toBe(false);
+            
         });
 
-        it('cancel should toggle imortMode', function () {
+        it('cancel should toggle importMode', function () {
             scope.importMode = true;
             scope.cancelImport();
             expect(scope.importMode).toBe(false);
@@ -150,6 +151,12 @@ describe('Html5Forms controllers', function () {
         it('should assign color to active form', function () {
             expect(scope.activeForm(1)).toBeUndefined();
             scope.selectForm(1);
+            expect(scope.activeForm(1)).toBe('active-form');
+        });
+
+        it('should select the first form available', function () {
+            expect(scope.activeForm(1)).toBeUndefined();
+            timeout.flush();
             expect(scope.activeForm(1)).toBe('active-form');
         });
 

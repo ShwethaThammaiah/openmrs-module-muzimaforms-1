@@ -1,16 +1,17 @@
 <div ng-show="hasForms()">
-    <div class="header_background border" style="text-align: center">
-        <h3 style="color: #ffffff">
-            Form Preview
-        </h3>
-        <!-- <div class="span1 padded-table-content">
-            <a class="btn btn-inverse" ng-click="" style="color: #ffffff">
-                <i class="icon-edit"></i>
+    <div class="row-fluid">
+        <div class="header_background border span11" style="text-align: center">
+            <h3 style="color: #ffffff">
+                Form Preview
+            </h3>
+        </div>
+        <div class="span1">
+            <a class="btn btn-inverse" style="color: #ffffff" href='#/form'>
+                    <i class="icon-edit"></i>
             </a>
-        </div> -->
+        </div>
     </div>
-    <div id="preview" ng-bind-html-unsafe="getFormPreview()">
-    </div>
+    <div id="preview" ng-bind-html-unsafe="getFormPreview()" />
 </div>
 <div ng-show="!hasForms() || !getFormPreview()">
     <div>

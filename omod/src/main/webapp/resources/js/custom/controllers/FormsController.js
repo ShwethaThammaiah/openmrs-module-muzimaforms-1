@@ -9,7 +9,7 @@ function FormsCtrl($scope, FormService, FormsService, XFormService, TagService, 
         $scope.activeTagFilters = [];
 
         getTags().then(setTags);
-        getForms().then(setForms);
+        getForms().then(setForms).then(selectFirstForm);
 
     };
 
@@ -39,6 +39,11 @@ function FormsCtrl($scope, FormService, FormsService, XFormService, TagService, 
         });
     };
 
+    var selectFirstForm = function(){
+        var firstForm = _.head($scope.forms);
+        if(firstForm)
+            $scope.selectForm(firstForm.id);        
+    }
 
     $scope.import = function () {
         $scope.importMode = true;

@@ -19,6 +19,7 @@
 <openmrs:htmlInclude file="/moduleResources/html5forms/js/underscore/underscore-min.js"/>
 <openmrs:htmlInclude file="/moduleResources/html5forms/js/custom/filters.js"/>
 <openmrs:htmlInclude file="/moduleResources/html5forms/js/custom/app.js"/>
+<openmrs:htmlInclude file="/moduleResources/html5forms/js/custom/directives/html5formBind.js"/>
 <openmrs:htmlInclude file="/moduleResources/html5forms/js/custom/controllers/FormsController.js"/>
 <openmrs:htmlInclude file="/moduleResources/html5forms/js/custom/controllers/FormController.js"/>
 

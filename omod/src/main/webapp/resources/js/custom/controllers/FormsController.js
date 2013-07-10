@@ -31,7 +31,7 @@ function FormsCtrl($scope, FormService, FormsService, XFormService, TagService, 
     };
     var setForms = function (result) {
         $scope.forms = result.data;
-        $scope.html5forms = _.map(result.data, function (form) {
+        $scope.muzimaforms = _.map(result.data, function (form) {
             return {
                 form: form,
                 newTag: ""
@@ -67,7 +67,7 @@ function FormsCtrl($scope, FormService, FormsService, XFormService, TagService, 
     };
 
     $scope.hasForms = function () {
-        return !_.isEmpty($scope.html5forms);
+        return !_.isEmpty($scope.muzimaforms);
     };
 
     $scope.getFormPreview = function () {
@@ -128,12 +128,12 @@ function FormsCtrl($scope, FormService, FormsService, XFormService, TagService, 
         });
     };
 
-    $scope.saveTag = function (html5form) {
-        if (html5form.newTag === "") return;
-        var form = html5form.form;
-        var newTag = html5form.newTag;
+    $scope.saveTag = function (muzimaform) {
+        if (muzimaform.newTag === "") return;
+        var form = muzimaform.form;
+        var newTag = muzimaform.newTag;
         var tagToBeAdded = caseInsensitiveFind($scope.tags, newTag) || {"name": newTag};
-        html5form.newTag = "";
+        muzimaform.newTag = "";
         if (caseInsensitiveFind(form.tags, tagToBeAdded.name)) return;
         form.tags.push(tagToBeAdded);
         FormService.save(form)

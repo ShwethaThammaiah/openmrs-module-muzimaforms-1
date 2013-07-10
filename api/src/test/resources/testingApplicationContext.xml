@@ -15,13 +15,13 @@
     <bean parent="serviceContext">
         <property name="moduleService">
             <list>
-                <value>org.openmrs.module.html5forms.api.db.hibernate.HTML5FormDAO</value>
+                <value>org.openmrs.module.muzimaforms.api.db.hibernate.MuzimaFormDAO</value>
                 <bean
                         class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
                     <property name="transactionManager">
                         <ref bean="transactionManager"/>
                     </property>
-                    <property name="target" ref="html5FormDAO"/>
+                    <property name="target" ref="muzimaFormDAO"/>
                     <property name="preInterceptors">
                         <ref bean="serviceInterceptors"/>
                     </property>

@@ -7,19 +7,41 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
   		    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
+    <bean id="transformerFactory" class="net.sf.saxon.TransformerFactoryImpl"/>
+
+    <bean id="xform2html5XSLPipeline" class="org.openmrs.module.muzimaforms.xForm2MuzimaTransform.XslTransformPipeline"
+          factory-method="xform2HTML5Pipeline"/>
+
+    <bean id="modelXml2JsonXSLPipeline"
+          class="org.openmrs.module.muzimaforms.xForm2MuzimaTransform.XslTransformPipeline"
+          factory-method="modelXml2JsonXSLPipeline"/>
+
+
+    <bean id="xform2HtmlTransformer" class="org.openmrs.module.muzimaforms.xForm2MuzimaTransform.EnketoXslTransformer">
+        <constructor-arg name="transformerFactory" ref="transformerFactory"/>
+        <constructor-arg name="transformPipeline" ref="xform2html5XSLPipeline"/>
+    </bean>
+
+    <bean id="modelXml2JsonTransformer"
+          class="org.openmrs.module.muzimaforms.xForm2MuzimaTransform.ModelXml2JsonTransformer">
+        <constructor-arg name="transformerFactory" ref="transformerFactory"/>
+        <constructor-arg name="jsonTransformers" ref="xform2html5XSLPipeline"/>
+    </bean>
+
+
     <bean parent="serviceContext">
         <property name="moduleService">
             <list>
-                <value>org.openmrs.module.html5forms.api.TagService</value>
+                <value>org.openmrs.module.muzimaforms.api.TagService</value>
                 <bean
                         class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
                     <property name="transactionManager">
                         <ref bean="transactionManager"/>
                     </property>
                     <property name="target">
-                        <bean class="org.openmrs.module.html5forms.api.impl.TagServiceImpl">
+                        <bean class="org.openmrs.module.muzimaforms.api.impl.TagServiceImpl">
                             <constructor-arg>
-                                <bean class="org.openmrs.module.html5forms.api.db.hibernate.impl.TagDAOImpl">
+                                <bean class="org.openmrs.module.muzimaforms.api.db.hibernate.impl.TagDAOImpl">
                                     <constructor-arg ref="sessionFactory"/>
                                 </bean>
                             </constructor-arg>
@@ -36,24 +58,23 @@
         </property>
     </bean>
 
-    <bean id="html5FormDAO" class="org.openmrs.module.html5forms.api.db.hibernate.impl.HTML5FormDAOImpl">
+    <bean id="muzimaFormDAO" class="org.openmrs.module.muzimaforms.api.db.hibernate.impl.MuzimaFormDAOImpl">
         <constructor-arg ref="sessionFactory"/>
     </bean>
-
 
 
     <bean parent="serviceContext">
         <property name="moduleService">
             <list>
-                <value>org.openmrs.module.html5forms.api.HTML5FormService</value>
+                <value>org.openmrs.module.muzimaforms.api.MuzimaFormService</value>
                 <bean
                         class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
                     <property name="transactionManager">
                         <ref bean="transactionManager"/>
                     </property>
                     <property name="target">
-                        <bean class="org.openmrs.module.html5forms.api.impl.HTML5FormServiceImpl">
-                            <constructor-arg name="dao" ref="html5FormDAO"/>
+                        <bean class="org.openmrs.module.muzimaforms.api.impl.MuzimaFormServiceImpl">
+                            <constructor-arg name="dao" ref="muzimaFormDAO"/>
                             <constructor-arg name="html5Transformer" ref="xform2HtmlTransformer"/>
                             <constructor-arg name="modelXml2JsonTransformer" ref="modelXml2JsonTransformer"/>
                         </bean>
@@ -68,21 +89,4 @@
             </list>
         </property>
     </bean>
-    <bean id="xform2HtmlTransformer" class="org.openmrs.module.html5forms.xForm2Html5Transform.EnketoXslTransformer">
-        <constructor-arg name="transformerFactory" ref="transformerFactory"/>
-        <constructor-arg name="transformPipeline" ref="xform2html5XSLPipeline"/>
-    </bean>
-
-    <bean id="modelXml2JsonTransformer" class="org.openmrs.module.html5forms.xForm2Html5Transform.ModelXml2JsonTransformer">
-        <constructor-arg name="transformerFactory" ref="transformerFactory"/>
-        <constructor-arg name="jsonTransformers" ref="xform2html5XSLPipeline"/>
-    </bean>
-
-    <bean id="transformerFactory" class="net.sf.saxon.TransformerFactoryImpl" />
-    <bean id="xform2html5XSLPipeline" class="org.openmrs.module.html5forms.xForm2Html5Transform.XslTransformPipeline"
-          factory-method="xform2HTML5Pipeline"/>
-
-    <bean id="modelXml2JsonXSLPipeline" class="org.openmrs.module.html5forms.xForm2Html5Transform.XslTransformPipeline"
-          factory-method="modelXml2JsonXSLPipeline"/>
-
 </beans>

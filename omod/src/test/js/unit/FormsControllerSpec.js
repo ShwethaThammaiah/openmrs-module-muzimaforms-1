@@ -1,5 +1,5 @@
-describe('Html5Forms controllers', function () {
-    beforeEach(module('html5forms'));
+describe('muzimaForms controllers', function () {
+    beforeEach(module('muzimaforms'));
     describe('FormsCtrl', function () {
         var scope, ctrl, q, timeout;
 
@@ -200,8 +200,8 @@ describe('Html5Forms controllers', function () {
 
         it('should save a non existing tag', function () {
             timeout.flush();
-            expect(scope.html5forms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
-            expect(scope.html5forms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
+            expect(scope.muzimaforms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
+            expect(scope.muzimaforms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
 
             var unsavedForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
                 {"id": 1, "name": "Registration"},
@@ -214,7 +214,7 @@ describe('Html5Forms controllers', function () {
                 {"id": 4, "name": "Encounter"}
             ]};
 
-            scope.html5forms[0].newTag = "Encounter";
+            scope.muzimaforms[0].newTag = "Encounter";
 
             var getPromise = function (response) {
                 response = response || "";
@@ -233,22 +233,22 @@ describe('Html5Forms controllers', function () {
                     {"id": 4, "name": "Encounter"}
                 ]}));
 
-            scope.saveTag(scope.html5forms[0]);
+            scope.saveTag(scope.muzimaforms[0]);
             scope.$apply();
 
             expect(FormService.save).toHaveBeenCalled();
             expect(FormService.get).toHaveBeenCalled();
 
-            expect(scope.html5forms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
-            expect(scope.html5forms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
-            expect(scope.html5forms[0].form.tags[2]).toEqual({"id": 4, "name": "Encounter"});
+            expect(scope.muzimaforms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
+            expect(scope.muzimaforms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
+            expect(scope.muzimaforms[0].form.tags[2]).toEqual({"id": 4, "name": "Encounter"});
 
         });
 
         it('should save an existing tag', function () {
             timeout.flush();
-            expect(scope.html5forms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
-            expect(scope.html5forms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
+            expect(scope.muzimaforms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
+            expect(scope.muzimaforms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
 
             var unsavedForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
                 "html": "foo",
@@ -264,7 +264,7 @@ describe('Html5Forms controllers', function () {
                 {"id": 3, "name": "PMCMT"}
             ]};
 
-            scope.html5forms[0].newTag = "PMTCT";
+            scope.muzimaforms[0].newTag = "PMTCT";
 
 
             var getPromise = function (response) {
@@ -283,37 +283,37 @@ describe('Html5Forms controllers', function () {
                     {"id": 3, "name": "PMTCT"}
                 ]}));
 
-            scope.saveTag(scope.html5forms[0]);
+            scope.saveTag(scope.muzimaforms[0]);
             scope.$apply();
             expect(FormService.save).toHaveBeenCalledWith(savedForm);
             expect(FormService.get).toHaveBeenCalled();
 
-            expect(scope.html5forms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
-            expect(scope.html5forms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
-            expect(scope.html5forms[0].form.tags[2]).toEqual({"id": 3, "name": "PMCMT"});
+            expect(scope.muzimaforms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
+            expect(scope.muzimaforms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
+            expect(scope.muzimaforms[0].form.tags[2]).toEqual({"id": 3, "name": "PMCMT"});
 
         });
 
         it('should ignore an already added tag and should ignore case', function () {
             timeout.flush();
-            expect(scope.html5forms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
-            expect(scope.html5forms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
-            scope.html5forms.newTag = "registration";
-            scope.saveTag(scope.html5forms[0]);
-            expect(scope.html5forms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
-            expect(scope.html5forms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
-            expect(scope.html5forms[0].form.tags.length).toBe(2);
+            expect(scope.muzimaforms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
+            expect(scope.muzimaforms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
+            scope.muzimaforms.newTag = "registration";
+            scope.saveTag(scope.muzimaforms[0]);
+            expect(scope.muzimaforms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
+            expect(scope.muzimaforms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
+            expect(scope.muzimaforms[0].form.tags.length).toBe(2);
         });
 
         it('should not add empty tag', function () {
             timeout.flush();
-            expect(scope.html5forms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
-            expect(scope.html5forms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
-            scope.html5forms.newTag = "";
-            scope.saveTag(scope.html5forms[0]);
-            expect(scope.html5forms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
-            expect(scope.html5forms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
-            expect(scope.html5forms[0].form.tags.length).toBe(2);
+            expect(scope.muzimaforms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
+            expect(scope.muzimaforms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
+            scope.muzimaforms.newTag = "";
+            scope.saveTag(scope.muzimaforms[0]);
+            expect(scope.muzimaforms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
+            expect(scope.muzimaforms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
+            expect(scope.muzimaforms[0].form.tags.length).toBe(2);
         });
 
         it('should remove tag', function () {
@@ -345,15 +345,15 @@ describe('Html5Forms controllers', function () {
                     {"id": 3, "name": "PMTCT"}
                 ]}));
 
-            expect(scope.html5forms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
-            expect(scope.html5forms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
-            expect(scope.html5forms[0].form.tags.length).toBe(2);
-            scope.removeTag(scope.html5forms[0].form, scope.tags[0]);
+            expect(scope.muzimaforms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
+            expect(scope.muzimaforms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
+            expect(scope.muzimaforms[0].form.tags.length).toBe(2);
+            scope.removeTag(scope.muzimaforms[0].form, scope.tags[0]);
             scope.$apply();
             expect(FormService.save).toHaveBeenCalledWith(newForm);
             expect(FormService.get).toHaveBeenCalled();
-            expect(scope.html5forms[0].form.tags[0]).toEqual({"id": 2, "name": "Patient"});
-            expect(scope.html5forms[0].form.tags.length).toBe(1);
+            expect(scope.muzimaforms[0].form.tags[0]).toEqual({"id": 2, "name": "Patient"});
+            expect(scope.muzimaforms[0].form.tags.length).toBe(1);
         });
 
         it('should add tag filter to active tag filters', function () {

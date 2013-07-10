@@ -8,13 +8,13 @@
     <xforms_xform  form_id="2" creator="1" date_created="2005-05-01 00:00:00.0"/>
     <xforms_xform  form_id="0" creator="1" date_created="2005-05-01 00:00:00.0"/>
 
-    <html5forms_form form_id="1"/>
-    <html5forms_form form_id="2"/>
-    <html5forms_form form_id="3"/>
+    <muzimaforms_form form_id="1"/>
+    <muzimaforms_form form_id="2"/>
+    <muzimaforms_form form_id="3"/>
 
-    <html5forms_form_tag_mapping form_id="1" tag_id="1"/>
-    <html5forms_form_tag_mapping form_id="1" tag_id="2"/>
-    <html5forms_form_tag_mapping form_id="2" tag_id="4"/>
-    <html5forms_form_tag_mapping form_id="2" tag_id="1"/>
-    <html5forms_form_tag_mapping form_id="2" tag_id="3"/>
+    <muzimaforms_form_tag_map form_id="1" tag_id="1"/>
+    <muzimaforms_form_tag_map form_id="1" tag_id="2"/>
+    <muzimaforms_form_tag_map form_id="2" tag_id="4"/>
+    <muzimaforms_form_tag_map form_id="2" tag_id="1"/>
+    <muzimaforms_form_tag_map form_id="2" tag_id="3"/>
 </dataset>

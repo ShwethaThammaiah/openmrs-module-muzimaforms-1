@@ -88,4 +88,29 @@
             <column name="form" type="${clob.type}"></column>
         </addColumn>
     </changeSet>
+
+    <changeSet id="muzimaform-2013-07-10-12:00" author="ThoughtWorks">
+        <comment>
+            renames tables -  prefix html5 to muzima
+        </comment>
+
+        <renameTable oldTableName="html5forms_form" newTableName="muzimaforms_form"/>
+        <renameTable oldTableName="html5forms_tag" newTableName="muzimaforms_tag"/>
+        <renameTable oldTableName="html5forms_form_tag_mapping" newTableName="muzimaforms_tag_map"/>
+
+    </changeSet>
+
+    <changeSet id="muzimaform-2013-07-10-16:30" author="ThoughtWorks">
+        <comment>
+            renaming old columns and adding new column to html5forms
+        </comment>
+
+        <renameColumn tableName="muzimaforms_tag" oldColumnName="html5forms_tag_id" newColumnName="muzimaforms_tag_id" columnDataType="int"/>
+        <renameColumn tableName="muzimaforms_form" oldColumnName="model" newColumnName="model_xml" columnDataType="${clob.type}"/>
+        <renameColumn tableName="muzimaforms_form" oldColumnName="form" newColumnName="form_html" columnDataType="${clob.type}"/>
+        <addColumn tableName="muzimaforms_form">
+            <column name="model_json" type="${clob.type}"></column>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

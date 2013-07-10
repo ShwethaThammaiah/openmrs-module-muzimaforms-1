@@ -12,7 +12,7 @@
 			${project.parent.description}
 	</description>
 
-	<activator>${project.parent.groupId}.${project.parent.artifactId}.Html5FormsModuleActivator</activator>
+	<activator>${project.parent.groupId}.${project.parent.artifactId}.MuzimaFormsModuleActivator</activator>
 	
 	<!-- <updateURL>https://modules.openmrs.org/modules/download/@MODULE_ID@/update.rdf</updateURL> -->
 	<!-- /Base Module Properties -->
@@ -22,7 +22,7 @@
 	<!-- Extensions -->
 	<extension>
 		<point>org.openmrs.admin.list</point>
-		<class>org.openmrs.module.html5forms.extension.html.AdminList</class>
+		<class>org.openmrs.module.muzimaforms.extension.html.AdminList</class>
 	</extension>
 
 	<!-- AOP
@@ -58,9 +58,9 @@
          </require_module>
      </require_modules>
     <mappingFiles>
-        HTML5Form.hbm.xml
-        HTML5XForm.hbm.xml
-        HTML5FormTag.hbm.xml
+        MuzimaForm.hbm.xml
+        MuzimaXForm.hbm.xml
+        MuzimaFormTag.hbm.xml
     </mappingFiles>
 	<!--
 	<dwr>

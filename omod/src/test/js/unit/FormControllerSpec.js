@@ -1,5 +1,5 @@
-describe('HTML5 form controllers', function() {
-  beforeEach(module('html5forms'));
+describe('Muzima form controllers', function() {
+  beforeEach(module('muzimaforms'));
   describe('FormCtrl', function() {
     var scope, ctrl, q, timeout;
     var FormService = jasmine.createSpyObj('FormService', ['get']);

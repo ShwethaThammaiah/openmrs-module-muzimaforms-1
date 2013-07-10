@@ -13,7 +13,7 @@
     <!-- Annotation based controllers -->
     <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
 
-    <context:component-scan base-package="org.openmrs.module.html5forms.web.controller"/>
+    <context:component-scan base-package="org.openmrs.module.muzimaforms.web.controller"/>
 
 
 </beans>

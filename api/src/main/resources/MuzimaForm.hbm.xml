@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="org.openmrs.module.muzimaforms">
+    <class name="MuzimaForm" table="muzimaforms_form">
+        <id name="id" type="java.lang.Integer" column="form_id"/>
+        <one-to-one cascade="none" name="form" class="org.openmrs.Form" foreign-key="form_id"/>
+        <one-to-one cascade="none" name="xform" class="org.openmrs.module.xforms.Xform" foreign-key="form_id"/>
+        <set name="tags" table="muzimaforms_tag_map" cascade="all-delete-orphan">
+            <key column="form_id" not-null="true"/>
+            <many-to-many column="tag_id" class="MuzimaFormTag"/>
+        </set>
+        <property name="model" column="model_xml" />
+        <property name="html" column="form_html"/>
+        <property name="modelJson" column="model_json"/>
+    </class>
+</hibernate-mapping>

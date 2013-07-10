@@ -3,19 +3,19 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.openmrs.module</groupId>
-		<artifactId>html5forms</artifactId>
+		<artifactId>muzimaforms</artifactId>
 		<version>0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>html5forms-omod</artifactId>
+	<artifactId>muzimaforms-omod</artifactId>
 	<packaging>jar</packaging>
-	<name>HTML5Forms OMOD</name>
-	<description>OpenMRS module project for html5Forms</description>
+	<name>MuzimaForms OMOD</name>
+	<description>OpenMRS module project for muzimaForms</description>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
-			<artifactId>html5forms-api</artifactId>
+			<artifactId>muzimaforms-api</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 		

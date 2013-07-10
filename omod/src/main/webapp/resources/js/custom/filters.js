@@ -2,19 +2,19 @@
 
 /* Filters */
 
-angular.module('html5filters', []).filter('tagFilter', function() {
-    return function(html5forms, tagList) {
+angular.module('muzimafilters', []).filter('tagFilter', function() {
+    return function(muzimaforms, tagList) {
         if(tagList.length == 0){
-            return html5forms;
+            return muzimaforms;
         }
         var result = [];
-        angular.forEach(html5forms, function(html5form){
-            angular.forEach(html5form.form.tags, function(tag){
+        angular.forEach(muzimaforms, function(muzimaform){
+            angular.forEach(muzimaform.form.tags, function(tag){
                 angular.forEach(tagList, function(activeTag){
                     if(tag.name === activeTag.name){
-                        var index = result.indexOf(html5form);
+                        var index = result.indexOf(muzimaform);
                         if(index < 0){
-                            result.push(html5form);
+                            result.push(muzimaform);
                         }
                     }
                 });

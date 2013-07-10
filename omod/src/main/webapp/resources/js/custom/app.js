@@ -1,19 +1,19 @@
-var html5formsModule = angular.module('html5forms', ['ui.bootstrap','html5filters']);
+var muzimaformsModule = angular.module('muzimaforms', ['ui.bootstrap','muzimafilters']);
 
-html5formsModule.
+muzimaformsModule.
     config(['$routeProvider', function ($routeProvider) {
         $routeProvider.
-            when('/forms', {templateUrl: '../../moduleResources/html5forms/partials/forms.html'}).
-            when('/form', {templateUrl: '../../moduleResources/html5forms/partials/form.html'}).
+            when('/forms', {templateUrl: '../../moduleResources/muzimaforms/partials/forms.html'}).
+            when('/form', {templateUrl: '../../moduleResources/muzimaforms/partials/form.html'}).
             otherwise({redirectTo: '/forms'});
     }]);
 
-html5formsModule.factory('_', function () {
+muzimaformsModule.factory('_', function () {
     return window._;
 });
 
 
-html5formsModule.factory('FormService', function ($http) {
+muzimaformsModule.factory('FormService', function ($http) {
 
     var selectedFormId;
 
@@ -40,7 +40,7 @@ html5formsModule.factory('FormService', function ($http) {
     }
 });
 
-html5formsModule.factory('FormsService', function ($http) {
+muzimaformsModule.factory('FormsService', function ($http) {
     var all = function () {
         return $http.get('forms.form');
     };
@@ -49,7 +49,7 @@ html5formsModule.factory('FormsService', function ($http) {
     };
 });
 
-html5formsModule.factory('XFormService', function ($http) {
+muzimaformsModule.factory('XFormService', function ($http) {
     var all = function () {
         return $http.get('xforms.form');
     };
@@ -59,7 +59,7 @@ html5formsModule.factory('XFormService', function ($http) {
 });
 
 
-html5formsModule.factory('TagService', function ($http) {
+muzimaformsModule.factory('TagService', function ($http) {
     var all = function () {
         return $http.get('tags.form');
     };

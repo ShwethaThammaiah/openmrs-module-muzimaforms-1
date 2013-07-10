@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.openmrs.module</groupId>
-    <artifactId>html5forms</artifactId>
+    <artifactId>muzimaforms</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>HTML5 Forms Module</name>
-    <description>A browser based html5 forms module which support conversion of xforms to html5 forms and also support
+    <name>Muzima Forms Module</name>
+    <description>A browser based muzima forms module which support conversion of xforms to html forms and also support
         tagging of forms.
     </description>
 

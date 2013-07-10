@@ -1,6 +1,6 @@
 describe('Html5Forms services', function () {
 
-    beforeEach(module('html5forms'));
+    beforeEach(module('muzimaforms'));
 
     describe('FormsService', function () {
         var httpBackend, service;

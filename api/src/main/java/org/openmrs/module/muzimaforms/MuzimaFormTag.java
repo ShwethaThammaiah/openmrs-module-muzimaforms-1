@@ -2,9 +2,10 @@ package org.openmrs.module.muzimaforms;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.openmrs.BaseOpenmrsData;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MuzimaFormTag {
+public class MuzimaFormTag extends BaseMuzimaData {
     private Integer id;
     private String name;
     private MuzimaForm form;

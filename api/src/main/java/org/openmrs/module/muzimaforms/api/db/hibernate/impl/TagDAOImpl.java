@@ -18,7 +18,7 @@ public class TagDAOImpl implements TagDAO {
         return (List<MuzimaFormTag>) session().createCriteria(MuzimaFormTag.class).list();
     }
 
-    public void add(MuzimaFormTag tag) {
+    public void save(MuzimaFormTag tag) {
         session().save(tag);
     }
 

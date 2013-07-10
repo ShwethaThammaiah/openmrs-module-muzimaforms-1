@@ -18,6 +18,7 @@ public class TagController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<MuzimaFormTag> tags() {
+
         TagService service = Context.getService(TagService.class);
         return service.getAll();
     }

@@ -39,7 +39,8 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addPrimaryKey columnNames="form_id,tag_id" constraintName="html5forms_form_tag_mapping_form_id_pk" tableName="html5forms_form_tag_mapping"/>
+        <addPrimaryKey columnNames="form_id,tag_id" constraintName="html5forms_form_tag_mapping_form_id_pk"
+                       tableName="html5forms_form_tag_mapping"/>
     </changeSet>
 
     <changeSet id="html5form-2013-06-13-07:15" author="ThoughtWorks">
@@ -50,7 +51,7 @@
             <column name="form_id" type="int">
                 <constraints nullable="true"/>
             </column>
-         </createTable>
+        </createTable>
         <addPrimaryKey columnNames="form_id" constraintName="html5forms_form_id_pk" tableName="html5forms_form"/>
     </changeSet>
 
@@ -66,14 +67,14 @@
         </addColumn>
     </changeSet>
 
-   <changeSet id="html5form-2013-07-1-18:15" author="ThoughtWorks">
+    <changeSet id="html5form-2013-07-1-18:15" author="ThoughtWorks">
         <comment>
             removing columns
         </comment>
-       <dropColumn columnName="form"
-                       tableName="html5forms_form"/>
-       <dropColumn columnName="model"
-                       tableName="html5forms_form"/>
+        <dropColumn columnName="form"
+                    tableName="html5forms_form"/>
+        <dropColumn columnName="model"
+                    tableName="html5forms_form"/>
     </changeSet>
 
 
@@ -91,7 +92,7 @@
 
     <changeSet id="muzimaform-2013-07-10-12:00" author="ThoughtWorks">
         <comment>
-            renames tables -  prefix html5 to muzima
+            renames tables - prefix html5 to muzima
         </comment>
 
         <renameTable oldTableName="html5forms_form" newTableName="muzimaforms_form"/>
@@ -105,9 +106,12 @@
             renaming old columns and adding new column to html5forms
         </comment>
 
-        <renameColumn tableName="muzimaforms_tag" oldColumnName="html5forms_tag_id" newColumnName="muzimaforms_tag_id" columnDataType="int"/>
-        <renameColumn tableName="muzimaforms_form" oldColumnName="model" newColumnName="model_xml" columnDataType="${clob.type}"/>
-        <renameColumn tableName="muzimaforms_form" oldColumnName="form" newColumnName="form_html" columnDataType="${clob.type}"/>
+        <renameColumn tableName="muzimaforms_tag" oldColumnName="html5forms_tag_id" newColumnName="muzimaforms_tag_id"
+                      columnDataType="int"/>
+        <renameColumn tableName="muzimaforms_form" oldColumnName="model" newColumnName="model_xml"
+                      columnDataType="${clob.type}"/>
+        <renameColumn tableName="muzimaforms_form" oldColumnName="form" newColumnName="form_html"
+                      columnDataType="${clob.type}"/>
         <addColumn tableName="muzimaforms_form">
             <column name="model_json" type="${clob.type}"></column>
         </addColumn>
@@ -138,6 +142,45 @@
             adding unique constraint
         </comment>
         <addUniqueConstraint tableName="muzimaforms_tag" columnNames="name"/>
+    </changeSet>
+
+
+    <changeSet id="muzimaform-2013-07-10-20:00" author="ThoughtWorks">
+        <comment>
+            adding audit columns
+        </comment>
+        <addColumn tableName="muzimaforms_form">
+            <column name="creator" valueNumeric="1" type="int"/>
+            <column name="date_created" valueDate="2007-05-04" type="date"/>
+            <column name="changed_by" type="int"/>
+            <column name="date_changed" type="date"/>
+            <column name="retired" valueBoolean="false" type="boolean"/>
+            <column name="retired_by" type="int"/>
+            <column name="date_retired" type="date"/>
+            <column name="retire_reason" type="text"/>
+        </addColumn>
+
+        <addColumn tableName="muzimaforms_tag">
+            <column name="creator" valueNumeric="1" type="int"/>
+            <column name="date_created" valueDate="2007-05-04" type="date"/>
+            <column name="changed_by" type="int"/>
+            <column name="date_changed" type="date"/>
+            <column name="retired" valueBoolean="false" type="boolean"/>
+            <column name="retired_by" type="int"/>
+            <column name="date_retired" type="date"/>
+            <column name="retire_reason" type="text"/>
+        </addColumn>
+
+        <addColumn tableName="muzimaforms_tag_map">
+            <column name="creator" valueNumeric="1" type="int"/>
+            <column name="date_created" valueDate="2007-05-04" type="date"/>
+            <column name="changed_by" type="int"/>
+            <column name="date_changed" type="date"/>
+            <column name="retired" valueBoolean="false" type="boolean"/>
+            <column name="retired_by" type="int"/>
+            <column name="date_retired" type="date"/>
+            <column name="retire_reason" type="text"/>
+        </addColumn>
     </changeSet>
 
 </databaseChangeLog>

@@ -1,5 +1,7 @@
 package org.openmrs.module.muzimaforms.api.impl;
 
+import org.openmrs.aop.RequiredDataAdvice;
+import org.openmrs.api.handler.SaveHandler;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.muzimaforms.MuzimaFormTag;
 import org.openmrs.module.muzimaforms.api.TagService;
@@ -20,7 +22,7 @@ public class TagServiceImpl extends BaseOpenmrsService implements TagService {
 
     public MuzimaFormTag add(String name) {
         MuzimaFormTag tag = new MuzimaFormTag(name);
-        dao.add(tag);
+        dao.save(tag);
         return tag;
     }
 }

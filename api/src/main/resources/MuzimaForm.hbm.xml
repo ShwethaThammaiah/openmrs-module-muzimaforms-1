@@ -14,5 +14,22 @@
         <property name="model" column="model_xml" />
         <property name="html" column="form_html"/>
         <property name="modelJson" column="model_json"/>
+
+
+        <property name="dateCreated" type="java.util.Date"
+                  column="date_created" length="19" />
+        <property name="voided" type="java.lang.Boolean" column="retired"
+                  length="1"/>
+        <property name="dateVoided" type="java.util.Date"
+                  column="date_retired" length="19" />
+        <property name="voidReason" type="java.lang.String"
+                  column="retire_reason" length="255" />
+        <property name="dateChanged" type="java.util.Date"
+                  column="date_changed" length="19" />
+
+        <many-to-one name="creator" class="org.openmrs.User"/>
+        <many-to-one name="voidedBy" class="org.openmrs.User" column="retired_by" />
+        <many-to-one name="changedBy" class="org.openmrs.User" column="changed_by" />
+
     </class>
 </hibernate-mapping>

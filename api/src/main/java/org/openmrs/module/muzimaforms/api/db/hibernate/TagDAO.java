@@ -7,5 +7,5 @@ import java.util.List;
 public interface TagDAO {
     List<MuzimaFormTag> getAll();
 
-    void add(MuzimaFormTag tag);
+    void save(MuzimaFormTag tag);
 }

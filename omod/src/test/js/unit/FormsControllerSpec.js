@@ -10,7 +10,7 @@ describe('muzimaForms controllers', function () {
                     deferred.resolve({
                         data: [
                             {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
-                                "html":"foo",
+                                "html": "foo",
                                 "selected": false, "tags": [
                                 {"id": 1, "name": "Registration"},
                                 {"id": 2, "name": "Patient"}
@@ -32,8 +32,10 @@ describe('muzimaForms controllers', function () {
             get: function (id) {
                 return null;
             },
-            selectForm: function(id){},
-            getSelectedForm: function(){}
+            selectForm: function (id) {
+            },
+            getSelectedForm: function () {
+            }
         };
 
 
@@ -139,7 +141,7 @@ describe('muzimaForms controllers', function () {
             expect(FormService.save).toHaveBeenCalledWith({'id': '5'});
             expect(FormsService.all).toHaveBeenCalled();
             expect(scope.importMode).toBe(false);
-            
+
         });
 
         it('cancel should toggle importMode', function () {
@@ -160,7 +162,7 @@ describe('muzimaForms controllers', function () {
             expect(scope.activeForm(1)).toBe('active-form');
         });
 
-        it('should save selected form to form service', function(){
+        it('should save selected form to form service', function () {
             spyOn(FormService, "selectForm");
             spyOn(FormService, "getSelectedForm");
             scope.selectForm(234);
@@ -208,11 +210,11 @@ describe('muzimaForms controllers', function () {
                 {"id": 2, "name": "Patient"},
                 {"name": "Encounter"}
             ]};
-            var savedForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
+            var savedForm = {data: {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
                 {"id": 1, "name": "Registration"},
                 {"id": 2, "name": "Patient"},
                 {"id": 4, "name": "Encounter"}
-            ]};
+            ]}};
 
             scope.muzimaforms[0].newTag = "Encounter";
 
@@ -253,16 +255,16 @@ describe('muzimaForms controllers', function () {
             var unsavedForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
                 "html": "foo",
                 "selected": false, "tags": [
-                {"id": 1, "name": "Registration"},
-                {"id": 2, "name": "Patient"}
-            ]};
-            var savedForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
+                    {"id": 1, "name": "Registration"},
+                    {"id": 2, "name": "Patient"}
+                ]};
+            var savedForm = { data: {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
                 "html": "foo",
                 "selected": false, "tags": [
-                {"id": 1, "name": "Registration"},
-                {"id": 2, "name": "Patient"},
-                {"id": 3, "name": "PMCMT"}
-            ]};
+                    {"id": 1, "name": "Registration"},
+                    {"id": 2, "name": "Patient"},
+                    {"id": 3, "name": "PMCMT"}
+                ]}};
 
             scope.muzimaforms[0].newTag = "PMTCT";
 
@@ -285,7 +287,7 @@ describe('muzimaForms controllers', function () {
 
             scope.saveTag(scope.muzimaforms[0]);
             scope.$apply();
-            expect(FormService.save).toHaveBeenCalledWith(savedForm);
+            expect(FormService.save).toHaveBeenCalledWith(savedForm.data);
             expect(FormService.get).toHaveBeenCalled();
 
             expect(scope.muzimaforms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
@@ -320,14 +322,14 @@ describe('muzimaForms controllers', function () {
             timeout.flush();
             var oldForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
                 "selected": false, "tags": [
-                {"id": 1, "name": "Registration"},
-                {"id": 2, "name": "Patient"}
-            ]};
+                    {"id": 1, "name": "Registration"},
+                    {"id": 2, "name": "Patient"}
+                ]};
             var newForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
                 "html": "foo",
                 "selected": false, "tags": [
-                {"id": 2, "name": "Patient"}
-            ]};
+                    {"id": 2, "name": "Patient"}
+                ]};
 
             var getPromise = function (response) {
                 response = response || "";

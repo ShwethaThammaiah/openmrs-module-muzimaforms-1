@@ -26,7 +26,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 import static org.openmrs.module.muzimaforms.FormBuilder.form;
-import static org.openmrs.module.muzimaforms.MuzimaFormBuilder.html5Form;
+import static org.openmrs.module.muzimaforms.MuzimaFormBuilder.muzimaform;
 import static org.openmrs.module.muzimaforms.MuzimaFormTagBuilder.tag;
 import static org.openmrs.module.muzimaforms.XFormBuilder.xForm;
 
@@ -46,15 +46,15 @@ public class MuzimaFormServiceTest extends BaseModuleContextSensitiveTest {
     }
 
     void setUpDao() {
-        List<MuzimaForm> html5Forms = new ArrayList<MuzimaForm>();
-        html5Forms.add(
-                html5Form().withId(1)
+        List<MuzimaForm> muzimaForms = new ArrayList<MuzimaForm>();
+        muzimaForms.add(
+                muzimaform().withId(1)
                         .with(tag().withId(1).withName("Registration"))
                         .with(tag().withId(2).withName("Patient"))
                         .with(xForm().withId(1))
                         .with(form().withId(1).withName("Registration Form").withDescription("Form for registration"))
                         .instance());
-        html5Forms.add(html5Form().withId(2)
+        muzimaForms.add(muzimaform().withId(2)
                 .with(tag().withId(1).withName("Registration"))
                 .with(tag().withId(3).withName("Encounter"))
                 .with(tag().withId(4).withName("HIV"))
@@ -62,11 +62,11 @@ public class MuzimaFormServiceTest extends BaseModuleContextSensitiveTest {
                 .with(form().withId(2).withName("PMTCT Form").withDescription("Form for PMTCT"))
                 .instance());
 
-        html5Forms.add(html5Form().withId(3)
+        muzimaForms.add(muzimaform().withId(3)
                 .with(form().withId(3).withName("Ante-Natal Form").withDescription("Form for ante-natal care"))
                 .instance());
 
-        when(dao.getAll()).thenReturn(html5Forms);
+        when(dao.getAll()).thenReturn(muzimaForms);
     }
 
     @Test
@@ -89,7 +89,9 @@ public class MuzimaFormServiceTest extends BaseModuleContextSensitiveTest {
         String htmlForm = "<foo><form><ul><li/><li/></ul></form><model/></foo>";
         String modelJson = "{form : [{name:'', bind: ''}]}";
         XFormBuilder xFormBuilder = xForm().withId(1).withXFormXml(xFormXml);
-        MuzimaForm form = html5Form().withId(1).with(tag().withId(1).withName("Registration")).with(xFormBuilder).instance();
+        MuzimaForm form = muzimaform().withId(1).with(tag().withId(1).withName("Registration")).with(xFormBuilder)
+                .with(tag().withId(1).withName("foo"))
+                .instance();
         when(dao.findById(1)).thenReturn(form);
         when(dao.getXform(1)).thenReturn(form.getXform());
         when(transformer.transform(xFormXml)).thenReturn(new EnketoResult(htmlForm));
@@ -107,7 +109,7 @@ public class MuzimaFormServiceTest extends BaseModuleContextSensitiveTest {
         String modelJson = "{form : [{name:'', bind: ''}]}";
 
         XFormBuilder xFormBuilder = xForm().withId(1).withXFormXml(xFormXml);
-        MuzimaForm form = html5Form().withId(1).with(tag().withName("New Tag")).with(tag().withName("Another Tag")).with(xFormBuilder)
+        MuzimaForm form = muzimaform().withId(1).with(tag().withName("New Tag")).with(tag().withName("Another Tag")).with(xFormBuilder)
                 .instance();
         when(transformer.transform(xFormXml)).thenReturn(new EnketoResult(htmlForm));
         when(modelTransformer.transform(htmlForm)).thenReturn(new CompositeEnketoResult(htmlForm, modelJson));

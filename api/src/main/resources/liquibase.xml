@@ -113,4 +113,31 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="muzimaform-2013-07-10-18:00" author="ThoughtWorks">
+        <comment>
+            renaming columns removed autoincrement - fixing that
+        </comment>
+        <dropColumn tableName="muzimaforms_tag" columnName="muzimaforms_tag_id"/>
+    </changeSet>
+
+    <changeSet id="muzimaform-2013-07-10-18:30" author="ThoughtWorks">
+        <comment>
+            renaming columns removed autoincrement - fixing that
+        </comment>
+        <addColumn tableName="muzimaforms_tag">
+            <column name="muzimaforms_tag_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </addColumn>
+
+    </changeSet>
+
+
+    <changeSet id="muzimaform-2013-07-10-19:00" author="ThoughtWorks">
+        <comment>
+            adding unique constraint
+        </comment>
+        <addUniqueConstraint tableName="muzimaforms_tag" columnNames="name"/>
+    </changeSet>
+
 </databaseChangeLog>

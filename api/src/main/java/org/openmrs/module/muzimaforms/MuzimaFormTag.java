@@ -63,7 +63,7 @@ public class MuzimaFormTag {
 
     @Override
     public String toString() {
-        return "HTML5FormTag{" +
+        return "MuzimaFormTag{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

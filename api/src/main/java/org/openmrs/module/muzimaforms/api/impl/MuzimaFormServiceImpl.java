@@ -50,6 +50,8 @@ public class MuzimaFormServiceImpl extends BaseOpenmrsService implements MuzimaF
             log.info(result.getResult());
             form.setHtml(result.getForm());
             form.setModel(result.getModel());
+            form.setModelJson(result.getModelAsJson());
+            System.out.println(form.getTags());
             dao.saveForm(form);
         } catch (Exception e) {
             System.out.println(e);

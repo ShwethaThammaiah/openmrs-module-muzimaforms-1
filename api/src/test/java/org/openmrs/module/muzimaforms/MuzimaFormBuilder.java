@@ -25,7 +25,7 @@ public class MuzimaFormBuilder extends Builder<MuzimaForm> {
         return muzimaForm;
     }
 
-    public static MuzimaFormBuilder html5Form() {
+    public static MuzimaFormBuilder muzimaform() {
         return new MuzimaFormBuilder();
     }
 

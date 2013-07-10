@@ -94,13 +94,13 @@ public class MuzimaForm {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        MuzimaForm html5Form = (MuzimaForm) o;
+        MuzimaForm muzimaForm = (MuzimaForm) o;
 
-        if (getDescription() != null ? !getDescription().equals(html5Form.getDescription()) : html5Form.getDescription() != null)
+        if (getDescription() != null ? !getDescription().equals(muzimaForm.getDescription()) : muzimaForm.getDescription() != null)
             return false;
-        if (id != null ? !id.equals(html5Form.id) : html5Form.id != null) return false;
-        if (getName() != null ? !getName().equals(html5Form.getName()) : html5Form.getName() != null) return false;
-        if (tags != null ? !tags.equals(html5Form.tags) : html5Form.tags != null) return false;
+        if (id != null ? !id.equals(muzimaForm.id) : muzimaForm.id != null) return false;
+        if (getName() != null ? !getName().equals(muzimaForm.getName()) : muzimaForm.getName() != null) return false;
+        if (tags != null ? !tags.equals(muzimaForm.tags) : muzimaForm.tags != null) return false;
 
         return true;
     }
@@ -116,7 +116,7 @@ public class MuzimaForm {
 
     @Override
     public String toString() {
-        return "HTML5Form{" +
+        return "MuzimaForm{" +
                 "id=" + id +
                 ", name='" + getName() + '\'' +
                 ", description='" + getDescription() + '\'' +

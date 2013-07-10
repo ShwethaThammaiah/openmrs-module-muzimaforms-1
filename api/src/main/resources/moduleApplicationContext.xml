@@ -25,7 +25,7 @@
     <bean id="modelXml2JsonTransformer"
           class="org.openmrs.module.muzimaforms.xForm2MuzimaTransform.ModelXml2JsonTransformer">
         <constructor-arg name="transformerFactory" ref="transformerFactory"/>
-        <constructor-arg name="jsonTransformers" ref="xform2html5XSLPipeline"/>
+        <constructor-arg name="jsonTransformers" ref="modelXml2JsonXSLPipeline"/>
     </bean>
 
 

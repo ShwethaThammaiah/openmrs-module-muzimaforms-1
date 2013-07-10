@@ -133,6 +133,7 @@ function FormsCtrl($scope, FormService, FormsService, XFormService, TagService, 
         var form = muzimaform.form;
         var newTag = muzimaform.newTag;
         var tagToBeAdded = caseInsensitiveFind($scope.tags, newTag) || {"name": newTag};
+
         muzimaform.newTag = "";
         if (caseInsensitiveFind(form.tags, tagToBeAdded.name)) return;
         form.tags.push(tagToBeAdded);
@@ -141,7 +142,7 @@ function FormsCtrl($scope, FormService, FormsService, XFormService, TagService, 
                 return FormService.get(form.id);
             })
             .then(function (savedForm) {
-                angular.extend(form, savedForm);
+                angular.extend(form, savedForm.data);
                 if (!tagToBeAdded.id)
                     getTags().then(setTags);
             });

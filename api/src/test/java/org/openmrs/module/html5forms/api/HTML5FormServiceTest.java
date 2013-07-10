@@ -7,8 +7,10 @@ import org.openmrs.module.html5forms.HTML5Form;
 import org.openmrs.module.html5forms.HTML5XForm;
 import org.openmrs.module.html5forms.XFormBuilder;
 import org.openmrs.module.html5forms.api.db.hibernate.HTML5FormDAO;
+import org.openmrs.module.html5forms.api.impl.CompositeEnketoResult;
 import org.openmrs.module.html5forms.api.impl.EnketoResult;
 import org.openmrs.module.html5forms.api.impl.HTML5FormServiceImpl;
+import org.openmrs.module.html5forms.xForm2Html5Transform.ModelXml2JsonTransformer;
 import org.openmrs.module.html5forms.xForm2Html5Transform.XForm2Html5Transformer;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 import org.xml.sax.SAXException;
@@ -33,12 +35,14 @@ public class HTML5FormServiceTest extends BaseModuleContextSensitiveTest {
     private HTML5FormService service;
     HTML5FormDAO dao;
     XForm2Html5Transformer transformer;
+    ModelXml2JsonTransformer modelTransformer;
 
     @Before
     public void setUp() throws Exception {
         dao = mock(HTML5FormDAO.class);
         transformer = mock(XForm2Html5Transformer.class);
-        service = new HTML5FormServiceImpl(dao, transformer);
+        modelTransformer = mock(ModelXml2JsonTransformer.class);
+        service = new HTML5FormServiceImpl(dao, transformer,modelTransformer);
     }
 
     void setUpDao() {
@@ -83,11 +87,13 @@ public class HTML5FormServiceTest extends BaseModuleContextSensitiveTest {
     public void saveForm_shouldSave() throws IOException, TransformerException, XPathExpressionException, ParserConfigurationException, SAXException, DocumentException {
         String xFormXml = "<xml><some/><valid/></xml>";
         String htmlForm = "<foo><form><ul><li/><li/></ul></form><model/></foo>";
+        String modelJson = "{form : [{name:'', bind: ''}]}";
         XFormBuilder xFormBuilder = xForm().withId(1).withXFormXml(xFormXml);
         HTML5Form form = html5Form().withId(1).with(tag().withId(1).withName("Registration")).with(xFormBuilder).instance();
         when(dao.findById(1)).thenReturn(form);
         when(dao.getXform(1)).thenReturn(form.getXform());
         when(transformer.transform(xFormXml)).thenReturn(new EnketoResult(htmlForm));
+        when(modelTransformer.transform(htmlForm)).thenReturn(new CompositeEnketoResult(htmlForm, modelJson));
         service.saveForm(form);
         verify(dao, times(1)).saveForm(any(HTML5Form.class));
         verify(dao, times(1)).getXform(1);
@@ -98,16 +104,19 @@ public class HTML5FormServiceTest extends BaseModuleContextSensitiveTest {
 
         String htmlForm = "<foo><form><ul><li/><li/></ul></form><model/></foo>";
         String xFormXml = "<foo><some/><valid/></foo>";
+        String modelJson = "{form : [{name:'', bind: ''}]}";
 
         XFormBuilder xFormBuilder = xForm().withId(1).withXFormXml(xFormXml);
         HTML5Form form = html5Form().withId(1).with(tag().withName("New Tag")).with(tag().withName("Another Tag")).with(xFormBuilder)
                 .instance();
         when(transformer.transform(xFormXml)).thenReturn(new EnketoResult(htmlForm));
+        when(modelTransformer.transform(htmlForm)).thenReturn(new CompositeEnketoResult(htmlForm, modelJson));
         when(dao.getXform(1)).thenReturn(form.getXform());
         when(dao.findById(1)).thenReturn(form);
         service.saveForm(form);
         verify(dao, times(1)).saveForm(any(HTML5Form.class));
         verify(transformer, times(1)).transform(xFormXml);
+        verify(modelTransformer, times(1)).transform(htmlForm);
         verify(dao, times(1)).getXform(1);
 
 

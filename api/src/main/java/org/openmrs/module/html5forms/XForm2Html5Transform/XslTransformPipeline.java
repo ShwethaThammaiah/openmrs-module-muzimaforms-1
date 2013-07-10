@@ -44,8 +44,15 @@ public class XslTransformPipeline {
 
     public static XslTransformPipeline xform2HTML5Pipeline() throws IOException {
         XslTransformPipeline pipeline = new XslTransformPipeline();
-        pipeline.push(getXslFile("/xform2jr.xsl"))
+        pipeline.push(getXslFile("xform2jr.xsl"))
                 .push(getXslFile("jr2html5_php5.xsl"));
+        return pipeline;
+    }
+
+    public static XslTransformPipeline modelXml2JsonXSLPipeline() throws IOException {
+        XslTransformPipeline pipeline = new XslTransformPipeline();
+        pipeline.push(getXslFile("enketoResult2model.xsl"))
+                .push(getXslFile("xml2json.xsl"));
         return pipeline;
     }
 

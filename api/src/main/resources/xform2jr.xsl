@@ -1,6 +1,10 @@
-<xsl:stylesheet version='1.0' xmlns="http://www.w3.org/2002/xforms" xmlns:xsl='http://www.w3.org/1999/XSL/Transform' xmlns:xf="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsl:stylesheet version='1.0' xmlns="http://www.w3.org/2002/xforms"
+                xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
+                xmlns:xf="http://www.w3.org/2002/xforms"
+                xmlns:h="http://www.w3.org/1999/xhtml"
+        >
     <xsl:output method="xml" version="1.0" encoding="utf-8" indent="yes"/>
-    <xsl:template match="/" >
+    <xsl:template match="/">
         <xsl:apply-templates select="@*|node()"/>
     </xsl:template>
 
@@ -11,7 +15,9 @@
     </xsl:template>
 
     <xsl:template match="/xf:xforms">
-        <h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <h:html xmlns="http://www.w3.org/2002/xforms"
+                xmlns:h="http://www.w3.org/1999/xhtml"
+                >
             <xsl:apply-templates select="@*|node()"/>
         </h:html>
     </xsl:template>
@@ -22,6 +28,12 @@
                 <xsl:apply-templates select="@*|node()"/>
             </model>
         </h:head>
+    </xsl:template>
+
+    <xsl:template match="xf:instance">
+        <xsl:element name="{local-name()}">
+            <xsl:apply-templates select="@*|node()"/>
+        </xsl:element>
     </xsl:template>
 
     <xsl:template match="xf:xforms/xf:group">

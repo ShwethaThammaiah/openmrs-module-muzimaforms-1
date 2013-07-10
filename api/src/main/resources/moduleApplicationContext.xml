@@ -55,6 +55,7 @@
                         <bean class="org.openmrs.module.html5forms.api.impl.HTML5FormServiceImpl">
                             <constructor-arg name="dao" ref="html5FormDAO"/>
                             <constructor-arg name="html5Transformer" ref="xform2HtmlTransformer"/>
+                            <constructor-arg name="modelXml2JsonTransformer" ref="modelXml2JsonTransformer"/>
                         </bean>
                     </property>
                     <property name="preInterceptors">
@@ -71,8 +72,17 @@
         <constructor-arg name="transformerFactory" ref="transformerFactory"/>
         <constructor-arg name="transformPipeline" ref="xform2html5XSLPipeline"/>
     </bean>
+
+    <bean id="modelXml2JsonTransformer" class="org.openmrs.module.html5forms.xForm2Html5Transform.ModelXml2JsonTransformer">
+        <constructor-arg name="transformerFactory" ref="transformerFactory"/>
+        <constructor-arg name="jsonTransformers" ref="xform2html5XSLPipeline"/>
+    </bean>
+
     <bean id="transformerFactory" class="net.sf.saxon.TransformerFactoryImpl" />
     <bean id="xform2html5XSLPipeline" class="org.openmrs.module.html5forms.xForm2Html5Transform.XslTransformPipeline"
           factory-method="xform2HTML5Pipeline"/>
+
+    <bean id="modelXml2JsonXSLPipeline" class="org.openmrs.module.html5forms.xForm2Html5Transform.XslTransformPipeline"
+          factory-method="modelXml2JsonXSLPipeline"/>
 
 </beans>

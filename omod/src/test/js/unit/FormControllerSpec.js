@@ -2,7 +2,7 @@ describe('HTML5 form controllers', function() {
   beforeEach(module('html5forms'));
   describe('FormCtrl', function() {
     var scope, ctrl, q, timeout;
-    var FormService = jasmine.createSpyObj('FormService', ['getSelectedForm', 'get']);
+    var FormService = jasmine.createSpyObj('FormService', ['get']);
 
     beforeEach(inject(function($rootScope, $controller, $q, $timeout) {
       q = $q;
@@ -11,6 +11,9 @@ describe('HTML5 form controllers', function() {
       ctrl = $controller(FormCtrl, {
         $scope: scope,
         FormService: FormService,
+        $routeParams: {
+          formId: 34
+        }
       });
     }));
 
@@ -24,7 +27,6 @@ describe('HTML5 form controllers', function() {
 
 
     it('should initialise', function() {
-      FormService.getSelectedForm.andReturn(34);
       FormService.get.andReturn(getPromise({
         data: {
           "id": 34,
@@ -35,9 +37,9 @@ describe('HTML5 form controllers', function() {
         }
       }));
       scope.init();
-      expect(FormService.getSelectedForm).toHaveBeenCalled();
       expect(FormService.get).toHaveBeenCalled();
       expect(scope.selectedFormId).toBe(34);
+      expect(scope.form).toBe('');
     });
 
     it('should load form', function() {
@@ -51,7 +53,6 @@ describe('HTML5 form controllers', function() {
         }
       }));
 
-      FormService.getSelectedForm.andReturn(34);
       scope.init();
       timeout.flush();
       expect(scope.form).toBe('<form></form>');

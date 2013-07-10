@@ -8,6 +8,7 @@ import org.openmrs.module.html5forms.HTML5Form;
 import org.openmrs.module.html5forms.HTML5XForm;
 import org.openmrs.module.html5forms.api.HTML5FormService;
 import org.openmrs.module.html5forms.api.db.hibernate.HTML5FormDAO;
+import org.openmrs.module.html5forms.xForm2Html5Transform.ModelXml2JsonTransformer;
 import org.openmrs.module.html5forms.xForm2Html5Transform.XForm2Html5Transformer;
 import org.openmrs.module.xforms.Xform;
 
@@ -18,13 +19,14 @@ import java.util.List;
 
 public class HTML5FormServiceImpl extends BaseOpenmrsService implements HTML5FormService {
     private XForm2Html5Transformer html5Transformer;
+    private ModelXml2JsonTransformer modelXml2JsonTransformer;
     private HTML5FormDAO dao;
     private static final Log log = LogFactory.getLog(HTML5FormServiceImpl.class);
 
-    public HTML5FormServiceImpl(HTML5FormDAO dao, XForm2Html5Transformer html5Transformer) {
+    public HTML5FormServiceImpl(HTML5FormDAO dao, XForm2Html5Transformer html5Transformer, ModelXml2JsonTransformer modelXml2JsonTransformer) {
         this.dao = dao;
         this.html5Transformer = html5Transformer;
-
+        this.modelXml2JsonTransformer = modelXml2JsonTransformer;
     }
 
     public List<HTML5Form> getAll() {
@@ -42,13 +44,15 @@ public class HTML5FormServiceImpl extends BaseOpenmrsService implements HTML5For
             String xformXml = xform.getXformXml();
             log.info("xform --> ");
             log.info(xformXml);
-            EnketoResult enketoResult = html5Transformer.transform(xformXml);
+            CompositeEnketoResult result = (CompositeEnketoResult) modelXml2JsonTransformer.
+                    transform(html5Transformer.transform(xformXml).getResult());
             log.info("converted -->");
-            log.info(enketoResult.getResult());
-            form.setHtml(enketoResult.getForm());
-            form.setModel(enketoResult.getModel());
+            log.info(result.getResult());
+            form.setHtml(result.getForm());
+            form.setModel(result.getModel());
             dao.saveForm(form);
         } catch (Exception e) {
+            System.out.println(e);
             log.debug("Possible XForm to HTML5 transformation failure.", e);
         }
     }

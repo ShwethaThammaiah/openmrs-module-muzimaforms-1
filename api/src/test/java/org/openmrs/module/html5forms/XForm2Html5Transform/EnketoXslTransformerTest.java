@@ -120,29 +120,7 @@ public class EnketoXslTransformerTest {
         EnketoResult transform = enketoXslTransformer.transform(getSampleXForm());
         assertThat(transform.hasResult(), is(true));
 
-        transform = enketoXslTransformer.transform(getSampleXForm());
-        assertThat(transform.hasResult(), is(true));
-
         System.out.println(transform.getResult());
-
-    }
-
-    @Test
-    public void transform_integrationTest_tojson() throws IOException, TransformerException, ParserConfigurationException, DocumentException {
-
-        XslTransformPipeline transformers = xslTransformPipeline()
-                .push(getXform2JRTransformer())
-                .push(getHtml5Transformer())
-                .push(getXml2JsonTransformer());
-
-        EnketoXslTransformer enketoXslTransformer = new EnketoXslTransformer(TransformerFactory.newInstance(), transformers);
-        EnketoResult transform = enketoXslTransformer.transform(getSampleXForm());
-        assertThat(transform.hasResult(), is(true));
-
-        transform = enketoXslTransformer.transform(getSampleXForm());
-        assertThat(transform.hasResult(), is(true));
-
-//        System.out.println(transform.getResult());
 
     }
 
@@ -159,11 +137,6 @@ public class EnketoXslTransformerTest {
     private File getHtml5Transformer() throws IOException {
         ApplicationContext context = new ClassPathXmlApplicationContext();
         return context.getResource("/jr2html5_php5.xsl").getFile();
-    }
-
-    private File getXml2JsonTransformer() throws IOException {
-        ApplicationContext context = new ClassPathXmlApplicationContext();
-        return context.getResource("/xml2json.xsl").getFile();
     }
 
 }

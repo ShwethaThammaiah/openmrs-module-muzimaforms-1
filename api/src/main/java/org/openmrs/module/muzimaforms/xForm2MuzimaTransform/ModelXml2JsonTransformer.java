@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Stack;
 
-public class ModelXml2JsonTransformer extends XForm2Html5Transformer{
+public class ModelXml2JsonTransformer extends XForm2Html5Transformer {
 
     private SAXTransformerFactory transformerFactory;
     private XslTransformPipeline jsonTransformers;
@@ -44,13 +44,13 @@ public class ModelXml2JsonTransformer extends XForm2Html5Transformer{
             intermediateResult = new SAXResult(transformerHandler);
         }
 
-        File inputFile = createTempFile(xformXml);
+        File inputFile = createTempFile(new EnketoResult(xformXml).getModel());
         Transformer transformer = transformerFactory.newTransformer();
         try {
             transformer.transform(new StreamSource(inputFile), intermediateResult);
         } finally {
             inputFile.delete();
         }
-        return new CompositeEnketoResult(xformXml,writer.getBuffer().toString());
+        return new CompositeEnketoResult(xformXml, writer.getBuffer().toString());
     }
 }

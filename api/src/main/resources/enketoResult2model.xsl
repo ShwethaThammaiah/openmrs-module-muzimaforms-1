@@ -12,12 +12,12 @@
         </form>
     </xsl:template>
 
-    <xsl:template match="/root/*[local-name() != 'model']"/>
+
 
     <!--<xsl:template match="/root/*[local-name() != 'model']"/>-->
     <!--<xsl:template match="/root/model/instance/*[local-name() = 'root']"/>-->
 
-    <xsl:template match="/root/model/instance/node()/node()">
+    <xsl:template match="/model/instance/node()/node()">
         <xsl:call-template name="copy-model">
             <xsl:with-param name="model" select="current()"/>
         </xsl:call-template>

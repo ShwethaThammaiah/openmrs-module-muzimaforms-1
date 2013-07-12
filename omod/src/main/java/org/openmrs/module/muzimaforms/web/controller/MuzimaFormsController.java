@@ -20,18 +20,11 @@ import java.util.List;
 @RequestMapping(value = "module/muzimaforms/forms.form")
 
 public class MuzimaFormsController {
-    @RequestMapping(method = RequestMethod.GET)
 
+    @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<MuzimaForm> forms() throws IOException {
-
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        objectMapper.getSerializationConfig().disable(SerializationConfig.Feature.AUTO_DETECT_IS_GETTERS);
-//        objectMapper.getSerializationConfig().disable(SerializationConfig.Feature.FAIL_ON_EMPTY_BEANS);
-
-        MuzimaFormService service = Context.getService(MuzimaFormService.class);
-//        System.out.println(objectMapper.writeValueAsString(service.getAll()));
-//        return objectMapper.writeValueAsString(service.getAll());
-        return service.getAll();
+        List<MuzimaForm> all = Context.getService(MuzimaFormService.class).getAll();
+        return all;
     }
 }

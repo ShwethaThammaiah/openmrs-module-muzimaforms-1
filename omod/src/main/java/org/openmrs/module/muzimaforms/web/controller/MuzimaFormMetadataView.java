@@ -5,8 +5,8 @@ import org.openmrs.module.muzimaforms.MuzimaForm;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MuzimaFormMetadataFilter {
-    public List<MuzimaFormMetadata> resolve(List<MuzimaForm> forms) {
+public class MuzimaFormMetadataView {
+    public List<MuzimaFormMetadata> load(List<MuzimaForm> forms) {
         ArrayList<MuzimaFormMetadata> result = new ArrayList<MuzimaFormMetadata>();
         for (MuzimaForm form : forms) {
             result.add(new MuzimaFormMetadata(form.getId(), form.getName(), form.getDescription(), form.getTags()));

@@ -6,7 +6,6 @@ import org.openmrs.Form;
 import org.openmrs.module.muzimaforms.MuzimaForm;
 import org.openmrs.module.muzimaforms.MuzimaFormTag;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,7 +16,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class MuzimaFormMetadataFilterTest {
+public class MuzimaFormMetadataViewTest {
     List<MuzimaForm> muzimaForms;
 
     @Before
@@ -49,8 +48,8 @@ public class MuzimaFormMetadataFilterTest {
 
     @Test
     public void filter_metadataShouldIncludeIdOfForm(){
-        MuzimaFormMetadataFilter filter = new MuzimaFormMetadataFilter();
-        List<MuzimaFormMetadata> metadata = filter.resolve(muzimaForms);
+        MuzimaFormMetadataView filter = new MuzimaFormMetadataView();
+        List<MuzimaFormMetadata> metadata = filter.load(muzimaForms);
         assertThat(metadata.size(), is(2));
         assertThat(metadata.get(0).getId(), is(1));
         assertThat(metadata.get(1).getId(), is(2));
@@ -58,8 +57,8 @@ public class MuzimaFormMetadataFilterTest {
 
     @Test
     public void filter_metadataShouldIncludeName(){
-        MuzimaFormMetadataFilter filter = new MuzimaFormMetadataFilter();
-        List<MuzimaFormMetadata> metadata = filter.resolve(muzimaForms);
+        MuzimaFormMetadataView filter = new MuzimaFormMetadataView();
+        List<MuzimaFormMetadata> metadata = filter.load(muzimaForms);
         assertThat(metadata.size(), is(2));
         assertThat(metadata.get(0).getName(), is("mockedName1"));
         assertThat(metadata.get(1).getName(), is("mockedName2"));
@@ -67,8 +66,8 @@ public class MuzimaFormMetadataFilterTest {
 
     @Test
     public void filter_metadataShouldIncludeDescription(){
-        MuzimaFormMetadataFilter filter = new MuzimaFormMetadataFilter();
-        List<MuzimaFormMetadata> metadata = filter.resolve(muzimaForms);
+        MuzimaFormMetadataView filter = new MuzimaFormMetadataView();
+        List<MuzimaFormMetadata> metadata = filter.load(muzimaForms);
         assertThat(metadata.size(), is(2));
         assertThat(metadata.get(0).getDescription(), is("mockedDescription1"));
         assertThat(metadata.get(1).getDescription(), is("mockedDescription2"));
@@ -76,8 +75,8 @@ public class MuzimaFormMetadataFilterTest {
 
     @Test
     public void filter_metadataShouldIncludeTags(){
-        MuzimaFormMetadataFilter filter = new MuzimaFormMetadataFilter();
-        List<MuzimaFormMetadata> metadata = filter.resolve(muzimaForms);
+        MuzimaFormMetadataView filter = new MuzimaFormMetadataView();
+        List<MuzimaFormMetadata> metadata = filter.load(muzimaForms);
         assertThat(metadata.size(), is(2));
         assertThat(metadata.get(0).getTags().size(), is(2));
         assertThat(metadata.get(1).getTags().size(), is(0));

@@ -1,7 +1,6 @@
 'use strict';
 function FormsCtrl($scope, FormService, FormsService, XFormService, TagService, _, $q) {
     $scope.init = function () {
-
         $scope.selectedXForms = [];
         $scope.editMode = true;
         $scope.importMode = false;
@@ -39,10 +38,10 @@ function FormsCtrl($scope, FormService, FormsService, XFormService, TagService, 
         });
     };
 
-    var selectFirstForm = function(){
+    var selectFirstForm = function () {
         var firstForm = _.head($scope.forms);
-        if(firstForm)
-            $scope.selectForm(firstForm.id);        
+        if (firstForm)
+            $scope.selectForm(firstForm.id);
     }
 
     $scope.import = function () {
@@ -71,17 +70,23 @@ function FormsCtrl($scope, FormService, FormsService, XFormService, TagService, 
     };
 
     $scope.getFormPreview = function () {
-        if (!$scope.selectedFormId)  return "";
-        var form = _.find($scope.forms, function (form) {
-            return form.id == $scope.selectedFormId
-        });
-        return form.html;
+        return $scope.selectedForm ? $scope.selectedForm.html : "";
     };
 
     $scope.selectForm = function (id) {
         $scope.selectedFormId = id;
-        FormService.selectForm(id);
+
+        var setSelectedForm = function (form) {
+            $scope.selectedForm = form.data;
+            return form.data.id;
+        }
+        FormService.get(id).then(setSelectedForm);
     };
+
+    $scope.activeForm = function (id) {
+        return id === $scope.selectedFormId ? 'active-form' : undefined;
+    };
+
 
     $scope.selectXForm = function (id) {
         var indexOfId = $scope.selectedXForms.indexOf(id);
@@ -95,10 +100,6 @@ function FormsCtrl($scope, FormService, FormsService, XFormService, TagService, 
     $scope.activeXForm = function (id) {
         var indexOfId = $scope.selectedXForms.indexOf(id);
         return indexOfId >= 0 ? 'active-xform' : undefined;
-    };
-
-    $scope.activeForm = function (id) {
-        return id === $scope.selectedFormId ? 'active-form' : undefined;
     };
 
     var tagColor = function (tagId) {
@@ -158,7 +159,7 @@ function FormsCtrl($scope, FormService, FormsService, XFormService, TagService, 
                         return FormService.get(form.id);
                     })
                     .then(function (savedForm) {
-                        angular.extend(form, savedForm);
+                        angular.extend(form, savedForm.data);
                     });
             }
         });

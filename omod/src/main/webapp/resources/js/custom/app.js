@@ -15,16 +15,6 @@ muzimaformsModule.factory('_', function () {
 
 muzimaformsModule.factory('FormService', function ($http) {
 
-    var selectedFormId;
-
-    var selectForm = function(id){
-        selectedFormId = id;
-    };
-
-    var getSelectedForm = function(){
-        return selectedFormId;
-    };
-
     var get = function (id) {
         return $http.get('form.form?id=' + id);
     };
@@ -34,9 +24,7 @@ muzimaformsModule.factory('FormService', function ($http) {
 
     return {
         get: get,
-        save: save,
-        selectForm: selectForm,
-        getSelectedForm: getSelectedForm
+        save: save
     }
 });
 

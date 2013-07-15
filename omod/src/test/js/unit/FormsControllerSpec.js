@@ -3,6 +3,20 @@ describe('muzimaForms controllers', function () {
     describe('FormsCtrl', function () {
         var scope, ctrl, q, timeout;
 
+        var sampleForm = { data: {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
+            "html": "foo",
+            "selected": false, "tags": [
+                {"id": 2, "name": "Patient"}
+            ]}};
+
+        var getPromise = function (response) {
+            response = response || "";
+            var deferredForSave = q.defer();
+            deferredForSave.resolve(response);
+            return deferredForSave.promise;
+        };
+
+
         var FormsService = {
             all: function () {
                 var deferred = q.defer();
@@ -10,7 +24,6 @@ describe('muzimaForms controllers', function () {
                     deferred.resolve({
                         data: [
                             {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
-                                "html": "foo",
                                 "selected": false, "tags": [
                                 {"id": 1, "name": "Registration"},
                                 {"id": 2, "name": "Patient"}
@@ -88,6 +101,7 @@ describe('muzimaForms controllers', function () {
         }));
 
         it('should assign tags to scope', function () {
+            spyOn(FormService, "get").andReturn(getPromise(sampleForm));
             expect(scope.tags).toBeUndefined();
             timeout.flush();
             expect(scope.tags[0].id).toBe(1);
@@ -95,6 +109,7 @@ describe('muzimaForms controllers', function () {
         });
 
         it('should assign forms to scope', function () {
+            spyOn(FormService, "get").andReturn(getPromise(sampleForm));
             expect(scope.hasForms()).toBe(false);
             timeout.flush();
             expect(scope.hasForms()).toBe(true);
@@ -105,22 +120,15 @@ describe('muzimaForms controllers', function () {
             expect(scope.hasXForms()).toBe(false);
         });
 
-        it('should import forms and toogle imortMode', function () {
+        it('should import forms and toogle importMode', function () {
             expect(scope.importMode).toBe(false);
             scope.import();
             expect(scope.importMode).toBe(true);
         });
 
+
         it('should post selected xform ids when clicked on done', function () {
-
-            timeout.flush();
-            var getPromise = function (response) {
-                response = response || "";
-                var deferredForSave = q.defer();
-                deferredForSave.resolve(response);
-                return deferredForSave.promise;
-            };
-
+            spyOn(FormService, "get").andReturn(getPromise(sampleForm));
             spyOn(FormService, "save").andReturn(getPromise(""));
             spyOn(FormsService, "all").andReturn(getPromise({data: [
                 {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
@@ -131,6 +139,9 @@ describe('muzimaForms controllers', function () {
                     {"id": 1, "name": "Registration"}
                 ] }
             ]}));
+
+            timeout.flush();
+
             scope.selectXForm('4');
             scope.selectXForm('5');
             scope.importMode = true;
@@ -144,29 +155,23 @@ describe('muzimaForms controllers', function () {
 
         });
 
+        it('should load selected form from FormService', function () {
+            spyOn(FormService, "get").andReturn(getPromise(sampleForm));
+            expect(scope.activeForm(1)).toBeUndefined();
+            scope.selectForm(1);
+            expect(FormService.get).toHaveBeenCalledWith(1);
+        });
+
         it('cancel should toggle importMode', function () {
             scope.importMode = true;
             scope.cancelImport();
             expect(scope.importMode).toBe(false);
         });
 
-        it('should assign color to active form', function () {
-            expect(scope.activeForm(1)).toBeUndefined();
-            scope.selectForm(1);
-            expect(scope.activeForm(1)).toBe('active-form');
-        });
-
         it('should select the first form available', function () {
-            expect(scope.activeForm(1)).toBeUndefined();
+            spyOn(FormService, "get").andReturn(getPromise(sampleForm));
             timeout.flush();
             expect(scope.activeForm(1)).toBe('active-form');
-        });
-
-        it('should save selected form to form service', function () {
-            spyOn(FormService, "selectForm");
-            spyOn(FormService, "getSelectedForm");
-            scope.selectForm(234);
-            expect(FormService.selectForm).toHaveBeenCalledWith(234);
         });
 
         it('should assign color to active xForm', function () {
@@ -192,6 +197,7 @@ describe('muzimaForms controllers', function () {
         });
 
         it('should return tag names', function () {
+            spyOn(FormService, "get").andReturn(getPromise(sampleForm));
             timeout.flush();
             var tagNames = scope.tagNames();
             expect(tagNames[0]).toBe('Registration');
@@ -201,29 +207,13 @@ describe('muzimaForms controllers', function () {
 
 
         it('should save a non existing tag', function () {
-            timeout.flush();
-            expect(scope.muzimaforms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
-            expect(scope.muzimaforms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
 
-            var unsavedForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
-                {"id": 1, "name": "Registration"},
-                {"id": 2, "name": "Patient"},
-                {"name": "Encounter"}
-            ]};
             var savedForm = {data: {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
                 {"id": 1, "name": "Registration"},
                 {"id": 2, "name": "Patient"},
                 {"id": 4, "name": "Encounter"}
             ]}};
 
-            scope.muzimaforms[0].newTag = "Encounter";
-
-            var getPromise = function (response) {
-                response = response || "";
-                var deferredForSave = q.defer();
-                deferredForSave.resolve(response);
-                return deferredForSave.promise;
-            };
 
             spyOn(FormService, "save").andReturn(getPromise(""));
             spyOn(FormService, "get").andReturn(getPromise(savedForm));
@@ -234,6 +224,13 @@ describe('muzimaForms controllers', function () {
                     {"id": 3, "name": "PMTCT"},
                     {"id": 4, "name": "Encounter"}
                 ]}));
+
+            timeout.flush();
+            expect(scope.muzimaforms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
+            expect(scope.muzimaforms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
+
+            scope.muzimaforms[0].newTag = "Encounter";
+
 
             scope.saveTag(scope.muzimaforms[0]);
             scope.$apply();
@@ -248,16 +245,6 @@ describe('muzimaForms controllers', function () {
         });
 
         it('should save an existing tag', function () {
-            timeout.flush();
-            expect(scope.muzimaforms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
-            expect(scope.muzimaforms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
-
-            var unsavedForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
-                "html": "foo",
-                "selected": false, "tags": [
-                    {"id": 1, "name": "Registration"},
-                    {"id": 2, "name": "Patient"}
-                ]};
             var savedForm = { data: {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
                 "html": "foo",
                 "selected": false, "tags": [
@@ -266,15 +253,6 @@ describe('muzimaForms controllers', function () {
                     {"id": 3, "name": "PMCMT"}
                 ]}};
 
-            scope.muzimaforms[0].newTag = "PMTCT";
-
-
-            var getPromise = function (response) {
-                response = response || "";
-                var deferredForSave = q.defer();
-                deferredForSave.resolve(response);
-                return deferredForSave.promise;
-            };
 
             spyOn(FormService, "save").andReturn(getPromise(""));
             spyOn(FormService, "get").andReturn(getPromise(savedForm));
@@ -284,6 +262,12 @@ describe('muzimaForms controllers', function () {
                     {"id": 2, "name": "Patient"},
                     {"id": 3, "name": "PMTCT"}
                 ]}));
+
+            timeout.flush();
+            expect(scope.muzimaforms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
+            expect(scope.muzimaforms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
+            scope.muzimaforms[0].newTag = "PMTCT";
+
 
             scope.saveTag(scope.muzimaforms[0]);
             scope.$apply();
@@ -297,6 +281,8 @@ describe('muzimaForms controllers', function () {
         });
 
         it('should ignore an already added tag and should ignore case', function () {
+
+            spyOn(FormService, "get").andReturn(getPromise(sampleForm));
             timeout.flush();
             expect(scope.muzimaforms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
             expect(scope.muzimaforms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
@@ -308,6 +294,8 @@ describe('muzimaForms controllers', function () {
         });
 
         it('should not add empty tag', function () {
+            spyOn(FormService, "get").andReturn(getPromise(sampleForm));
+
             timeout.flush();
             expect(scope.muzimaforms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
             expect(scope.muzimaforms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
@@ -319,24 +307,12 @@ describe('muzimaForms controllers', function () {
         });
 
         it('should remove tag', function () {
-            timeout.flush();
-            var oldForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
-                "selected": false, "tags": [
-                    {"id": 1, "name": "Registration"},
-                    {"id": 2, "name": "Patient"}
-                ]};
-            var newForm = {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
+            var newForm = {data: {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
                 "html": "foo",
                 "selected": false, "tags": [
                     {"id": 2, "name": "Patient"}
-                ]};
+                ]}};
 
-            var getPromise = function (response) {
-                response = response || "";
-                var deferredForSave = q.defer();
-                deferredForSave.resolve(response);
-                return deferredForSave.promise;
-            };
 
             spyOn(FormService, "save").andReturn(getPromise(""));
             spyOn(FormService, "get").andReturn(getPromise(newForm));
@@ -347,18 +323,21 @@ describe('muzimaForms controllers', function () {
                     {"id": 3, "name": "PMTCT"}
                 ]}));
 
+            timeout.flush();
+
             expect(scope.muzimaforms[0].form.tags[0]).toEqual({"id": 1, "name": "Registration"});
             expect(scope.muzimaforms[0].form.tags[1]).toEqual({"id": 2, "name": "Patient"});
             expect(scope.muzimaforms[0].form.tags.length).toBe(2);
             scope.removeTag(scope.muzimaforms[0].form, scope.tags[0]);
             scope.$apply();
-            expect(FormService.save).toHaveBeenCalledWith(newForm);
+            expect(FormService.save).toHaveBeenCalledWith(newForm.data);
             expect(FormService.get).toHaveBeenCalled();
             expect(scope.muzimaforms[0].form.tags[0]).toEqual({"id": 2, "name": "Patient"});
             expect(scope.muzimaforms[0].form.tags.length).toBe(1);
         });
 
         it('should add tag filter to active tag filters', function () {
+            spyOn(FormService, "get").andReturn(getPromise(sampleForm));
             timeout.flush();
             expect(scope.activeTagFilters.length).toBe(0);
             scope.addTagFilter({"id": 2, "name": "Patient"});
@@ -367,6 +346,7 @@ describe('muzimaForms controllers', function () {
         });
 
         it('should not add tag filter if already added', function () {
+            spyOn(FormService, "get").andReturn(getPromise(sampleForm));
             timeout.flush();
             scope.activeTagFilters = [scope.tags[1]];
             scope.addTagFilter(scope.tags[1]);
@@ -374,6 +354,7 @@ describe('muzimaForms controllers', function () {
         });
 
         it('should remove tagfilter', function () {
+            spyOn(FormService, "get").andReturn(getPromise(sampleForm));
             timeout.flush();
             scope.activeTagFilters = [scope.tags[1]];
             scope.removeTagFilter(scope.tags[1]);
@@ -381,6 +362,7 @@ describe('muzimaForms controllers', function () {
         });
 
         it('should return false if active tag list is empty and true otherwise', function () {
+            spyOn(FormService, "get").andReturn(getPromise(sampleForm));
             timeout.flush();
             scope.activeTagFilters = [scope.tags[1]];
             expect(scope.tagFilterActive()).toBe(true);
@@ -389,6 +371,7 @@ describe('muzimaForms controllers', function () {
         });
 
         it('should present the form preview', function () {
+            spyOn(FormService, "get").andReturn(getPromise(sampleForm));
             timeout.flush();
             scope.selectForm(1);
             expect(scope.getFormPreview()).toBe("foo");

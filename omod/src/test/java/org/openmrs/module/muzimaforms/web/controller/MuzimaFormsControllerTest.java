@@ -52,10 +52,11 @@ public class MuzimaFormsControllerTest {
         }};
 
         when(service.getAll()).thenReturn(muzimaForms);
-        List<MuzimaForm> forms = html5FormsController.forms();
+        List<MuzimaFormMetadata> forms = html5FormsController.forms();
 
         assertThat(forms.size(), is(2));
-        assertThat(forms, hasItems(html5Form1, html5Form2));
+        assertThat(forms.get(0).getId(), is(html5Form1.getId()));
+        assertThat(forms.get(1).getId(), is(html5Form2.getId()));
     }
 
     private void setUpServiceResponse() {

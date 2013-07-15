@@ -3,7 +3,6 @@ package org.openmrs.module.muzimaforms.web.controller;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openmrs.Form;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.muzimaforms.MuzimaForm;
 import org.openmrs.module.muzimaforms.MuzimaFormTag;
@@ -43,7 +42,7 @@ public class MuzimaFormsControllerTest {
     }
 
     @Test
-    public void forms_shouldGetAllForms() throws Exception {
+    public void forms_shouldGetAllFormsIfNoTagsAreSent() throws Exception {
         MuzimaForm html5Form1 = new MuzimaForm() {{
             setId(1);
         }};
@@ -52,11 +51,69 @@ public class MuzimaFormsControllerTest {
         }};
 
         when(service.getAll()).thenReturn(muzimaForms);
-        List<MuzimaFormMetadata> forms = html5FormsController.forms();
+        List<MuzimaFormMetadata> forms = html5FormsController.forms("");
 
         assertThat(forms.size(), is(2));
         assertThat(forms.get(0).getId(), is(html5Form1.getId()));
         assertThat(forms.get(1).getId(), is(html5Form2.getId()));
+
+        assertThat(html5FormsController.forms(" ").size(), is(2));
+
+    }
+
+    @Test
+    public void forms_shouldGetAllFormsForTags() throws Exception {
+        MuzimaForm html5Form1 = new MuzimaForm() {{
+            setId(1);
+            Set<MuzimaFormTag> tags = new HashSet<MuzimaFormTag>();
+            tags.add(new MuzimaFormTag("foo"));
+            tags.add(new MuzimaFormTag("bar"));
+            setTags(tags);
+        }};
+        MuzimaForm html5Form2 = new MuzimaForm() {{
+            setId(2);
+            Set<MuzimaFormTag> tags = new HashSet<MuzimaFormTag>();
+            tags.add(new MuzimaFormTag("bar"));
+            tags.add(new MuzimaFormTag("baz"));
+            setTags(tags);
+        }};
+
+        when(service.getAll()).thenReturn(asList(html5Form1,html5Form2));
+        List<MuzimaFormMetadata> forms = html5FormsController.forms("bar");
+        assertThat(forms.size(), is(2));
+        assertThat(forms.get(0).getId(), is(html5Form1.getId()));
+        assertThat(forms.get(1).getId(), is(html5Form2.getId()));
+
+        forms = html5FormsController.forms("baz");
+        assertThat(forms.size(), is(1));
+        assertThat(forms.get(0).getId(), is(html5Form2.getId()));
+
+        forms = html5FormsController.forms("foo, baz");
+        assertThat(forms.size(), is(2));
+        assertThat(forms.get(0).getId(), is(html5Form1.getId()));
+        assertThat(forms.get(1).getId(), is(html5Form2.getId()));
+    }
+
+    @Test
+    public void forms_shouldGetEmptyListForNoMatchingTags() throws Exception {
+        MuzimaForm html5Form1 = new MuzimaForm() {{
+            setId(1);
+            Set<MuzimaFormTag> tags = new HashSet<MuzimaFormTag>();
+            tags.add(new MuzimaFormTag("foo"));
+            tags.add(new MuzimaFormTag("bar"));
+            setTags(tags);
+        }};
+        MuzimaForm html5Form2 = new MuzimaForm() {{
+            setId(2);
+            Set<MuzimaFormTag> tags = new HashSet<MuzimaFormTag>();
+            tags.add(new MuzimaFormTag("bar"));
+            tags.add(new MuzimaFormTag("baz"));
+            setTags(tags);
+        }};
+
+        when(service.getAll()).thenReturn(asList(html5Form1,html5Form2));
+        assertThat(html5FormsController.forms("boom").size(), is(0));
+        assertThat(html5FormsController.forms(",").size(), is(0));
     }
 
     private void setUpServiceResponse() {

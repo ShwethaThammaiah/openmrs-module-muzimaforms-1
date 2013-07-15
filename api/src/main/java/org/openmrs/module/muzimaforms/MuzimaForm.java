@@ -8,7 +8,9 @@ import org.openmrs.Form;
 import org.openmrs.OpenmrsObject;
 import org.openmrs.module.xforms.Xform;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -127,4 +129,11 @@ public class MuzimaForm extends BaseMuzimaData {
                 '}';
     }
 
+    public List<String> getTagNames() {
+        List<String> tagNames = new ArrayList<String>();
+        for (MuzimaFormTag tag : tags) {
+            tagNames.add(tag.getName());
+        }
+        return tagNames;
+    }
 }

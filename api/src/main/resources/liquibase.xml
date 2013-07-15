@@ -183,14 +183,20 @@
         </addColumn>
     </changeSet>
 
-    <changeSet id="muzimaform-2013-07-15-16:00" author="ThoughtWorks">
+    <changeSet id="muzimaform-2013-07-15-16:30" author="ThoughtWorks">
+        <comment>
+            adding unique constraint
+        </comment>
+
         <addColumn tableName="muzimaforms_form">
-            <column name="uuid" type="char(38)" />
+            <column name="uuid" type="char(38)"></column>
         </addColumn>
 
         <addColumn tableName="muzimaforms_tag">
-            <column name="uuid" type="char(38)" />
+            <column name="uuid" type="char(38)"></column>
         </addColumn>
+        <addUniqueConstraint tableName="muzimaforms_form" columnNames="uuid"/>
+        <addUniqueConstraint tableName="muzimaforms_tag" columnNames="uuid"/>
     </changeSet>
 
 </databaseChangeLog>

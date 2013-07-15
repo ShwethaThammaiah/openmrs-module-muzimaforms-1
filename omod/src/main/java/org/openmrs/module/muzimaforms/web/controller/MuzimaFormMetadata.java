@@ -5,6 +5,7 @@ import org.openmrs.module.muzimaforms.MuzimaFormTag;
 
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 public class MuzimaFormMetadata {
 
@@ -12,9 +13,11 @@ public class MuzimaFormMetadata {
     private String description;
     private String name;
     private Set<MuzimaFormTag> tags;
+    private String uuid;
 
-    public MuzimaFormMetadata(Integer id, String name, String description, Set<MuzimaFormTag> tags) {
+    public MuzimaFormMetadata(Integer id, String uuid, String name, String description, Set<MuzimaFormTag> tags) {
         this.id = id;
+        this.uuid = uuid;
         this.description = description;
         this.name = name;
         this.tags = tags;
@@ -34,5 +37,9 @@ public class MuzimaFormMetadata {
 
     public Set<MuzimaFormTag> getTags() {
         return tags;
+    }
+
+    public String getUUID() {
+        return uuid;
     }
 }

@@ -183,4 +183,14 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="muzimaform-2013-07-15-16:00" author="ThoughtWorks">
+        <addColumn tableName="muzimaforms_form">
+            <column name="uuid" type="char(38)" />
+        </addColumn>
+
+        <addColumn tableName="muzimaforms_tag">
+            <column name="uuid" type="char(38)" />
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

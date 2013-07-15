@@ -5,6 +5,9 @@
 <hibernate-mapping package="org.openmrs.module.muzimaforms">
     <class name="MuzimaForm" table="muzimaforms_form">
         <id name="id" type="java.lang.Integer" column="form_id"/>
+        <property name="uuid" type="java.lang.String"
+                  column="uuid" length="38" unique="true" />
+
         <one-to-one cascade="none" name="form" class="org.openmrs.Form" foreign-key="form_id"/>
         <one-to-one cascade="none" name="xform" class="org.openmrs.module.xforms.Xform" foreign-key="form_id"/>
         <set name="tags" table="muzimaforms_tag_map" cascade="all-delete-orphan">

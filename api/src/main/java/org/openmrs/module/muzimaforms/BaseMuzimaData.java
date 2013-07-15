@@ -4,6 +4,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 import org.openmrs.User;
 
 import java.util.Date;
+import java.util.UUID;
 
 public abstract class BaseMuzimaData extends org.openmrs.BaseOpenmrsObject implements org.openmrs.OpenmrsData {
     protected org.openmrs.User creator;
@@ -14,6 +15,15 @@ public abstract class BaseMuzimaData extends org.openmrs.BaseOpenmrsObject imple
     private java.util.Date dateVoided;
     private org.openmrs.User voidedBy;
     private java.lang.String voidReason;
+    private String uuid = UUID.randomUUID().toString();
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
 
     @JsonIgnore
     public User getCreator() {

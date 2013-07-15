@@ -8,6 +8,9 @@
         <id name="id" type="java.lang.Integer" column="muzimaforms_tag_id" unsaved-value="0">
             <generator class="native"/>
         </id>
+        <property name="uuid" type="java.lang.String"
+                  column="uuid" length="38" unique="true" />
+
         <property name="name" type="java.lang.String" not-null="true" length="255"/>
 
 

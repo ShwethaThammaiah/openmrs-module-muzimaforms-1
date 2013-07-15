@@ -31,6 +31,7 @@ public class MuzimaFormMetadataViewTest {
             tags.add(new MuzimaFormTag("foo"));
             tags.add(new MuzimaFormTag("bar"));
             setTags(tags);
+            setUuid("uuid1");
             setForm(form1);
         }};
 
@@ -42,17 +43,20 @@ public class MuzimaFormMetadataViewTest {
         MuzimaForm html5Form2 = new MuzimaForm() {{
             setId(2);
             setForm(form2);
+            setUuid("uuid2");
         }};
         muzimaForms = asList(html5Form1, html5Form2);
     }
 
     @Test
-    public void filter_metadataShouldIncludeIdOfForm(){
+    public void filter_metadataShouldIncludeIdAndUUIDOfForm(){
         MuzimaFormMetadataView filter = new MuzimaFormMetadataView();
         List<MuzimaFormMetadata> metadata = filter.load(muzimaForms);
         assertThat(metadata.size(), is(2));
         assertThat(metadata.get(0).getId(), is(1));
+        assertThat(metadata.get(0).getUUID(), is("uuid1"));
         assertThat(metadata.get(1).getId(), is(2));
+        assertThat(metadata.get(1).getUUID(), is("uuid2"));
     }
 
     @Test

@@ -38,6 +38,10 @@ public class MuzimaFormDAOImpl implements MuzimaFormDAO {
         return (Xform) session().get(Xform.class, id);
     }
 
+    public MuzimaForm findByUuid(String uuid) {
+        return (MuzimaForm) session().createQuery("from MuzimaForm form where form.uuid = '" + uuid + "'" ).uniqueResult();
+    }
+
     private Session session() {
         return factory.getCurrentSession();
     }

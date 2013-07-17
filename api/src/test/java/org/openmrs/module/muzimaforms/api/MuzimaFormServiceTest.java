@@ -84,7 +84,7 @@ public class MuzimaFormServiceTest extends BaseModuleContextSensitiveTest {
     }
 
     @Test
-    public void saveForm_shouldSave() throws IOException, TransformerException, XPathExpressionException, ParserConfigurationException, SAXException, DocumentException {
+    public void saveForm_shouldSave() throws Exception {
         String xFormXml = "<xml><some/><valid/></xml>";
         String htmlForm = "<foo><form><ul><li/><li/></ul></form><model/></foo>";
         String modelJson = "{form : [{name:'', bind: ''}]}";
@@ -102,7 +102,7 @@ public class MuzimaFormServiceTest extends BaseModuleContextSensitiveTest {
     }
 
     @Test
-    public void saveForm_shouldSetConvertedXform() throws IOException, TransformerException, XPathExpressionException, ParserConfigurationException, SAXException, DocumentException {
+    public void saveForm_shouldSetConvertedXform() throws Exception {
 
         String htmlForm = "<foo><form><ul><li/><li/></ul></form><model/></foo>";
         String xFormXml = "<foo><some/><valid/></foo>";
@@ -128,5 +128,11 @@ public class MuzimaFormServiceTest extends BaseModuleContextSensitiveTest {
     public void findById_shouldFindFormById() {
         MuzimaForm form = service.findById(1);
         verify(dao, times(1)).findById(1);
+    }
+
+    @Test
+    public void findByUUID_shouldFindFormByUUID() {
+        MuzimaForm form = service.findByUniqueId("foo");
+        verify(dao, times(1)).findByUuid("foo");
     }
 }

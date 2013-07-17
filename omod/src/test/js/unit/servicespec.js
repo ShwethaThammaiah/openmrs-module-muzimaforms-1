@@ -6,7 +6,7 @@ describe('Html5Forms services', function () {
         var httpBackend, service;
 
         var setGetAllExpectation = function () {
-            httpBackend.expectGET("forms.form").
+            httpBackend.expectGET("../../ws/rest/v1/muzimaforms/form?v=custom:(uuid,id,name,description,tags)").
                 respond([
                     {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
                         {"id": 1, "name": "Registration"},

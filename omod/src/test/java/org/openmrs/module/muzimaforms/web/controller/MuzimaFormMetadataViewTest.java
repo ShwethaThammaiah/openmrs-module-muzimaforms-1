@@ -54,9 +54,9 @@ public class MuzimaFormMetadataViewTest {
         List<MuzimaFormMetadata> metadata = filter.load(muzimaForms);
         assertThat(metadata.size(), is(2));
         assertThat(metadata.get(0).getId(), is(1));
-        assertThat(metadata.get(0).getUUID(), is("uuid1"));
+        assertThat(metadata.get(0).getUuid(), is("uuid1"));
         assertThat(metadata.get(1).getId(), is(2));
-        assertThat(metadata.get(1).getUUID(), is("uuid2"));
+        assertThat(metadata.get(1).getUuid(), is("uuid2"));
     }
 
     @Test

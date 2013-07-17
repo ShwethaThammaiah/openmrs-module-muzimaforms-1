@@ -9,7 +9,7 @@ public class MuzimaFormMetadataView {
     public List<MuzimaFormMetadata> load(List<MuzimaForm> forms) {
         ArrayList<MuzimaFormMetadata> result = new ArrayList<MuzimaFormMetadata>();
         for (MuzimaForm form : forms) {
-            result.add(new MuzimaFormMetadata(form.getId(), form.getUuid(), form.getName(), form.getDescription(), form.getTags()));
+            result.add(new MuzimaFormMetadata(form));
         }
         return result;
     }

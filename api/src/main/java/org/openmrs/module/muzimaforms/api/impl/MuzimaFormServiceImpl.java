@@ -2,8 +2,6 @@ package org.openmrs.module.muzimaforms.api.impl;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.dom4j.DocumentException;
-import org.openmrs.api.context.Context;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.muzimaforms.MuzimaForm;
 import org.openmrs.module.muzimaforms.MuzimaXForm;
@@ -13,9 +11,6 @@ import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.ModelXml2JsonTransfo
 import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.XForm2Html5Transformer;
 import org.openmrs.module.xforms.Xform;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-import java.io.IOException;
 import java.util.List;
 
 public class MuzimaFormServiceImpl extends BaseOpenmrsService implements MuzimaFormService {
@@ -39,7 +34,7 @@ public class MuzimaFormServiceImpl extends BaseOpenmrsService implements MuzimaF
         return dao.getXForms();
     }
 
-    public void saveForm(MuzimaForm form) throws DocumentException, ParserConfigurationException, TransformerException, IOException {
+    public MuzimaForm saveForm(MuzimaForm form) {
         try {
             Xform xform = dao.getXform(form.getId());
             String xformXml = xform.getXformXml();
@@ -53,13 +48,20 @@ public class MuzimaFormServiceImpl extends BaseOpenmrsService implements MuzimaF
             form.setModel(result.getModel());
             form.setModelJson(result.getModelAsJson());
             dao.saveForm(form);
+            return form;
         } catch (Exception e) {
             log.error(e);
             log.error("Possible XForm to HTML5 transformation failure.", e);
         }
+        return null;
     }
 
     public MuzimaForm findById(Integer id) {
         return dao.findById(id);
     }
+
+    public MuzimaForm findByUniqueId(String uuid) {
+        return dao.findByUuid(uuid);  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
 }

@@ -1,5 +1,5 @@
 'use strict';
-function FormsCtrl($scope, FormService, FormsService, XFormService, TagService, _, $q) {
+function FormsCtrl($scope, FormService, XFormService, TagService, _, $q) {
     $scope.init = function () {
         $scope.selectedXForms = [];
         $scope.editMode = true;
@@ -16,7 +16,7 @@ function FormsCtrl($scope, FormService, FormsService, XFormService, TagService, 
         return TagService.all();
     };
     var getForms = function () {
-        return FormsService.all();
+        return FormService.all();
     };
     var getXForms = function () {
         return XFormService.all();
@@ -29,8 +29,9 @@ function FormsCtrl($scope, FormService, FormsService, XFormService, TagService, 
 
     };
     var setForms = function (result) {
-        $scope.forms = result.data;
-        $scope.muzimaforms = _.map(result.data, function (form) {
+        $scope.forms = result.data.forms;
+        $scope.muzimaforms = _.map(result.data.forms, function (form) {
+
             return {
                 form: form,
                 newTag: ""
@@ -53,7 +54,7 @@ function FormsCtrl($scope, FormService, FormsService, XFormService, TagService, 
         var allSaved = $q.all(_.map($scope.selectedXForms, function (value) {
             return FormService.save({id: value});
         }));
-        allSaved.then(FormsService.all).then(setForms);
+        allSaved.then(FormService.all).then(setForms);
         $scope.importMode = false;
     };
 

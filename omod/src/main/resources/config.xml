@@ -56,7 +56,14 @@
          <require_module version="4.1.0.0">
              org.openmrs.module.xforms
          </require_module>
+         <require_module version="2.1">org.openmrs.module.webservices.rest</require_module>
+
      </require_modules>
+
+
+    <require_modules>
+    </require_modules>
+
     <mappingFiles>
         MuzimaForm.hbm.xml
         MuzimaXForm.hbm.xml

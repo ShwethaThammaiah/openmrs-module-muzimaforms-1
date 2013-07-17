@@ -21,7 +21,9 @@ public interface MuzimaFormService extends OpenmrsService {
     List<MuzimaXForm> getXForms();
 
     @Transactional
-    void saveForm(MuzimaForm form) throws IOException, TransformerException, ParserConfigurationException, XPathExpressionException, SAXException, DocumentException;
+    MuzimaForm saveForm(MuzimaForm form) throws IOException, TransformerException, ParserConfigurationException, XPathExpressionException, SAXException, DocumentException;
 
     MuzimaForm findById(Integer id);
+
+    MuzimaForm findByUniqueId(String uuid);
 }

@@ -2,10 +2,7 @@ package org.openmrs.module.muzimaforms;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.openmrs.BaseOpenmrsData;
-import org.openmrs.BaseOpenmrsObject;
 import org.openmrs.Form;
-import org.openmrs.OpenmrsObject;
 import org.openmrs.module.xforms.Xform;
 
 import java.util.ArrayList;
@@ -129,6 +126,7 @@ public class MuzimaForm extends BaseMuzimaData {
                 '}';
     }
 
+    @JsonIgnore
     public List<String> getTagNames() {
         List<String> tagNames = new ArrayList<String>();
         for (MuzimaFormTag tag : tags) {
@@ -136,4 +134,5 @@ public class MuzimaForm extends BaseMuzimaData {
         }
         return tagNames;
     }
+
 }

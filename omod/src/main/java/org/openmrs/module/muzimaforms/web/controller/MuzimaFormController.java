@@ -4,8 +4,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dom4j.DocumentException;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.muzimaforms.MuzimaConstants;
 import org.openmrs.module.muzimaforms.MuzimaForm;
 import org.openmrs.module.muzimaforms.api.MuzimaFormService;
+import org.openmrs.module.webservices.rest.web.RestConstants;
+import org.openmrs.module.webservices.rest.web.v1_0.controller.MainResourceController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.xml.sax.SAXException;
@@ -18,10 +21,8 @@ import java.io.IOException;
 
 @Controller
 @RequestMapping(value = "module/muzimaforms/form.form")
-
 public class MuzimaFormController {
-    Log logger = LogFactory.getLog("org.openmrs.module.muzimaforms");
-
+    Log logger = LogFactory.getLog(MuzimaFormController.class);
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody

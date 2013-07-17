@@ -73,6 +73,17 @@ public class MuzimaFormDAOTest extends BaseModuleContextSensitiveTest {
     }
 
     @Test
+    public void findByUUID_shouldFindByUUID() {
+        MuzimaForm form = dao.findByUuid("foo");
+        assertThat(form, is(muzimaform().withId(1).withUuid("foo")
+                .with(tag().withId(1).withName("Registration"))
+                .with(tag().withId(2).withName("Patient"))
+                .with(xForm().withId(1))
+                .with(form().withId(1).withName("Registration Form").withDescription("Form for registration"))
+                .instance()));
+    }
+
+    @Test
     public void saveForm_shouldSaveForm() {
         dao.saveForm(muzimaform().withId(1).with(tag().withId(1).withName("Registration")).instance());
         List<MuzimaForm> list = dao.getAll();

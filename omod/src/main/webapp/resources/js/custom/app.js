@@ -1,4 +1,4 @@
-var muzimaformsModule = angular.module('muzimaforms', ['ui.bootstrap','muzimafilters']);
+var muzimaformsModule = angular.module('muzimaforms', ['ui.bootstrap', 'muzimafilters']);
 
 muzimaformsModule.
     config(['$routeProvider', function ($routeProvider) {
@@ -21,8 +21,12 @@ muzimaformsModule.factory('FormService', function ($http) {
     var save = function (form) {
         return $http.post('form.form', form);
     };
+    var all = function () {
+        return $http.get('../../ws/rest/v1/muzimaforms/form?v=custom:(uuid,id,name,description,tags)');
+    };
 
     return {
+        all: all,
         get: get,
         save: save
     }
@@ -30,7 +34,7 @@ muzimaformsModule.factory('FormService', function ($http) {
 
 muzimaformsModule.factory('FormsService', function ($http) {
     var all = function () {
-        return $http.get('forms.form');
+        return $http.get('../../ws/rest/v1/muzimaforms/form?v=custom:(uuid,id,name,description,tags)');
     };
     return {
         all: all

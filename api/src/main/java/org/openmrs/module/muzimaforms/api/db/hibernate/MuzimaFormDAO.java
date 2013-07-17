@@ -15,4 +15,6 @@ public interface MuzimaFormDAO {
     MuzimaForm findById(Integer id);
 
     org.openmrs.module.xforms.Xform getXform(int id);
+
+    MuzimaForm findByUuid(String uuid);
 }

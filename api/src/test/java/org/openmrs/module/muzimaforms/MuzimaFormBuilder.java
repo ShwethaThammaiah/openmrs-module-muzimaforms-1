@@ -8,6 +8,7 @@ import java.util.Set;
 
 public class MuzimaFormBuilder extends Builder<MuzimaForm> {
     private Integer id;
+    private String uuid;
     private Form form;
     private Xform xform;
     private Set<MuzimaFormTag> tags = new HashSet<MuzimaFormTag>();
@@ -19,6 +20,7 @@ public class MuzimaFormBuilder extends Builder<MuzimaForm> {
     public MuzimaForm instance() {
         MuzimaForm muzimaForm = new MuzimaForm();
         muzimaForm.setId(id);
+        muzimaForm.setUuid(uuid);
         muzimaForm.setXform(xform);
         muzimaForm.setTags(tags);
         muzimaForm.setForm(form);
@@ -32,6 +34,11 @@ public class MuzimaFormBuilder extends Builder<MuzimaForm> {
 
     public MuzimaFormBuilder withId(Integer id) {
         this.id = id;
+        return this;
+    }
+
+    public MuzimaFormBuilder withUuid(String uuid) {
+        this.uuid = uuid;
         return this;
     }
 

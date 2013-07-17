@@ -21,7 +21,6 @@
 <openmrs:htmlInclude file="/moduleResources/muzimaforms/js/custom/app.js"/>
 <openmrs:htmlInclude file="/moduleResources/muzimaforms/js/custom/directives/htmlformBind.js"/>
 <openmrs:htmlInclude file="/moduleResources/muzimaforms/js/custom/controllers/FormsController.js"/>
-<openmrs:htmlInclude file="/moduleResources/muzimaforms/js/custom/controllers/FormController.js"/>
 
 <h2><spring:message code="Manage Forms"/></h2>
 

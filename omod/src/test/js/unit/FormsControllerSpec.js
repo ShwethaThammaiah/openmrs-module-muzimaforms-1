@@ -16,28 +16,6 @@ describe('muzimaForms controllers', function () {
             return deferredForSave.promise;
         };
 
-
-        var FormsService = {
-            all: function () {
-                var deferred = q.defer();
-                timeout(function () {
-                    deferred.resolve({
-                        data: [
-                            {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
-                                "selected": false, "tags": [
-                                {"id": 1, "name": "Registration"},
-                                {"id": 2, "name": "Patient"}
-                            ]  },
-                            {"id": 2, "name": "PMTCT Ante-Natal Care Form", "description": "", "selected": false, "tags": [
-                                {"id": 1, "name": "Registration"}
-                            ] }
-                        ]
-                    });
-                });
-                return deferred.promise;
-            }
-        };
-
         var FormService = {
             save: function (form) {
                 return null;
@@ -45,9 +23,27 @@ describe('muzimaForms controllers', function () {
             get: function (id) {
                 return null;
             },
-            selectForm: function (id) {
-            },
-            getSelectedForm: function () {
+            all: function () {
+                var deferred = q.defer();
+                timeout(function () {
+                        deferred.resolve({
+                            data: {
+                                forms: [
+                                    {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
+                                        "selected": false, "uuid": "foo", "tags": [
+                                        {"id": 1, "name": "Registration"},
+                                        {"id": 2, "name": "Patient"}
+                                    ]  },
+                                    {"id": 2, "name": "PMTCT Ante-Natal Care Form", "description": "", "selected": false, "uuid": "bar", "tags": [
+                                        {"id": 1, "name": "Registration"}
+                                    ] }
+                                ]
+                            }
+                        });
+                    }
+                )
+                ;
+                return deferred.promise;
             }
         };
 
@@ -94,7 +90,6 @@ describe('muzimaForms controllers', function () {
                 $scope: scope,
                 TagService: TagService,
                 FormService: FormService,
-                FormsService: FormsService,
                 XFormService: XFormService
             });
             scope.init();
@@ -130,7 +125,7 @@ describe('muzimaForms controllers', function () {
         it('should post selected xform ids when clicked on done', function () {
             spyOn(FormService, "get").andReturn(getPromise(sampleForm));
             spyOn(FormService, "save").andReturn(getPromise(""));
-            spyOn(FormsService, "all").andReturn(getPromise({data: [
+            spyOn(FormService, "all").andReturn(getPromise({data:{forms: [
                 {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
                     {"id": 1, "name": "Registration"},
                     {"id": 2, "name": "Patient"}
@@ -138,7 +133,7 @@ describe('muzimaForms controllers', function () {
                 {"id": 2, "name": "PMTCT Ante-Natal Care Form", "description": "", "selected": false, "tags": [
                     {"id": 1, "name": "Registration"}
                 ] }
-            ]}));
+            ]}}));
 
             timeout.flush();
 
@@ -150,7 +145,7 @@ describe('muzimaForms controllers', function () {
             scope.$apply();
             expect(FormService.save).toHaveBeenCalledWith({'id': '4'});
             expect(FormService.save).toHaveBeenCalledWith({'id': '5'});
-            expect(FormsService.all).toHaveBeenCalled();
+            expect(FormService.all).toHaveBeenCalled();
             expect(scope.importMode).toBe(false);
 
         });
@@ -247,7 +242,9 @@ describe('muzimaForms controllers', function () {
         it('should save an existing tag', function () {
             var savedForm = { data: {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
                 "html": "foo",
-                "selected": false, "tags": [
+                "selected": false,
+                "uuid": "foo",
+                "tags": [
                     {"id": 1, "name": "Registration"},
                     {"id": 2, "name": "Patient"},
                     {"id": 3, "name": "PMCMT"}
@@ -309,7 +306,9 @@ describe('muzimaForms controllers', function () {
         it('should remove tag', function () {
             var newForm = {data: {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
                 "html": "foo",
-                "selected": false, "tags": [
+                "selected": false,
+                "uuid": "foo",
+                "tags": [
                     {"id": 2, "name": "Patient"}
                 ]}};
 
@@ -376,5 +375,7 @@ describe('muzimaForms controllers', function () {
             scope.selectForm(1);
             expect(scope.getFormPreview()).toBe("foo");
         });
-    });
-});
+    })
+    ;
+})
+;

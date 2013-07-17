@@ -3,7 +3,7 @@ describe('muzimaForms controllers', function () {
     describe('FormsCtrl', function () {
         var scope, ctrl, q, timeout;
 
-        var sampleForm = { data: {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
+        var sampleForm = {data: {"id": 1, "uuid": "foo", "name": "Patient Registration Form", "description": "Form for registering patients",
             "html": "foo",
             "selected": false, "tags": [
                 {"id": 2, "name": "Patient"}
@@ -125,7 +125,7 @@ describe('muzimaForms controllers', function () {
         it('should post selected xform ids when clicked on done', function () {
             spyOn(FormService, "get").andReturn(getPromise(sampleForm));
             spyOn(FormService, "save").andReturn(getPromise(""));
-            spyOn(FormService, "all").andReturn(getPromise({data:{forms: [
+            spyOn(FormService, "all").andReturn(getPromise({data: {forms: [
                 {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
                     {"id": 1, "name": "Registration"},
                     {"id": 2, "name": "Patient"}
@@ -166,7 +166,7 @@ describe('muzimaForms controllers', function () {
         it('should select the first form available', function () {
             spyOn(FormService, "get").andReturn(getPromise(sampleForm));
             timeout.flush();
-            expect(scope.activeForm(1)).toBe('active-form');
+            expect(scope.activeForm("foo")).toBe('active-form');
         });
 
         it('should assign color to active xForm', function () {

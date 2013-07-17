@@ -16,7 +16,7 @@ muzimaformsModule.factory('_', function () {
 muzimaformsModule.factory('FormService', function ($http) {
 
     var get = function (id) {
-        return $http.get('form.form?id=' + id);
+        return $http.get('../../ws/rest/v1/muzimaforms/form/' + id + "?v=custom:(id,uuid,name,model,modelJson,html,tags)");
     };
     var save = function (form) {
         return $http.post('form.form', form);

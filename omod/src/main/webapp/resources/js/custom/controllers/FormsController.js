@@ -42,7 +42,7 @@ function FormsCtrl($scope, FormService, XFormService, TagService, _, $q) {
     var selectFirstForm = function () {
         var firstForm = _.head($scope.forms);
         if (firstForm)
-            $scope.selectForm(firstForm.id);
+            $scope.selectForm(firstForm.uuid);
     }
 
     $scope.import = function () {
@@ -74,18 +74,19 @@ function FormsCtrl($scope, FormService, XFormService, TagService, _, $q) {
         return $scope.selectedForm ? $scope.selectedForm.html : "";
     };
 
-    $scope.selectForm = function (id) {
-        $scope.selectedFormId = id;
+    $scope.selectForm = function (uuid) {
+        $scope.selectedFormId = uuid;
 
-        var setSelectedForm = function (form) {
-            $scope.selectedForm = form.data;
-            return form.data.id;
+        var setSelectedForm = function (result) {
+            var form = result.data;
+            $scope.selectedForm = form;
+            return form.uuid;
         }
-        FormService.get(id).then(setSelectedForm);
+        FormService.get(uuid).then(setSelectedForm);
     };
 
-    $scope.activeForm = function (id) {
-        return id === $scope.selectedFormId ? 'active-form' : undefined;
+    $scope.activeForm = function (uuid) {
+        return uuid === $scope.selectedFormId ? 'active-form' : undefined;
     };
 
 
@@ -141,7 +142,7 @@ function FormsCtrl($scope, FormService, XFormService, TagService, _, $q) {
         form.tags.push(tagToBeAdded);
         FormService.save(form)
             .then(function (result) {
-                return FormService.get(form.id);
+                return FormService.get(form.uuid);
             })
             .then(function (savedForm) {
                 angular.extend(form, savedForm.data);
@@ -157,7 +158,7 @@ function FormsCtrl($scope, FormService, XFormService, TagService, _, $q) {
                 form.tags.splice(index, 1);
                 FormService.save(form)
                     .then(function (result) {
-                        return FormService.get(form.id);
+                        return FormService.get(form.uuid);
                     })
                     .then(function (savedForm) {
                         angular.extend(form, savedForm.data);

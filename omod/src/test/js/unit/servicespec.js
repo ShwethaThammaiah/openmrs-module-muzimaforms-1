@@ -39,9 +39,9 @@ describe('Html5Forms services', function () {
     describe('FormService', function () {
         var httpBackend, service;
         var setGetOneExpectation = function () {
-            httpBackend.expectGET("form.form?id=1").
+            httpBackend.expectGET("../../ws/rest/v1/muzimaforms/form/foo?v=custom:(id,uuid,name,model,modelJson,html,tags)").
                 respond(
-                {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false,
+                {"id": 1,"uuid":"foo" ,"name": "Patient Registration Form", "description": "Form for registering patients", "selected": false,
                     "tags": [
                         {"id": 1, "name": "Registration"},
                         {"id": 2, "name": "Patient"}
@@ -56,9 +56,10 @@ describe('Html5Forms services', function () {
 
         it("should get one form", function () {
             setGetOneExpectation();
-            service.get(1).then(function (result) {
+            service.get("foo").then(function (result) {
                 var form = result.data;
                 expect(form.id).toBe(1);
+                expect(form.uuid).toBe("foo");
                 expect(form.name).toBe("Patient Registration Form");
             });
             httpBackend.flush();

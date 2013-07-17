@@ -31,8 +31,8 @@
     </div>
 
     <div collapse="importMode" class="row-fluid open-box" ng-show="hasForms()"
-         ng-repeat="muzimaform in muzimaforms | filter:searchQuery | tagFilter:activeTagFilters" ng-click="selectForm(muzimaform.form.id)"
-         ng-class="activeForm(muzimaform.form.id)">
+         ng-repeat="muzimaform in muzimaforms | filter:searchQuery | tagFilter:activeTagFilters" ng-click="selectForm(muzimaform.form.uuid)"
+         ng-class="activeForm(muzimaform.form.uuid)">
         <div class="span10 padded-table-content">
             <div class="padded-table-content">
                 <strong>{{muzimaform.form.name}}</strong>

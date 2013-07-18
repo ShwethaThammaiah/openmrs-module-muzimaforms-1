@@ -1,18 +1,16 @@
 package org.openmrs.module.muzimaforms.api.impl;
 
-import org.openmrs.aop.RequiredDataAdvice;
-import org.openmrs.api.handler.SaveHandler;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.muzimaforms.MuzimaFormTag;
-import org.openmrs.module.muzimaforms.api.TagService;
+import org.openmrs.module.muzimaforms.api.MuzimaTagService;
 import org.openmrs.module.muzimaforms.api.db.hibernate.TagDAO;
 
 import java.util.List;
 
-public class TagServiceImpl extends BaseOpenmrsService implements TagService {
+public class MuzimaTagServiceImpl extends BaseOpenmrsService implements MuzimaTagService {
     private TagDAO dao;
 
-    public TagServiceImpl(TagDAO dao) {
+    public MuzimaTagServiceImpl(TagDAO dao) {
         this.dao = dao;
     }
 

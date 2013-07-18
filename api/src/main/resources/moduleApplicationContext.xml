@@ -32,14 +32,14 @@
     <bean parent="serviceContext">
         <property name="moduleService">
             <list>
-                <value>org.openmrs.module.muzimaforms.api.TagService</value>
+                <value>org.openmrs.module.muzimaforms.api.MuzimaTagService</value>
                 <bean
                         class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
                     <property name="transactionManager">
                         <ref bean="transactionManager"/>
                     </property>
                     <property name="target">
-                        <bean class="org.openmrs.module.muzimaforms.api.impl.TagServiceImpl">
+                        <bean class="org.openmrs.module.muzimaforms.api.impl.MuzimaTagServiceImpl">
                             <constructor-arg>
                                 <bean class="org.openmrs.module.muzimaforms.api.db.hibernate.impl.TagDAOImpl">
                                     <constructor-arg ref="sessionFactory"/>

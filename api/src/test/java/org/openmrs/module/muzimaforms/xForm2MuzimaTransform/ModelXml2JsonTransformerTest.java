@@ -22,7 +22,7 @@ public class ModelXml2JsonTransformerTest {
         String enketoSampleResult = getEnketoSampleResult().getResult();
         ModelXml2JsonTransformer resultXmlToJsonTransformer = getResultXmlToJsonTransformer();
         CompositeEnketoResult result = (CompositeEnketoResult) resultXmlToJsonTransformer.transform(enketoSampleResult);
-        System.out.println(result.getModelAsJson());
+//        System.out.println(result.getModelAsJson());
     }
 
     @Test
@@ -36,7 +36,7 @@ public class ModelXml2JsonTransformerTest {
 
         ModelXml2JsonTransformer resultXmlToJsonTransformer = getResultXmlToJsonTransformer();
         CompositeEnketoResult result = (CompositeEnketoResult) resultXmlToJsonTransformer.transform(transform.getResult());
-        System.out.println(result.getModelAsJson());
+//        System.out.println(result.getModelAsJson());
     }
 
 

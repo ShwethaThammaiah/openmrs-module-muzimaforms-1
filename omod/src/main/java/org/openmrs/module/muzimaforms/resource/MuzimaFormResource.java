@@ -1,27 +1,27 @@
 package org.openmrs.module.muzimaforms.resource;
 
-import com.thoughtworks.xstream.converters.ConversionException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.annotation.Handler;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.muzimaforms.MuzimaConstants;
 import org.openmrs.module.muzimaforms.MuzimaForm;
-import org.openmrs.module.muzimaforms.MuzimaFormTag;
 import org.openmrs.module.muzimaforms.api.MuzimaFormService;
 import org.openmrs.module.webservices.rest.SimpleObject;
 import org.openmrs.module.webservices.rest.web.RequestContext;
 import org.openmrs.module.webservices.rest.web.RestConstants;
 import org.openmrs.module.webservices.rest.web.annotation.Resource;
+import org.openmrs.module.webservices.rest.web.representation.CustomRepresentation;
 import org.openmrs.module.webservices.rest.web.representation.DefaultRepresentation;
+import org.openmrs.module.webservices.rest.web.representation.RefRepresentation;
 import org.openmrs.module.webservices.rest.web.representation.Representation;
 import org.openmrs.module.webservices.rest.web.resource.impl.DataDelegatingCrudResource;
 import org.openmrs.module.webservices.rest.web.resource.impl.DelegatingResourceDescription;
 import org.openmrs.module.webservices.rest.web.response.ResourceDoesNotSupportOperationException;
 import org.openmrs.module.webservices.rest.web.response.ResponseException;
 
-import java.lang.reflect.Method;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Resource(name = RestConstants.VERSION_1 + "/" + MuzimaConstants.MODULE_ID + "/form", supportedClass = MuzimaForm.class, supportedOpenmrsVersions = {"1.8.*", "1.9.*"})
 @Handler(supports = MuzimaForm.class)
@@ -79,14 +79,15 @@ public class MuzimaFormResource extends DataDelegatingCrudResource<MuzimaForm> {
     public DelegatingResourceDescription getRepresentationDescription(Representation rep) {
         DelegatingResourceDescription description = null;
 
-        if (rep instanceof DefaultRepresentation) {
-            description = new DelegatingResourceDescription();
-            description.addProperty("uuid");
-            description.addProperty("id");
-            description.addProperty("name");
-            description.addProperty("description");
-            description.addProperty("tags");
-            description.addSelfLink();
+        if (rep instanceof DefaultRepresentation || rep instanceof RefRepresentation) {
+            DelegatingResourceDescription description1 = new DelegatingResourceDescription();
+            description1.addProperty("uuid");
+            description1.addProperty("id");
+            description1.addProperty("name");
+            description1.addProperty("description");
+            description1.addProperty("tags", new CustomRepresentation("(id,uuid,name)"));
+            description1.addSelfLink();
+            description = description1;
         }
 
         return description;

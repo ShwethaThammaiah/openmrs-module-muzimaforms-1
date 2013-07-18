@@ -120,7 +120,7 @@ public class EnketoXslTransformerTest {
         EnketoResult transform = enketoXslTransformer.transform(getSampleXForm());
         assertThat(transform.hasResult(), is(true));
 
-        System.out.println(transform.getResult());
+//        System.out.println(transform.getResult());
 
     }
 

@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public interface TagService extends OpenmrsService {
+public interface MuzimaTagService extends OpenmrsService {
     @Transactional(readOnly = true)
     public List<MuzimaFormTag> getAll();
 

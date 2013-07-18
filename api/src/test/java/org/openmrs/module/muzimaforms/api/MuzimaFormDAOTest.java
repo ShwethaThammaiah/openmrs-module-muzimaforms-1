@@ -105,7 +105,7 @@ public class MuzimaFormDAOTest extends BaseModuleContextSensitiveTest {
         assertThat(formTags.size(), is(2));
         MuzimaFormTag newTag = (MuzimaFormTag) formTags.toArray()[0];
         assertThat(newTag.getId(), notNullValue());
-        TagService tagService = Context.getService(TagService.class);
+        MuzimaTagService tagService = Context.getService(MuzimaTagService.class);
         List<MuzimaFormTag> tags = tagService.getAll();
         assertThat(tags, hasItem(newTag));
     }

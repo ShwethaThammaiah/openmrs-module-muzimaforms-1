@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.muzimaforms.MuzimaFormTag;
-import org.openmrs.module.muzimaforms.api.TagService;
+import org.openmrs.module.muzimaforms.api.MuzimaTagService;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -24,14 +24,14 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 @PrepareForTest(Context.class)
 public class TagControllerTest {
     private TagController controller;
-    private TagService service;
+    private MuzimaTagService service;
 
     @Before
     public void setUp() throws Exception {
-        service = mock(TagService.class);
+        service = mock(MuzimaTagService.class);
         controller = new TagController();
         mockStatic(Context.class);
-        PowerMockito.when(Context.getService(TagService.class)).thenReturn(service);
+        PowerMockito.when(Context.getService(MuzimaTagService.class)).thenReturn(service);
     }
 
     @Test

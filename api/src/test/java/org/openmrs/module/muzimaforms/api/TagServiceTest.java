@@ -15,11 +15,11 @@ import static org.openmrs.module.muzimaforms.MuzimaFormTagBuilder.tag;
 
 public class TagServiceTest extends BaseModuleContextSensitiveTest {
 
-    private TagService service;
+    private MuzimaTagService service;
 
     @Before
     public void setUp() throws Exception {
-        service = Context.getService(TagService.class);
+        service = Context.getService(MuzimaTagService.class);
         executeDataSet("tagTestData.xml");
     }
 

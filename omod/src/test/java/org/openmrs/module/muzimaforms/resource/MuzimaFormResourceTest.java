@@ -13,6 +13,8 @@ import org.openmrs.module.webservices.rest.SimpleObject;
 import org.openmrs.module.webservices.rest.web.RequestContext;
 import org.openmrs.module.webservices.rest.web.RestConstants;
 import org.openmrs.module.webservices.rest.web.representation.CustomRepresentation;
+import org.openmrs.module.webservices.rest.web.representation.DefaultRepresentation;
+import org.openmrs.module.webservices.rest.web.representation.RefRepresentation;
 import org.openmrs.module.webservices.rest.web.representation.Representation;
 import org.openmrs.module.webservices.rest.web.response.ConversionException;
 import org.openmrs.module.webservices.rest.web.response.ResourceDoesNotSupportOperationException;
@@ -27,6 +29,7 @@ import javax.xml.xpath.XPathExpressionException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
@@ -59,13 +62,6 @@ public class MuzimaFormResourceTest {
     }
 
     @Test
-    @Ignore
-    public void getByUniqueId_shouldReturnNull() {
-        MuzimaForm foo = controller.getByUniqueId("foo");
-        assertThat(foo, is(nullValue()));
-    }
-
-    @Test
     public void retrieve_shouldGetMuzimaFormByUUID() {
         Representation representation = mock(CustomRepresentation.class);
         when(representation.getRepresentation()).thenReturn("(uuid:uuid,id:id)");
@@ -74,7 +70,6 @@ public class MuzimaFormResourceTest {
 
         Object foo = controller.retrieve("foo", context);
         verify(service, times(1)).findByUniqueId("foo");
-        System.out.println(foo);
     }
 
     @Test(expected = ResourceDoesNotSupportOperationException.class)
@@ -109,6 +104,25 @@ public class MuzimaFormResourceTest {
         muzimaForms.add(getForm("bar"));
         muzimaForms.add(getForm("baz"));
         return muzimaForms;
+    }
+
+    @Test
+    public void getRepresentationDescription_shouldAddDefaultProperties() {
+        Representation representation = mock(RefRepresentation.class);
+        Set<String> keys = controller.getRepresentationDescription(representation).getProperties().keySet();
+        assertThat(keys.contains("id"), is(true));
+        assertThat(keys.contains("uuid"), is(true));
+        assertThat(keys.contains("name"), is(true));
+        assertThat(keys.contains("description"), is(true));
+        assertThat(keys.contains("tags"), is(true));
+
+        representation = mock(DefaultRepresentation.class);
+        keys = controller.getRepresentationDescription(representation).getProperties().keySet();
+        assertThat(keys.contains("id"), is(true));
+        assertThat(keys.contains("uuid"), is(true));
+        assertThat(keys.contains("name"), is(true));
+        assertThat(keys.contains("description"), is(true));
+        assertThat(keys.contains("tags"), is(true));
     }
 
 }

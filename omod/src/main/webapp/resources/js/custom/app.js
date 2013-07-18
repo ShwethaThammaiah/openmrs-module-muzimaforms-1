@@ -22,7 +22,7 @@ muzimaformsModule.factory('FormService', function ($http) {
         return $http.post('form.form', form);
     };
     var all = function () {
-        return $http.get('../../ws/rest/v1/muzimaforms/form?v=custom:(uuid,id,name,description,tags)');
+        return $http.get('../../ws/rest/v1/muzimaforms/form');
     };
 
     return {

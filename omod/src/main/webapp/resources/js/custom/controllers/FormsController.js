@@ -22,7 +22,7 @@ function FormsCtrl($scope, FormService, XFormService, TagService, _, $q) {
         return XFormService.all();
     };
     var setTags = function (result) {
-        $scope.tags = result.data;
+        $scope.tags = result.data.tags;
     };
     var setXForms = function (result) {
         $scope.xForms = result.data;

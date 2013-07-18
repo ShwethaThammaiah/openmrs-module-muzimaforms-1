@@ -75,7 +75,7 @@ describe('muzimaForms controllers', function () {
                 var deferred = q.defer();
                 timeout(function () {
                     deferred.resolve({
-                        data: TagService.tags
+                        data: {tags: TagService.tags}
                     })
                 });
                 return deferred.promise;

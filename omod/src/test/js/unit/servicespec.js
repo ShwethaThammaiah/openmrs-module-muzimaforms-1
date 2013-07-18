@@ -73,17 +73,17 @@ describe('Html5Forms services', function () {
         beforeEach(inject(function (_$httpBackend_, TagService) {
             httpBackend = _$httpBackend_;
             service = TagService;
-            httpBackend.expectGET("tags.form").
-                respond([
+            httpBackend.expectGET("../../ws/rest/v1/muzimaforms/tag").
+                respond({tags:[
                     {"id": 1, "name": "Registration"},
                     {"id": 2, "name": "Patient"},
                     {"id": 3, "name": "PMTCT"}
-                ]);
+                ]});
         }));
 
         it("should get all tags", function () {
             service.all().then(function (result) {
-                var forms = result.data;
+                var forms = result.data.tags;
                 expect(forms.length).toBe(3);
             });
             httpBackend.flush();

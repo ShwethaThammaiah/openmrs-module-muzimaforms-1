@@ -44,7 +44,7 @@ muzimaformsModule.factory('XFormService', function ($http) {
 
 muzimaformsModule.factory('TagService', function ($http) {
     var all = function () {
-        return $http.get('tags.form');
+        return $http.get('../../ws/rest/v1/muzimaforms/tag');
     };
     return {all: all};
 });

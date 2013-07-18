@@ -116,10 +116,13 @@ public class MuzimaForm extends BaseMuzimaData {
         return result;
     }
 
+
+
     @Override
     public String toString() {
         return "MuzimaForm{" +
                 "id=" + id +
+                ", uuid=" + getUuid() +
                 ", name='" + getName() + '\'' +
                 ", description='" + getDescription() + '\'' +
                 ", tags=" + tags +

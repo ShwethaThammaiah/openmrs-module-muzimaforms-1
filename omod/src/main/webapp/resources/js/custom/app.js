@@ -32,15 +32,6 @@ muzimaformsModule.factory('FormService', function ($http) {
     }
 });
 
-muzimaformsModule.factory('FormsService', function ($http) {
-    var all = function () {
-        return $http.get('../../ws/rest/v1/muzimaforms/form?v=custom:(uuid,id,name,description,tags)');
-    };
-    return {
-        all: all
-    };
-});
-
 muzimaformsModule.factory('XFormService', function ($http) {
     var all = function () {
         return $http.get('xforms.form');

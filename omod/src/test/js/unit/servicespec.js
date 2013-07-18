@@ -2,7 +2,7 @@ describe('Html5Forms services', function () {
 
     beforeEach(module('muzimaforms'));
 
-    describe('FormsService', function () {
+    describe('FormService', function () {
         var httpBackend, service;
 
         var setGetAllExpectation = function () {
@@ -18,9 +18,9 @@ describe('Html5Forms services', function () {
                 ])
         };
 
-        beforeEach(inject(function (_$httpBackend_, FormsService) {
+        beforeEach(inject(function (_$httpBackend_, FormService) {
             httpBackend = _$httpBackend_;
-            service = FormsService;
+            service = FormService;
 
         }));
 

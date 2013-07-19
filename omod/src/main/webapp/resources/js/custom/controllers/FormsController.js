@@ -75,6 +75,8 @@ function FormsCtrl($scope, FormService, XFormService, TagService, _, $q) {
     };
 
     $scope.selectForm = function (uuid) {
+        if($scope.selectedFormId === uuid) return;
+
         $scope.selectedFormId = uuid;
 
         var setSelectedForm = function (result) {

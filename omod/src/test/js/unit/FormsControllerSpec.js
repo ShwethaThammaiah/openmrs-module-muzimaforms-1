@@ -169,6 +169,16 @@ describe('muzimaForms controllers', function () {
             expect(scope.activeForm("foo")).toBe('active-form');
         });
 
+
+        it('should not reload a selected form', function () {
+            spyOn(FormService, "get").andReturn(getPromise(sampleForm));
+            timeout.flush();
+            expect(scope.activeForm("foo")).toBe('active-form');
+            scope.selectForm("foo");
+            expect(FormService.get.calls.length).toEqual(1);
+
+        });
+
         it('should assign color to active xForm', function () {
             expect(scope.activeXForm(1)).toBeUndefined();
             scope.selectXForm(1);

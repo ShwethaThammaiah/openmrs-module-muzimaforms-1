@@ -8,10 +8,12 @@ import org.openmrs.module.muzimaforms.MuzimaFormTag;
 import org.openmrs.module.muzimaforms.api.MuzimaTagService;
 import org.openmrs.module.webservices.rest.SimpleObject;
 import org.openmrs.module.webservices.rest.web.RequestContext;
+import org.openmrs.module.webservices.rest.web.api.RestService;
 import org.openmrs.module.webservices.rest.web.representation.CustomRepresentation;
 import org.openmrs.module.webservices.rest.web.representation.RefRepresentation;
 import org.openmrs.module.webservices.rest.web.representation.Representation;
 import org.openmrs.module.webservices.rest.web.resource.impl.DelegatingResourceDescription;
+import org.openmrs.module.webservices.rest.web.resource.impl.NeedsPaging;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -55,12 +57,21 @@ public class MuzimaTagResourceTest {
     @Test
     public void getAll_shouldGetAllTags() {
         Representation representation = mock(CustomRepresentation.class);
-        when(representation.getRepresentation()).thenReturn("(uuid:uuid,id:id)");
         RequestContext context = mock(RequestContext.class);
+
+        RestService restService = mock(RestService.class);
+        when(restService.getResourceBySupportedClass(MuzimaTagResource.class)).thenReturn(null);
+        PowerMockito.when(Context.getService(RestService.class)).thenReturn(restService);
+
+
+        when(representation.getRepresentation()).thenReturn("(uuid:uuid,id:id)");
         when(context.getRepresentation()).thenReturn(representation);
+        when(context.getStartIndex()).thenReturn(0);
+        when(context.getLimit()).thenReturn(10);
+
         SimpleObject response = controller.getAll(context);
-        assertThat(response.containsKey("tags"), is(true));
-        List forms = (List) response.get("tags");
+        assertThat(response.containsKey("results"), is(true));
+        List forms = (List) response.get("results");
         assertThat(forms.size(), is(3));
         verify(service, times(1)).getAll();
     }

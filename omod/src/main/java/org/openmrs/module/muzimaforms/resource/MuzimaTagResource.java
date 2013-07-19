@@ -7,7 +7,6 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.muzimaforms.MuzimaConstants;
 import org.openmrs.module.muzimaforms.MuzimaFormTag;
 import org.openmrs.module.muzimaforms.api.MuzimaTagService;
-import org.openmrs.module.webservices.rest.SimpleObject;
 import org.openmrs.module.webservices.rest.web.RequestContext;
 import org.openmrs.module.webservices.rest.web.RestConstants;
 import org.openmrs.module.webservices.rest.web.annotation.Resource;
@@ -16,11 +15,9 @@ import org.openmrs.module.webservices.rest.web.representation.RefRepresentation;
 import org.openmrs.module.webservices.rest.web.representation.Representation;
 import org.openmrs.module.webservices.rest.web.resource.impl.DataDelegatingCrudResource;
 import org.openmrs.module.webservices.rest.web.resource.impl.DelegatingResourceDescription;
+import org.openmrs.module.webservices.rest.web.resource.impl.NeedsPaging;
 import org.openmrs.module.webservices.rest.web.response.ResourceDoesNotSupportOperationException;
 import org.openmrs.module.webservices.rest.web.response.ResponseException;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Resource(name = RestConstants.VERSION_1 + "/" + MuzimaConstants.MODULE_ID + "/tag", supportedClass = MuzimaFormTag.class, supportedOpenmrsVersions = {"1.8.*", "1.9.*"})
 @Handler(supports = MuzimaFormTag.class)
@@ -28,15 +25,9 @@ public class MuzimaTagResource extends DataDelegatingCrudResource<MuzimaFormTag>
     private static final Log log = LogFactory.getLog(MuzimaTagResource.class);
 
     @Override
-    public SimpleObject getAll(RequestContext context) throws ResponseException {
-        SimpleObject response = new SimpleObject();
+    protected NeedsPaging<MuzimaFormTag> doGetAll(RequestContext context) throws ResponseException {
         MuzimaTagService service = Context.getService(MuzimaTagService.class);
-        List<SimpleObject> tags = new ArrayList<SimpleObject>();
-        for (MuzimaFormTag tag : service.getAll()) {
-            tags.add(asRepresentation(tag, context.getRepresentation()));
-        }
-        response.add("tags", tags);
-        return response;
+        return new NeedsPaging<MuzimaFormTag>(service.getAll(), context);
     }
 
     public DelegatingResourceDescription getRepresentationDescription(Representation rep) {

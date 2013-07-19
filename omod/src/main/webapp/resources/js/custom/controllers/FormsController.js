@@ -22,15 +22,15 @@ function FormsCtrl($scope, FormService, XFormService, TagService, _, $q) {
         return XFormService.all();
     };
     var setTags = function (result) {
-        $scope.tags = result.data.tags;
+        $scope.tags = result.data.results;
     };
     var setXForms = function (result) {
         $scope.xForms = result.data;
 
     };
     var setForms = function (result) {
-        $scope.forms = result.data.forms;
-        $scope.muzimaforms = _.map(result.data.forms, function (form) {
+        $scope.forms = result.data.results;
+        $scope.muzimaforms = _.map(result.data.results, function (form) {
 
             return {
                 form: form,

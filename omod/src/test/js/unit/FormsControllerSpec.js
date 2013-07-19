@@ -28,7 +28,7 @@ describe('muzimaForms controllers', function () {
                 timeout(function () {
                         deferred.resolve({
                             data: {
-                                forms: [
+                                results: [
                                     {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients",
                                         "selected": false, "uuid": "foo", "tags": [
                                         {"id": 1, "name": "Registration"},
@@ -75,7 +75,7 @@ describe('muzimaForms controllers', function () {
                 var deferred = q.defer();
                 timeout(function () {
                     deferred.resolve({
-                        data: {tags: TagService.tags}
+                        data: {results: TagService.tags}
                     })
                 });
                 return deferred.promise;
@@ -125,7 +125,7 @@ describe('muzimaForms controllers', function () {
         it('should post selected xform ids when clicked on done', function () {
             spyOn(FormService, "get").andReturn(getPromise(sampleForm));
             spyOn(FormService, "save").andReturn(getPromise(""));
-            spyOn(FormService, "all").andReturn(getPromise({data: {forms: [
+            spyOn(FormService, "all").andReturn(getPromise({data: {results: [
                 {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
                     {"id": 1, "name": "Registration"},
                     {"id": 2, "name": "Patient"}

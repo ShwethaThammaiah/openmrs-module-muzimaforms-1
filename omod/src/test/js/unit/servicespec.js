@@ -7,7 +7,7 @@ describe('Html5Forms services', function () {
 
         var setGetAllExpectation = function () {
             httpBackend.expectGET("../../ws/rest/v1/muzimaforms/form").
-                respond([
+                respond({ results: [
                     {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
                         {"id": 1, "name": "Registration"},
                         {"id": 2, "name": "Patient"}
@@ -15,7 +15,7 @@ describe('Html5Forms services', function () {
                     {"id": 2, "name": "PMTCT Ante-Natal Care Form", "description": "", "selected": false, "tags": [
                         {"id": 1, "name": "Registration"}
                     ] }
-                ])
+                ]});
         };
 
         beforeEach(inject(function (_$httpBackend_, FormService) {
@@ -27,7 +27,7 @@ describe('Html5Forms services', function () {
         it("should get all forms", function () {
             setGetAllExpectation();
             service.all().then(function (result) {
-                var forms = result.data;
+                var forms = result.data.results;
                 expect(forms.length).toBe(2);
             });
             httpBackend.flush();
@@ -74,7 +74,7 @@ describe('Html5Forms services', function () {
             httpBackend = _$httpBackend_;
             service = TagService;
             httpBackend.expectGET("../../ws/rest/v1/muzimaforms/tag").
-                respond({tags:[
+                respond({results:[
                     {"id": 1, "name": "Registration"},
                     {"id": 2, "name": "Patient"},
                     {"id": 3, "name": "PMTCT"}
@@ -83,7 +83,7 @@ describe('Html5Forms services', function () {
 
         it("should get all tags", function () {
             service.all().then(function (result) {
-                var forms = result.data.tags;
+                var forms = result.data.results;
                 expect(forms.length).toBe(3);
             });
             httpBackend.flush();

@@ -7,7 +7,6 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.muzimaforms.MuzimaConstants;
 import org.openmrs.module.muzimaforms.MuzimaForm;
 import org.openmrs.module.muzimaforms.api.MuzimaFormService;
-import org.openmrs.module.webservices.rest.SimpleObject;
 import org.openmrs.module.webservices.rest.web.RequestContext;
 import org.openmrs.module.webservices.rest.web.RestConstants;
 import org.openmrs.module.webservices.rest.web.annotation.Resource;
@@ -17,10 +16,10 @@ import org.openmrs.module.webservices.rest.web.representation.RefRepresentation;
 import org.openmrs.module.webservices.rest.web.representation.Representation;
 import org.openmrs.module.webservices.rest.web.resource.impl.DataDelegatingCrudResource;
 import org.openmrs.module.webservices.rest.web.resource.impl.DelegatingResourceDescription;
+import org.openmrs.module.webservices.rest.web.resource.impl.NeedsPaging;
 import org.openmrs.module.webservices.rest.web.response.ResourceDoesNotSupportOperationException;
 import org.openmrs.module.webservices.rest.web.response.ResponseException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Resource(name = RestConstants.VERSION_1 + "/" + MuzimaConstants.MODULE_ID + "/form", supportedClass = MuzimaForm.class, supportedOpenmrsVersions = {"1.8.*", "1.9.*"})
@@ -29,15 +28,10 @@ public class MuzimaFormResource extends DataDelegatingCrudResource<MuzimaForm> {
     private static final Log log = LogFactory.getLog(MuzimaFormResource.class);
 
     @Override
-    public SimpleObject getAll(RequestContext context) throws ResponseException {
-        SimpleObject response = new SimpleObject();
+    protected NeedsPaging<MuzimaForm> doGetAll(RequestContext context) throws ResponseException {
         MuzimaFormService service = Context.getService(MuzimaFormService.class);
-        List<SimpleObject> forms = new ArrayList<SimpleObject>();
-        for (MuzimaForm muzimaForm : service.getAll()) {
-            forms.add(asRepresentation(muzimaForm, context.getRepresentation()));
-        }
-        response.add("forms", forms);
-        return response;
+        List<MuzimaForm> all = service.getAll();
+        return new NeedsPaging<MuzimaForm>(all, context);
     }
 
     @Override

@@ -133,9 +133,6 @@ XSLT Stylesheet that transforms OpenRosa style (X)Forms into valid HTMl5 forms
                         <xsl:when test="/h:html/h:head/h:title">
                             <xsl:value-of select="/h:html/h:head/h:title"/>
                         </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:text>No Title</xsl:text>
-                        </xsl:otherwise>
                     </xsl:choose>
                 </h3>
                 <!--

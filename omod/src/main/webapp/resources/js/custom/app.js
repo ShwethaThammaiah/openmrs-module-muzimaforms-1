@@ -3,7 +3,7 @@ var muzimaformsModule = angular.module('muzimaforms', ['ui.bootstrap', 'muzimafi
 muzimaformsModule.
     config(['$routeProvider', function ($routeProvider) {
         $routeProvider.
-            when('/forms', {templateUrl: '../../moduleResources/muzimaforms/partials/forms.html'}).
+            when('/forms', {templateUrl: '../../moduleResources/muzimaforms/partials/formsNew.html'}).
             when('/form', {templateUrl: '../../moduleResources/muzimaforms/partials/form.html'}).
             otherwise({redirectTo: '/forms'});
     }]);

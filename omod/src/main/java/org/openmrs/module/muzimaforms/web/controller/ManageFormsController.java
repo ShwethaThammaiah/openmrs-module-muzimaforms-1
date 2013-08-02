@@ -15,17 +15,13 @@ package org.openmrs.module.muzimaforms.web.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.Patient;
-import org.openmrs.api.context.Context;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Collection;
 
 
 @Controller
@@ -40,7 +36,7 @@ public class ManageFormsController {
     /**
      * Success form view name
      */
-    private final String SUCCESS_FORM_VIEW = "/module/muzimaforms/manageForms";
+    private final String SUCCESS_FORM_VIEW = "/module/muzimaforms/manageFormsNew";
 
     /**
      * Initially called after the formBackingObject method to get the landing form name
@@ -70,22 +66,4 @@ public class ManageFormsController {
 
         return SUCCESS_FORM_VIEW;
     }
-
-    /**
-     * This class returns the form backing object. This can be a string, a boolean, or a normal java
-     * pojo. The bean name defined in the ModelAttribute annotation and the type can be just
-     * defined by the return type of this method
-     */
-    @ModelAttribute("thePatientList")
-    protected Collection<Patient> formBackingObject(HttpServletRequest request) throws Exception {
-        // get all patients that have an identifier "101" (from the demo sample data)
-        // see http://resources.openmrs.org/doc/index.html?org/openmrs/api/PatientService.html for
-        // a list of all PatientService methods
-        Collection<Patient> patients = Context.getPatientService().getPatients("101");
-
-        // this object will be made available to the jsp page under the variable name
-        // that is defined in the @ModuleAttribute tag
-        return patients;
-    }
-
 }

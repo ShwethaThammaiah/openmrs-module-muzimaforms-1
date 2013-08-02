@@ -41,7 +41,6 @@ public class XslTransformPipeline {
         return pipeline;
     }
 
-
     public static XslTransformPipeline xform2HTML5Pipeline() throws IOException {
         XslTransformPipeline pipeline = new XslTransformPipeline();
         pipeline.push(getXslFile("xform2jr.xsl"))

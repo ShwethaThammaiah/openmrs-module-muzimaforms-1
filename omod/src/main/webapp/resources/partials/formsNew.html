@@ -1,0 +1,28 @@
+<div class="container" ng-controller="FormsCtrl" ng-init="init()">
+    <!--TODO : text styles if put in css file are overridden by something else. Need to figure it out-->
+    <div class="navbar navbar-inverse navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" style="color: #ffffff; font-size: 20px">Muzima Forms</a>
+
+            <ul class="nav navbar-nav pull-right">
+                <li class="search-element">
+                    <form class="navbar-form pull-right">
+                        <input type="text" class="form-control col-lg-8" placeholder="Search"
+                               style="padding-left: 5px; padding-right: 5px">
+                    </form>
+                </li>
+                <li>
+                    <button type="button" class="btn btn-success dropdown-toggle navbar-btn" data-toggle="dropdown">
+                        Import <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" style="color: #323232 ;text-decoration: none">XForms Module</a></li>
+                        <li><a href="#" style="color: #323232 ;text-decoration: none">Formhub</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#" style="color: #323232 ;text-decoration: none">Choose File</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

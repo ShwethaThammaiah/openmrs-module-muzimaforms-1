@@ -25,4 +25,45 @@
             </ul>
         </div>
     </div>
+
+    <div class="list-group" ng-show="hasForms()">
+        <ul class="list-group">
+            <li class="list-group-item"
+                ng-repeat="muzimaform in muzimaforms | filter:searchQuery | tagFilter:activeTagFilters">
+                <div class="row show-grid">
+                    <div class="col-lg-10">
+                        <div>
+                            <p class="form-heading">
+                                <strong>{{muzimaform.form.name}}</strong>
+                            </p>
+                            <p>
+                                <small>{{muzimaform.form.description}}</small>
+                            </p>
+                        </div>
+                        <div>
+                            <span class="tag" ng-repeat="tag in muzimaform.form.tags">
+                                <span class="label form-tag" ng-style="tagStyle(tag.id)">
+                                <span ng-click="addTagFilter(tag)">{{tag.name}} </span><span
+                                        ng-click="removeTag(muzimaform.form, tag)"><i
+                                        class="icon-remove"></i></span>
+                                </span>
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-2">Tag Button</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="close-box" ng-show="!hasForms()">
+        <div class="container">
+            <h2>No Available Forms</h2>
+
+            <p>Please import forms by clicking on the import button.</p>
+
+            <p>You can import forms from Openmrs XFroms module, from Formhub or from your file system.</p>
+        </div>
+    </div>
 </div>

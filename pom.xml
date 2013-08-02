@@ -212,7 +212,7 @@
                 </property>
             </activation>
             <properties>
-                <openmrs.standalone.path>/Users/zabil/projects/openmrs-module-muzimaforms</openmrs.standalone.path>
+                <openmrs.standalone.path>/Users/zabil/projects/openmrs-standalone-1.9.3</openmrs.standalone.path>
                 <deploy.path>${openmrs.standalone.path}/tomcat/webapps/openmrs-standalone</deploy.path>
             </properties>
         </profile>

@@ -7,7 +7,7 @@
             <ul class="nav navbar-nav pull-right">
                 <li class="search-element">
                     <form class="navbar-form pull-right">
-                        <input type="text" class="form-control col-lg-8" placeholder="Search"
+                        <input type="text" class="form-control" ng-model="searchQuery" placeholder="Search"
                                style="padding-left: 5px; padding-right: 5px">
                     </form>
                 </li>
@@ -26,11 +26,28 @@
         </div>
     </div>
 
+    <div ng-show="tagFilterActive()" class="well well-large">
+        <span>Filter by: </span>
+        <span class="tag" ng-repeat="tag in activeTagFilters">
+                  <span class="label form-tag" ng-style="tagStyle(tag.id)">
+                       <span>{{tag.name}} </span><span ng-click="removeTagFilter(tag)"><i
+                          class="icon-remove"></i></span>
+                  </span>
+            </span>
+        <!--<span> Filter: </span>-->
+        <!--<span ng-repeat="tag in activeTagFilters">-->
+        <!--<span class="label form-tag" ng-style="tagStyle(tag.id)">-->
+        <!--<span>{{tag.name}} </span><span ng-click="removeTagFilter(tag)"><i-->
+        <!--class="icon-remove"></i></span>-->
+        <!--</span>-->
+        <!--</span>-->
+    </div>
+
     <div class="list-group" ng-show="hasForms()">
         <ul class="list-group">
             <li class="list-group-item"
                 ng-repeat="muzimaform in muzimaforms | filter:searchQuery | tagFilter:activeTagFilters">
-                <div class="row show-grid">
+                <div class="row">
                     <div class="col-lg-10">
                         <div>
                             <p class="form-heading">
@@ -53,12 +70,17 @@
 
                     </div>
                     <div class="col-lg-2">
-                        <!--<button type="submit" class="btn btn-primary">-->
-                        <!--<i class="icon-user icon-white"></i> Sign in-->
-                        <!--</button>-->
-                        <a class="btn btn-info pull-right" style="background-color: #34495e; color: #ffffff; text-decoration: none">
-                            <i class="icon-tags"></i> Tags</a>
+                        <a class="btn btn-info pull-right" ng-click="editMode = !editMode"
+                           style="background-color: #34495e; color: #ffffff; text-decoration: none">
+                            <i class="icon-tags"></i> Add Tags</a>
                     </div>
+                </div>
+                <div class="row" ng-show="editMode">
+                    <form class="col-7" ng-submit="saveTag(muzimaform)">
+                        <input name="newTag" ng-model="muzimaform.newTag" ng-trim="true" type="text"
+                               class="form-control" placeholder="Add tag"
+                               style="margin-top: 15px; padding-left: 5px; padding-right: 5px">
+                    </form>
                 </div>
             </li>
         </ul>

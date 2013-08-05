@@ -2,7 +2,7 @@
 function FormsCtrl($scope, FormService, XFormService, TagService, _, $q) {
     $scope.init = function () {
         $scope.selectedXForms = [];
-        $scope.editMode = true;
+        $scope.editMode = false;
         $scope.importMode = false;
         $scope.tagColorMap = {};
         $scope.activeTagFilters = [];

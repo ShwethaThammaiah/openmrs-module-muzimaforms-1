@@ -16,7 +16,8 @@
                         Import <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="#" style="color: #323232 ;text-decoration: none">XForms Module</a></li>
+                        <li><a data-toggle="modal" href="#xformsModal" ng-click="import()"
+                               style="color: #323232 ;text-decoration: none">XForms Module</a></li>
                         <li><a href="#" style="color: #323232 ;text-decoration: none">Formhub</a></li>
                         <li class="divider"></li>
                         <li><a href="#" style="color: #323232 ;text-decoration: none">Choose File</a></li>
@@ -34,13 +35,6 @@
                           class="icon-remove"></i></span>
                   </span>
             </span>
-        <!--<span> Filter: </span>-->
-        <!--<span ng-repeat="tag in activeTagFilters">-->
-        <!--<span class="label form-tag" ng-style="tagStyle(tag.id)">-->
-        <!--<span>{{tag.name}} </span><span ng-click="removeTagFilter(tag)"><i-->
-        <!--class="icon-remove"></i></span>-->
-        <!--</span>-->
-        <!--</span>-->
     </div>
 
     <div class="list-group" ng-show="hasForms()">
@@ -50,7 +44,7 @@
                 <div class="row">
                     <div class="col-lg-10">
                         <div>
-                            <p class="form-heading">
+                            <p class="form-heading content_wrap">
                                 <strong>{{muzimaform.form.name}}</strong>
                             </p>
 
@@ -85,6 +79,58 @@
             </li>
         </ul>
     </div>
+
+    <div class="modal fade" id="xformsModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #34495e">
+                    <button type="button" class="close" style="color: #ffffff" data-dismiss="modal"
+                            aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" style="color: #ffffff">Unconverted forms in XForms module</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="list-group" ng-show="hasXForms()">
+                        <div class="list-group">
+                            <a class="list-group-item"
+                                ng-repeat="form in xForms" ng-click="selectXForm(form.id)"
+                                ng-class="activeXForm(form.id)">
+                                <div class="row">
+                                    <div class="col-lg-10">
+                                        <div>
+                                            <p class="form-heading content_wrap">
+                                                <strong>{{form.name}}</strong>
+                                            </p>
+
+                                            <p>
+                                                <small>{{form.description}}</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="close-box" ng-show="!hasXForms()">
+                        <div class="container">
+                            <h4>No Available Forms in XForms Module</h4>
+
+                            <p>Please create and design form using Xforms module. Once saved, forms would be visible
+                                here</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-danger" data-dismiss="modal" ng-click="cancelImport()"
+                       style="color: #ffffff ;text-decoration: none">Close</a>
+                    <a href="#" class="btn btn-success" data-dismiss="modal" ng-click="done()"
+                       style="color: #ffffff ;text-decoration: none">Import</a>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 
     <div class="close-box" ng-show="!hasForms()">
         <div class="container">

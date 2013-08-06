@@ -59,6 +59,10 @@
 
 /*==============================================*/
 
+.content_wrap{
+    word-wrap: break-word;
+}
+
 .tag-filter-box {
     border: 1px solid #ddd;
     background-color: #c9d1d1;

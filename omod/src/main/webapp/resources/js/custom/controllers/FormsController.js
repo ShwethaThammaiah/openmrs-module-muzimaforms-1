@@ -103,7 +103,7 @@ function FormsCtrl($scope, FormService, XFormService, TagService, _, $q) {
 
     $scope.activeXForm = function (id) {
         var indexOfId = $scope.selectedXForms.indexOf(id);
-        return indexOfId >= 0 ? 'active-xform' : undefined;
+        return indexOfId >= 0 ? 'active' : undefined;
     };
 
     var tagColor = function (tagId) {

@@ -59,7 +59,7 @@
 
 /*==============================================*/
 
-.content_wrap{
+.content_wrap {
     word-wrap: break-word;
 }
 
@@ -99,6 +99,10 @@
     font-size: 20px;
 }
 
-.tag{
+.tag {
     margin: 2px;
+}
+
+.prettyFileInput > input {
+    display: none !important;
 }

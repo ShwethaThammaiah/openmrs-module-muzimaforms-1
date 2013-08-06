@@ -43,7 +43,7 @@ function FormsCtrl($scope, FormService, XFormService, TagService, _, $q) {
         var firstForm = _.head($scope.forms);
         if (firstForm)
             $scope.selectForm(firstForm.uuid);
-    }
+    };
 
     $scope.import = function () {
         $scope.importMode = true;
@@ -83,7 +83,7 @@ function FormsCtrl($scope, FormService, XFormService, TagService, _, $q) {
             var form = result.data;
             $scope.selectedForm = form;
             return form.uuid;
-        }
+        };
         FormService.get(uuid).then(setSelectedForm);
     };
 

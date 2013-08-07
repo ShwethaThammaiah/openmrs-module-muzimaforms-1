@@ -351,13 +351,16 @@ public class XFormParser {
 		_f = new FormDef();
 		
 		initState();
-		defaultNamespace = _xmldoc.getRootElement().getNamespaceUri(null);
-		parseElement(_xmldoc.getRootElement(), _f, topLevelHandlers);
-		collapseRepeatGroups(_f);
-		
-		if(instanceNode != null) {
-			parseInstance(instanceNode);
-		}
+        try {
+            defaultNamespace = _xmldoc.getRootElement().getNamespaceUri(null);
+            parseElement(_xmldoc.getRootElement(), _f, topLevelHandlers);
+            if(instanceNode != null) {
+                parseInstance(instanceNode);
+            }
+        } catch (RuntimeException e) {
+            messages.addError(e.getMessage());
+        }
+
 	}
 
 	private void parseElement(Element e, Object parent, Hashtable<String, IElementHandler> handlers) { //,
@@ -445,14 +448,14 @@ public class XFormParser {
 		
 		if (modelFound) {
 			//#if debug.output==verbose
-			System.err.println("Multiple models not supported. Ignoring subsequent models." + getVagueLocation(e));
+			messages.addError("Multiple models not supported. Ignoring subsequent models." + getVagueLocation(e));
 			//#endif
 			return;
 		}
 		modelFound = true;
 		
 		if(showUnusedAttributeWarning(e, usedAtts)){
-			System.out.println(unusedAttWarning(e, usedAtts));
+			messages.addWarning(unusedAttWarning(e, usedAtts));
 		}
 		
 		for (int i = 0; i < e.getChildCount(); i++) {
@@ -1204,12 +1207,6 @@ public class XFormParser {
 						//name - later
 						repeat.setLabelInnerText(group.getLabelInnerText());
 						repeat.setTextID(group.getTextID());
-//						repeat.setLongText(group.getLongText());
-//						repeat.setShortText(group.getShortText());
-//						repeat.setLongTextID(group.getLongTextID(), null);
-//						repeat.setShortTextID(group.getShortTextID(), null);						
-						//don't merge binding; repeat will always already have one
-						
 						//replace group with repeat
 						fe.getChildren().setElementAt(repeat, i);
 						group = repeat;

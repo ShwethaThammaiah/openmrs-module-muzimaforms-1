@@ -186,30 +186,20 @@
                 <h4 class="modal-title" style="color: #ffffff">Open File</h4>
             </div>
             <div class="modal-body">
-                <div>
-                    <span class="prettyFileInput">
-                        <input type="file" name="form[files][]" multiple="multiple">
-                        <div class="input-group" id="xformInput">
-                            <input type="text" class="form-control" placeholder="You can choose multiple forms"
-                                   style="padding-left: 5px; padding-right: 5px"/>
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Choose XForm</button>
-                            </span>
-                        </div>        
-                    </span>
-                </div>
+                <!--<div>-->
+                    <!--<span class="prettyFileInput">-->
+                <!--        <input type="file" name="form[files][]" multiple="multiple">-->
+                        <!--<div class="input-group" id="xformInput">-->
+                            <!--<input type="text" class="form-control" placeholder="You can choose multiple forms"-->
+                                   <!--style="padding-left: 5px; padding-right: 5px"/>-->
+                            <!--<span class="input-group-btn">-->
+                                <!--<button class="btn btn-default" type="button">Choose XForm</button>-->
+                            <!--</span>-->
+                        <!--</div>        -->
+                    <!--</span>-->
+                <!--</div>-->
+                <file-input/>
 
-                <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-primary active">
-                        <input type="radio" name="options" id="option1"> XForms Module XSLT
-                    </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option2"> Formhub XSLT
-                    </label>
-                    <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option3"> Choose XSLT
-                    </label>
-                </div>
             </div>
             <div class="modal-footer">
                 <a href="#" class="btn btn-danger" data-dismiss="modal" ng-click="cancelImport()"

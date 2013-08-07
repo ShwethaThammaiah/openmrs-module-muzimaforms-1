@@ -182,7 +182,7 @@ describe('muzimaForms controllers', function () {
         it('should assign color to active xForm', function () {
             expect(scope.activeXForm(1)).toBeUndefined();
             scope.selectXForm(1);
-            expect(scope.activeXForm(1)).toBe('active-xform');
+            expect(scope.activeXForm(1)).toBe('active');
             scope.selectXForm(1);
             expect(scope.activeXForm(1)).toBeUndefined();
         });

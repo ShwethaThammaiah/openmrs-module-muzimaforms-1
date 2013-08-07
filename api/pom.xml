@@ -55,6 +55,14 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpmime</artifactId>
         </dependency>
+        <dependency>
+            <groupId>net.sf.kxml</groupId>
+            <artifactId>kxml2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta-regexp</groupId>
+            <artifactId>jakarta-regexp</artifactId>
+        </dependency>
     </dependencies>
 	
 	<build>

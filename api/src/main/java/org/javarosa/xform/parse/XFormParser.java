@@ -36,7 +36,6 @@ import org.javarosa.core.util.externalizable.PrototypeFactoryDeprecated;
 import org.javarosa.model.xform.XPathReference;
 import org.javarosa.xform.util.XFormAnswerDataParser;
 import org.javarosa.xform.util.XFormSerializer;
-import org.javarosa.xform.util.XFormUtils;
 import org.javarosa.xpath.XPathConditional;
 import org.javarosa.xpath.expr.XPathPathExpr;
 import org.javarosa.xpath.parser.XPathSyntaxException;
@@ -206,8 +205,57 @@ public class XFormParser {
 		typeMappings.put("barcode", new Integer(Constants.DATATYPE_BARCODE));           //non-standard
         typeMappings.put("binary", new Integer(Constants.DATATYPE_BINARY));             //non-standard
 	}
-	
-	private void initState () {
+
+    private String unusedAttWarning(Element e, Vector usedAtts){
+		String warning = "Warning: ";
+		Vector ua = getUnusedAttributes(e, usedAtts);
+		warning+=ua.size()+" Unrecognized attributes found in Element ["+e.getName()+"] and will be ignored: ";
+		warning+="[";
+		for(int i=0;i<ua.size();i++){
+			warning+=ua.elementAt(i);
+			if(i!=ua.size()-1) warning+=",";
+		}
+		warning+="] ";
+		warning+="Location:\n"+ getVagueLocation(e);
+
+		return warning;
+	}
+
+    private boolean showUnusedAttributeWarning(Element e, Vector usedAtts){
+		return getUnusedAttributes(e, usedAtts).size()>0;
+	}
+
+    private Vector getUnusedAttributes(Element e, Vector usedAtts){
+		Vector unusedAtts = getAttributeList(e);
+		for(int i=0;i<usedAtts.size();i++){
+			if(unusedAtts.contains(usedAtts.elementAt(i))){
+				unusedAtts.removeElement(usedAtts.elementAt(i));
+			}
+		}
+
+		return unusedAtts;
+	}
+
+    private Vector getAttributeList(Element e){
+		Vector atts = new Vector();
+		for(int i=0;i<e.getAttributeCount();i++){
+			atts.addElement(e.getAttributeName(i));
+		}
+
+		return atts;
+	}
+
+    /**
+	 * Is this element an Output tag?
+	 * @param e
+	 * @return
+	 */
+	private boolean isOutput(Element e){
+		if(e.getName().toLowerCase().equals("output")) return true;
+		else return false;
+	}
+
+    private void initState () {
 		modelFound = false;
 		bindingsByID = new Hashtable<String, DataBinding>();
 		bindings = new Vector<DataBinding>();
@@ -366,8 +414,8 @@ public class XFormParser {
 		}
 		
 		
-		if(XFormUtils.showUnusedAttributeWarning(e, usedAtts)){
-			System.out.println(XFormUtils.unusedAttWarning(e, usedAtts));
+		if(showUnusedAttributeWarning(e, usedAtts)){
+			System.out.println(unusedAttWarning(e, usedAtts));
 		}
 	}
 	
@@ -384,8 +432,8 @@ public class XFormParser {
 		
 
 		usedAtts.addElement("name");
-		if(XFormUtils.showUnusedAttributeWarning(e, usedAtts)){
-			System.out.println(XFormUtils.unusedAttWarning(e, usedAtts));
+		if(showUnusedAttributeWarning(e, usedAtts)){
+			System.out.println(unusedAttWarning(e, usedAtts));
 		}
 	}
 
@@ -403,8 +451,8 @@ public class XFormParser {
 		}
 		modelFound = true;
 		
-		if(XFormUtils.showUnusedAttributeWarning(e, usedAtts)){
-			System.out.println(XFormUtils.unusedAttWarning(e, usedAtts));
+		if(showUnusedAttributeWarning(e, usedAtts)){
+			System.out.println(unusedAttWarning(e, usedAtts));
 		}
 		
 		for (int i = 0; i < e.getChildCount(); i++) {
@@ -532,8 +580,8 @@ public class XFormParser {
         }
 		
 		usedAtts.addElement("mediatype");
-		if(XFormUtils.showUnusedAttributeWarning(e, usedAtts)){
-			System.out.println(XFormUtils.unusedAttWarning(e, usedAtts));
+		if(showUnusedAttributeWarning(e, usedAtts)){
+			System.out.println(unusedAttWarning(e, usedAtts));
 		}
 		
         return question;
@@ -614,8 +662,8 @@ public class XFormParser {
 		parent.addChild(question);
 		
 
-		if(XFormUtils.showUnusedAttributeWarning(e, usedAtts)){
-			System.out.println(XFormUtils.unusedAttWarning(e, usedAtts));
+		if(showUnusedAttributeWarning(e, usedAtts)){
+			System.out.println(unusedAttWarning(e, usedAtts));
 		}
 		
 		
@@ -643,8 +691,8 @@ public class XFormParser {
 		}
 		
 
-		if(XFormUtils.showUnusedAttributeWarning(e, usedAtts)){
-			System.out.println(XFormUtils.unusedAttWarning(e, usedAtts));
+		if(showUnusedAttributeWarning(e, usedAtts)){
+			System.out.println(unusedAttWarning(e, usedAtts));
 		}
 	}
 
@@ -673,8 +721,8 @@ public class XFormParser {
 		}
 		
 
-		if(XFormUtils.showUnusedAttributeWarning(e, usedAtts)){
-			System.out.println(XFormUtils.unusedAttWarning(e, usedAtts));
+		if(showUnusedAttributeWarning(e, usedAtts)){
+			System.out.println(unusedAttWarning(e, usedAtts));
 		}
 	}
 	
@@ -718,7 +766,7 @@ public class XFormParser {
 			Element kid = (Element)e.getChild(i);
 			
 				//is just text
-			if(kidType == Node.ELEMENT && XFormUtils.isOutput(kid)){
+			if(kidType == Node.ELEMENT && isOutput(kid)){
 				String s = "${"+parseOutput(kid)+"}";
 				e.removeChild(i);
 				e.addChild(i, Node.TEXT, s);
@@ -764,8 +812,8 @@ public class XFormParser {
 			_f.getOutputFragments().addElement(expr);
 		}
 		
-		if(XFormUtils.showUnusedAttributeWarning(e, usedAtts)){
-			System.out.println(XFormUtils.unusedAttWarning(e, usedAtts));
+		if(showUnusedAttributeWarning(e, usedAtts)){
+			System.out.println(unusedAttWarning(e, usedAtts));
 		}
 		
 		return String.valueOf(index);
@@ -792,8 +840,8 @@ public class XFormParser {
 			q.setHelpText(hint);
 		}
 		
-		if(XFormUtils.showUnusedAttributeWarning(e, usedAtts)){
-			System.out.println(XFormUtils.unusedAttWarning(e, usedAtts));
+		if(showUnusedAttributeWarning(e, usedAtts)){
+			System.out.println(unusedAttWarning(e, usedAtts));
 		}
 	}
 
@@ -819,8 +867,8 @@ public class XFormParser {
 			if (LABEL_ELEMENT.equals(childName)) {
 				
 				//print attribute warning for child element
-				if(XFormUtils.showUnusedAttributeWarning(child, labelUA)){
-					System.out.println(XFormUtils.unusedAttWarning(child, labelUA));
+				if(showUnusedAttributeWarning(child, labelUA)){
+					System.out.println(unusedAttWarning(child, labelUA));
 				}
 				labelInnerText = getLabel(child);
 				String ref = child.getAttributeValue("", REF_ATTR);
@@ -838,8 +886,8 @@ public class XFormParser {
 				value = getXMLText(child, true);
 				
 				//print attribute warning for child element
-				if(XFormUtils.showUnusedAttributeWarning(child, valueUA)){
-					System.out.println(XFormUtils.unusedAttWarning(child, valueUA));
+				if(showUnusedAttributeWarning(child, valueUA)){
+					System.out.println(unusedAttWarning(child, valueUA));
 				}
 				
 				if (value != null)  {
@@ -876,8 +924,8 @@ public class XFormParser {
 		}
 		
 		//print unused attribute warning message for parent element
-		if(XFormUtils.showUnusedAttributeWarning(e, usedAtts)){
-			System.out.println(XFormUtils.unusedAttWarning(e, usedAtts));
+		if(showUnusedAttributeWarning(e, usedAtts)){
+			System.out.println(unusedAttWarning(e, usedAtts));
 		}
 	}
 
@@ -914,8 +962,8 @@ public class XFormParser {
 				boolean labelItext = false;
 				
 				//print unused attribute warning message for child element
-				if(XFormUtils.showUnusedAttributeWarning(child, labelUA)){
-					System.out.println(XFormUtils.unusedAttWarning(child, labelUA));
+				if(showUnusedAttributeWarning(child, labelUA)){
+					System.out.println(unusedAttWarning(child, labelUA));
 				}
 				/////////////////////////////////////////////////////////////
 				
@@ -936,8 +984,8 @@ public class XFormParser {
 				String copyRef = child.getAttributeValue("", REF_ATTR);
 
 				//print unused attribute warning message for child element
-				if(XFormUtils.showUnusedAttributeWarning(child, copyUA)){
-					System.out.println(XFormUtils.unusedAttWarning(child, copyUA));
+				if(showUnusedAttributeWarning(child, copyUA)){
+					System.out.println(unusedAttWarning(child, copyUA));
 				}
 				
 				if (copyRef == null) {
@@ -950,8 +998,8 @@ public class XFormParser {
 				String valueXpath = child.getAttributeValue("", REF_ATTR);
 				
 				//print unused attribute warning message for child element
-				if(XFormUtils.showUnusedAttributeWarning(child, valueUA)){
-					System.out.println(XFormUtils.unusedAttWarning(child, valueUA));
+				if(showUnusedAttributeWarning(child, valueUA)){
+					System.out.println(unusedAttWarning(child, valueUA));
 				}
 				
 				if (valueXpath == null) {
@@ -983,8 +1031,8 @@ public class XFormParser {
 		itemsets.addElement(itemset);
 		
 		//print unused attribute warning message for parent element
-		if(XFormUtils.showUnusedAttributeWarning(e, usedAtts)){
-			System.out.println(XFormUtils.unusedAttWarning(e, usedAtts));
+		if(showUnusedAttributeWarning(e, usedAtts)){
+			System.out.println(unusedAttWarning(e, usedAtts));
 		}
 	}
 	
@@ -1087,8 +1135,8 @@ public class XFormParser {
 		}
 		
 		//print unused attribute warning message for parent element
-		if(XFormUtils.showUnusedAttributeWarning(e, usedAtts)){
-			System.out.println(XFormUtils.unusedAttWarning(e, usedAtts));
+		if(showUnusedAttributeWarning(e, usedAtts)){
+			System.out.println(unusedAttWarning(e, usedAtts));
 		}
 
 		parent.addChild(group);
@@ -1195,8 +1243,8 @@ public class XFormParser {
 			l.setDefaultLocale(l.getAvailableLocales()[0]);
 		
 		//print unused attribute warning message for parent element
-		if(XFormUtils.showUnusedAttributeWarning(itext, usedAtts)){
-			System.out.println(XFormUtils.unusedAttWarning(itext, usedAtts));
+		if(showUnusedAttributeWarning(itext, usedAtts)){
+			System.out.println(unusedAttWarning(itext, usedAtts));
 		}
 	}
 
@@ -1243,8 +1291,8 @@ public class XFormParser {
 		}
 		
 		//print unused attribute warning message for parent element
-		if(XFormUtils.showUnusedAttributeWarning(trans, usedAtts)){
-			System.out.println(XFormUtils.unusedAttWarning(trans, usedAtts));
+		if(showUnusedAttributeWarning(trans, usedAtts)){
+			System.out.println(unusedAttWarning(trans, usedAtts));
 		}
 		
 		l.registerLocaleResource(lang, source);
@@ -1289,14 +1337,14 @@ public class XFormParser {
 			l.setLocaleMapping(textID, data);
 			
 			//print unused attribute warning message for child element
-			if(XFormUtils.showUnusedAttributeWarning(value, childUsedAtts)){
-				System.out.println(XFormUtils.unusedAttWarning(value, childUsedAtts));
+			if(showUnusedAttributeWarning(value, childUsedAtts)){
+				System.out.println(unusedAttWarning(value, childUsedAtts));
 			}
 		}
 		
 		//print unused attribute warning message for parent element
-		if(XFormUtils.showUnusedAttributeWarning(text, usedAtts)){
-			System.out.println(XFormUtils.unusedAttWarning(text, usedAtts));
+		if(showUnusedAttributeWarning(text, usedAtts)){
+			System.out.println(unusedAttWarning(text, usedAtts));
 		}
 	}
 
@@ -1448,8 +1496,8 @@ public class XFormParser {
 		DataBinding binding = processStandardBindAttributes( usedAtts, e);
 		
 		//print unused attribute warning message for parent element
-		if(XFormUtils.showUnusedAttributeWarning(e, usedAtts)){
-			System.out.println(XFormUtils.unusedAttWarning(e, usedAtts));
+		if(showUnusedAttributeWarning(e, usedAtts)){
+			System.out.println(unusedAttWarning(e, usedAtts));
 		}
 
 		addBinding(binding);
@@ -1538,8 +1586,8 @@ public class XFormParser {
 		_f.finalizeTriggerables();		
 		
 		//print unused attribute warning message for parent element
-		if(XFormUtils.showUnusedAttributeWarning(e, usedAtts)){
-			System.out.println(XFormUtils.unusedAttWarning(e, usedAtts));
+		if(showUnusedAttributeWarning(e, usedAtts)){
+			System.out.println(unusedAttWarning(e, usedAtts));
 		}
 	}
 	

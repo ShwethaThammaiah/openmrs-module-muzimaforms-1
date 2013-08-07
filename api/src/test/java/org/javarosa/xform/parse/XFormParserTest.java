@@ -88,6 +88,15 @@ public class XFormParserTest {
     }
 
     @Test
+    public void validate_shouldReturnErrorIfITextHasDuplicateTranslationTag() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/duplicateTranslationTag.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("duplicate <translation> for language 'english'\n" +
+                "    Problem found at nodeset: /html/head/model/itext/translation\n" +
+                "    With element <translation lang=\"english\">\n").withType(Type.ERROR).instance()));
+    }
+
+    @Test
     public void validate_shouldReturnErrorIfDocumentIsNotAValidXML() throws Exception {
         XFormParser parser = new XFormParser(getFile("javarosa/emptyDocument.xml"));
         ValidationMessages messages = parser.validate();

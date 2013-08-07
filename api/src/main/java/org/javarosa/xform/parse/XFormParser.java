@@ -354,6 +354,8 @@ public class XFormParser {
         try {
             defaultNamespace = _xmldoc.getRootElement().getNamespaceUri(null);
             parseElement(_xmldoc.getRootElement(), _f, topLevelHandlers);
+            collapseRepeatGroups(_f);
+
             if(instanceNode != null) {
                 parseInstance(instanceNode);
             }
@@ -1241,7 +1243,7 @@ public class XFormParser {
 		
 		//print unused attribute warning message for parent element
 		if(showUnusedAttributeWarning(itext, usedAtts)){
-			System.out.println(unusedAttWarning(itext, usedAtts));
+			messages.addWarning(unusedAttWarning(itext, usedAtts));
 		}
 	}
 

@@ -53,6 +53,32 @@ public class XFormParserTest {
     }
 
     @Test
+    public void validate_shouldReturnErrorIfModelTextIsInvalid() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/invalidModelText.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("Unrecognized text content found within <model>: \"invalid text content\"").withType(Type.ERROR).instance()));
+    }
+
+    @Test
+    public void validate_shouldReturnErrorIfITextHasNoTranslations() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/invalidITextNoTranslations.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("no <translation>s defined\n" +
+                "    Problem found at nodeset: /html/head/model/itext\n" +
+                "    With element <itext>\n").withType(Type.ERROR).instance()));
+    }
+
+    @Test
+    public void validate_shouldReturnWarningIfITextInvalidAttribute() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/invalidITextAttribute.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("Warning: 1 Unrecognized attributes found in Element [itext] and will be ignored: [invalid] Location:\n" +
+                "\n" +
+                "    Problem found at nodeset: /html/head/model/itext\n" +
+                "    With element <itext invalid=\"attribute\">\n").withType(Type.WARNING).instance()));
+    }
+
+    @Test
     public void validate_shouldReturnErrorIfDocumentIsNotAValidXML() throws Exception {
         XFormParser parser = new XFormParser(getFile("javarosa/emptyDocument.xml"));
         ValidationMessages messages = parser.validate();

@@ -79,6 +79,15 @@ public class XFormParserTest {
     }
 
     @Test
+    public void validate_shouldReturnErrorIfITextHasTranslationTagWithoutLanguageAttribute() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/translationTagWithoutLanguageAttribute.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("no language specified for <translation>\n" +
+                "    Problem found at nodeset: /html/head/model/itext/translation\n" +
+                "    With element <translation>\n").withType(Type.ERROR).instance()));
+    }
+
+    @Test
     public void validate_shouldReturnErrorIfDocumentIsNotAValidXML() throws Exception {
         XFormParser parser = new XFormParser(getFile("javarosa/emptyDocument.xml"));
         ValidationMessages messages = parser.validate();

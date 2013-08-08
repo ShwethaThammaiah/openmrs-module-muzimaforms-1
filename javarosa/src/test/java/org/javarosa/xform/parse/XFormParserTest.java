@@ -177,4 +177,13 @@ public class XFormParserTest {
                 "    With element <instance>\n").withType(Type.ERROR).instance()));
     }
 
+    @Test
+    public void validate_shouldReturnErrorIfInstanceHadMoreThanOneChild() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/multipleChildInAnInstance.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("XForm Parse: <instance> has more than one child element\n" +
+                "    Problem found at nodeset: /html/head/model/instance\n" +
+                "    With element <instance>\n").withType(Type.ERROR).instance()));
+    }
+
 }

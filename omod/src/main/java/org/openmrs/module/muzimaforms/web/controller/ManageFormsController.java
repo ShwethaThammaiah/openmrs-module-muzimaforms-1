@@ -36,7 +36,7 @@ public class ManageFormsController {
     /**
      * Success form view name
      */
-    private final String SUCCESS_FORM_VIEW = "/module/muzimaforms/manageFormsNew";
+    private final String SUCCESS_FORM_VIEW = "/module/muzimaforms/manageForms";
 
     /**
      * Initially called after the formBackingObject method to get the landing form name

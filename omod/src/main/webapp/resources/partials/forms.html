@@ -18,11 +18,11 @@
                 <ul class="dropdown-menu">
                     <li><a data-toggle="modal" href="#xformsModal" ng-click="import()"
                            style="color: #323232 ;text-decoration: none">XForms Module</a></li>
-                    <li><a data-toggle="modal" href="#formhubModal"
-                           style="color: #323232 ;text-decoration: none">Formhub</a></li>
                     <li class="divider"></li>
-                    <li><a data-toggle="modal" href="#filesystemModal"
-                           style="color: #323232 ;text-decoration: none">Choose File</a></li>
+                    <li><a data-toggle="modal" href="#importHTMLFormModal"
+                           style="color: #323232 ;text-decoration: none">Choose html form</a></li>
+                    <li><a data-toggle="modal" href="#importXformModal"
+                           style="color: #323232 ;text-decoration: none">Choose xform</a></li>
                 </ul>
             </li>
         </ul>
@@ -86,20 +86,20 @@
 </div>
 
 <!--<div class="modal fade" id="formPreviewModal" tabindex='-1'>-->
-    <!--<div class="modal-dialog">-->
-        <!--<div class="modal-content">-->
-            <!--<div class="modal-header" style="background-color: #34495e">-->
-                <!--<button type="button" class="close" style="color: #ffffff" data-dismiss="modal"-->
-                        <!--aria-hidden="true">&times;</button>-->
-                <!--<h4 class="modal-title" style="color: #ffffff">{{selectedForm.name}}</h4>-->
-            <!--</div>-->
-            <!--<div class="modal-body">-->
-                <!--<div id="preview" ng-bind-html-unsafe="getFormPreview()" />-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--&lt;!&ndash; /.modal-content &ndash;&gt;-->
-    <!--</div>-->
-    <!--&lt;!&ndash; /.modal-dialog &ndash;&gt;-->
+<!--<div class="modal-dialog">-->
+<!--<div class="modal-content">-->
+<!--<div class="modal-header" style="background-color: #34495e">-->
+<!--<button type="button" class="close" style="color: #ffffff" data-dismiss="modal"-->
+<!--aria-hidden="true">&times;</button>-->
+<!--<h4 class="modal-title" style="color: #ffffff">{{selectedForm.name}}</h4>-->
+<!--</div>-->
+<!--<div class="modal-body">-->
+<!--<div id="preview" ng-bind-html-unsafe="getFormPreview()" />-->
+<!--</div>-->
+<!--</div>-->
+<!--&lt;!&ndash; /.modal-content &ndash;&gt;-->
+<!--</div>-->
+<!--&lt;!&ndash; /.modal-dialog &ndash;&gt;-->
 <!--</div>-->
 <!--&lt;!&ndash; /.modal &ndash;&gt;-->
 
@@ -155,7 +155,7 @@
 </div>
 <!-- /.modal -->
 
-<div class="modal fade" id="formhubModal" tabindex='-1'>
+<div class="modal fade" id="importHTMLFormModal" tabindex='-1'>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #34495e">
@@ -180,7 +180,7 @@
 </div>
 <!-- /.modal -->
 
-<div class="modal fade" id="filesystemModal" tabindex='-1'>
+<div class="modal fade" id="importXformModal" tabindex='-1'>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #34495e">
@@ -189,14 +189,7 @@
                 <h4 class="modal-title" style="color: #ffffff">Open File</h4>
             </div>
             <div class="modal-body">
-                <file-input/>
-
-            </div>
-            <div class="modal-footer">
-                <a href="#" class="btn btn-danger" data-dismiss="modal"
-                   style="color: #ffffff ;text-decoration: none">Close</a>
-                <a href="#" class="btn btn-success" data-dismiss="modal" ng-click="done()"
-                   style="color: #ffffff ;text-decoration: none">Upload</a>
+                <form-input/>
             </div>
         </div>
         <!-- /.modal-content -->

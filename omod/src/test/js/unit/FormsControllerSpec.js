@@ -361,6 +361,21 @@ describe('muzimaForms controllers', function () {
             scope.activeTagFilters = [];
             expect(scope.tagFilterActive()).toBe(false);
         });
+
+
+        it('should return true if scope has a xform to upload', function () {
+            scope.xformToUpload = "";
+            expect(scope.hasXFormToUpload()).toBe(false);
+            scope.xformToUpload = "xform";
+            expect(scope.hasXFormToUpload()).toBe(true);
+        });
+
+        it('should return true if scope has a htmlform to upload', function () {
+            scope.htmlFormToUpload = "";
+            expect(scope.hasHtmlFormToUpload()).toBe(false);
+            scope.htmlFormToUpload = "form";
+            expect(scope.hasHtmlFormToUpload()).toBe(true);
+        });
     });
 })
 ;

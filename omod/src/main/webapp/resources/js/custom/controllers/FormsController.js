@@ -6,7 +6,8 @@ function FormsCtrl($scope, $window, FormService, XFormService, TagService, _, $q
         $scope.importMode = false;
         $scope.tagColorMap = {};
         $scope.activeTagFilters = [];
-        $scope.fileToUpload = "";
+        $scope.xformToUpload = "";
+        $scope.htmlFormToUpload = "";
 
         getTags().then(setTags);
         getForms().then(setForms);
@@ -176,5 +177,12 @@ function FormsCtrl($scope, $window, FormService, XFormService, TagService, _, $q
         $scope.activeTagFilters = _.union($scope.activeTagFilters, [tag]);
     };
 
+    $scope.hasXFormToUpload = function(){
+        return $scope.xformToUpload != "";
+    };
+
+    $scope.hasHtmlFormToUpload = function(){
+        return $scope.htmlFormToUpload != "";
+    };
 }
 

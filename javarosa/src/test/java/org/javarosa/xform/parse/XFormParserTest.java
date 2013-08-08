@@ -168,4 +168,13 @@ public class XFormParserTest {
                 "    With element <translation lang=\"english\" invalid=\"attribute\">\n").withType(Type.WARNING).instance()));
     }
 
+    @Test
+    public void validate_shouldReturnErrorIfThereAreMultipleInstanceTags() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/multipleInstance.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("Multiple instances not supported. Ignoring subsequent instances.\n" +
+                "    Problem found at nodeset: /html/head/model/instance\n" +
+                "    With element <instance>\n").withType(Type.ERROR).instance()));
+    }
+
 }

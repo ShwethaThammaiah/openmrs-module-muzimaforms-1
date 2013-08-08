@@ -579,7 +579,7 @@ public class XFormParser {
 
 	private void saveInstanceNode (Element instance) {
 		if (instanceNode != null) {
-			System.err.println("Multiple instances not supported. Ignoring subsequent instances." + getVagueLocation(instance));
+			messages.addError("Multiple instances not supported. Ignoring subsequent instances." + getVagueLocation(instance));
 			return;
 		}
 			

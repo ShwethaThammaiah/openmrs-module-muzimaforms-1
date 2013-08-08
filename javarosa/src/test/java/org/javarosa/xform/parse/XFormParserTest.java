@@ -204,4 +204,13 @@ public class XFormParserTest {
                 "    With element <bind/>\n").withType(Type.ERROR).instance()));
     }
 
+    @Test
+    public void validate_shouldReturnErrorIfBindNodeSetHasAnInvalidXPath() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/bindWithInvalidXPathForNodeSet.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("Parse error in XPath path: []\n" +
+                "    Problem found at nodeset: /html/head/model/bind\n" +
+                "    With element <bind nodeset=\"\"/>\n").withType(Type.ERROR).instance()));
+    }
+
 }

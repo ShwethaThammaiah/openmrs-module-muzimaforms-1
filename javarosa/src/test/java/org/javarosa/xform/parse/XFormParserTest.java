@@ -112,5 +112,12 @@ public class XFormParserTest {
                 "    With element <translation lang=\"spanish\" default=\"true\">\n").withType(Type.ERROR).instance()));
     }
 
-
+    @Test
+    public void validate_shouldReturnErrorIfTextHasNoId() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/textWithoutIdAttribute.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("no id defined for <text>\n" +
+                "    Problem found at nodeset: /html/head/model/itext/translation[@lang=english][@default=true]/text\n" +
+                "    With element <text>\n").withType(Type.ERROR).instance()));
+    }
 }

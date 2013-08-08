@@ -1,6 +1,5 @@
 package org.javarosa.xform.parse;
 
-import org.openmrs.module.muzimaforms.Builder;
 
 public class ValidationMessageBuilder extends Builder<ValidationMessage> {
     private String message;

@@ -1,9 +1,8 @@
 package org.javarosa.xform.parse;
 
-import org.hamcrest.Matchers;
 import org.junit.Test;
 
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.core.Is.is;
 import static org.javarosa.xform.parse.ValidationMessageBuilder.validationMessage;
 import static org.junit.Assert.assertThat;
 import static org.junit.matchers.JUnitMatchers.hasItem;

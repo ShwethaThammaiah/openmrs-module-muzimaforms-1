@@ -35,6 +35,7 @@
     <modules>
         <module>api</module>
         <module>omod</module>
+        <module>javarosa</module>
     </modules>
 
     <dependencyManagement>
@@ -140,7 +141,13 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.1</version>
+        </dependency>
+    </dependencies>
     <properties>
         <openMRSVersion>1.9.3</openMRSVersion>
     </properties>
@@ -201,7 +208,8 @@
                 </property>
             </activation>
             <properties>
-                <openmrs.standalone.path>/Users/shashant/Projects/openmrs/openmrs-standalone-1.9.3</openmrs.standalone.path>
+                <openmrs.standalone.path>/Users/shashant/Projects/openmrs/openmrs-standalone-1.9.3
+                </openmrs.standalone.path>
                 <deploy.path>${openmrs.standalone.path}/tomcat/webapps/openmrs-standalone</deploy.path>
             </properties>
         </profile>

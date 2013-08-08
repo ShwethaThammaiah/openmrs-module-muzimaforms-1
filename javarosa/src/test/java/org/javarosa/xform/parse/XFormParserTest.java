@@ -120,4 +120,21 @@ public class XFormParserTest {
                 "    Problem found at nodeset: /html/head/model/itext/translation[@lang=english][@default=true]/text\n" +
                 "    With element <text>\n").withType(Type.ERROR).instance()));
     }
+
+    @Test
+    public void validate_shouldReturnErrorIfTextHasInvalidChild() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/textInvalidChild.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("Unrecognized element [invalid] in " +
+                "Itext->translation->text").withType(Type.ERROR).instance()));
+    }
+
+    @Test
+    public void validate_shouldReturnErrorIfTextDefinitionIsDuplicate() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/duplicateTextDefinition.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("duplicate definition for text ID \"q1\" and form \"null\". Can only have one definition for each text form.\n" +
+                "    Problem found at nodeset: /html/head/model/itext/translation[@lang=english][@default=true]/text\n" +
+                "    With element <text id=\"q1\">\n").withType(Type.ERROR).instance()));
+    }
 }

@@ -1314,7 +1314,7 @@ public class XFormParser {
 		
 		//print unused attribute warning message for parent element
 		if(showUnusedAttributeWarning(trans, usedAtts)){
-			System.out.println(unusedAttWarning(trans, usedAtts));
+			messages.addWarning(unusedAttWarning(trans, usedAtts));
 		}
 		
 		l.registerLocaleResource(lang, source);

@@ -102,4 +102,15 @@ public class XFormParserTest {
                 "    Problem found at nodeset: /html/head/model/itext/translation\n" +
                 "    With element <translation lang=\"english\">\n").withType(Type.ERROR).instance()));
     }
+
+    @Test
+    public void validate_shouldReturnErrorIfITextHasDuplicateLanguageDefault() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/duplicateLanguageDefault.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("more than one <translation> set as default\n" +
+                "    Problem found at nodeset: /html/head/model/itext/translation\n" +
+                "    With element <translation lang=\"spanish\" default=\"true\">\n").withType(Type.ERROR).instance()));
+    }
+
+
 }

@@ -12,6 +12,13 @@ import static org.junit.matchers.JUnitMatchers.hasItem;
 
 public class XFormParserTest {
     @Test
+    public void validate_shouldReturnErrorIfDocumentIsNotAValidXML() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/emptyDocument.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("Document has no root element!").withType(Type.ERROR).instance()));
+    }
+
+    @Test
     public void validate_shouldReturnErrorIfRootElementIsInvalid() throws Exception {
         XFormParser parser = new XFormParser(getFile("javarosa/invalidRootElement.xml"));
         ValidationMessages messages = parser.validate();
@@ -94,12 +101,5 @@ public class XFormParserTest {
         assertThat(messages.list, hasItem(validationMessage().withMessage("duplicate <translation> for language 'english'\n" +
                 "    Problem found at nodeset: /html/head/model/itext/translation\n" +
                 "    With element <translation lang=\"english\">\n").withType(Type.ERROR).instance()));
-    }
-
-    @Test
-    public void validate_shouldReturnErrorIfDocumentIsNotAValidXML() throws Exception {
-        XFormParser parser = new XFormParser(getFile("javarosa/emptyDocument.xml"));
-        ValidationMessages messages = parser.validate();
-        assertThat(messages.list, hasItem(validationMessage().withMessage("Document has no root element!").withType(Type.ERROR).instance()));
     }
 }

@@ -35,11 +35,11 @@ import org.javarosa.core.util.externalizable.PrototypeFactory;
 import org.javarosa.core.util.externalizable.PrototypeFactoryDeprecated;
 import org.javarosa.model.xform.XPathReference;
 import org.javarosa.xform.util.XFormAnswerDataParser;
-import org.javarosa.xform.util.XFormSerializer;
 import org.javarosa.xpath.XPathConditional;
 import org.javarosa.xpath.expr.XPathPathExpr;
 import org.javarosa.xpath.parser.XPathSyntaxException;
 import org.kxml2.io.KXmlParser;
+import org.kxml2.io.KXmlSerializer;
 import org.kxml2.kdom.Document;
 import org.kxml2.kdom.Element;
 import org.kxml2.kdom.Node;
@@ -205,6 +205,29 @@ public class XFormParser {
 		typeMappings.put("barcode", new Integer(Constants.DATATYPE_BARCODE));           //non-standard
         typeMappings.put("binary", new Integer(Constants.DATATYPE_BINARY));             //non-standard
 	}
+
+    public String elementToString(Element e){
+        KXmlSerializer serializer = new KXmlSerializer();
+
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        DataOutputStream dos = new DataOutputStream(bos);
+        String s=null;
+        try {
+            serializer.setOutput(dos, null);
+            e.write(serializer);
+            serializer.flush();
+            s = new String(bos.toByteArray(),"UTF-8");
+            return s;
+        }catch (UnsupportedEncodingException uce){
+            uce.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+        return null;
+
+    }
 
     private String unusedAttWarning(Element e, Vector usedAtts){
 		String warning = "Warning: ";
@@ -744,7 +767,7 @@ public class XFormParser {
 				
 				//If the child is in the HTML namespace, retain it. 
 				if(NAMESPACE_HTML.equals(child.getNamespace())) {
-					sb.append(XFormSerializer.elementToString(child));
+					sb.append(elementToString(child));
 				} else {
 					//Otherwise, ignore it.
 					System.out.println("Unrecognized tag inside of text: <"  + child.getName() + ">. " +
@@ -951,7 +974,7 @@ public class XFormParser {
 		////////////////////////////////////////////////////
 		
 		String nodesetStr = e.getAttributeValue("", NODESET_ATTR);
-		if(nodesetStr == null ) throw new RuntimeException("No nodeset attribute in element: ["+e.getName()+"]. This is required. (Element Printout:"+ XFormSerializer.elementToString(e)+")");
+		if(nodesetStr == null ) throw new RuntimeException("No nodeset attribute in element: ["+e.getName()+"]. This is required. (Element Printout:"+ elementToString(e)+")");
 		XPathPathExpr path = XPathReference.getPathExpr(nodesetStr);
 		itemset.nodesetExpr = new XPathConditional(path);
 		itemset.contextRef = getFormElementRef(qparent);

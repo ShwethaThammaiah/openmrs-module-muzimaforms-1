@@ -5,8 +5,8 @@
         <model>
             <itext>
                 <translation lang="english" default="true">
-                    <text id="q1" invalid="invalid">
-                        <value>Last Name</value>
+                    <text id="q1">
+                        <value invalid="invalid">Last Name</value>
                     </text>
                 </translation>
             </itext>

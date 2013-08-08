@@ -139,13 +139,23 @@ public class XFormParserTest {
     }
 
     @Test
-    public void validate_shouldReturnErrorForTextInvalidAttribute() throws Exception {
-        XFormParser parser = new XFormParser(getFile("javarosa/invalidTextAttribute.xml"));
+    public void validate_shouldReturnWarningForTextChildInvalidAttribute() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/invalidTextChildAttribute.xml"));
         ValidationMessages messages = parser.validate();
         assertThat(messages.list, hasItem(validationMessage().withMessage("Warning: 1 Unrecognized attributes found in Element [value] and will be ignored: [invalid] Location:\n" +
                 "\n" +
                 "    Problem found at nodeset: /html/head/model/itext/translation[@lang=english][@default=true]/text[@id=q1]/value\n" +
                 "    With element <value invalid=\"invalid\">\n").withType(Type.WARNING).instance()));
+    }
+
+    @Test
+    public void validate_shouldReturnWarningForTextInvalidAttribute() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/invalidTextAttribute.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("Warning: 1 Unrecognized attributes found in Element [text] and will be ignored: [invalid] Location:\n" +
+                "\n" +
+                "    Problem found at nodeset: /html/head/model/itext/translation[@lang=english][@default=true]/text\n" +
+                "    With element <text id=\"q1\" invalid=\"invalid\">\n").withType(Type.WARNING).instance()));
     }
 
 }

@@ -1360,7 +1360,7 @@ public class XFormParser {
 			
 			//print unused attribute warning message for child element
 			if(showUnusedAttributeWarning(value, childUsedAtts)){
-				System.out.println(unusedAttWarning(value, childUsedAtts));
+				messages.addWarning(unusedAttWarning(value, childUsedAtts));
 			}
 		}
 		

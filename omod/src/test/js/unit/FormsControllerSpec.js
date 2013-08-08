@@ -1,7 +1,6 @@
 describe('muzimaForms controllers', function () {
     beforeEach(module('muzimaforms'));
     describe('FormsCtrl', function () {
-        var scope, ctrl, q, timeout;
 
         var sampleForm = {data: {"id": 1, "uuid": "foo", "name": "Patient Registration Form", "description": "Form for registering patients",
             "html": "foo",
@@ -82,12 +81,19 @@ describe('muzimaForms controllers', function () {
             }
         };
 
+        var window = {
+            open: function(){
+                return null;
+            }
+        };
+
         beforeEach(inject(function ($rootScope, $controller, $q, $timeout) {
             q = $q;
             timeout = $timeout;
             scope = $rootScope.$new();
             ctrl = $controller(FormsCtrl, {
                 $scope: scope,
+                $window: window,
                 TagService: TagService,
                 FormService: FormService,
                 XFormService: XFormService
@@ -150,33 +156,10 @@ describe('muzimaForms controllers', function () {
 
         });
 
-        it('should load selected form from FormService', function () {
-            spyOn(FormService, "get").andReturn(getPromise(sampleForm));
-            expect(scope.activeForm(1)).toBeUndefined();
-            scope.selectForm(1);
-            expect(FormService.get).toHaveBeenCalledWith(1);
-        });
-
         it('cancel should toggle importMode', function () {
             scope.importMode = true;
             scope.cancelImport();
             expect(scope.importMode).toBe(false);
-        });
-
-        it('should select the first form available', function () {
-            spyOn(FormService, "get").andReturn(getPromise(sampleForm));
-            timeout.flush();
-            expect(scope.activeForm("foo")).toBe('active-form');
-        });
-
-
-        it('should not reload a selected form', function () {
-            spyOn(FormService, "get").andReturn(getPromise(sampleForm));
-            timeout.flush();
-            expect(scope.activeForm("foo")).toBe('active-form');
-            scope.selectForm("foo");
-            expect(FormService.get.calls.length).toEqual(1);
-
         });
 
         it('should assign color to active xForm', function () {
@@ -378,14 +361,6 @@ describe('muzimaForms controllers', function () {
             scope.activeTagFilters = [];
             expect(scope.tagFilterActive()).toBe(false);
         });
-
-        it('should present the form preview', function () {
-            spyOn(FormService, "get").andReturn(getPromise(sampleForm));
-            timeout.flush();
-            scope.selectForm(1);
-            expect(scope.getFormPreview()).toBe("foo");
-        });
-    })
-    ;
+    });
 })
 ;

@@ -3,7 +3,7 @@ var muzimaformsModule = angular.module('muzimaforms', ['ui.bootstrap', 'muzimafi
 muzimaformsModule.
     config(['$routeProvider', function ($routeProvider) {
         $routeProvider.
-            when('/forms', {templateUrl: '../../moduleResources/muzimaforms/partials/formsNew.html'}).
+            when('/forms', {templateUrl: '../../moduleResources/muzimaforms/partials/forms.html'}).
             when('/form', {templateUrl: '../../moduleResources/muzimaforms/partials/form.html'}).
             otherwise({redirectTo: '/forms'});
     }]);
@@ -73,6 +73,7 @@ muzimaformsModule.directive("fileInput", function () {
                 fileInputButton.click();
             });
             fileInputButton.on("change",function(){
+                scope.fileToUpload = fileInputButton.val();
                 var file = fileInputButton.val().replace(/C:\\fakepath\\/i, '');
                 fileInputText.val(file);
             });

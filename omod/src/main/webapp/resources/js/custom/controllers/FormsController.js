@@ -1,14 +1,15 @@
 'use strict';
-function FormsCtrl($scope, FormService, XFormService, TagService, _, $q) {
+function FormsCtrl($scope, $window, FormService, XFormService, TagService, _, $q) {
     $scope.init = function () {
         $scope.selectedXForms = [];
         $scope.editMode = false;
         $scope.importMode = false;
         $scope.tagColorMap = {};
         $scope.activeTagFilters = [];
+        $scope.fileToUpload = "";
 
         getTags().then(setTags);
-        getForms().then(setForms).then(selectFirstForm);
+        getForms().then(setForms);
 
     };
 
@@ -39,12 +40,6 @@ function FormsCtrl($scope, FormService, XFormService, TagService, _, $q) {
         });
     };
 
-    var selectFirstForm = function () {
-        var firstForm = _.head($scope.forms);
-        if (firstForm)
-            $scope.selectForm(firstForm.uuid);
-    };
-
     $scope.import = function () {
         $scope.importMode = true;
         getXForms().then(setXForms);
@@ -71,26 +66,23 @@ function FormsCtrl($scope, FormService, XFormService, TagService, _, $q) {
     };
 
     $scope.getFormPreview = function () {
+        console.log($scope.selectedForm.html);
         return $scope.selectedForm ? $scope.selectedForm.html : "";
     };
 
-    $scope.selectForm = function (uuid) {
-        if($scope.selectedFormId === uuid) return;
-
-        $scope.selectedFormId = uuid;
-
-        var setSelectedForm = function (result) {
-            var form = result.data;
-            $scope.selectedForm = form;
-            return form.uuid;
+    $scope.showFormPreview = function(uuid){
+        var openPreviewInNewWindow = function openPreviewInNewWindow(result) {
+            var newFormPreviewWindow = $window.open();
+            newFormPreviewWindow.document.write("<html><head>" +
+                "<script src='/openmrs-standalone/moduleResources/muzimaforms/js/jquery/jquery.js'></script>" +
+                "<script src='/openmrs-standalone/moduleResources/muzimaforms/js/angular/angular.js'></script>" +
+                "</head><body><div id='preview' ng-bind-html-unsafe=" +
+                result.data.html +
+                "/></body></html>");
+            newFormPreviewWindow.document.close();
         };
-        FormService.get(uuid).then(setSelectedForm);
+        FormService.get(uuid).then(openPreviewInNewWindow);
     };
-
-    $scope.activeForm = function (uuid) {
-        return uuid === $scope.selectedFormId ? 'active-form' : undefined;
-    };
-
 
     $scope.selectXForm = function (id) {
         var indexOfId = $scope.selectedXForms.indexOf(id);

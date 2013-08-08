@@ -1,5 +1,6 @@
 package org.javarosa.xform.parse;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
@@ -184,6 +185,23 @@ public class XFormParserTest {
         assertThat(messages.list, hasItem(validationMessage().withMessage("XForm Parse: <instance> has more than one child element\n" +
                 "    Problem found at nodeset: /html/head/model/instance\n" +
                 "    With element <instance>\n").withType(Type.ERROR).instance()));
+    }
+
+    @Test
+    @Ignore
+    public void validate_shouldReturnWarningIfBindHasInvalidAttributes() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/invalidBindAttribute.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("").withType(Type.ERROR).instance()));
+    }
+
+    @Test
+    public void validate_shouldReturnErrorIfBindHasNoNodeSet() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/bindWithNoNodeset.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("XForm Parse: <bind> without nodeset\n" +
+                "    Problem found at nodeset: /html/head/model/bind\n" +
+                "    With element <bind/>\n").withType(Type.ERROR).instance()));
     }
 
 }

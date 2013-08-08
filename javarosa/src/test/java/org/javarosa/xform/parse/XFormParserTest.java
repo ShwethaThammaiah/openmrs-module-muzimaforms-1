@@ -213,4 +213,21 @@ public class XFormParserTest {
                 "    With element <bind nodeset=\"\"/>\n").withType(Type.ERROR).instance()));
     }
 
+    @Test
+    public void validate_shouldReturnWarningIfBindNodesetHasAnInvalidXPathExpression() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/bindWithNoMatchingInstance.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("WARNING: Bind [/person/children/child/start] " +
+                "matches no nodes; ignoring bind...").withType(Type.WARNING).instance()));
+    }
+
+    @Test
+    public void validate_shouldReturnErrorIfBindExistsWithoutAnInstance() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/bindWithNoInstance.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("No model instance available to do bind\n" +
+                "    Problem found at nodeset: /html/head/model/bind\n" +
+                "    With element <bind nodeset=\"children/child/start\"/>\n").withType(Type.ERROR).instance()));
+    }
+
 }

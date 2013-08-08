@@ -1173,6 +1173,9 @@ public class XFormParser {
 	private TreeReference getFormElementRef (IFormElement fe) {
 		if (fe instanceof FormDef) {
 			TreeReference ref = TreeReference.rootRef();
+            if(instanceNode == null){
+                throw new XFormParseException("No model instance available to do bind");
+            }
 			ref.add(instanceNode.getName(), 0);
 			return ref;
 		} else {
@@ -1974,7 +1977,7 @@ public class XFormParser {
 			} else {
 				Vector<TreeReference> nodes = instance.expandReference(ref, true);
 				if (nodes.size() == 0) {
-					System.out.println("WARNING: Bind [" + ref.toString() + "] matches no nodes; ignoring bind...");
+					messages.addWarning("WARNING: Bind [" + ref.toString() + "] matches no nodes; ignoring bind...");
 				}
 			}
 		}

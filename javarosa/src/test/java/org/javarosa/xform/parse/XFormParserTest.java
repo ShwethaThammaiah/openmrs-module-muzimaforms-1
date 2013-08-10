@@ -188,11 +188,13 @@ public class XFormParserTest {
     }
 
     @Test
-    @Ignore
     public void validate_shouldReturnWarningIfBindHasInvalidAttributes() throws Exception {
         XFormParser parser = new XFormParser(getFile("javarosa/invalidBindAttribute.xml"));
         ValidationMessages messages = parser.validate();
-        assertThat(messages.list, hasItem(validationMessage().withMessage("").withType(Type.ERROR).instance()));
+        assertThat(messages.list, hasItem(validationMessage().withMessage("Warning: 1 Unrecognized attributes found in Element [bind] and will be ignored: [invalid] Location:\n" +
+                "\n" +
+                "    Problem found at nodeset: /html/head/model/bind\n" +
+                "    With element <bind nodeset=\"name\" invalid=\"attribute\"/>\n").withType(Type.WARNING).instance()));
     }
 
     @Test
@@ -229,5 +231,42 @@ public class XFormParserTest {
                 "    Problem found at nodeset: /html/head/model/bind\n" +
                 "    With element <bind nodeset=\"children/child/start\"/>\n").withType(Type.ERROR).instance()));
     }
+
+    @Test
+    public void validate_shouldReturnErrorIfBindHasInvalidRequiredCondition() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/bindWithInvalidRequiredCondition.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("Invalid XPath expression []! at required \n" +
+                "    Problem found at nodeset: /html/head/model/bind\n" +
+                "    With element <bind nodeset=\"name\" required=\"\"/>\n").withType(Type.ERROR).instance()));
+    }
+
+    @Test
+    public void validate_shouldReturnErrorIfBindHasInvalidReadOnlyCondition() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/bindWithInvalidReadOnlyCondition.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("Invalid XPath expression []! at readonly \n" +
+                "    Problem found at nodeset: /html/head/model/bind\n" +
+                "    With element <bind nodeset=\"name\" readonly=\"\"/>\n").withType(Type.ERROR).instance()));
+    }
+
+    @Test
+    public void validate_shouldReturnErrorIfBindHasInvalidConstraintCondition() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/bindWithInvalidConstraintCondition.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("Invalid XPath expression []! at constraint\n" +
+                "    Problem found at nodeset: /html/head/model/bind\n" +
+                "    With element <bind nodeset=\"name\" constraint=\"\"/>\n").withType(Type.ERROR).instance()));
+    }
+
+    @Test
+    public void validate_shouldReturnErrorIfBindHasInvalidCalculateCondition() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/bindWithInvalidCalculateCondition.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("Invalid XPath expression []! at calculate \n" +
+                "    Problem found at nodeset: /html/head/model/bind\n" +
+                "    With element <bind nodeset=\"name\" calculate=\"\"/>\n").withType(Type.ERROR).instance()));
+    }
+
 
 }

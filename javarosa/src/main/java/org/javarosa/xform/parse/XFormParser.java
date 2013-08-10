@@ -1463,7 +1463,7 @@ public class XFormParser {
 			} else if ("false()".equals(xpathRel)) {
 				binding.relevantAbsolute = false;
 			} else {
-				Condition c = buildCondition(xpathRel, "relevant", ref);
+				Condition c = buildCondition(xpathRel, "relevant", ref, e);
 				c = (Condition)_f.addTriggerable(c);
 				binding.relevancyCondition = c;
 			}
@@ -1476,10 +1476,9 @@ public class XFormParser {
 			} else if ("false()".equals(xpathReq)) {
 				binding.requiredAbsolute = false;
 			} else {
-				Condition c = buildCondition(xpathReq, "required", ref);
-				c = (Condition)_f.addTriggerable(c);
-				binding.requiredCondition = c;
-			}
+                Condition c = buildCondition(xpathReq, "required", ref, e);
+                binding.requiredCondition = (c != null ? (Condition) _f.addTriggerable(c) : null);
+            }
 		}
 
 		String xpathRO = e.getAttributeValue(null, "readonly");
@@ -1489,9 +1488,8 @@ public class XFormParser {
 			} else if ("false()".equals(xpathRO)) {
 				binding.readonlyAbsolute = false;
 			} else {
-				Condition c = buildCondition(xpathRO, "readonly", ref);
-				c = (Condition)_f.addTriggerable(c);
-				binding.readonlyCondition = c;
+				Condition c = buildCondition(xpathRO, "readonly", ref, e);
+                binding.requiredCondition = (c != null ? (Condition) _f.addTriggerable(c) : null);
 			}
 		}
 
@@ -1500,18 +1498,15 @@ public class XFormParser {
 			try {
 				binding.constraint = new XPathConditional(xpathConstr);
 			} catch (XPathSyntaxException xse) {
-				//#if debug.output==verbose
-				System.err.println("Invalid XPath expression [" + xpathConstr + "]!" + getVagueLocation(e));
-				//#endif
+				messages.addError("Invalid XPath expression [" + xpathConstr + "]! at constraint" + getVagueLocation(e));
 			}
 			binding.constraintMessage = e.getAttributeValue(NAMESPACE_JAVAROSA, "constraintMsg");
 		}
 
 		String xpathCalc = e.getAttributeValue(null, "calculate");
 		if (xpathCalc != null) {
-			Recalculate r = buildCalculate(xpathCalc, ref);
-			r = (Recalculate)_f.addTriggerable(r);
-			binding.calculate = r;
+			Recalculate r = buildCalculate(xpathCalc, ref, e);
+			binding.calculate = (r != null? (Recalculate)_f.addTriggerable(r) : null);
 		}
 
 		binding.setPreload(e.getAttributeValue(NAMESPACE_JAVAROSA, "preload"));
@@ -1527,13 +1522,13 @@ public class XFormParser {
 
 		//print unused attribute warning message for parent element
 		if(showUnusedAttributeWarning(e, usedAtts)){
-			System.out.println(unusedAttWarning(e, usedAtts));
+			messages.addWarning(unusedAttWarning(e, usedAtts));
 		}
 
 		addBinding(binding);
 	}
 
-	private static Condition buildCondition (String xpath, String type, IDataReference contextRef) {
+	private Condition buildCondition(String xpath, String type, IDataReference contextRef, Element e) {
 		XPathConditional cond;
 		int trueAction = -1, falseAction = -1;
 
@@ -1552,7 +1547,7 @@ public class XFormParser {
 			cond = new XPathConditional(xpath);
 		} catch (XPathSyntaxException xse) {
 			//#if debug.output==verbose
-			System.err.println("Invalid XPath expression [" + xpath + "]!");
+			messages.addError(String.format("Invalid XPath expression [%s]! at %s %s", xpath, type, getVagueLocation(e)));
 			//#endif
 			return null;
 		}
@@ -1561,15 +1556,13 @@ public class XFormParser {
 		return c;
 	}
 
-	private static Recalculate buildCalculate (String xpath, IDataReference contextRef) {
+	private Recalculate buildCalculate(String xpath, IDataReference contextRef, Element e) {
 		XPathConditional calc;
 
 		try {
 			calc = new XPathConditional(xpath);
 		} catch (XPathSyntaxException xse) {
-			//#if debug.output==verbose
-			System.err.println("Invalid XPath expression [" + xpath + "]!");
-			//#endif
+			messages.addError(String.format("Invalid XPath expression [%s]! at calculate %s", xpath, getVagueLocation(e)));
 			return null;
 		}
 
@@ -2540,4 +2533,5 @@ public class XFormParser {
 		}
 		return elementString;
 	}
+
 }

@@ -8,7 +8,7 @@
                     <name></name>
                 </patient>
             </instance>
-            <bind nodeset="name" invalid="attribute"/>
+            <bind nodeset="name" readonly=""/>
         </model>
     </h:head>
 </h:html>

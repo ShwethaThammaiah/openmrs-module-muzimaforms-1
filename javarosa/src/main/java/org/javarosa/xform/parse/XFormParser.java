@@ -554,8 +554,12 @@ public class XFormParser {
 			dataRef = binding.getReference();
 			refFromBind = true;
 		} else if (ref != null) {
-			dataRef = new XPathReference(ref);
-		} else {
+            try {
+                dataRef = new XPathReference(ref);
+            } catch (RuntimeException e) {
+                throw new XFormParseException(String.format("%s at ref %s", e, getVagueLocation(submission)));
+            }
+        } else {
 			//no reference! No big deal, assume we want the root reference
 			dataRef = new XPathReference("/");
 		}

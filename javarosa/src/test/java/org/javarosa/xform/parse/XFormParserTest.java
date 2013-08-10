@@ -269,19 +269,28 @@ public class XFormParserTest {
     }
 
     @Test
-    public void validate_shouldReturnErrorIfThereBindingIDIsNotUnique() throws Exception {
+    public void validate_shouldReturnErrorIfBindingIDIsNotUnique() throws Exception {
         XFormParser parser = new XFormParser(getFile("javarosa/bindingIdNotUnique.xml"));
         ValidationMessages messages = parser.validate();
         assertThat(messages.list, hasItem(validationMessage().withMessage("XForm Parse: <bind>s with duplicate ID: 'name'").withType(Type.ERROR).instance()));
     }
 
     @Test
-    public void validate_shouldReturnErrorIfThereSubmissionHasInvalidBind() throws Exception {
+    public void validate_shouldReturnErrorIfSubmissionHasInvalidBind() throws Exception {
         XFormParser parser = new XFormParser(getFile("javarosa/submissionWithInvalidBind.xml"));
         ValidationMessages messages = parser.validate();
         assertThat(messages.list, hasItem(validationMessage().withMessage("XForm Parse: invalid binding ID in submit' invalid'\n" +
                 "    Problem found at nodeset: /html/head/model/submission\n" +
                 "    With element <submission bind=\"invalid\">\n").withType(Type.ERROR).instance()));
+    }
+
+    @Test
+    public void validate_shouldReturnErrorIfSubmissionHasInvalidRef() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/submissionWithInvalidRef.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("java.lang.RuntimeException: Parse error in XPath path: [] at ref \n" +
+                "    Problem found at nodeset: /html/head/model/submission\n" +
+                "    With element <submission ref=\"\">\n").withType(Type.ERROR).instance()));
     }
 
 

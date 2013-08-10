@@ -275,5 +275,14 @@ public class XFormParserTest {
         assertThat(messages.list, hasItem(validationMessage().withMessage("XForm Parse: <bind>s with duplicate ID: 'name'").withType(Type.ERROR).instance()));
     }
 
+    @Test
+    public void validate_shouldReturnErrorIfThereSubmissionHasInvalidBind() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/submissionWithInvalidBind.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("XForm Parse: invalid binding ID in submit' invalid'\n" +
+                "    Problem found at nodeset: /html/head/model/submission\n" +
+                "    With element <submission bind=\"invalid\">\n").withType(Type.ERROR).instance()));
+    }
+
 
 }

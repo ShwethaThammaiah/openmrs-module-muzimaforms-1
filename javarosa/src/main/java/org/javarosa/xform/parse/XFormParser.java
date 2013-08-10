@@ -549,7 +549,7 @@ public class XFormParser {
 		if (bind != null) {
 			DataBinding binding = bindingsByID.get(bind);
 			if (binding == null) {
-				throw new XFormParseException("XForm Parse: invalid binding ID in submit'" + bind + "'", submission);
+				throw new XFormParseException(String.format("XForm Parse: invalid binding ID in submit' %s'", bind), submission);
 			}
 			dataRef = binding.getReference();
 			refFromBind = true;

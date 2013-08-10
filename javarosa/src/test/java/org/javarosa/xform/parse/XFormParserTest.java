@@ -268,5 +268,12 @@ public class XFormParserTest {
                 "    With element <bind nodeset=\"name\" calculate=\"\"/>\n").withType(Type.ERROR).instance()));
     }
 
+    @Test
+    public void validate_shouldReturnErrorIfThereBindingIDIsNotUnique() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/bindingIdNotUnique.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("XForm Parse: <bind>s with duplicate ID: 'name'").withType(Type.ERROR).instance()));
+    }
+
 
 }

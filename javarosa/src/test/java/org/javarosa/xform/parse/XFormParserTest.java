@@ -20,6 +20,13 @@ public class XFormParserTest {
     }
 
     @Test
+    public void validate_shouldReturnErrorIfHadInvalidXMLSyntax() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/invalidXMLSyntax.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("XML Syntax Error at Line: 1, Column: 18!").withType(Type.ERROR).instance()));
+    }
+
+    @Test
     public void validate_shouldReturnErrorIfRootElementIsInvalid() throws Exception {
         XFormParser parser = new XFormParser(getFile("javarosa/invalidRootElement.xml"));
         ValidationMessages messages = parser.validate();

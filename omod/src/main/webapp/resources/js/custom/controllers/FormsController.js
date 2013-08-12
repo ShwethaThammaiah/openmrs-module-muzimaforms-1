@@ -8,6 +8,7 @@ function FormsCtrl($scope, $window, FormService, XFormService, TagService, _, $q
         $scope.activeTagFilters = [];
         $scope.xformToUpload = "";
         $scope.htmlFormToUpload = "";
+        $scope.fetchingForms = false;
 
         getTags().then(setTags);
         getForms().then(setForms);
@@ -18,6 +19,7 @@ function FormsCtrl($scope, $window, FormService, XFormService, TagService, _, $q
         return TagService.all();
     };
     var getForms = function () {
+        $scope.fetchingForms = true;
         return FormService.all();
     };
     var getXForms = function () {
@@ -31,6 +33,7 @@ function FormsCtrl($scope, $window, FormService, XFormService, TagService, _, $q
 
     };
     var setForms = function (result) {
+        $scope.fetchingForms = false;
         $scope.forms = result.data.results;
         $scope.muzimaforms = _.map(result.data.results, function (form) {
 

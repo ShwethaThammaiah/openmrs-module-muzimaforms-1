@@ -300,5 +300,14 @@ public class XFormParserTest {
                 "    With element <submission ref=\"\">\n").withType(Type.ERROR).instance()));
     }
 
+    @Test
+    public void validate_shouldReturnErrorIfControlHasInvalidBinding() throws Exception {
+        XFormParser parser = new XFormParser(getFile("javarosa/invalidControlBinding.xml"));
+        ValidationMessages messages = parser.validate();
+        assertThat(messages.list, hasItem(validationMessage().withMessage("XForm Parse: invalid binding ID ''\n" +
+                "    Problem found at nodeset: /html/head/input\n" +
+                "    With element <input bind=\"\"/>\n").withType(Type.ERROR).instance()));
+    }
+
 
 }

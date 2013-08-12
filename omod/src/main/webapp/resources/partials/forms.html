@@ -29,7 +29,16 @@
     </div>
 </div>
 
-<div ng-show="tagFilterActive()" class="well well-large">
+<div ng-show="fetchingForms">
+    <div style="text-align: center">
+        <h1>Fetching forms...</h1>
+    </div>
+    <div class="progress progress-striped active">
+        <div class="progress-bar" style="width: 100%"></div>
+    </div>
+</div>
+
+<div ng-show="tagFilterActive() && !fetchingForms" class="well well-large">
     <span>Filter by: </span>
         <span class="tag" ng-repeat="tag in activeTagFilters">
                   <span class="label form-tag" ng-style="tagStyle(tag.id)">
@@ -191,7 +200,7 @@
 </div>
 <!-- /.modal -->
 
-<div class="close-box" ng-show="!hasForms()">
+<div class="close-box" ng-show="!hasForms() && !fetchingForms">
     <div class="container">
         <h2>No Available Forms</h2>
 

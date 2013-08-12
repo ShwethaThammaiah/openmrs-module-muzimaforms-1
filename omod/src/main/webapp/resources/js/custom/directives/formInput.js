@@ -1,61 +1,60 @@
-muzimaformsModule.directive("formInput", function () {
+muzimaformsModule.directive("formInput", function (FormUploadService) {
     return {
         restrict: "E",
         templateUrl: "../../moduleResources/muzimaforms/partials/formsImport.html",
         replace: false,
         transclude: true,
-        controller: function($scope, $attrs) {
-            $scope.fileToUpload = "";
-            $scope.formName = "";
-            $scope.formDescription = "";
+        controller: function ($scope, FormUploadService) {
+            $scope.form = {formName: "", formDescription: ""};
             $scope.errorMsg = "";
 
-            $scope.hasFileToUpload = function(){
+            $scope.hasFileToUpload = function () {
                 return $scope.fileToUpload != "";
             };
 
-            $scope.submitForm = function(){
+            $scope.submitForm = function () {
                 $scope.errorMsg = "";
-                if($scope.fileToUpload == ""){
+                if ($scope.fileToUpload == undefined) {
                     $scope.errorMsg = "Please select a file to upload"
                     return;
                 }
-                if($scope.formName == ""){
+                if ($scope.form.formName == "") {
                     $scope.errorMsg = "Please enter form name"
                     return;
                 }
 
-                console.log("import button clicked");
+                FormUploadService.upload($scope.form, $scope.fileToUpload);
             };
 
-            $scope.errorInImport = function(){
+            $scope.errorInImport = function () {
                 return $scope.errorMsg != "";
             }
         },
         link: function (scope, element, attrs) {
             var fileInputButton = element.find("#hiddenFormImportButton");
-            fileInputButton.css('display','none');
+            fileInputButton.css('display', 'none');
             var fileInputText = element.find("#inputFileName");
             var chooseFileButton = element.find("#chooseFileButton");
             var formNameInput = element.find("#inputFormName");
             var formDescriptionInput = element.find("#inputFormDescription");
+            var form = element.find('#formToImport');
 
-            chooseFileButton.click(function(){
+            chooseFileButton.click(function () {
                 fileInputButton.click();
             });
 
-            fileInputButton.on("change",function(){
-                scope.fileToUpload = fileInputButton.val();
-                var file = fileInputButton.val().replace(/C:\\fakepath\\/i, '');
-                fileInputText.val(file);
+            fileInputButton.on("change", function () {
+                scope.fileToUpload = this.files[0];
+                var fileName = scope.fileToUpload == undefined ? "Choose form to import" : scope.fileToUpload.name;
+                fileInputText.val(fileName);
             });
 
-            formNameInput.bind("change paste keyup", function(){
-                scope.formName = formNameInput.val();
+            formNameInput.bind("change paste keyup", function () {
+                scope.form.formName = formNameInput.val();
             });
 
-            formDescriptionInput.bind("change paste keyup", function(){
-                scope.formDescription = formDescriptionInput.val();
+            formDescriptionInput.bind("change paste keyup", function () {
+                scope.form.formDescription = formDescriptionInput.val();
             });
         }
     }

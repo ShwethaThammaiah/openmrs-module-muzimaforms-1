@@ -1,7 +1,7 @@
-<div class="container" ng-controller="FormsCtrl" ng-init="init()" xmlns="http://www.w3.org/1999/html">
+<div ng-controller="FormsCtrl" ng-init="init()" xmlns="http://www.w3.org/1999/html">
 <!--TODO : text styles if put in css file are overridden by something else. Need to figure it out-->
 <div class="navbar navbar-inverse navbar-custom">
-    <div class="container">
+    <div>
         <a class="navbar-brand" style="color: #ffffff; font-size: 20px">Muzima Forms</a>
 
         <ul class="nav navbar-nav pull-right">
@@ -53,12 +53,17 @@
         <li class="list-group-item"
             ng-repeat="muzimaform in muzimaforms | filter:searchQuery | tagFilter:activeTagFilters">
             <div class="row">
-                <div class="col-lg-10">
+                <div class="col-lg-6">
                     <div>
-                        <p class="form-heading content_wrap">
-                            <strong>{{muzimaform.form.name}}</strong>
-                        </p>
-
+                        <span><a title="Preview Form" ng-click="showFormPreview(muzimaform.form.uuid)">
+                            <i class="icon-eye-open"></i></a></span>
+                        <span>
+                            <a title="Add Tags" ng-click="editMode = !editMode">
+                            <i class="icon-tags"></i></a>
+                        </span>
+                        <span class="form-heading content_wrap"> <strong>{{muzimaform.form.name}}</strong> </span>
+                    </div>
+                    <div>
                         <p>
                             <small>{{muzimaform.form.description}}</small>
                         </p>
@@ -73,14 +78,6 @@
                             </span>
                     </div>
 
-                </div>
-                <div class="col-lg-2">
-                    <a class="btn btn-info pull-right" ng-click="showFormPreview(muzimaform.form.uuid)"
-                       style="margin-bottom: 5px;background-color: #0099cc; color: #ffffff; text-decoration: none">
-                        <i class="icon-eye-open"></i> Preview</a>
-                    <a class="btn btn-info pull-right" ng-click="editMode = !editMode"
-                       style="background-color: #34495e; color: #ffffff; text-decoration: none">
-                        <i class="icon-tags"></i> Add Tags</a>
                 </div>
             </div>
             <div class="row" ng-show="editMode">

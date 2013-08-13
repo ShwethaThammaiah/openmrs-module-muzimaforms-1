@@ -21,7 +21,12 @@
 
 <div class="bootstrap-scope" ng-app="muzimaforms">
 
-    <div ng-view></div>
+    <div class="row-fluid">
+
+        <div class="col-lg-12">
+            <div ng-view></div>
+        </div>
+    </div>
 
 </div>
 

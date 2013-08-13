@@ -1,35 +1,25 @@
 <div ng-controller="FormsCtrl" ng-init="init()" xmlns="http://www.w3.org/1999/html">
-<!--TODO : text styles if put in css file are overridden by something else. Need to figure it out-->
-<div class="navbar navbar-inverse navbar-custom">
-    <div>
-        <a class="navbar-brand" style="color: #ffffff; font-size: 20px">Muzima Forms</a>
-
-        <ul class="nav navbar-nav pull-right">
-            <li class="search-element">
-                <form class="navbar-form pull-right">
-                    <input type="text" class="form-control" ng-model="searchQuery" placeholder="Search"
-                           style="padding-left: 5px; padding-right: 5px">
-                </form>
-            </li>
-            <li>
-                <button type="button" class="btn btn-success dropdown-toggle navbar-btn" data-toggle="dropdown">
-                    Import <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a data-toggle="modal" href="#xformsModal" ng-click="import()"
-                           style="color: #323232 ;text-decoration: none">XForms Module</a></li>
-                    <li class="divider"></li>
-                    <li><a data-toggle="modal" href="#importHTMLFormModal"
-                           style="color: #323232 ;text-decoration: none">Choose html form</a></li>
-                    <li><a data-toggle="modal" href="#importXformModal"
-                           style="color: #323232 ;text-decoration: none">Choose xform</a></li>
-                </ul>
-            </li>
-        </ul>
+    <div class="navbar navbar-inverse navbar-custom">
+        <div><a class="navbar-brand" href="#">Title</a>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+            </ul>
+        </div>
     </div>
-</div>
+    <!--TODO : text styles if put in css file are overridden by something else. Need to figure it out-->
+    <div class="row-fluid">
+        <div class="col-lg-6"></div>
+        <div class="col-lg-6 panel">
+            <form>
+                <input type="text" class="form-control" ng-model="searchQuery" placeholder="Search"
+                       style="padding-left: 5px; padding-right: 5px">
+            </form>
+        </div>
+    </div>
 
-<div ng-show="fetchingForms">
+    <div ng-show="fetchingForms">
     <div style="text-align: center">
         <h1>Fetching forms...</h1>
     </div>
@@ -48,13 +38,10 @@
             </span>
 </div>
 
-<div class="list-group" ng-show="hasForms()">
-    <ul class="list-group">
-        <li class="list-group-item"
-            ng-repeat="muzimaform in muzimaforms | filter:searchQuery | tagFilter:activeTagFilters">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div>
+<div ng-show="hasForms()">
+            <div class="row-fluid" ng-repeat="muzimaform in muzimaforms | filter:searchQuery | tagFilter:activeTagFilters">
+                <div class="col-lg-12 panel">
+                    <div class="panel-heading">
                         <span><a title="Preview Form" ng-click="showFormPreview(muzimaform.form.uuid)">
                             <i class="icon-eye-open"></i></a></span>
                         <span>
@@ -80,15 +67,13 @@
 
                 </div>
             </div>
-            <div class="row" ng-show="editMode">
+            <div class="row-fluid" ng-show="editMode">
                 <form class="col-7" ng-submit="saveTag(muzimaform)">
                     <input name="newTag" ng-model="muzimaform.newTag" ng-trim="true" type="text"
                            class="form-control" placeholder="Add tag"
                            style="margin-top: 15px; padding-left: 5px; padding-right: 5px">
                 </form>
             </div>
-        </li>
-    </ul>
 </div>
 
 <!--<div class="modal fade" id="formPreviewModal" tabindex='-1'>-->

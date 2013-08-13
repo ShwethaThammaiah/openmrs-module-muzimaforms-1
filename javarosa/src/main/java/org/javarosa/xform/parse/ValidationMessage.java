@@ -1,8 +1,8 @@
 package org.javarosa.xform.parse;
 
-import java.util.List;
+import java.io.Serializable;
 
-public class ValidationMessage {
+public class ValidationMessage implements Serializable {
     private final String message;
     private final Type type;
 
@@ -15,6 +15,14 @@ public class ValidationMessage {
         WARNING, ERROR
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -22,24 +30,25 @@ public class ValidationMessage {
 
         ValidationMessage that = (ValidationMessage) o;
 
-        if (message != null ? !message.equals(that.message) : that.message != null) return false;
-        if (type != that.type) return false;
+        if (getMessage() != null ? !getMessage().equals(that.getMessage()) : that.getMessage() != null) return false;
+        if (getType() != that.getType()) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = message != null ? message.hashCode() : 0;
-        result = 31 * result + (type != null ? type.hashCode() : 0);
+        int result = getMessage() != null ? getMessage().hashCode() : 0;
+        result = 31 * result + (getType() != null ? getType().hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
         return "ValidationMessage{" +
-                "message='" + message + '\'' +
-                ", type=" + type +
+                "message='" + getMessage() + '\'' +
+                ", type=" + getType() +
                 '}';
     }
+
 }

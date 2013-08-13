@@ -53,7 +53,7 @@ muzimaformsModule.factory('FormUploadService', function ($http) {
     var upload = function (form, file) {
         return $http({
             method: 'POST',
-            url: "form.upload",
+            url: "upload.form",
             headers: { 'Content-Type': false },
             transformRequest: function (data) {
                 var formData = new FormData();

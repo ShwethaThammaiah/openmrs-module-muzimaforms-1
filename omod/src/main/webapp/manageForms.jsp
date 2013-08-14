@@ -35,7 +35,6 @@
                         <li><a href="#/list/xforms"
                                style="color: #323232 ;text-decoration: none">XForms Module</a></li>
                         <li class="divider"></li>
-                        <li><a style="color: #323232 ;text-decoration: none">Choose html form</a></li>
                         <li><a href="#/import/xforms" style="color: #323232 ;text-decoration: none">Choose xform</a></li>
                     </ul>
                 </li>

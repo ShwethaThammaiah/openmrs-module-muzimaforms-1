@@ -13,5 +13,13 @@ describe('muzima Import controllers', function () {
         it('should assign a boolean variable indicating that the file input should be hidden', function () {
             expect(scope.showFileInput).toBe(false);
         });
+
+        it('should return the error style when the validation type is error', function () {
+            expect(scope.style('ERROR')).toBe('alert-danger');
+        });
+
+        it('should return the warning style when the validation type is warning', function () {
+            expect(scope.style('WARNING')).toBe('alert-info');
+        });
     });
 });

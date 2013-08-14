@@ -1,5 +1,25 @@
 <div ng-controller="ImportCtrl">
-    <form id="formToImport">
-        <file-upload message="Click here to upload Java Rosa Form"/>
+    <form id="formToImport" ng-submit="validate(file)">
+        <div class="row">
+            <div class="col-lg-12">
+                <file-upload message="Click here to upload Java Rosa Form"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div>
+                    <input type="submit" class="btn btn-danger" value="Validate">
+                </div>
+            </div>
+        </div>
     </form>
+    <div class="row">
+        <div class="col-lg-12"></div>
+    </div>
+    <div class="row" ng-repeat="validation in validations.list">
+        <div class="col-lg-12">
+            <pre class="alert" ng-class="style(validation.type)">{{validation.message}}</pre>
+        </div>
+    </div>
 </div>
+

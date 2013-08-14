@@ -50,22 +50,20 @@ muzimaformsModule.factory('TagService', function ($http) {
     return {all: all};
 });
 
-muzimaformsModule.factory('FormUploadService', function ($http) {
-    var upload = function (form, file) {
-        return $http({
-            method: 'POST',
-            url: "upload.form",
-            headers: { 'Content-Type': false },
-            transformRequest: function (data) {
-                var formData = new FormData();
-                formData.append("formMetadata", angular.toJson(data.formMetadata));
-                formData.append("file", data.file);
-                return formData;
-            },
-            data: {formMetadata: form, file: file}
-        })
-    };
+muzimaformsModule.factory('FileUploadService', function ($http) {
     return {
-        upload: upload
+        post: function (options) {
+            return $http({
+                method: 'POST',
+                url: options.url,
+                headers: { 'Content-Type': false },
+                transformRequest: function (data) {
+                    var formData = new FormData();
+                    formData.append("file", data.file);
+                    return formData;
+                },
+                data: {file: options.file}
+            })
+        }
     };
 });

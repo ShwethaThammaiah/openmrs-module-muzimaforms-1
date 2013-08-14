@@ -4,8 +4,6 @@ muzimaformsModule.directive("fileUpload", function () {
         templateUrl: "../../moduleResources/muzimaforms/partials/directives/fileUpload.html",
         replace: false,
         transclude: true,
-        controller: function ($scope) {
-        },
         link: function (scope, element, attrs) {
             var fileUploadButton = element.find('#fileUploadControl');
             var activator = element.find("#fileUploadControlActivator");
@@ -18,8 +16,8 @@ muzimaformsModule.directive("fileUpload", function () {
             });
 
             $(fileUploadButton).on("change", function () {
-                var file = this.files[0];
-                $(activator).text((file == undefined ? attrs.message : file.name));
+                scope.file = scope.$parent.file = this.files[0];
+                $(activator).text((scope.file == undefined ? attrs.message : scope.file.name));
             });
         }
     }

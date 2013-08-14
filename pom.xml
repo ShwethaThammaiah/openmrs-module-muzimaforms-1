@@ -150,6 +150,7 @@
     </dependencies>
     <properties>
         <openMRSVersion>1.9.3</openMRSVersion>
+        <deploy.path>${openmrs.standalone.path}/tomcat/webapps/openmrs-standalone</deploy.path>
     </properties>
 
     <build>
@@ -210,7 +211,6 @@
             <properties>
                 <openmrs.standalone.path>/Users/shashant/Projects/openmrs/openmrs-standalone-1.9.3
                 </openmrs.standalone.path>
-                <deploy.path>${openmrs.standalone.path}/tomcat/webapps/openmrs-standalone</deploy.path>
             </properties>
         </profile>
         <profile>
@@ -223,7 +223,6 @@
             </activation>
             <properties>
                 <openmrs.standalone.path>/Users/Admin/work/openmrs-standalone</openmrs.standalone.path>
-                <deploy.path>${openmrs.standalone.path}/tomcat/webapps/openmrs-standalone</deploy.path>
             </properties>
         </profile>
         <profile>
@@ -236,7 +235,18 @@
             </activation>
             <properties>
                 <openmrs.standalone.path>/Users/zabil/projects/openmrs-standalone-1.9.3</openmrs.standalone.path>
-                <deploy.path>${openmrs.standalone.path}/tomcat/webapps/openmrs-standalone</deploy.path>
+            </properties>
+        </profile>
+        <profile>
+            <id>akani.configuration</id>
+            <activation>
+                <property>
+                    <name>user</name>
+                    <value>akani</value>
+                </property>
+            </activation>
+            <properties>
+                <openmrs.standalone.path>/Users/akani/Development/projects/openmrs-standalone-1.9.3</openmrs.standalone.path>
             </properties>
         </profile>
         <profile>
@@ -265,7 +275,5 @@
                 </plugins>
             </build>
         </profile>
-
     </profiles>
-
 </project>

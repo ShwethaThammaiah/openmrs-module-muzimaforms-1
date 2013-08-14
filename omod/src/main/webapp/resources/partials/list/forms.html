@@ -1,0 +1,98 @@
+<div ng-controller="FormsCtrl" ng-init="init()" xmlns="http://www.w3.org/1999/html">
+<!--TODO : text styles if put in css file are overridden by something else. Need to figure it out-->
+    <div class="row-fluid">
+        <div class="col-lg-6"></div>
+        <div class="col-lg-6 panel">
+            <form>
+                <input type="text" class="form-control" ng-model="searchQuery" placeholder="Search"
+                       style="padding-left: 5px; padding-right: 5px">
+            </form>
+        </div>
+    </div>
+
+    <div ng-show="fetchingForms">
+    <div style="text-align: center">
+        <h1>Fetching forms...</h1>
+    </div>
+    <div class="progress progress-striped active">
+        <div class="progress-bar" style="width: 100%"></div>
+    </div>
+</div>
+
+<div ng-show="tagFilterActive() && !fetchingForms" class="well well-large">
+    <span>Filter by: </span>
+        <span class="tag" ng-repeat="tag in activeTagFilters">
+                  <span class="label form-tag" ng-style="tagStyle(tag.id)">
+                       <span>{{tag.name}} </span><span ng-click="removeTagFilter(tag)"><i
+                          class="icon-remove"></i></span>
+                  </span>
+            </span>
+</div>
+
+<div ng-show="hasForms()">
+            <div class="row-fluid" ng-repeat="muzimaform in muzimaforms | filter:searchQuery | tagFilter:activeTagFilters">
+                <div class="col-lg-12 panel">
+                    <div class="panel-heading">
+                        <span><a title="Preview Form" ng-click="showFormPreview(muzimaform.form.uuid)">
+                            <i class="icon-eye-open"></i></a></span>
+                        <span>
+                            <a title="Add Tags" ng-click="editMode = !editMode">
+                            <i class="icon-tags"></i></a>
+                        </span>
+                        <span class="form-heading content_wrap"> <strong>{{muzimaform.form.name}}</strong> </span>
+                    </div>
+                    <div>
+                        <p>
+                            <small>{{muzimaform.form.description}}</small>
+                        </p>
+                    </div>
+                    <div>
+                            <span class="tag" ng-repeat="tag in muzimaform.form.tags">
+                                <span class="label form-tag" ng-style="tagStyle(tag.id)">
+                                <span ng-click="addTagFilter(tag);$event.stopPropagation()">{{tag.name}} </span><span
+                                        ng-click="removeTag(muzimaform.form, tag)"><i
+                                        class="icon-remove"></i></span>
+                                </span>
+                            </span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row" ng-show="editMode">
+                <form class="col-7" ng-submit="saveTag(muzimaform)">
+                    <input name="newTag" ng-model="muzimaform.newTag" ng-trim="true" type="text"
+                           class="form-control" placeholder="Add tag"
+                           style="margin-top: 15px; padding-left: 5px; padding-right: 5px">
+                </form>
+            </div>
+</div>
+
+<div class="modal fade" id="importHTMLFormModal" tabindex='-1'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #34495e">
+                <button type="button" class="close" style="color: #ffffff" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>
+                <h4 class="modal-title" style="color: #ffffff">Import html form</h4>
+            </div>
+            <div class="modal-body">
+                <form-input/>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div class="close-box" ng-show="!hasForms() && !fetchingForms">
+    <div class="container">
+        <h2>No Available Forms</h2>
+
+        <p>Please import forms by clicking on the import button.</p>
+
+        <p>You can import forms from Openmrs XFroms module, from Formhub or from your file system.</p>
+    </div>
+</div>
+
+</div>

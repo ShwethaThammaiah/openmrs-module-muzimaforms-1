@@ -3,9 +3,10 @@ var muzimaformsModule = angular.module('muzimaforms', ['ui.bootstrap', 'muzimafi
 muzimaformsModule.
     config(['$routeProvider', function ($routeProvider) {
         $routeProvider.
-            when('/forms', {templateUrl: '../../moduleResources/muzimaforms/partials/forms.html'}).
-            when('/form', {templateUrl: '../../moduleResources/muzimaforms/partials/form.html'}).
-            otherwise({redirectTo: '/forms'});
+            when('/list/forms', {templateUrl: '../../moduleResources/muzimaforms/partials/list/forms.html'}).
+            when('/list/xforms', {templateUrl: '../../moduleResources/muzimaforms/partials/list/xforms.html'}).
+            when('/import/xforms', {templateUrl: '../../moduleResources/muzimaforms/partials/import/xforms.html'}).
+            otherwise({redirectTo: '/list/forms'});
     }]);
 
 muzimaformsModule.factory('_', function () {

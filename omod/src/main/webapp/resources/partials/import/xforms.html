@@ -1,14 +1,6 @@
-<div>
-    <div>
-        <div>
-            <div style="background-color: #34495e">
-                <button type="button" class="close" style="color: #ffffff" data-dismiss="modal"
-                        aria-hidden="true">&times;</button>
-                <h4 style="color: #ffffff">Import Javarosa Compliant Xform</h4>
-            </div>
-            <div>
-                <form-input/>
-            </div>
-        </div>
-    </div>
+<div ng-controller="ImportCtrl">
+    <form id="formToImport">
+        <input type='file' name='form[files][]' ng-show="showFileInput">
+    </form>
+    <div class="well well-lg">Click to import and validate javarosa compliant xform</div>
 </div>

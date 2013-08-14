@@ -62,14 +62,8 @@ muzimaformsModule.factory('FormUploadService', function ($http) {
                 formData.append("file", data.file);
                 return formData;
             },
-            data: {formMetadata:form, file:file}
-        }).
-            success(function (data, status, headers, config) {
-                console.log("success!");
-            }).
-            error(function (data, status, headers, config) {
-                console.log("failed!");
-            });
+            data: {formMetadata: form, file: file}
+        })
     };
     return {
         upload: upload

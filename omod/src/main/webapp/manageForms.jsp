@@ -18,6 +18,7 @@
 <openmrs:htmlInclude file="/moduleResources/muzimaforms/js/custom/app.js"/>
 <openmrs:htmlInclude file="/moduleResources/muzimaforms/js/custom/controllers/FormsController.js"/>
 <openmrs:htmlInclude file="/moduleResources/muzimaforms/js/custom/controllers/ImportController.js"/>
+<openmrs:htmlInclude file="/moduleResources/muzimaforms/js/custom/controllers/XFormsController.js"/>
 <openmrs:htmlInclude file="/moduleResources/muzimaforms/js/custom/directives/fileUpload.js"/>
 
 <div class="bootstrap-scope" ng-app="muzimaforms">

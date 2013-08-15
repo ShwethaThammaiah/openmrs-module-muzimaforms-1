@@ -2,18 +2,18 @@ describe('muzimaForms controllers', function () {
     beforeEach(module('muzimaforms'));
     describe('FormsCtrl', function () {
 
-        var sampleForm = {data: {"id": 1, "uuid": "foo", "name": "Patient Registration Form", "description": "Form for registering patients",
-            "html": "foo",
-            "selected": false, "tags": [
-                {"id": 2, "name": "Patient"}
-            ]}};
-
         var getPromise = function (response) {
             response = response || "";
             var deferredForSave = q.defer();
             deferredForSave.resolve(response);
             return deferredForSave.promise;
         };
+
+        var sampleForm = {data: {"id": 1, "uuid": "foo", "name": "Patient Registration Form", "description": "Form for registering patients",
+            "html": "foo",
+            "selected": false, "tags": [
+                {"id": 2, "name": "Patient"}
+            ]}};
 
         var FormService = {
             save: function (form) {
@@ -47,23 +47,6 @@ describe('muzimaForms controllers', function () {
         };
 
 
-        var XFormService = {
-            all: function () {
-                var deferred = q.defer();
-                timeout(function () {
-                    deferred.resolve({
-                        data: [
-                            {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false},
-                            {"id": 2, "name": "PMTCT Ante-Natal Care Form", "description": "", "selected": false},
-                            {"id": 3, "name": "Outreach Adult Locator Form", "description": "", "selected": false}
-                        ]
-                    });
-                });
-                return deferred.promise;
-            }
-        };
-
-
         var TagService = {
             tags: [
                 {"id": 1, "name": "Registration"},
@@ -82,7 +65,7 @@ describe('muzimaForms controllers', function () {
         };
 
         var window = {
-            open: function(){
+            open: function () {
                 return null;
             }
         };
@@ -95,8 +78,7 @@ describe('muzimaForms controllers', function () {
                 $scope: scope,
                 $window: window,
                 TagService: TagService,
-                FormService: FormService,
-                XFormService: XFormService
+                FormService: FormService
             });
             scope.init();
         }));
@@ -115,59 +97,6 @@ describe('muzimaForms controllers', function () {
             timeout.flush();
             expect(scope.hasForms()).toBe(true);
 
-        });
-
-        it('should assign xforms to an empty array', function () {
-            expect(scope.hasXForms()).toBe(false);
-        });
-
-        it('should import forms and toogle importMode', function () {
-            expect(scope.importMode).toBe(false);
-            scope.import();
-            expect(scope.importMode).toBe(true);
-        });
-
-
-        it('should post selected xform ids when clicked on done', function () {
-            spyOn(FormService, "get").andReturn(getPromise(sampleForm));
-            spyOn(FormService, "save").andReturn(getPromise(""));
-            spyOn(FormService, "all").andReturn(getPromise({data: {results: [
-                {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients", "selected": false, "tags": [
-                    {"id": 1, "name": "Registration"},
-                    {"id": 2, "name": "Patient"}
-                ]  },
-                {"id": 2, "name": "PMTCT Ante-Natal Care Form", "description": "", "selected": false, "tags": [
-                    {"id": 1, "name": "Registration"}
-                ] }
-            ]}}));
-
-            timeout.flush();
-
-            scope.selectXForm('4');
-            scope.selectXForm('5');
-            scope.importMode = true;
-
-            scope.done();
-            scope.$apply();
-            expect(FormService.save).toHaveBeenCalledWith({'id': '4'});
-            expect(FormService.save).toHaveBeenCalledWith({'id': '5'});
-            expect(FormService.all).toHaveBeenCalled();
-            expect(scope.importMode).toBe(false);
-
-        });
-
-        it('cancel should toggle importMode', function () {
-            scope.importMode = true;
-            scope.cancelImport();
-            expect(scope.importMode).toBe(false);
-        });
-
-        it('should assign color to active xForm', function () {
-            expect(scope.activeXForm(1)).toBeUndefined();
-            scope.selectXForm(1);
-            expect(scope.activeXForm(1)).toBe('active');
-            scope.selectXForm(1);
-            expect(scope.activeXForm(1)).toBeUndefined();
         });
 
         it('should assign color to empty tag', function () {
@@ -362,20 +291,6 @@ describe('muzimaForms controllers', function () {
             expect(scope.tagFilterActive()).toBe(false);
         });
 
-
-        it('should return true if scope has a xform to upload', function () {
-            scope.xformToUpload = "";
-            expect(scope.hasXFormToUpload()).toBe(false);
-            scope.xformToUpload = "xform";
-            expect(scope.hasXFormToUpload()).toBe(true);
-        });
-
-        it('should return true if scope has a htmlform to upload', function () {
-            scope.htmlFormToUpload = "";
-            expect(scope.hasHtmlFormToUpload()).toBe(false);
-            scope.htmlFormToUpload = "form";
-            expect(scope.hasHtmlFormToUpload()).toBe(true);
-        });
     });
 })
 ;

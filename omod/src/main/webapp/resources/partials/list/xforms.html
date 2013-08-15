@@ -1,41 +1,39 @@
-<div ng-controller="FormsCtrl" ng-init="init()" style="background-color: #34495e">
-    <h4 style="color: #ffffff">Unconverted forms in XForms module</h4>
-</div>
-<div>
-    <div class="list-group" ng-show="hasXForms()">
-        <div class="list-group">
-            <a class="list-group-item"
-               ng-repeat="form in xForms" ng-click="selectXForm(form.id)"
-               ng-class="activeXForm(form.id)">
-                <div class="row">
-                    <div class="col-lg-10">
-                        <div>
-                            <p class="form-heading content_wrap">
-                                <strong>{{form.name}}</strong>
-                            </p>
+<div ng-controller="XFormsCtrl" ng-init="init()">
+    <h4>Unconverted forms in XForms module</h4>
 
-                            <p>
-                                <small>{{form.description}}</small>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </a>
+    <div class="row" ng-repeat="form in xForms">
+        <div class="col-lg-12 panel">
+        <div class="pull-right">
+                <input type="checkbox" ng-click="selectXForm(form.id)"/>
+            </div>
+            <div class="panel-heading form-heading content_wrap">
+                <strong>{{form.name}}</strong>
+            </div>
+            <div>
+                <p>
+                    <small>{{form.description}}</small>
+                </p>
+            </div>
         </div>
     </div>
-    <div class="close-box" ng-show="!hasXForms()">
-        <div class="container">
-            <h4>No Available Forms in XForms Module</h4>
-
-            <p>Please create and design form using Xforms module. Once saved, forms would be visible
-                here</p>
+    <div class="row" ng-show="!hasXForms()">
+        <div class="col-lg-12 panel">
+            <div class="panel-heading form-heading content_wrap">
+                <strong>No Available Forms in XForms Module</strong>
+            </div>
+            <div>
+                <p>Please create and design form using Xforms module. Once saved, forms would be visible
+                    here</p>
+            </div>
         </div>
     </div>
-</div>
-<div>
-    <a href="#/list/forms" class="btn btn-danger" data-dismiss="modal" ng-click="cancelImport()"
-       style="color: #ffffff ;text-decoration: none">Close</a>
-    <a href="#/list/forms" class="btn btn-success" data-dismiss="modal" ng-click="done()"
-       style="color: #ffffff ;text-decoration: none">Import</a>
-</div>
+    <div class="row">
+        <div class="col-lg-12">
+            <a href="#/list/forms" class="btn btn-danger" data-dismiss="modal" ng-click="cancelImport()"
+               style="color: #ffffff ;text-decoration: none">Cancel</a>
+            <a href="#/list/forms" ng-disabled="!hasXForms()" class="btn btn-success" data-dismiss="modal"
+               ng-click="done()"
+               style="color: #ffffff ;text-decoration: none">Done</a>
+        </div>
+    </div>
 </div>

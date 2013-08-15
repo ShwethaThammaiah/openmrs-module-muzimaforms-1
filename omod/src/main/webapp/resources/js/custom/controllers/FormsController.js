@@ -1,9 +1,7 @@
 'use strict';
-function FormsCtrl($scope, $window, FormService, XFormService, TagService, _, $q) {
+function FormsCtrl($scope, $window, FormService, TagService, _) {
     $scope.init = function () {
-        $scope.selectedXForms = [];
         $scope.editMode = false;
-        $scope.importMode = false;
         $scope.tagColorMap = {};
         $scope.activeTagFilters = [];
         $scope.xformToUpload = "";
@@ -18,20 +16,16 @@ function FormsCtrl($scope, $window, FormService, XFormService, TagService, _, $q
     var getTags = function () {
         return TagService.all();
     };
+
     var getForms = function () {
         $scope.fetchingForms = true;
         return FormService.all();
     };
-    var getXForms = function () {
-        return XFormService.all();
-    };
+
     var setTags = function (result) {
         $scope.tags = result.data.results;
     };
-    var setXForms = function (result) {
-        $scope.xForms = result.data;
 
-    };
     var setForms = function (result) {
         $scope.fetchingForms = false;
         $scope.forms = result.data.results;
@@ -44,27 +38,6 @@ function FormsCtrl($scope, $window, FormService, XFormService, TagService, _, $q
         });
     };
 
-    $scope.import = function () {
-        $scope.importMode = true;
-        getXForms().then(setXForms);
-    };
-
-    $scope.done = function () {
-        var allSaved = $q.all(_.map($scope.selectedXForms, function (value) {
-            return FormService.save({id: value});
-        }));
-        allSaved.then(FormService.all).then(setForms);
-        $scope.importMode = false;
-    };
-
-    $scope.cancelImport = function () {
-        $scope.importMode = false;
-    };
-
-    $scope.hasXForms = function () {
-        return !_.isEmpty($scope.xForms);
-    };
-
     $scope.hasForms = function () {
         return !_.isEmpty($scope.muzimaforms);
     };
@@ -74,7 +47,7 @@ function FormsCtrl($scope, $window, FormService, XFormService, TagService, _, $q
         return $scope.selectedForm ? $scope.selectedForm.html : "";
     };
 
-    $scope.showFormPreview = function(uuid){
+    $scope.showFormPreview = function (uuid) {
         var openPreviewInNewWindow = function openPreviewInNewWindow(result) {
             var newFormPreviewWindow = $window.open();
             newFormPreviewWindow.document.write("<html><head>" +
@@ -86,20 +59,6 @@ function FormsCtrl($scope, $window, FormService, XFormService, TagService, _, $q
             newFormPreviewWindow.document.close();
         };
         FormService.get(uuid).then(openPreviewInNewWindow);
-    };
-
-    $scope.selectXForm = function (id) {
-        var indexOfId = $scope.selectedXForms.indexOf(id);
-        if (indexOfId >= 0) {
-            $scope.selectedXForms.splice(indexOfId, 1);
-        } else {
-            $scope.selectedXForms.push(id);
-        }
-    };
-
-    $scope.activeXForm = function (id) {
-        var indexOfId = $scope.selectedXForms.indexOf(id);
-        return indexOfId >= 0 ? 'active' : undefined;
     };
 
     var tagColor = function (tagId) {
@@ -180,12 +139,5 @@ function FormsCtrl($scope, $window, FormService, XFormService, TagService, _, $q
         $scope.activeTagFilters = _.union($scope.activeTagFilters, [tag]);
     };
 
-    $scope.hasXFormToUpload = function(){
-        return $scope.xformToUpload != "";
-    };
-
-    $scope.hasHtmlFormToUpload = function(){
-        return $scope.htmlFormToUpload != "";
-    };
 }
 

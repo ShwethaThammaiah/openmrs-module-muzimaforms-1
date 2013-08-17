@@ -10,10 +10,6 @@ describe('muzima Import controllers', function () {
             });
         }));
 
-        it('should assign a boolean variable indicating that the file input should be hidden', function () {
-            expect(scope.showFileInput).toBe(false);
-        });
-
         it('should return the error style when the validation type is error', function () {
             expect(scope.style('ERROR')).toBe('alert-danger');
         });
@@ -21,5 +17,36 @@ describe('muzima Import controllers', function () {
         it('should return the warning style when the validation type is warning', function () {
             expect(scope.style('WARNING')).toBe('alert-info');
         });
+
+        it('should return false when there is not file associated to the scope', function () {
+            expect(scope.hasFile()).toBe(false);
+        });
+
+        it('should return the true when there is a file associated to the scope', function () {
+            scope.file = new Object();
+            expect(scope.hasFile()).toBe(true);
+        });
+
+        it('should return the false if the file has not been validated', function () {
+            expect(scope.isValidXForm()).toBe(false);
+        });
+
+        it('should return the false if there are validation errors', function () {
+            scope.validations = { list: [
+                {message: "An error occured", type: "ERROR"}
+            ]};
+            expect(scope.isValidXForm()).toBe(false);
+        });
+
+        it('should return the true if there are no validation errors', function () {
+            scope.validations = { list: []};
+            expect(scope.isValidXForm()).toBe(true);
+        });
+
+        it('should return the false if validations list is not available', function () {
+            scope.validations = {};
+            expect(scope.isValidXForm()).toBe(false);
+        });
+
     });
 });

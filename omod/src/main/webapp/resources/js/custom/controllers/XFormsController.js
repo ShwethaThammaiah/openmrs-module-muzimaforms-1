@@ -21,6 +21,10 @@ function XFormsCtrl($scope, FormService, XFormService, _, $q) {
         return !_.isEmpty($scope.xForms);
     };
 
+    $scope.hasFile = function () {
+        return !_.isEmpty($scope.xForms);
+    };
+
     $scope.selectXForm = function (id) {
         var indexOfId = $scope.selectedXForms.indexOf(id);
         if (indexOfId >= 0) {

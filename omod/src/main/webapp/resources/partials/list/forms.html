@@ -29,8 +29,8 @@
             </span>
     </div>
 
-    <div ng-show="hasForms()">
-        <div class="row" ng-repeat="muzimaform in muzimaforms | filter:searchQuery | tagFilter:activeTagFilters">
+    <div ng-repeat="muzimaform in muzimaforms | filter:searchQuery | tagFilter:activeTagFilters">
+        <div class="row">
             <div class="col-lg-12 panel">
                 <div class="panel-heading">
                         <span><a title="Preview Form" ng-click="showFormPreview(muzimaform.form.uuid)">
@@ -58,14 +58,15 @@
                             </span>
                 </div>
 
+                <div ng-show="editMode">
+                    <form ng-submit="saveTag(muzimaform)">
+                        <input name="newTag" ng-model="muzimaform.newTag" ng-trim="true" type="text"
+                               class="form-control" placeholder="Add tag"
+                               style="margin-top: 15px; padding-left: 5px; padding-right: 5px">
+                    </form>
+                </div>
+
             </div>
-        </div>
-        <div class="row" ng-show="editMode">
-            <form class="col-7" ng-submit="saveTag(muzimaform)">
-                <input name="newTag" ng-model="muzimaform.newTag" ng-trim="true" type="text"
-                       class="form-control" placeholder="Add tag"
-                       style="margin-top: 15px; padding-left: 5px; padding-right: 5px">
-            </form>
         </div>
     </div>
 

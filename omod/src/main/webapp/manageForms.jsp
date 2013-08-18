@@ -34,9 +34,9 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li><a href="#/list/xforms"
-                               style="color: #323232 ;text-decoration: none">XForms Module</a></li>
+                               style="color: #323232 ;text-decoration: none">Existing</a></li>
                         <li class="divider"></li>
-                        <li><a href="#/import/xforms" style="color: #323232 ;text-decoration: none">Choose xform</a></li>
+                        <li><a href="#/import/xforms" style="color: #323232 ;text-decoration: none">Upload</a></li>
                     </ul>
                 </li>
             </ul>

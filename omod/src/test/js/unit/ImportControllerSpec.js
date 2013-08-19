@@ -38,14 +38,32 @@ describe('muzima Import controllers', function () {
             expect(scope.isValidXForm()).toBe(false);
         });
 
-        it('should return the true if there are no validation errors', function () {
+        it('should return true if there are no validation errors', function () {
             scope.validations = { list: []};
             expect(scope.isValidXForm()).toBe(true);
         });
 
-        it('should return the false if validations list is not available', function () {
-            scope.validations = {};
+        it('should return false if there are validation errors', function () {
+            scope.validations = { list: [{type: 'ERROR'}]};
             expect(scope.isValidXForm()).toBe(false);
+        });
+
+        it('should return false if validations not available', function () {
+            expect(scope.isValidXForm()).toBe(false);
+        });
+
+        it('should return true if there are validation errors', function () {
+            scope.validations = { list: [{type:'ERROR'}]};
+            expect(scope.isInvalidXForm()).toBe(true);
+        });
+
+        it('should return false if validations have not yet been done', function () {
+            scope.validations = { list: []};
+            expect(scope.isInvalidXForm()).toBe(false);
+        })
+
+        it('should return false if the form has not validation errors', function () {
+            expect(scope.isInvalidXForm()).toBe(false);
         });
 
         it('should clear validations when you cancel', function () {
@@ -54,5 +72,14 @@ describe('muzima Import controllers', function () {
             expect(scope.validations).toBe(null);
         });
 
+        it('should return false if the form has not been validated', function () {
+            scope.validations = null;
+            expect(scope.isValidated()).toBe(false);
+        });
+
+        it('should return true if the form has been validated', function () {
+            scope.validations = {list :[]};
+            expect(scope.isValidated()).toBe(true);
+        });
     });
 });

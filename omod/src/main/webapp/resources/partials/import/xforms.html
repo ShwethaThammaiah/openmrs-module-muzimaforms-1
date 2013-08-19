@@ -1,6 +1,6 @@
 <div ng-controller="ImportCtrl">
 
-    <div ng-hide="isValidXForm()">
+    <div ng-hide="isValidated()">
         <div class="row">
             <div class="col-lg-12">
                 <file-upload message="Click here to upload Java Rosa Form"/>
@@ -36,9 +36,16 @@
         </div>
     </div>
 
-    <div class="row" ng-repeat="validation in validations.list">
-        <div class="col-lg-12 panel">
-            <pre class="alert" ng-class="style(validation.type)">{{validation.message}}</pre>
+    <div ng-show="isInvalidXForm()">
+        <div class="row">
+            <div class="col-lg-2">
+                <button class="btn btn-danger" ng-click="cancel()">Ok</button>
+            </div>
+        </div>
+        <div class="row" ng-repeat="validation in validations.list">
+            <div class="col-lg-12 panel">
+                <pre class="alert" ng-class="style(validation.type)">{{validation.message}}</pre>
+            </div>
         </div>
     </div>
 </div>

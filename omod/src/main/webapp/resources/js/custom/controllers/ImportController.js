@@ -14,9 +14,22 @@ function ImportCtrl($scope, FileUploadService, _) {
         return ($scope.file) ? true : false;
     };
 
+
     $scope.isValidXForm = function () {
-        if (!$scope.validations) return false;
-        return !$scope.validations.list ? false : _.isEmpty($scope.validations.list);
+        return $scope.isValidated() && !hasValidationMessages();
+    };
+
+    var hasValidationMessages = function() {
+        return !_.isEmpty($scope.validations.list);
+    };
+
+    $scope.isInvalidXForm = function () {
+        return $scope.isValidated() && hasValidationMessages();
+    }
+
+    $scope.isValidated = function () {
+        return ($scope.validations) ? true : false;
+
     }
 
     $scope.cancel = function () {

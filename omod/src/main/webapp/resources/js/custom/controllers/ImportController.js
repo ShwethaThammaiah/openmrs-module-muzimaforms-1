@@ -19,7 +19,7 @@ function ImportCtrl($scope, FileUploadService, _) {
         return $scope.isValidated() && !hasValidationMessages();
     };
 
-    var hasValidationMessages = function() {
+    var hasValidationMessages = function () {
         return !_.isEmpty($scope.validations.list);
     };
 
@@ -34,5 +34,6 @@ function ImportCtrl($scope, FileUploadService, _) {
 
     $scope.cancel = function () {
         $scope.validations = null;
+        if($scope.clearFile) $scope.clearFile();
     }
 }

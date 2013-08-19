@@ -44,7 +44,9 @@ describe('muzima Import controllers', function () {
         });
 
         it('should return false if there are validation errors', function () {
-            scope.validations = { list: [{type: 'ERROR'}]};
+            scope.validations = { list: [
+                {type: 'ERROR'}
+            ]};
             expect(scope.isValidXForm()).toBe(false);
         });
 
@@ -53,7 +55,9 @@ describe('muzima Import controllers', function () {
         });
 
         it('should return true if there are validation errors', function () {
-            scope.validations = { list: [{type:'ERROR'}]};
+            scope.validations = { list: [
+                {type: 'ERROR'}
+            ]};
             expect(scope.isInvalidXForm()).toBe(true);
         });
 
@@ -70,6 +74,15 @@ describe('muzima Import controllers', function () {
             scope.validations = {};
             scope.cancel();
             expect(scope.validations).toBe(null);
+        })
+
+        it('should call clearFile when you cancel', function () {
+            var fileCleared = false;
+            scope.clearFile = function () {
+                fileCleared = true;
+            }
+            scope.cancel();
+            expect(fileCleared).toBe(true);
         });
 
         it('should return false if the form has not been validated', function () {
@@ -78,7 +91,7 @@ describe('muzima Import controllers', function () {
         });
 
         it('should return true if the form has been validated', function () {
-            scope.validations = {list :[]};
+            scope.validations = {list: []};
             expect(scope.isValidated()).toBe(true);
         });
     });

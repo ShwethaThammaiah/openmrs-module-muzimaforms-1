@@ -1,3 +1,4 @@
+//TODO: Write angular e2e tests for testing this
 muzimaformsModule.directive("fileUpload", function () {
     return {
         restrict: "E",
@@ -14,6 +15,11 @@ muzimaformsModule.directive("fileUpload", function () {
             $(activator).click(function () {
                 $(fileUploadButton).click();
             });
+
+            scope.$parent.clearFile = function() {
+                scope.file = scope.$parent.file = null;
+                $(activator).text(attrs.message);
+            };
 
             $(fileUploadButton).on("change", function () {
                 scope.file = scope.$parent.file = this.files[0];

@@ -24,6 +24,7 @@ muzimaformsModule.directive("fileUpload", function () {
             $(fileUploadButton).on("change", function () {
                 scope.file = scope.$parent.file = this.files[0];
                 $(activator).text((scope.file == undefined ? attrs.message : scope.file.name));
+                scope.$parent.$apply();
             });
         }
     }

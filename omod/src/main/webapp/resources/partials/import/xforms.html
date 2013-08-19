@@ -38,8 +38,9 @@
 
     <div ng-show="isInvalidXForm()">
         <div class="row">
-            <div class="col-lg-2">
-                <button class="btn btn-danger" ng-click="cancel()">Ok</button>
+            <div class="col-lg-6">
+                <button ng-click="cancel()" class="btn btn-danger">Cancel</button>
+                <button ng-click="validate(file)" class="btn btn-success">Re-Validate</button>
             </div>
         </div>
         <div class="row" ng-repeat="validation in validations.list">

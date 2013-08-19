@@ -1,22 +1,43 @@
 <div ng-controller="ImportCtrl">
-    <div class="row">
-        <div class="col-lg-12">
-            <file-upload message="Click here to upload Java Rosa Form"/>
+
+    <div ng-hide="isValidXForm()">
+        <div class="row">
+            <div class="col-lg-12">
+                <file-upload message="Click here to upload Java Rosa Form"/>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div>
-                <input type="button" ng-click="validate(file)" class="btn btn-danger"
-                       value="Validate">
+        <div class="row">
+            <div class="col-lg-12">
+                <div>
+                    <input type="button" ng-click="validate(file)" class="btn btn-danger"
+                           value="Validate">
+                </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-12"></div>
+
+    <div class="row" ng-show="isValidXForm()">
+        <div class="col-lg-6 panel">
+            <div class="alert alert-success">The xForm is valid! Use the upload button to import it.</div>
+            <form role="form">
+                <div class="form-group">
+                    <label for="xFormName">Name</label>
+                    <input type="text" class="form-control" id="xFormName" placeholder="Enter xForm name">
+                </div>
+                <div class="form-group">
+                    <label for="xFormDescription">Description</label>
+                    <textarea class="form-control" id="xFormDescription" rows="3"
+                              placeholder="Enter xFrom description"></textarea>
+                </div>
+                <button ng-click="cancel()" class="btn btn-danger">Cancel</button>
+                <button type="submit" class="btn btn-success">Upload</button>
+            </form>
+
+        </div>
     </div>
+
     <div class="row" ng-repeat="validation in validations.list">
-        <div class="col-lg-12">
+        <div class="col-lg-12 panel">
             <pre class="alert" ng-class="style(validation.type)">{{validation.message}}</pre>
         </div>
     </div>

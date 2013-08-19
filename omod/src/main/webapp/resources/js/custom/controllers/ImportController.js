@@ -18,4 +18,8 @@ function ImportCtrl($scope, FileUploadService, _) {
         if (!$scope.validations) return false;
         return !$scope.validations.list ? false : _.isEmpty($scope.validations.list);
     }
+
+    $scope.cancel = function () {
+        $scope.validations = null;
+    }
 }

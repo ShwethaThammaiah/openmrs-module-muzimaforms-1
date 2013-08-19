@@ -48,5 +48,11 @@ describe('muzima Import controllers', function () {
             expect(scope.isValidXForm()).toBe(false);
         });
 
+        it('should clear validations when you cancel', function () {
+            scope.validations = {};
+            scope.cancel();
+            expect(scope.validations).toBe(null);
+        });
+
     });
 });

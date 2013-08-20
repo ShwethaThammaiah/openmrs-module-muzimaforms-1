@@ -17,10 +17,8 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.matchers.JUnitMatchers.hasItem;
-import static org.openmrs.module.muzimaforms.FormBuilder.form;
 import static org.openmrs.module.muzimaforms.MuzimaFormBuilder.muzimaform;
 import static org.openmrs.module.muzimaforms.MuzimaFormTagBuilder.tag;
-import static org.openmrs.module.muzimaforms.XFormBuilder.xForm;
 
 public class MuzimaFormDAOTest extends BaseModuleContextSensitiveTest {
 
@@ -36,19 +34,16 @@ public class MuzimaFormDAOTest extends BaseModuleContextSensitiveTest {
     @Test
     public void getAll_shouldGetAll() {
         List<MuzimaForm> list = dao.getAll();
-        assertThat(list, hasItem(muzimaform().withId(1)
+        assertThat(list, hasItem(muzimaform().withId(1).withName("Registration Form").withDescription("Form for registration")
                 .with(tag().withId(1).withName("Registration"))
                 .with(tag().withId(2).withName("Patient"))
-                .with(form().withId(1).withName("Registration Form").withDescription("Form for registration"))
                 .instance()));
-        assertThat(list, hasItem(muzimaform().withId(2)
+        assertThat(list, hasItem(muzimaform().withId(2).withName("PMTCT Form").withDescription("Form for PMTCT")
                 .with(tag().withId(1).withName("Registration"))
                 .with(tag().withId(3).withName("Encounter"))
                 .with(tag().withId(4).withName("HIV"))
-                .with(form().withId(2).withName("PMTCT Form").withDescription("Form for PMTCT"))
                 .instance()));
-        assertThat(list, hasItem(muzimaform().withId(3)
-                .with(form().withId(3).withName("Ante-Natal Form").withDescription("Form for ante-natal care"))
+        assertThat(list, hasItem(muzimaform().withId(3).withName("Ante-Natal Form").withDescription("Form for ante-natal care")
                 .instance()));
         assertThat(list.size(), is(3));
     }
@@ -62,20 +57,18 @@ public class MuzimaFormDAOTest extends BaseModuleContextSensitiveTest {
     @Test
     public void findById_shouldFindById() {
         MuzimaForm form = dao.findById(1);
-        assertThat(form, is(muzimaform().withId(1)
+        assertThat(form, is(muzimaform().withId(1).withName("Registration Form").withDescription("Form for registration")
                 .with(tag().withId(1).withName("Registration"))
                 .with(tag().withId(2).withName("Patient"))
-                .with(form().withId(1).withName("Registration Form").withDescription("Form for registration"))
                 .instance()));
     }
 
     @Test
     public void findByUUID_shouldFindByUUID() {
         MuzimaForm form = dao.findByUuid("foo");
-        assertThat(form, is(muzimaform().withId(1).withUuid("foo")
+        assertThat(form, is(muzimaform().withId(1).withUuid("foo").withName("Registration Form").withDescription("Form for registration")
                 .with(tag().withId(1).withName("Registration"))
                 .with(tag().withId(2).withName("Patient"))
-                .with(form().withId(1).withName("Registration Form").withDescription("Form for registration"))
                 .instance()));
     }
 

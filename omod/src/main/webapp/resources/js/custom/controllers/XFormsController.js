@@ -12,8 +12,10 @@ function XFormsCtrl($scope, FormService, XFormService, _, $q) {
     };
 
     $scope.done = function () {
-        var allSaved = $q.all(_.map($scope.selectedXForms, function (value) {
-            return FormService.save({id: value});
+        $q.all(_.map($scope.selectedXForms, function (value) {
+            return FormService.save(_.find($scope.xForms, function (xForm) {
+                return xForm.id == value
+            }));
         }));
     };
 

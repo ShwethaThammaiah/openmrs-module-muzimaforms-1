@@ -25,7 +25,6 @@ import java.util.List;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
-import static org.openmrs.module.muzimaforms.FormBuilder.form;
 import static org.openmrs.module.muzimaforms.MuzimaFormBuilder.muzimaform;
 import static org.openmrs.module.muzimaforms.MuzimaFormTagBuilder.tag;
 import static org.openmrs.module.muzimaforms.XFormBuilder.xForm;
@@ -48,20 +47,17 @@ public class MuzimaFormServiceTest extends BaseModuleContextSensitiveTest {
     void setUpDao() {
         List<MuzimaForm> muzimaForms = new ArrayList<MuzimaForm>();
         muzimaForms.add(
-                muzimaform().withId(1)
+                muzimaform().withId(1).withName("Registration Form").withDescription("Form for registration")
                         .with(tag().withId(1).withName("Registration"))
                         .with(tag().withId(2).withName("Patient"))
-                        .with(form().withId(1).withName("Registration Form").withDescription("Form for registration"))
                         .instance());
-        muzimaForms.add(muzimaform().withId(2)
+        muzimaForms.add(muzimaform().withId(2).withName("PMTCT Form").withDescription("Form for PMTCT")
                 .with(tag().withId(1).withName("Registration"))
                 .with(tag().withId(3).withName("Encounter"))
                 .with(tag().withId(4).withName("HIV"))
-                .with(form().withId(2).withName("PMTCT Form").withDescription("Form for PMTCT"))
                 .instance());
 
-        muzimaForms.add(muzimaform().withId(3)
-                .with(form().withId(3).withName("Ante-Natal Form").withDescription("Form for ante-natal care"))
+        muzimaForms.add(muzimaform().withId(3).withName("Ante-Natal Form").withDescription("Form for ante-natal care")
                 .instance());
 
         when(dao.getAll()).thenReturn(muzimaForms);

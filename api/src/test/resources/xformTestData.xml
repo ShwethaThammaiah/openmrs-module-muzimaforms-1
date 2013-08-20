@@ -8,9 +8,9 @@
     <xforms_xform  form_id="2" creator="1" date_created="2005-05-01 00:00:00.0"/>
     <xforms_xform  form_id="0" creator="1" date_created="2005-05-01 00:00:00.0"/>
 
-    <muzimaforms_form form_id="1" uuid= "foo"/>
-    <muzimaforms_form form_id="2" uuid= "bar"/>
-    <muzimaforms_form form_id="3" uuid= "baz"/>
+    <muzimaforms_form form_id="1" name="Registration Form" description="Form for registration" uuid= "foo"/>
+    <muzimaforms_form form_id="2" name="PMTCT Form" description="Form for PMTCT" uuid= "bar"/>
+    <muzimaforms_form form_id="3" name="Ante-Natal Form" description="Form for ante-natal care" uuid= "baz"/>
 
     <muzimaforms_tag_map form_id="1" tag_id="1"/>
     <muzimaforms_tag_map form_id="1" tag_id="2"/>

@@ -13,11 +13,12 @@ import java.util.Set;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MuzimaForm extends BaseMuzimaData {
     private Integer id;
-    private Form form;
     private Set<MuzimaFormTag> tags = new HashSet<MuzimaFormTag>();
 
     String model;
     String html;
+    private String name;
+    private String description;
 
     public String getModelJson() {
         return modelJson;
@@ -45,24 +46,15 @@ public class MuzimaForm extends BaseMuzimaData {
         this.html = html;
     }
 
-    @JsonIgnore
-    public Form getForm() {
-        return form;
-    }
-
-    public void setForm(Form form) {
-        this.form = form;
-    }
-
     public MuzimaForm() {
     }    // used by hibernate
 
     public String getDescription() {
-        return getForm() == null ? "" : getForm().getDescription();
+        return description == null ? "" : description;
     }
 
     public String getName() {
-        return getForm() == null ? "" : getForm().getName();
+        return name;
     }
 
     public Integer getId() {
@@ -127,4 +119,11 @@ public class MuzimaForm extends BaseMuzimaData {
         return tagNames;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

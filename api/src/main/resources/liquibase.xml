@@ -187,7 +187,6 @@
         <comment>
             adding unique constraint
         </comment>
-
         <addColumn tableName="muzimaforms_form">
             <column name="uuid" type="char(38)"></column>
         </addColumn>
@@ -197,6 +196,32 @@
         </addColumn>
         <addUniqueConstraint tableName="muzimaforms_form" columnNames="uuid"/>
         <addUniqueConstraint tableName="muzimaforms_tag" columnNames="uuid"/>
+    </changeSet>
+
+    <changeSet id="muzimaform-2013-08-20-16:40" author="ThoughtWorks">
+        <comment>
+            Adding the name and description columns
+        </comment>
+        <addColumn tableName="muzimaforms_form">
+            <column name="name" type="varchar(255)"></column>
+        </addColumn>
+        <addColumn tableName="muzimaforms_form">
+            <column name="description" type="varchar(255)"></column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="muzimaform-2013-08-20-17:08" author="ThoughtWorks">
+        <comment>
+            Migrating already imported form names and descriptions
+        </comment>
+        <sql>
+            UPDATE
+                muzimaforms_form mform
+            JOIN form form ON mform.form_id = form.form_id
+            SET
+                mform.name = form.name,
+                mform.description = form.description
+        </sql>
     </changeSet>
 
 </databaseChangeLog>

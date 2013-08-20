@@ -5,25 +5,14 @@ import org.openmrs.Form;
 
 public class MuzimaXForm {
     private Integer id;
-    private String name;
-    private String description;
     private Form form;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        MuzimaXForm html5Form = (MuzimaXForm) o;
-
-        if (id != null ? !id.equals(html5Form.id) : html5Form.id != null) return false;
-
-        return true;
+    public Integer getId() {
+        return id;
     }
 
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @JsonIgnore
@@ -38,25 +27,31 @@ public class MuzimaXForm {
     public MuzimaXForm() {
     }    // used by hibernate
 
-    public MuzimaXForm(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
-
+    //Used when serialized to JSON
     public String getDescription() {
         return getForm().getDescription();
     }
 
+    //Used when serialized to JSON
     public String getName() {
         return getForm().getName();
     }
 
-    public Integer getId() {
-        return id;
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MuzimaXForm html5Form = (MuzimaXForm) o;
+
+        if (id != null ? !id.equals(html5Form.id) : html5Form.id != null) return false;
+
+        return true;
     }
 
 }

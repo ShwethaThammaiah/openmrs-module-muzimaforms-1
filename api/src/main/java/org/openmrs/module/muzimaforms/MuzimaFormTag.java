@@ -8,16 +8,6 @@ import org.openmrs.BaseOpenmrsData;
 public class MuzimaFormTag extends BaseMuzimaData {
     private Integer id;
     private String name;
-    private MuzimaForm form;
-
-    @JsonIgnore
-    public MuzimaForm getForm() {
-        return form;
-    }
-
-    public void setForm(MuzimaForm form) {
-        this.form = form;
-    }
 
     public MuzimaFormTag() {
     } // Used by hibernate

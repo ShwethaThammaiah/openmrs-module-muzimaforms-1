@@ -13,12 +13,40 @@ import java.util.Set;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MuzimaForm extends BaseMuzimaData {
     private Integer id;
-    private Set<MuzimaFormTag> tags = new HashSet<MuzimaFormTag>();
-
-    String model;
-    String html;
     private String name;
     private String description;
+    private String model;
+    private String html;
+    private String modelJson;
+    private Set<MuzimaFormTag> tags = new HashSet<MuzimaFormTag>();
+
+    public MuzimaForm() {
+    }    // used by hibernate
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description == null ? "" : description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 
     public String getModelJson() {
         return modelJson;
@@ -27,8 +55,6 @@ public class MuzimaForm extends BaseMuzimaData {
     public void setModelJson(String modelJson) {
         this.modelJson = modelJson;
     }
-
-    String modelJson;
 
     public String getModel() {
         return model;
@@ -46,25 +72,6 @@ public class MuzimaForm extends BaseMuzimaData {
         this.html = html;
     }
 
-    public MuzimaForm() {
-    }    // used by hibernate
-
-    public String getDescription() {
-        return description == null ? "" : description;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public Set<MuzimaFormTag> getTags() {
         return tags;
     }
@@ -72,6 +79,7 @@ public class MuzimaForm extends BaseMuzimaData {
     public void setTags(Set<MuzimaFormTag> tags) {
         this.tags = tags;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -98,7 +106,6 @@ public class MuzimaForm extends BaseMuzimaData {
         return result;
     }
 
-
     @Override
     public String toString() {
         return "MuzimaForm{" +
@@ -108,22 +115,5 @@ public class MuzimaForm extends BaseMuzimaData {
                 ", description='" + getDescription() + '\'' +
                 ", tags=" + tags +
                 '}';
-    }
-
-    @JsonIgnore
-    public List<String> getTagNames() {
-        List<String> tagNames = new ArrayList<String>();
-        for (MuzimaFormTag tag : tags) {
-            tagNames.add(tag.getName());
-        }
-        return tagNames;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

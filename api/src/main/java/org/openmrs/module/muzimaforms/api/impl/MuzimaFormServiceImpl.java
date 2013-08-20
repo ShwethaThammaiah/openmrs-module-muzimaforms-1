@@ -35,9 +35,9 @@ public class MuzimaFormServiceImpl extends BaseOpenmrsService implements MuzimaF
     }
 
     public MuzimaForm saveForm(MuzimaForm form) {
+        Xform xform = dao.getXform(form.getId());
+        String xformXml = xform.getXformXml();
         try {
-            Xform xform = dao.getXform(form.getId());
-            String xformXml = xform.getXformXml();
             log.info("xform --> ");
             log.info(xformXml);
             CompositeEnketoResult result = (CompositeEnketoResult) modelXml2JsonTransformer.

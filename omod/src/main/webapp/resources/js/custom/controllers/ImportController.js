@@ -1,7 +1,7 @@
 'use strict';
 function ImportCtrl($scope, FileUploadService, _) {
     $scope.validate = function (file) {
-        FileUploadService.post({url: 'upload.form', file: file}).then(function (result) {
+        FileUploadService.post({url: 'validate.form', file: file}).then(function (result) {
             $scope.validations = result.data;
         });
     };

@@ -16,13 +16,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 @Controller
-@RequestMapping(value = "module/muzimaforms/upload.form")
+@RequestMapping(value = "module/muzimaforms")
 
 public class JavaRosaFormUploadController {
     @ResponseBody
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/validate.form", method = RequestMethod.POST)
     public ValidationMessages validate(MultipartHttpServletRequest request) throws IOException {
-        MultipartFile xformFile = request.getFile("file");
-        return new XFormParser(new InputStreamReader(xformFile.getInputStream())).validate();
+        MultipartFile file = request.getFile("file");
+        return new XFormParser(new InputStreamReader(file.getInputStream())).validate();
     }
 }

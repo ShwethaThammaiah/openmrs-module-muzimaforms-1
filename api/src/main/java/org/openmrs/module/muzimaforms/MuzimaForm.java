@@ -14,7 +14,6 @@ import java.util.Set;
 public class MuzimaForm extends BaseMuzimaData {
     private Integer id;
     private Form form;
-    private Xform xform;
     private Set<MuzimaFormTag> tags = new HashSet<MuzimaFormTag>();
 
     String model;
@@ -53,15 +52,6 @@ public class MuzimaForm extends BaseMuzimaData {
 
     public void setForm(Form form) {
         this.form = form;
-    }
-
-    @JsonIgnore
-    public Xform getXform() {
-        return xform;
-    }
-
-    public void setXform(Xform xform) {
-        this.xform = xform;
     }
 
     public MuzimaForm() {

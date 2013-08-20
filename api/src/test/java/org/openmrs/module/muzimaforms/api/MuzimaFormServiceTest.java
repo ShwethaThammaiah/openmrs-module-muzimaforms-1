@@ -42,7 +42,7 @@ public class MuzimaFormServiceTest extends BaseModuleContextSensitiveTest {
         dao = mock(MuzimaFormDAO.class);
         transformer = mock(XForm2Html5Transformer.class);
         modelTransformer = mock(ModelXml2JsonTransformer.class);
-        service = new MuzimaFormServiceImpl(dao, transformer,modelTransformer);
+        service = new MuzimaFormServiceImpl(dao, transformer, modelTransformer);
     }
 
     void setUpDao() {
@@ -51,14 +51,12 @@ public class MuzimaFormServiceTest extends BaseModuleContextSensitiveTest {
                 muzimaform().withId(1)
                         .with(tag().withId(1).withName("Registration"))
                         .with(tag().withId(2).withName("Patient"))
-                        .with(xForm().withId(1))
                         .with(form().withId(1).withName("Registration Form").withDescription("Form for registration"))
                         .instance());
         muzimaForms.add(muzimaform().withId(2)
                 .with(tag().withId(1).withName("Registration"))
                 .with(tag().withId(3).withName("Encounter"))
                 .with(tag().withId(4).withName("HIV"))
-                .with(xForm().withId(2))
                 .with(form().withId(2).withName("PMTCT Form").withDescription("Form for PMTCT"))
                 .instance());
 
@@ -88,12 +86,11 @@ public class MuzimaFormServiceTest extends BaseModuleContextSensitiveTest {
         String xFormXml = "<xml><some/><valid/></xml>";
         String htmlForm = "<foo><form><ul><li/><li/></ul></form><model/></foo>";
         String modelJson = "{form : [{name:'', bind: ''}]}";
-        XFormBuilder xFormBuilder = xForm().withId(1).withXFormXml(xFormXml);
-        MuzimaForm form = muzimaform().withId(1).with(tag().withId(1).withName("Registration")).with(xFormBuilder)
+        MuzimaForm form = muzimaform().withId(1).with(tag().withId(1).withName("Registration"))
                 .with(tag().withId(1).withName("foo"))
                 .instance();
         when(dao.findById(1)).thenReturn(form);
-        when(dao.getXform(1)).thenReturn(form.getXform());
+        when(dao.getXform(1)).thenReturn(xForm().withId(1).withXFormXml(xFormXml).instance());
         when(transformer.transform(xFormXml)).thenReturn(new EnketoResult(htmlForm));
         when(modelTransformer.transform(htmlForm)).thenReturn(new CompositeEnketoResult(htmlForm, modelJson));
         service.saveForm(form);
@@ -108,12 +105,11 @@ public class MuzimaFormServiceTest extends BaseModuleContextSensitiveTest {
         String xFormXml = "<foo><some/><valid/></foo>";
         String modelJson = "{form : [{name:'', bind: ''}]}";
 
-        XFormBuilder xFormBuilder = xForm().withId(1).withXFormXml(xFormXml);
-        MuzimaForm form = muzimaform().withId(1).with(tag().withName("New Tag")).with(tag().withName("Another Tag")).with(xFormBuilder)
+        MuzimaForm form = muzimaform().withId(1).with(tag().withName("New Tag")).with(tag().withName("Another Tag"))
                 .instance();
         when(transformer.transform(xFormXml)).thenReturn(new EnketoResult(htmlForm));
         when(modelTransformer.transform(htmlForm)).thenReturn(new CompositeEnketoResult(htmlForm, modelJson));
-        when(dao.getXform(1)).thenReturn(form.getXform());
+        when(dao.getXform(1)).thenReturn(xForm().withId(1).withXFormXml(xFormXml).instance());
         when(dao.findById(1)).thenReturn(form);
         service.saveForm(form);
         verify(dao, times(1)).saveForm(any(MuzimaForm.class));

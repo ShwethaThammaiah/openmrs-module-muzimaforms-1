@@ -10,7 +10,7 @@ import static org.junit.Assert.assertThat;
 
 public class MuzimaFormTest {
     @Test
-    public void testName() throws Exception {
+    public void name_shouldGetTheNameOfAssociatedForm() throws Exception {
         Form form = new Form();
         form.setName("name");
         MuzimaForm muzimaForm = new MuzimaForm();
@@ -19,13 +19,13 @@ public class MuzimaFormTest {
     }
 
     @Test
-    public void testNullFormName() throws Exception {
+    public void name_shouldReturnEmptyStringIfThereIsNoAssocatedForm() throws Exception {
         MuzimaForm muzimaForm = new MuzimaForm();
         assertThat(muzimaForm.getName(), is(""));
     }
 
     @Test
-    public void testDescription() throws Exception {
+    public void description_shouldGetTheDescriptionOfAssociatedForm() throws Exception {
         Form form = new Form();
         form.setDescription("description");
         MuzimaForm muzimaForm = new MuzimaForm();

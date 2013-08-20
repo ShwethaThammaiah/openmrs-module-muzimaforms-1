@@ -12,7 +12,7 @@ public class XFormBuilder extends Builder<Xform> {
     }
 
     @Override
-    protected Xform instance() {
+    public Xform instance() {
         Xform xForm = new Xform();
         xForm.setFormId(id);
         xForm.setXformXml(xFormXml);

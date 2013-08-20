@@ -10,7 +10,6 @@ public class MuzimaFormBuilder extends Builder<MuzimaForm> {
     private Integer id;
     private String uuid;
     private Form form;
-    private Xform xform;
     private Set<MuzimaFormTag> tags = new HashSet<MuzimaFormTag>();
 
     private MuzimaFormBuilder() {
@@ -21,7 +20,6 @@ public class MuzimaFormBuilder extends Builder<MuzimaForm> {
         MuzimaForm muzimaForm = new MuzimaForm();
         muzimaForm.setId(id);
         muzimaForm.setUuid(uuid);
-        muzimaForm.setXform(xform);
         muzimaForm.setTags(tags);
         muzimaForm.setForm(form);
         return muzimaForm;
@@ -39,11 +37,6 @@ public class MuzimaFormBuilder extends Builder<MuzimaForm> {
 
     public MuzimaFormBuilder withUuid(String uuid) {
         this.uuid = uuid;
-        return this;
-    }
-
-    public MuzimaFormBuilder with(XFormBuilder xFormBuilder) {
-        this.xform = xFormBuilder.instance();
         return this;
     }
 

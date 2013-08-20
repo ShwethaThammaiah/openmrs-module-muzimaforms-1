@@ -39,14 +39,12 @@ public class MuzimaFormDAOTest extends BaseModuleContextSensitiveTest {
         assertThat(list, hasItem(muzimaform().withId(1)
                 .with(tag().withId(1).withName("Registration"))
                 .with(tag().withId(2).withName("Patient"))
-                .with(xForm().withId(1))
                 .with(form().withId(1).withName("Registration Form").withDescription("Form for registration"))
                 .instance()));
         assertThat(list, hasItem(muzimaform().withId(2)
                 .with(tag().withId(1).withName("Registration"))
                 .with(tag().withId(3).withName("Encounter"))
                 .with(tag().withId(4).withName("HIV"))
-                .with(xForm().withId(2))
                 .with(form().withId(2).withName("PMTCT Form").withDescription("Form for PMTCT"))
                 .instance()));
         assertThat(list, hasItem(muzimaform().withId(3)
@@ -67,7 +65,6 @@ public class MuzimaFormDAOTest extends BaseModuleContextSensitiveTest {
         assertThat(form, is(muzimaform().withId(1)
                 .with(tag().withId(1).withName("Registration"))
                 .with(tag().withId(2).withName("Patient"))
-                .with(xForm().withId(1))
                 .with(form().withId(1).withName("Registration Form").withDescription("Form for registration"))
                 .instance()));
     }
@@ -78,7 +75,6 @@ public class MuzimaFormDAOTest extends BaseModuleContextSensitiveTest {
         assertThat(form, is(muzimaform().withId(1).withUuid("foo")
                 .with(tag().withId(1).withName("Registration"))
                 .with(tag().withId(2).withName("Patient"))
-                .with(xForm().withId(1))
                 .with(form().withId(1).withName("Registration Form").withDescription("Form for registration"))
                 .instance()));
     }

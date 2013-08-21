@@ -13,7 +13,6 @@ public class EnketoResult {
     private String transform;
     DocumentBuilder documentBuilder;
     XPathFactory xPathFactory;
-    private String document;
 
     public EnketoResult(String transform) throws ParserConfigurationException {
         this.transform = transform;

@@ -1,12 +1,18 @@
 describe('muzima Import controllers', function () {
     beforeEach(module('muzimaforms'));
     describe('ImportCtrl', function () {
+
+        var FileUploadService = {post: function () {
+
+        }};
+
         var scope, ctrl;
         beforeEach(inject(function ($rootScope, $controller) {
             scope = $rootScope.$new();
             ctrl = $controller(ImportCtrl, {
                 $scope: scope,
-                $window: window
+                $window: window,
+                FileUploadService: FileUploadService
             });
         }));
 

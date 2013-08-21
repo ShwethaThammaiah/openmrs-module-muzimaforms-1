@@ -39,10 +39,11 @@ public class MuzimaFormServiceImpl extends BaseOpenmrsService implements MuzimaF
     }
 
     public MuzimaForm importExisting(Integer xFormId, String name, String description) throws DocumentException, ParserConfigurationException, TransformerException, IOException {
-        log.info(String.format("Parameters %d %s %s", xFormId, name, description));
         Xform xform = dao.getXform(xFormId);
-        String xformXml = xform.getXformXml();
-        log.info("xform --> ");
+        return create(name, description, xform.getXformXml());
+    }
+
+    public MuzimaForm create(String name, String description, String xformXml) throws IOException, TransformerException, ParserConfigurationException, DocumentException {
         log.info(xformXml);
         CompositeEnketoResult result = (CompositeEnketoResult) modelXml2JsonTransformer.
                 transform(html5Transformer.transform(xformXml).getResult());

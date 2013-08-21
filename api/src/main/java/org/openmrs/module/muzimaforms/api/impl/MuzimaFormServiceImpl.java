@@ -2,6 +2,7 @@ package org.openmrs.module.muzimaforms.api.impl;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.dom4j.DocumentException;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.muzimaforms.MuzimaForm;
 import org.openmrs.module.muzimaforms.MuzimaXForm;
@@ -11,6 +12,9 @@ import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.ModelXml2JsonTransfo
 import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.XForm2Html5Transformer;
 import org.openmrs.module.xforms.Xform;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import java.io.IOException;
 import java.util.List;
 
 public class MuzimaFormServiceImpl extends BaseOpenmrsService implements MuzimaFormService {
@@ -34,26 +38,24 @@ public class MuzimaFormServiceImpl extends BaseOpenmrsService implements MuzimaF
         return dao.getXForms();
     }
 
-    public MuzimaForm saveForm(MuzimaForm form) {
-        Xform xform = dao.getXform(form.getId());
+    public MuzimaForm importExisting(Integer xFormId, String name, String description) throws DocumentException, ParserConfigurationException, TransformerException, IOException {
+        log.info(String.format("Parameters %d %s %s", xFormId, name, description));
+        Xform xform = dao.getXform(xFormId);
         String xformXml = xform.getXformXml();
-        try {
-            log.info("xform --> ");
-            log.info(xformXml);
-            CompositeEnketoResult result = (CompositeEnketoResult) modelXml2JsonTransformer.
-                    transform(html5Transformer.transform(xformXml).getResult());
-            log.info("converted -->");
-            log.info(result.getResult());
-            form.setHtml(result.getForm());
-            form.setModel(result.getModel());
-            form.setModelJson(result.getModelAsJson());
-            dao.saveForm(form);
-            return form;
-        } catch (Exception e) {
-            log.error(e);
-            log.error("Possible XForm to HTML5 transformation failure.", e);
-        }
-        return null;
+        log.info("xform --> ");
+        log.info(xformXml);
+        CompositeEnketoResult result = (CompositeEnketoResult) modelXml2JsonTransformer.
+                transform(html5Transformer.transform(xformXml).getResult());
+        log.info("converted -->");
+        log.info(result.getResult());
+        MuzimaForm form = new MuzimaForm();
+        form.setName(name);
+        form.setDescription(description);
+        form.setHtml(result.getForm());
+        form.setModel(result.getModel());
+        form.setModelJson(result.getModelAsJson());
+        dao.saveForm(form);
+        return form;
     }
 
     public MuzimaForm findById(Integer id) {

@@ -2,23 +2,18 @@ package org.openmrs.module.muzimaforms.resource;
 
 import org.dom4j.DocumentException;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Matchers;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.muzimaforms.MuzimaForm;
 import org.openmrs.module.muzimaforms.api.MuzimaFormService;
 import org.openmrs.module.webservices.rest.SimpleObject;
 import org.openmrs.module.webservices.rest.web.RequestContext;
-import org.openmrs.module.webservices.rest.web.RestConstants;
 import org.openmrs.module.webservices.rest.web.api.RestService;
-import org.openmrs.module.webservices.rest.web.api.impl.RestServiceImpl;
 import org.openmrs.module.webservices.rest.web.representation.CustomRepresentation;
 import org.openmrs.module.webservices.rest.web.representation.DefaultRepresentation;
 import org.openmrs.module.webservices.rest.web.representation.RefRepresentation;
 import org.openmrs.module.webservices.rest.web.representation.Representation;
-import org.openmrs.module.webservices.rest.web.response.ConversionException;
 import org.openmrs.module.webservices.rest.web.response.ResourceDoesNotSupportOperationException;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -84,7 +79,7 @@ public class MuzimaFormResourceTest {
     public void save_shouldDelegateToService() throws SAXException, DocumentException, TransformerException, IOException, XPathExpressionException, ParserConfigurationException {
         MuzimaForm form = getForm("");
         controller.save(form);
-        verify(service, times(1)).saveForm(form);
+        verify(service, times(1)).importExisting(form.getId(), form.getName(), form.getDescription());
     }
 
     @Test

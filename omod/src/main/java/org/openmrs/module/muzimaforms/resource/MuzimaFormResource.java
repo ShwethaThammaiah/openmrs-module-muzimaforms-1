@@ -58,7 +58,7 @@ public class MuzimaFormResource extends DataDelegatingCrudResource<MuzimaForm> {
     public MuzimaForm save(MuzimaForm muzimaForm) {
         MuzimaFormService service = Context.getService(MuzimaFormService.class);
         try {
-            return service.saveForm(muzimaForm);
+            return service.importExisting(muzimaForm.getId(), muzimaForm.getName(), muzimaForm.getDescription());
         } catch (Exception e) {
             log.error(e);
         }

@@ -49,11 +49,13 @@ public class MuzimaFormControllerTest {
 
     @Test
     public void create_shouldSaveAForm() throws IOException, TransformerException, SAXException, ParserConfigurationException, XPathExpressionException, DocumentException {
-        MuzimaForm html5Form = new MuzimaForm() {{
-            setId(5);
+        MuzimaForm form = new MuzimaForm() {{
+            setId(1);
+            setName("name");
+            setDescription("description");
         }};
-        html5FormController.create(html5Form);
-        verify(service).saveForm(html5Form);
+        html5FormController.create(form);
+        verify(service).importExisting(form.getId(), form.getName(), form.getDescription());
     }
 
 }

@@ -3,7 +3,6 @@ package org.openmrs.module.muzimaforms.api.impl;
 import net.sf.saxon.TransformerFactoryImpl;
 import org.dom4j.DocumentException;
 import org.junit.Test;
-import org.openmrs.module.muzimaforms.MuzimaForm;
 import org.openmrs.module.muzimaforms.api.db.hibernate.MuzimaFormDAO;
 import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.EnketoXslTransformer;
 import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.ModelXml2JsonTransformer;
@@ -12,6 +11,7 @@ import org.openmrs.module.xforms.Xform;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.xpath.XPathExpressionException;
 import java.io.IOException;
@@ -48,7 +48,7 @@ public class EnketoResultTest {
     }
 
     @Test
-    public void test() throws IOException {
+    public void test() throws IOException, DocumentException, TransformerException, ParserConfigurationException {
         MuzimaFormDAO muzimaFormDAO = mock(MuzimaFormDAO.class);
         TransformerFactory transformerFactory = new TransformerFactoryImpl();
         EnketoXslTransformer enketoXslTransformer = new EnketoXslTransformer(transformerFactory, XslTransformPipeline.xform2HTML5Pipeline());
@@ -58,9 +58,7 @@ public class EnketoResultTest {
         xform.setXformXml(xformXml);
         when(muzimaFormDAO.getXform(1)).thenReturn(xform);
 
-        MuzimaForm muzimaForm = new MuzimaForm();
-        muzimaForm.setId(1);
-        muzimaFormService.saveForm(muzimaForm);
+        muzimaFormService.importExisting(1, null, null);
     }
 
     private String xformXml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><xf:xforms xmlns:xf=\"http://www.w3.org/2002/xforms\" xmlns:jr=\"http://openrosa.org/javarosa\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" +

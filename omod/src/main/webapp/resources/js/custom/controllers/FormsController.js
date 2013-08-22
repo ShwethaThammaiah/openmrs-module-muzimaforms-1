@@ -55,7 +55,7 @@ function FormsCtrl($scope, $window, FormService, TagService, _) {
                 "<script src='/openmrs-standalone/moduleResources/muzimaforms/js/angular/angular.js'></script>" +
                 "</head><body><div id='preview' ng-bind-html-unsafe=" +
                 result.data.html +
-                "/></body></html>");
+                "</body></html>");
             newFormPreviewWindow.document.close();
         };
         FormService.get(uuid).then(openPreviewInNewWindow);

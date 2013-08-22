@@ -23,7 +23,7 @@ muzimaformsModule.factory('FormService', function ($http) {
         return $http.post('form.form', form);
     };
     var all = function () {
-        return $http.get('../../ws/rest/v1/muzimaforms/form');
+        return $http.get('../../ws/rest/v1/muzimaforms/form', {cache: false});
     };
 
     return {
@@ -59,10 +59,13 @@ muzimaformsModule.factory('FileUploadService', function ($http) {
                 headers: { 'Content-Type': false },
                 transformRequest: function (data) {
                     var formData = new FormData();
+                    angular.forEach(data.params, function (key, value) {
+                        formData.append(value, key);
+                    });
                     formData.append("file", data.file);
                     return formData;
                 },
-                data: {file: options.file}
+                data: {file: options.file, params: options.params}
             })
         }
     };

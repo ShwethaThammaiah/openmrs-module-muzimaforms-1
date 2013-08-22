@@ -18,18 +18,21 @@
     <div class="row" ng-show="isValidXForm()">
         <div class="col-lg-6 panel">
             <div class="alert alert-success">The xForm is valid! Use the upload button to import it.</div>
-            <form role="form">
+            <form role="form" ng-submit="upload(file, name, description)">
                 <div class="form-group">
                     <label for="xFormName">Name</label>
-                    <input type="text" class="form-control" id="xFormName" placeholder="Enter xForm name">
+                    <input type="text" class="form-control" id="xFormName" ng-model="name"
+                           placeholder="Enter name" required="true">
                 </div>
                 <div class="form-group">
                     <label for="xFormDescription">Description</label>
                     <textarea class="form-control" id="xFormDescription" rows="3"
-                              placeholder="Enter xFrom description"></textarea>
+                              placeholder="Enter description" ng-model="description"></textarea>
                 </div>
-                <button ng-click="cancel()" class="btn btn-danger">Cancel</button>
-                <button type="submit" class="btn btn-success">Upload</button>
+                <div class="well-small">
+                    <button ng-click="cancel()" class="btn btn-danger">Cancel</button>
+                    <button type="submit" class="btn btn-success">Upload</button>
+                </div>
             </form>
 
         </div>
@@ -37,7 +40,7 @@
 
     <div ng-show="isInvalidXForm()">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-12 well-small">
                 <button ng-click="cancel()" class="btn btn-danger">Cancel</button>
                 <button ng-click="validate(file)" class="btn btn-success">Re-Validate</button>
             </div>

@@ -1,7 +1,16 @@
 <div ng-controller="XFormsCtrl" ng-init="init()">
-    <h4>Unconverted forms in XForms module</h4>
-
-    <div class="row" ng-repeat="form in xForms">
+    <div class="row" ng-hide="!hasXForms()">
+        <div class="col-lg-8">
+            <h3>XForms</h3>
+        </div>
+        <div class="col-lg-4">
+            <form>
+                <input type="text" class="form-control" ng-model="searchQuery" placeholder="Search"
+                       style="padding-left: 5px; padding-right: 5px">
+            </form>
+        </div>
+    </div>
+    <div class="row" ng-repeat="form in xForms | filter:searchQuery">
         <div class="col-lg-12 panel">
         <div class="pull-right">
                 <input type="checkbox" ng-click="selectXForm(form.id)"/>
@@ -28,7 +37,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12 well-small">
             <a href="#/list/forms" class="btn btn-danger" data-dismiss="modal" ng-click="cancelImport()"
                style="color: #ffffff ;text-decoration: none">Cancel</a>
             <a href="#/list/forms" ng-disabled="!hasXForms()" class="btn btn-success" data-dismiss="modal"

@@ -23,7 +23,7 @@ public class MuzimaFormDAOImpl implements MuzimaFormDAO {
 
     //TODO: Move this to a named query
     public List<MuzimaXForm> getXForms() {
-        return (List<MuzimaXForm>) session().createQuery("from MuzimaXForm where id not in (select id from MuzimaForm)").list();
+        return (List<MuzimaXForm>) session().createCriteria(MuzimaXForm.class).list();
     }
 
     public void saveForm(MuzimaForm form) {
@@ -39,7 +39,7 @@ public class MuzimaFormDAOImpl implements MuzimaFormDAO {
     }
 
     public MuzimaForm findByUuid(String uuid) {
-        return (MuzimaForm) session().createQuery("from MuzimaForm form where form.uuid = '" + uuid + "'" ).uniqueResult();
+        return (MuzimaForm) session().createQuery("from MuzimaForm form where form.uuid = '" + uuid + "'").uniqueResult();
     }
 
     private Session session() {

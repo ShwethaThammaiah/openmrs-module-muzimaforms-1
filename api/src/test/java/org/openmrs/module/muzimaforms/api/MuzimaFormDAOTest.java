@@ -51,7 +51,7 @@ public class MuzimaFormDAOTest extends BaseModuleContextSensitiveTest {
     @Test
     public void getXForms_shouldGetXForms() {
         List<MuzimaXForm> all = dao.getXForms();
-        assertThat(all.size(), is(1));
+        assertThat(all.size(), is(3));
     }
 
     @Test

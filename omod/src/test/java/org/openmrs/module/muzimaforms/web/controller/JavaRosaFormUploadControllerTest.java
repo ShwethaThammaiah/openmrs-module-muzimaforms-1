@@ -2,7 +2,6 @@ package org.openmrs.module.muzimaforms.web.controller;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openmrs.api.context.Context;
@@ -55,11 +54,10 @@ public class JavaRosaFormUploadControllerTest {
     @Test
     public void upload_shouldConvertJavaRosaFormToHTMLAndSaveIt() throws Exception {
         request.addFile(multipartFile("file", "sampleJavaRosaXForm.xml"));
-        request.addFile(multipartFile("data", "sampleJavaRosaData.txt"));
 
-        controller.upload(request);
+        controller.upload(request, "name", "description");
 
-        verify(service).create("name", "description", readStream(request.getFile("file").getInputStream()));
+        verify(service).create(readStream(request.getFile("file").getInputStream()), "description", "name");
     }
 
     private String readStream(InputStream stream) throws IOException {

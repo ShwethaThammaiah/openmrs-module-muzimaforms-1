@@ -2,8 +2,7 @@ describe('muzima Import controllers', function () {
     beforeEach(module('muzimaforms'));
     describe('ImportCtrl', function () {
 
-        var FileUploadService = {post: function () {
-
+        var FileUploadService = { post: function () {
         }};
 
         var scope, ctrl;
@@ -15,6 +14,17 @@ describe('muzima Import controllers', function () {
                 FileUploadService: FileUploadService
             });
         }));
+
+        it('should upload a file with the name and description', function () {
+            spyOn(FileUploadService, "post").andReturn({then: function () {
+            }});
+
+            var file = new Object();
+
+            scope.upload(file, "name", "description");
+
+            expect(FileUploadService.post).toHaveBeenCalledWith({url: 'upload.form', file: file, params: {name: "name", description: "description"}});
+        });
 
         it('should return the error style when the validation type is error', function () {
             expect(scope.style('ERROR')).toBe('alert-danger');

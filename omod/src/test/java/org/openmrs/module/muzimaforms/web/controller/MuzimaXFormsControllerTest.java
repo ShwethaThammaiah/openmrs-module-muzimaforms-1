@@ -15,19 +15,20 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.matchers.JUnitMatchers.hasItems;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Context.class)
 public class MuzimaXFormsControllerTest {
-    private MuzimaXFormsController html5XFormsController;
+    private MuzimaXFormsController controller;
     private MuzimaFormService service;
 
     @Before
     public void setUp() throws Exception {
         service = mock(MuzimaFormService.class);
-        html5XFormsController = new MuzimaXFormsController();
+        controller = new MuzimaXFormsController();
         mockStatic(Context.class);
         PowerMockito.when(Context.getService(MuzimaFormService.class)).thenReturn(service);
     }
@@ -43,7 +44,13 @@ public class MuzimaXFormsControllerTest {
 
         when(service.getXForms()).thenReturn(asList(xForm1, xForm2));
 
-        assertThat(html5XFormsController.xForms().size(), is(2));
-        assertThat(html5XFormsController.xForms(), hasItems(xForm1, xForm2));
+        assertThat(controller.xForms().size(), is(2));
+        assertThat(controller.xForms(), hasItems(xForm1, xForm2));
+    }
+
+    @Test
+    public void importXForm_shouldImportAnExistingXForm() throws Exception {
+        controller.importXForm(1, "name", "description");
+        verify(service).importExisting(1, "name", "description");
     }
 }

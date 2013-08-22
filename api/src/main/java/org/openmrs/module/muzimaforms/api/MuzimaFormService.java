@@ -29,4 +29,7 @@ public interface MuzimaFormService extends OpenmrsService {
 
     @Transactional
     MuzimaForm create(String xformXml, String description, String name) throws IOException, TransformerException, ParserConfigurationException, DocumentException;
+
+    @Transactional
+    MuzimaForm save(MuzimaForm form) throws IOException, TransformerException, ParserConfigurationException, DocumentException;
 }

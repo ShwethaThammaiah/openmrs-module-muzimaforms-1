@@ -1,26 +1,20 @@
 describe('muzimaForms controllers', function () {
     beforeEach(module('muzimaforms'));
     describe('XFormsCtrl', function () {
+        var XFormService = {};
+        XFormService.all = function () {
+            return {then: function (callback) {
+                callback({data: [
+                    {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients"},
+                    {"id": 2, "name": "PMTCT Ante-Natal Care Form", "description": ""},
+                    {"id": 3, "name": "Outreach Adult Locator Form", "description": ""}
+                ]})
+            }};
+        }
 
-
-        var FormService = {
-            save: function (form) {
-                return null;
-            }
+        XFormService.save = function () {
         };
 
-
-        var XFormService = {
-            all: function () {
-                return {then: function (callback) {
-                    callback({data: [
-                        {"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients"},
-                        {"id": 2, "name": "PMTCT Ante-Natal Care Form", "description": ""},
-                        {"id": 3, "name": "Outreach Adult Locator Form", "description": ""}
-                    ]})
-                }};
-            }
-        };
 
         var window = {
             open: function () {
@@ -33,7 +27,6 @@ describe('muzimaForms controllers', function () {
             ctrl = $controller(XFormsCtrl, {
                 $scope: scope,
                 $window: window,
-                FormService: FormService,
                 XFormService: XFormService
             });
             scope.init();
@@ -56,15 +49,18 @@ describe('muzimaForms controllers', function () {
         });
 
         it('should post selected xform ids when clicked on done', function () {
-            spyOn(FormService, "save").andReturn("");
+            spyOn(XFormService, "save").andReturn({
+                    then: function () {
+                    }}
+            );
             scope.selectXForm('1');
             scope.selectXForm('2');
 
             scope.done();
             scope.$apply();
 
-            expect(FormService.save).toHaveBeenCalledWith({"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients"});
-            expect(FormService.save).toHaveBeenCalledWith({"id": 2, "name": "PMTCT Ante-Natal Care Form", "description": ""});
+            expect(XFormService.save).toHaveBeenCalledWith({"id": 1, "name": "Patient Registration Form", "description": "Form for registering patients"});
+            expect(XFormService.save).toHaveBeenCalledWith({"id": 2, "name": "PMTCT Ante-Natal Care Form", "description": ""});
         });
 
     });

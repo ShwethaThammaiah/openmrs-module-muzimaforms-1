@@ -37,8 +37,14 @@ muzimaformsModule.factory('XFormService', function ($http) {
     var all = function () {
         return $http.get('xforms.form');
     };
+
+    var save = function (data) {
+        return $http({url: 'xforms.form', method: 'POST', params: data});
+    };
+
     return {
-        all: all
+        all: all,
+        save: save
     };
 });
 

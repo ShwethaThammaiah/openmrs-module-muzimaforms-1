@@ -35,8 +35,8 @@ public class MuzimaFormController {
 
     @RequestMapping(method = RequestMethod.POST, value = "form")
     @ResponseBody
-    public void create(@RequestBody MuzimaForm form) throws SAXException, DocumentException, TransformerException, IOException, XPathExpressionException, ParserConfigurationException {
+    public void save(@RequestBody MuzimaForm form) throws SAXException, DocumentException, TransformerException, IOException, XPathExpressionException, ParserConfigurationException {
         MuzimaFormService service = Context.getService(MuzimaFormService.class);
-        service.importExisting(form.getId(), form.getName(), form.getDescription());
+        service.save(form);
     }
 }

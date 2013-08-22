@@ -88,7 +88,7 @@ public class MuzimaFormServiceTest {
     }
 
     @Test
-    public void saveForm_shouldSetConvertedXform() throws Exception {
+    public void importExisting_shouldSetConvertedXform() throws Exception {
 
         String htmlForm = "<foo><form><ul><li/><li/></ul></form><model/></foo>";
         String xFormXml = "<foo><some/><valid/></foo>";
@@ -105,8 +105,13 @@ public class MuzimaFormServiceTest {
         verify(transformer, times(1)).transform(xFormXml);
         verify(modelTransformer, times(1)).transform(htmlForm);
         verify(dao, times(1)).getXform(1);
+    }
 
-
+    @Test
+    public void save_shouldSaveExistingForm() throws Exception {
+        MuzimaForm form = muzimaform().withId(1).instance();
+        service.save(form);
+        verify(dao).saveForm(form);
     }
 
     @Test

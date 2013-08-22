@@ -1,5 +1,5 @@
 'use strict';
-function XFormsCtrl($scope, FormService, XFormService, _, $q) {
+function XFormsCtrl($scope, $location, XFormService, _, $q) {
     $scope.init = function () {
         $scope.selectedXForms = [];
         $scope.fetch();
@@ -13,9 +13,11 @@ function XFormsCtrl($scope, FormService, XFormService, _, $q) {
 
     $scope.done = function () {
         $q.all(_.map($scope.selectedXForms, function (value) {
-            return FormService.save(_.find($scope.xForms, function (xForm) {
-                return xForm.id == value
-            }));
+            return XFormService.save(_.find($scope.xForms, function (xForm) {
+                    return xForm.id == value
+                })).then(function () {
+                    $location.path("#/list/forms");
+                });
         }));
     };
 

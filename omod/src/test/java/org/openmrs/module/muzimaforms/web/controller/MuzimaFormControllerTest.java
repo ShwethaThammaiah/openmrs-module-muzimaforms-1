@@ -41,12 +41,6 @@ public class MuzimaFormControllerTest {
     }
 
     @Test
-    public void get_shouldReturnFormWithGivenId() throws Exception {
-        when(service.findById(1)).thenReturn(form);
-        assertThat(html5FormController.get(1), is(form));
-    }
-
-    @Test
     public void save_shouldSaveAForm() throws IOException, TransformerException, SAXException, ParserConfigurationException, XPathExpressionException, DocumentException {
         html5FormController.save(form);
         verify(service).save(form);

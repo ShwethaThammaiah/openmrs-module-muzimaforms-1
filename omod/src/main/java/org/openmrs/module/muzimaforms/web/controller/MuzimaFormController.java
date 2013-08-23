@@ -1,13 +1,14 @@
 package org.openmrs.module.muzimaforms.web.controller;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.dom4j.DocumentException;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.muzimaforms.MuzimaForm;
 import org.openmrs.module.muzimaforms.api.MuzimaFormService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -19,20 +20,8 @@ import java.io.IOException;
 @Controller
 @RequestMapping(value = "module/muzimaforms/form.form")
 public class MuzimaFormController {
-    Log logger = LogFactory.getLog(MuzimaFormController.class);
 
-    @RequestMapping(method = RequestMethod.GET)
-    @ResponseBody
-    public MuzimaForm get(@RequestParam(required = true) Integer id) {
-        try {
-            MuzimaFormService service = Context.getService(MuzimaFormService.class);
-            return service.findById(id);
-        } catch (Exception e) {
-            logger.error(e);
-        }
-        return null;
-    }
-
+    //TODO: Use MuzimaFormResource to handle the save
     @RequestMapping(method = RequestMethod.POST, value = "form")
     @ResponseBody
     public void save(@RequestBody MuzimaForm form) throws SAXException, DocumentException, TransformerException, IOException, XPathExpressionException, ParserConfigurationException {

@@ -47,18 +47,13 @@ function FormsCtrl($scope, $window, FormService, TagService, _) {
         return $scope.selectedForm ? $scope.selectedForm.html : "";
     };
 
-    $scope.showFormPreview = function (uuid) {
-        var openPreviewInNewWindow = function openPreviewInNewWindow(result) {
-            var newFormPreviewWindow = $window.open();
-            newFormPreviewWindow.document.write("<html><head>" +
-                "<script src='/openmrs-standalone/moduleResources/muzimaforms/js/jquery/jquery.js'></script>" +
-                "<script src='/openmrs-standalone/moduleResources/muzimaforms/js/angular/angular.js'></script>" +
-                "</head><body><div id='preview' ng-bind-html-unsafe=" +
-                result.data.html +
-                "</body></html>");
-            newFormPreviewWindow.document.close();
-        };
-        FormService.get(uuid).then(openPreviewInNewWindow);
+    $scope.showFormPreview = function (html) {
+        var newFormPreviewWindow = $window.open();
+        newFormPreviewWindow.document.write("<html><head>" +
+            "<script src='/openmrs-standalone/moduleResources/muzimaforms/js/jquery/jquery.js'></script>" +
+            "<script src='/openmrs-standalone/moduleResources/muzimaforms/js/angular/angular.js'></script>" +
+            "</head><body><div id='preview' ng-bind-html-unsafe=" + html + "</body></html>");
+        newFormPreviewWindow.document.close();
     };
 
     var tagColor = function (tagId) {

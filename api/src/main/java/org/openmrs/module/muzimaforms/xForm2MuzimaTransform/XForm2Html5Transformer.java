@@ -16,7 +16,7 @@ public abstract class XForm2Html5Transformer {
     protected File createTempFile(String xformXml) throws IOException {
         UUID uuid = UUID.randomUUID();
         File file = new File(uuid + ".xml");
-        FileUtils.writeStringToFile(file, xformXml);
+        FileUtils.writeStringToFile(file, xformXml, "UTF-8");
         return file;
     }
 }

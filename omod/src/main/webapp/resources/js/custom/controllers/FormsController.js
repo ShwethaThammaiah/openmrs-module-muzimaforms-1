@@ -42,18 +42,12 @@ function FormsCtrl($scope, $window, FormService, TagService, _) {
         return !_.isEmpty($scope.muzimaforms);
     };
 
-    $scope.getFormPreview = function () {
-        console.log($scope.selectedForm.html);
-        return $scope.selectedForm ? $scope.selectedForm.html : "";
-    };
+    $scope.showFormPreview = function (formHTML, formModel, formJSON) {
+        var previewWindow = $window.open("../../moduleResources/muzimaforms/preview/enketo/template.html");
 
-    $scope.showFormPreview = function (html) {
-        var newFormPreviewWindow = $window.open();
-        newFormPreviewWindow.document.write("<html><head>" +
-            "<script src='/openmrs-standalone/moduleResources/muzimaforms/js/jquery/jquery.js'></script>" +
-            "<script src='/openmrs-standalone/moduleResources/muzimaforms/js/angular/angular.js'></script>" +
-            "</head><body><div id='preview' ng-bind-html-unsafe=" + html + "</body></html>");
-        newFormPreviewWindow.document.close();
+        previewWindow.formHTML = formHTML;
+        previewWindow.formModel = formModel;
+        previewWindow.formJSON = formJSON;
     };
 
     var tagColor = function (tagId) {

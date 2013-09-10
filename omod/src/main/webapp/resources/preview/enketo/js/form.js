@@ -412,11 +412,6 @@ function Form (formSelector, dataStr, dataStrToEdit){
          * @return {boolean}            returns true if both validations are true
          */
         Nodeset.prototype.validate = function(expr, xmlDataType){
-            console.error(">>>>>>>>xml>>>>>>>>" + dataStr);
-            console.error(">>>>>>>>stack>>>>>>>>" + new Error().stack);
-            console.error(">>>>>>>>expr>>>>>>>>" + expr);
-            console.error(">>>>>>>>this.getVal()>>>>>>>>" + this.getVal());
-            console.error(">>>>>>>>xmlDataType>>>>>>>>" + xmlDataType);
             var typeValid, exprValid,
                 value = this.getVal()[0];
 

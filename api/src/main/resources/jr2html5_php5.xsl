@@ -162,12 +162,6 @@ XSLT Stylesheet that transforms OpenRosa style (X)Forms into valid HTMl5 forms
                         <xsl:call-template name="languages"/>
                     </select>
                 </xsl:if>
-                <!-- create hidden input fields for preload items -->
-                <xsl:if test="/h:html/h:head/xf:model/xf:bind[@jr:preload]">
-                    <fieldset id="jr-preload-items" style="display:none;">
-                        <xsl:apply-templates select="/h:html/h:head/xf:model/xf:bind[@jr:preload]"/>
-                    </fieldset>
-                </xsl:if>
 
                 <xsl:apply-templates/>
 
@@ -337,7 +331,7 @@ XSLT Stylesheet that transforms OpenRosa style (X)Forms into valid HTMl5 forms
         </xsl:if>
     </xsl:template>
 
-    <xsl:template match="xf:input | xf:upload | xf:item | xf:bind[@jr:preload] | xf:bind[@calculate]">
+    <xsl:template match="xf:input | xf:upload | xf:item | xf:bind[@calculate]">
         <!-- NOTE: TO IMPROVE PERFORMANCE, SUPPORT FOR RELATIVE NODESET BINDINGS HAS BEEN SWITCHED OFF
                 To turn this back on:
                 - uncomment the variable nodeset_used

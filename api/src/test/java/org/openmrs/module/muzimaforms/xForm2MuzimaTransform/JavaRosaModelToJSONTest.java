@@ -23,9 +23,7 @@ public class JavaRosaModelToJSONTest extends ResourceTest {
     @Before
     public void setUp() throws Exception {
         ModelXml2JsonTransformer jsonTransformer = new ModelXml2JsonTransformer(TransformerFactory.newInstance(), XslTransformPipeline.modelXml2JsonXSLPipeline());
-
         EnketoResult result = jsonTransformer.transform(getText("test-model-to-json-multiple.xml"));
-
         JsonNode node = new ObjectMapper().readTree(result.getModelAsJson());
         form = node.get("form");
     }
@@ -48,13 +46,17 @@ public class JavaRosaModelToJSONTest extends ResourceTest {
 
     @Test
     public void shouldContainASubformWithNameAddress() throws Exception {
-        assertThat(form.get("sub_forms").get("name").toString(), is("\"address\""));
+        assertThat(form.get("sub_forms").get(0).get("name").toString(), is("\"address\""));
     }
 
     @Test
     public void shouldContainASubformWithBindTypeChild() throws Exception {
-        assertThat(form.get("sub_forms").get("bind_type").toString(), is("\"child\""));
+        assertThat(form.get("sub_forms").get(0).get("bind_type").toString(), is("\"child\""));
     }
 
+    @Test
+    public void shouldHaveFieldsInSubForms() throws Exception {
+        assertThat(form.get("sub_forms").get(0).get("fields"), notNullValue());
+    }
 
 }

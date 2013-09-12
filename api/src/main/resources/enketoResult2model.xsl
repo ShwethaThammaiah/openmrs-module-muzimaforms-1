@@ -39,25 +39,32 @@
                         </xsl:attribute>
                     </xsl:element>
 
-                    <xsl:choose>
-                        <xsl:when test="$model/*">
+                    <xsl:if test="$model/*">
+                        <xsl:for-each select="$model/node()">
+                            <xsl:call-template name="copy-model">
+                                <xsl:with-param name="model" select="."/>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                    </xsl:if>
+
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:element name="sub_forms">
+                        <xsl:attribute name="json:force-array" select="true()"/>
+                        <xsl:attribute name="name">
+                            <xsl:value-of select="local-name($model)"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="bind_type">
+                            <xsl:text>child</xsl:text>
+                        </xsl:attribute>
+                        <xsl:if test="$model/*">
                             <xsl:for-each select="$model/node()">
                                 <xsl:call-template name="copy-model">
                                     <xsl:with-param name="model" select="."/>
                                 </xsl:call-template>
                             </xsl:for-each>
-                        </xsl:when>
-                    </xsl:choose>
-                </xsl:when>
-                <xsl:otherwise>
-                     <xsl:element name="sub_forms">
-                         <xsl:attribute name="name">
-                             <xsl:value-of select="local-name($model)"/>
-                         </xsl:attribute>
-                         <xsl:attribute name="bind_type">
-                             <xsl:text>child</xsl:text>
-                         </xsl:attribute>
-                     </xsl:element>
+                        </xsl:if>
+                    </xsl:element>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:if>

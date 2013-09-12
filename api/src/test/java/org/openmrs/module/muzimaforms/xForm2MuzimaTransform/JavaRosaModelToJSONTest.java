@@ -34,9 +34,15 @@ public class JavaRosaModelToJSONTest extends ResourceTest {
     }
 
     @Test
-    public void shouldOnlyHaveTheNameFieldInTheJSON() throws Exception {
+    public void shouldOnlyHaveTheTodayFieldInTheJSON() throws Exception {
         JsonNode jsonNode = form.get("fields").get(0);
         assertThat(jsonNode.get("name").toString(), is("\"today\""));
+    }
+
+    @Test
+    public void shouldOnlyHaveTheTodayFieldBindingInTheJSON() throws Exception {
+        JsonNode jsonNode = form.get("fields").get(0);
+        assertThat(jsonNode.get("bind").toString(), is("\"/model/instance/EC_Registration_EngKan/today\""));
     }
 
     @Test
@@ -59,4 +65,18 @@ public class JavaRosaModelToJSONTest extends ResourceTest {
         assertThat(form.get("sub_forms").get(0).get("fields"), notNullValue());
     }
 
+    @Test
+    public void shouldOnlyOneFieldInTheSubForm() throws Exception {
+        assertThat(form.get("sub_forms").get(0).get("fields").size(), is(1));
+    }
+
+    @Test
+    public void shouldHaveTheStreetFieldInTheSubForm() throws Exception {
+        assertThat(form.get("sub_forms").get(0).get("fields").get(0).get("name").toString(), is("\"street\""));
+    }
+
+    @Test
+    public void shouldHaveTheStreetFieldBindingInTheSubForm() throws Exception {
+        assertThat(form.get("sub_forms").get(0).get("fields").get(0).get("bind").toString(), is("\"/model/instance/EC_Registration_EngKan/address/street\""));
+    }
 }

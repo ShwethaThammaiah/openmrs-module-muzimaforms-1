@@ -48,11 +48,9 @@
         </xsl:element>
       </xsl:template> -->
 
-    <!--
-    <xsl:template match="@bind">
-       <xsl:attribute name="ref">
+    <xsl:template match="@multiple">
+       <xsl:attribute name="template">
           <xsl:value-of select="."/>
        </xsl:attribute>
     </xsl:template>
-     -->
 </xsl:stylesheet>

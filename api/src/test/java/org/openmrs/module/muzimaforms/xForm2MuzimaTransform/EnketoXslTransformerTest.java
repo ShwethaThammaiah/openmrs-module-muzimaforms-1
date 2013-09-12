@@ -10,6 +10,7 @@ import org.mockito.Matchers;
 import org.openmrs.module.muzimaforms.api.impl.EnketoResult;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.Resource;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.*;
@@ -24,7 +25,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 import static org.openmrs.module.muzimaforms.xForm2MuzimaTransform.XslTransformPipeline.xslTransformPipeline;
 
-public class EnketoXslTransformerTest {
+public class EnketoXslTransformerTest extends ResourceTest {
     SAXTransformerFactory transformerFactory;
     TransformerHandler transformerHandler;
     Transformer transformer;
@@ -120,23 +121,21 @@ public class EnketoXslTransformerTest {
         EnketoResult transform = enketoXslTransformer.transform(getSampleXForm());
         assertThat(transform.hasResult(), is(true));
 
-//        System.out.println(transform.getResult());
+        System.out.println(transform.getResult());
 
     }
 
     private String getSampleXForm() throws IOException {
-        ApplicationContext context = new ClassPathXmlApplicationContext();
-        return IOUtils.toString(context.getResource("/test-xform.xml").getInputStream());
+        return getText("/test-xform.xml");
     }
 
     private File getXform2JRTransformer() throws IOException {
-        ApplicationContext context = new ClassPathXmlApplicationContext();
-        return context.getResource("/xform2jr.xsl").getFile();
+        return getFile("/xform2jr.xsl");
     }
 
     private File getHtml5Transformer() throws IOException {
-        ApplicationContext context = new ClassPathXmlApplicationContext();
-        return context.getResource("/jr2html5_php5.xsl").getFile();
+        return getFile("/jr2html5_php5.xsl");
     }
+
 
 }

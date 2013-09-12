@@ -139,6 +139,12 @@
                 <artifactId>jakarta-regexp</artifactId>
                 <version>1.4</version>
             </dependency>
+            <dependency>
+                <groupId>xmlunit</groupId>
+                <artifactId>xmlunit</artifactId>
+                <version>1.4</version>
+                <scope>testing</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <dependencies>

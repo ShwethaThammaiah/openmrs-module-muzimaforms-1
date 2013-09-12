@@ -26,29 +26,35 @@
 
         <xsl:param name="model"/>
         <xsl:if test="name($model[1])">
-            <xsl:if test="not($model[@template])">
-                <xsl:element name="fields">
-                    <xsl:attribute name="json:force-array" select="true()"/>
+            <xsl:choose>
+                <xsl:when test="not($model[@template])">
+                    <xsl:element name="fields">
+                        <xsl:attribute name="json:force-array" select="true()"/>
 
-                    <xsl:attribute name="name">
-                        <xsl:value-of select="local-name($model)"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="bind">
-                        <xsl:call-template name="genPath"/>
-                    </xsl:attribute>
-                </xsl:element>
+                        <xsl:attribute name="name">
+                            <xsl:value-of select="local-name($model)"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="bind">
+                            <xsl:call-template name="genPath"/>
+                        </xsl:attribute>
+                    </xsl:element>
 
-                <xsl:choose>
-                    <xsl:when test="$model/*">
-                        <xsl:for-each select="$model/node()">
-                            <xsl:call-template name="copy-model">
-                                <xsl:with-param name="model" select="."/>
-                            </xsl:call-template>
-                        </xsl:for-each>
-                    </xsl:when>
-                </xsl:choose>
-            </xsl:if>
+                    <xsl:choose>
+                        <xsl:when test="$model/*">
+                            <xsl:for-each select="$model/node()">
+                                <xsl:call-template name="copy-model">
+                                    <xsl:with-param name="model" select="."/>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                        </xsl:when>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:otherwise>
+                     <xsl:element name="sub_forms"></xsl:element>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:if>
+
     </xsl:template>
 
 

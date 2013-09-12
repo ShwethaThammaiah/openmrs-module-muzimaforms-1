@@ -45,4 +45,16 @@ public class JavaRosaModelToJSONTest extends ResourceTest {
     public void shouldContainSectionSubFormsInTheJSON() throws Exception {
         assertThat(form.get("sub_forms"), notNullValue());
     }
+
+    @Test
+    public void shouldContainASubformWithNameAddress() throws Exception {
+        assertThat(form.get("sub_forms").get("name").toString(), is("\"address\""));
+    }
+
+    @Test
+    public void shouldContainASubformWithBindTypeChild() throws Exception {
+        assertThat(form.get("sub_forms").get("bind_type").toString(), is("\"child\""));
+    }
+
+
 }

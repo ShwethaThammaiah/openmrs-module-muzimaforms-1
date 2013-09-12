@@ -50,7 +50,14 @@
                     </xsl:choose>
                 </xsl:when>
                 <xsl:otherwise>
-                     <xsl:element name="sub_forms"></xsl:element>
+                     <xsl:element name="sub_forms">
+                         <xsl:attribute name="name">
+                             <xsl:value-of select="local-name($model)"/>
+                         </xsl:attribute>
+                         <xsl:attribute name="bind_type">
+                             <xsl:text>child</xsl:text>
+                         </xsl:attribute>
+                     </xsl:element>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:if>

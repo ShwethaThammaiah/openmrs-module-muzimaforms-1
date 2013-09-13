@@ -29,20 +29,32 @@ public class JavaRosaModelToJSONTest extends ResourceTest {
     }
 
     @Test
-    public void shouldOnlyHaveOneElementInTheFieldSection() throws Exception {
-        assertThat(form.get("fields").size(), is(1));
+    public void shouldOnlyHaveTwoElementInTheFieldSection() throws Exception {
+        assertThat(form.get("fields").size(), is(2));
     }
 
     @Test
-    public void shouldOnlyHaveTheTodayFieldInTheJSON() throws Exception {
+    public void shouldHaveTheTodayFieldInTheJSON() throws Exception {
         JsonNode jsonNode = form.get("fields").get(0);
         assertThat(jsonNode.get("name").toString(), is("\"today\""));
     }
 
     @Test
-    public void shouldOnlyHaveTheTodayFieldBindingInTheJSON() throws Exception {
+    public void shouldHaveTheTodayFieldBindingInTheJSON() throws Exception {
         JsonNode jsonNode = form.get("fields").get(0);
         assertThat(jsonNode.get("bind").toString(), is("\"/model/instance/EC_Registration_EngKan/today\""));
+    }
+
+    @Test
+    public void shouldHaveTheDateFieldInTheJSON() throws Exception {
+        JsonNode jsonNode = form.get("fields").get(1);
+        assertThat(jsonNode.get("name").toString(), is("\"date\""));
+    }
+
+    @Test
+    public void shouldHaveTheDateFieldBindingInTheJSON() throws Exception {
+        JsonNode jsonNode = form.get("fields").get(1);
+        assertThat(jsonNode.get("bind").toString(), is("\"/model/instance/EC_Registration_EngKan/date\""));
     }
 
     @Test

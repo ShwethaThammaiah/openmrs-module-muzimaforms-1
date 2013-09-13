@@ -5,7 +5,7 @@
             <EC_Registration_EngKan id="EC_Registration_EngKan">
                 <today/>
                 <address template=""> <street></street></address>
-
+                <date/>
             </EC_Registration_EngKan>
         </instance>
     </model>

@@ -8,37 +8,67 @@
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes" version="1.0" encoding="UTF-8"/>
     <xsl:template match="/">
         <form>
-            <xsl:apply-templates/>
+            <xsl:apply-templates select="model/instance/node()/node()[not(@template)]"/>
+            <xsl:apply-templates select="model/instance/node()/node()[@template]"/>
         </form>
     </xsl:template>
 
 
-    <!--<xsl:template match="/root/*[local-name() != 'model']"/>-->
-    <!--<xsl:template match="/root/model/instance/*[local-name() = 'root']"/>-->
+    <xsl:template match="/model/instance/node()/node()[not(@template)]">
+        <xsl:apply-templates>
 
-    <xsl:template match="/model/instance/node()/node()">
+        </xsl:apply-templates>
         <xsl:call-template name="copy-model">
             <xsl:with-param name="model" select="current()"/>
         </xsl:call-template>
     </xsl:template>
 
-    <xsl:template name="copy-model">
+    <xsl:template match="/model/instance/node()/node()[@template]">
+        <xsl:call-template name="copy-repeat-model">
+            <xsl:with-param name="model" select="current()"/>
+        </xsl:call-template>
+    </xsl:template>
 
+
+    <xsl:template name="copy-model">
         <xsl:param name="model"/>
         <xsl:if test="name($model[1])">
-            <xsl:choose>
-                <xsl:when test="not($model[@template])">
-                    <xsl:element name="fields">
-                        <xsl:attribute name="json:force-array" select="true()"/>
+            <xsl:if test="not($model[@template])">
+                <xsl:element name="fields">
+                    <xsl:attribute name="json:force-array" select="true()"/>
 
-                        <xsl:attribute name="name">
-                            <xsl:value-of select="local-name($model)"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="bind">
-                            <xsl:call-template name="genPath"/>
-                        </xsl:attribute>
-                    </xsl:element>
+                    <xsl:attribute name="name">
+                        <xsl:value-of select="local-name($model)"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="bind">
+                        <xsl:call-template name="genPath"/>
+                    </xsl:attribute>
+                </xsl:element>
 
+                <xsl:if test="$model/*">
+                    <xsl:for-each select="$model/node()">
+                        <xsl:call-template name="copy-model">
+                            <xsl:with-param name="model" select="."/>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:if>
+
+            </xsl:if>
+        </xsl:if>
+
+    </xsl:template>
+    <xsl:template name="copy-repeat-model">
+        <xsl:param name="model"/>
+        <xsl:if test="name($model[1])">
+            <xsl:if test="$model[@template]">
+                <xsl:element name="sub_forms">
+                    <xsl:attribute name="json:force-array" select="true()"/>
+                    <xsl:attribute name="name">
+                        <xsl:value-of select="local-name($model)"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="bind_type">
+                        <xsl:text>child</xsl:text>
+                    </xsl:attribute>
                     <xsl:if test="$model/*">
                         <xsl:for-each select="$model/node()">
                             <xsl:call-template name="copy-model">
@@ -46,29 +76,9 @@
                             </xsl:call-template>
                         </xsl:for-each>
                     </xsl:if>
-
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:element name="sub_forms">
-                        <xsl:attribute name="json:force-array" select="true()"/>
-                        <xsl:attribute name="name">
-                            <xsl:value-of select="local-name($model)"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="bind_type">
-                            <xsl:text>child</xsl:text>
-                        </xsl:attribute>
-                        <xsl:if test="$model/*">
-                            <xsl:for-each select="$model/node()">
-                                <xsl:call-template name="copy-model">
-                                    <xsl:with-param name="model" select="."/>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                        </xsl:if>
-                    </xsl:element>
-                </xsl:otherwise>
-            </xsl:choose>
+                </xsl:element>
+            </xsl:if>
         </xsl:if>
-
     </xsl:template>
 
 

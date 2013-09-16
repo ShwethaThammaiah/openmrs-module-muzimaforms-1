@@ -6,6 +6,7 @@
         xmlns="http://www.w3.org/2002/xforms"
         >
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes" version="1.0" encoding="UTF-8"/>
+    <xsl:strip-space elements="*"/>
     <xsl:template match="/">
         <form>
             <xsl:apply-templates select="model/instance/node()/node()[not(@template)]"/>
@@ -15,9 +16,6 @@
 
 
     <xsl:template match="/model/instance/node()/node()[not(@template)]">
-        <xsl:apply-templates>
-
-        </xsl:apply-templates>
         <xsl:call-template name="copy-model">
             <xsl:with-param name="model" select="current()"/>
         </xsl:call-template>
@@ -43,6 +41,11 @@
                     <xsl:attribute name="bind">
                         <xsl:call-template name="genPath"/>
                     </xsl:attribute>
+                    <xsl:if test="$model/text()">
+                        <xsl:attribute name="value">
+                            <xsl:value-of select="normalize-space($model/text())"/>
+                        </xsl:attribute>
+                    </xsl:if>
                 </xsl:element>
 
                 <xsl:if test="$model/*">

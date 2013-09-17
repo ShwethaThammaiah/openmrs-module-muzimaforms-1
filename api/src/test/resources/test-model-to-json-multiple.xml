@@ -3,8 +3,12 @@
     <model>
         <instance>
             <EC_Registration_EngKan id="EC_Registration_EngKan">
-                <today/>
-                <address template=""> <street></street></address>
+                <today>
+                    <time></time>
+                </today>
+                <address template="">
+                    <street></street>
+                </address>
                 <date>'today()'</date>
             </EC_Registration_EngKan>
         </instance>
@@ -13,10 +17,13 @@
         <label class="">
             <span lang="" class=" active">Woman's DOB &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF; DOB:</span>
             <span class="required">*</span>
-            <input autocomplete="off" type="date" name="/EC_Registration_EngKan/woman_date_of_birth" required="required" data-constraint=".&lt;= ( /EC_Registration_EngKan/today  - 5475) and .&gt; ( /EC_Registration_EngKan/today  - 18250)" data-type-xml="date"/>
+            <input autocomplete="off" type="date" name="/EC_Registration_EngKan/woman_date_of_birth" required="required"
+                   data-constraint=".&lt;= ( /EC_Registration_EngKan/today  - 5475) and .&gt; ( /EC_Registration_EngKan/today  - 18250)"
+                   data-type-xml="date"/>
         </label>
         <label class="">
-            <span lang="" class=" active">Household address &#xCAE;&#xCA8;&#xCC6; &#xCB5;&#xCBF;&#xCB3;&#xCBE;&#xCB8;</span>
+            <span lang="" class=" active">Household address &#xCAE;&#xCA8;&#xCC6;
+                &#xCB5;&#xCBF;&#xCB3;&#xCBE;&#xCB8;</span>
             <input autocomplete="off" type="text" name="/EC_Registration_EngKan/address" data-type-xml="string"/>
         </label>
     </form>

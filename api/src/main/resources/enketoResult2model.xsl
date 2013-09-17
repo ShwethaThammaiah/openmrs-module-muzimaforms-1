@@ -9,19 +9,19 @@
     <xsl:strip-space elements="*"/>
     <xsl:template match="/">
         <form>
-            <xsl:apply-templates select="model/instance/node()/node()[not(@template)]"/>
-            <xsl:apply-templates select="model/instance/node()/node()[@template]"/>
+            <xsl:apply-templates select="model/instance/node()//node()[not(@template) and not(ancestor::*[@template])]"/>
+            <xsl:apply-templates select="model/instance/node()//node()[@template]"/>
         </form>
     </xsl:template>
 
 
-    <xsl:template match="/model/instance/node()/node()[not(@template)]">
+    <xsl:template match="model/instance/node()//node()[not(@template) and not(ancestor::*[@template])]">
         <xsl:call-template name="copy-model">
             <xsl:with-param name="model" select="current()"/>
         </xsl:call-template>
     </xsl:template>
 
-    <xsl:template match="/model/instance/node()/node()[@template]">
+    <xsl:template match="model/instance/node()//node()[@template]">
         <xsl:call-template name="copy-repeat-model">
             <xsl:with-param name="model" select="current()"/>
         </xsl:call-template>
@@ -48,14 +48,6 @@
                     </xsl:if>
                 </xsl:element>
 
-                <xsl:if test="$model/*">
-                    <xsl:for-each select="$model/node()">
-                        <xsl:call-template name="copy-model">
-                            <xsl:with-param name="model" select="."/>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                </xsl:if>
-
             </xsl:if>
         </xsl:if>
 
@@ -71,6 +63,9 @@
                     </xsl:attribute>
                     <xsl:attribute name="bind_type">
                         <xsl:text>child</xsl:text>
+                    </xsl:attribute>
+                    <xsl:attribute name="default_bind_path">
+                        <xsl:call-template name="genPath"/>
                     </xsl:attribute>
                     <xsl:if test="$model/*">
                         <xsl:for-each select="$model/node()">

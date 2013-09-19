@@ -21,7 +21,7 @@ import static org.junit.matchers.JUnitMatchers.hasItem;
 import static org.openmrs.module.muzimaforms.MuzimaFormBuilder.muzimaform;
 import static org.openmrs.module.muzimaforms.MuzimaFormTagBuilder.tag;
 
-@ContextConfiguration(locations = {"classpath:applicationContext-service.xml", "classpath*:TestingApplicationContext.xml", "classpath*:testingApplicationContext.xml", "classpath*:moduleApplicationContext.xml"}, inheritLocations = false)
+@ContextConfiguration(value = "classpath*:muzimaFormtestingApplicationContext.xml", inheritLocations = true)
 public class MuzimaFormDAOTest extends BaseModuleContextSensitiveTest {
 
     private MuzimaFormDAO dao;

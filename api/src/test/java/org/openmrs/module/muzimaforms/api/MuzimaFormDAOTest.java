@@ -26,7 +26,7 @@ public class MuzimaFormDAOTest extends BaseModuleContextSensitiveTest {
 
     @Before
     public void setUp() throws Exception {
-        dao = Context.getService(MuzimaFormDAO.class);
+        dao = (MuzimaFormDAO) applicationContext.getBean("muzimaFormDAO");
         executeDataSet("tagTestData.xml");
         executeDataSet("xformTestData.xml");
     }

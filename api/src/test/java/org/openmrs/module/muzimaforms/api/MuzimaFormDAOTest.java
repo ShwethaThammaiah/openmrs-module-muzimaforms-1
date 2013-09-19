@@ -8,6 +8,7 @@ import org.openmrs.module.muzimaforms.MuzimaFormTag;
 import org.openmrs.module.muzimaforms.MuzimaXForm;
 import org.openmrs.module.muzimaforms.api.db.hibernate.MuzimaFormDAO;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,6 +21,7 @@ import static org.junit.matchers.JUnitMatchers.hasItem;
 import static org.openmrs.module.muzimaforms.MuzimaFormBuilder.muzimaform;
 import static org.openmrs.module.muzimaforms.MuzimaFormTagBuilder.tag;
 
+@ContextConfiguration(locations = {"classpath:applicationContext-service.xml", "classpath*:TestingApplicationContext.xml", "classpath*:testingApplicationContext.xml", "classpath*:moduleApplicationContext.xml"}, inheritLocations = false)
 public class MuzimaFormDAOTest extends BaseModuleContextSensitiveTest {
 
     private MuzimaFormDAO dao;

@@ -3,7 +3,6 @@ package org.javarosa.core.services;
 import org.javarosa.core.api.ILogger;
 import org.javarosa.core.log.FatalException;
 import org.javarosa.core.log.WrappedException;
-import org.javarosa.core.services.properties.JavaRosaPropertyRules;
 
 import java.util.Date;
 
@@ -60,8 +59,8 @@ public class Logger {
 		boolean enabled;
 		boolean problemReadingFlag = false;
 		try {
-			String flag = PropertyManager._().getSingularProperty(JavaRosaPropertyRules.LOGS_ENABLED);
-			enabled = (flag == null || flag.equals(JavaRosaPropertyRules.LOGS_ENABLED_YES));
+			String flag = PropertyManager._().getSingularProperty("logenabled");
+			enabled = (flag == null || "Enabled".equals(flag));
 		} catch (Exception e) {
 			enabled = true;	//default to true if problem
 			problemReadingFlag = true;

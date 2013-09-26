@@ -71,4 +71,7 @@ public class MuzimaFormServiceImpl extends BaseOpenmrsService implements MuzimaF
         return dao.findByUuid(uuid);  //To change body of implemented methods use File | Settings | File Templates.
     }
 
+    public List<MuzimaForm> findByName(final String name) {
+        return dao.findByName(name);
+    }
 }

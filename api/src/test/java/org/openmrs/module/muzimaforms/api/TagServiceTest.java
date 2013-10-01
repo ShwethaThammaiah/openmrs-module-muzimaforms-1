@@ -14,7 +14,7 @@ import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.openmrs.module.muzimaforms.MuzimaFormTagBuilder.tag;
 
-@ContextConfiguration(value = "classpath*:muzimaFormtestingApplicationContext.xml", inheritLocations = true)
+@ContextConfiguration(value = "classpath*:TestingApplicationContext.xml", inheritLocations = true)
 public class TagServiceTest extends BaseModuleContextSensitiveTest {
 
     private MuzimaTagService service;

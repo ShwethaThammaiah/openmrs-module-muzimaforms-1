@@ -6,6 +6,8 @@ import java.io.File;
 import java.util.Stack;
 
 import static junit.framework.Assert.assertEquals;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 
 public class XslTransformPipelineTest {
@@ -22,5 +24,13 @@ public class XslTransformPipelineTest {
         assertEquals(transforms.pop(), mock);
         assertEquals(0, transforms.size());
 
+    }
+
+    @Test
+    public void shouldHaveAXForm2JavarosaXSLInThePipeline() throws Exception {
+        XslTransformPipeline pipeline = XslTransformPipeline.ODK2Javarosa();
+        Stack<File> files = pipeline.get();
+        File file = files.pop();
+        assertThat(file.getName(), is("ODK2jr.xsl"));
     }
 }

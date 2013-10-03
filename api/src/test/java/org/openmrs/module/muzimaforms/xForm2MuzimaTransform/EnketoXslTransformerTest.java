@@ -1,16 +1,13 @@
 package org.openmrs.module.muzimaforms.xForm2MuzimaTransform;
 
 import com.sun.org.apache.xalan.internal.xsltc.trax.TemplatesImpl;
-import org.apache.commons.io.IOUtils;
 import org.dom4j.DocumentException;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Matchers;
 import org.openmrs.module.muzimaforms.api.impl.EnketoResult;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.core.io.Resource;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.*;
@@ -121,12 +118,55 @@ public class EnketoXslTransformerTest extends ResourceTest {
         EnketoResult transform = enketoXslTransformer.transform(getSampleXForm());
         assertThat(transform.hasResult(), is(true));
 
-        System.out.println(transform.getResult());
+//        System.out.println(transform.getResult());
+
+    }
+
+    @Test
+    public void transformShouldTransformODKRegstrationForm() throws Exception {
+        XslTransformPipeline transformers = XslTransformPipeline.ODK2Javarosa();
+        transformers.push(getHtml5Transformer());
+        EnketoXslTransformer enketoXslTransformer = new EnketoXslTransformer(TransformerFactory.newInstance(), transformers);
+        EnketoResult result = enketoXslTransformer.transform(getSampleODKregistrationForm());
+        System.out.println(result.getResult());
+
+    }
+
+    @Test
+    public void transformShouldTransformODKForms() throws Exception {
+        XslTransformPipeline transformers = XslTransformPipeline.ODK2Javarosa();
+        transformers.push(getHtml5Transformer());
+        EnketoXslTransformer enketoXslTransformer = new EnketoXslTransformer(TransformerFactory.newInstance(), transformers);
+        EnketoResult result = enketoXslTransformer.transform(getSampleODKForm());
+        System.out.println(result.getResult());
+
+    }
+
+    @Ignore
+    @Test
+    public void transformShouldTransformDysplasiaForms() throws Exception {
+        XslTransformPipeline transformers = XslTransformPipeline.ODK2Javarosa();
+        transformers.push(getHtml5Transformer());
+        EnketoXslTransformer enketoXslTransformer = new EnketoXslTransformer(TransformerFactory.newInstance(), transformers);
+        EnketoResult result = enketoXslTransformer.transform(getSampleODKDisplasia());
+        System.out.println(result.getResult());
 
     }
 
     private String getSampleXForm() throws IOException {
         return getText("/test-xform.xml");
+    }
+
+    private String getSampleODKregistrationForm() throws IOException {
+        return getText("/test-odk-registration-form.xml");
+    }
+
+    private String getSampleODKDisplasia() throws IOException {
+        return getText("/test-odk-dysplasia-form.xml");
+    }
+
+    private String getSampleODKForm() throws IOException {
+        return getText("/test-odk-hispatology-form.xml");
     }
 
     private File getXform2JRTransformer() throws IOException {
@@ -135,6 +175,10 @@ public class EnketoXslTransformerTest extends ResourceTest {
 
     private File getHtml5Transformer() throws IOException {
         return getFile("/jr2html5_php5.xsl");
+    }
+
+    private File getODK2JRTransformer() throws IOException {
+        return getFile("/ODK2jr.xsl");
     }
 
 

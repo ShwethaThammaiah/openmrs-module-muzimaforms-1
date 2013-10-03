@@ -59,4 +59,10 @@ public class XslTransformPipeline {
         ApplicationContext context = new ClassPathXmlApplicationContext();
         return context.getResource(fileName).getFile();
     }
+
+    public static XslTransformPipeline ODK2Javarosa() throws IOException {
+        XslTransformPipeline pipeline = new XslTransformPipeline();
+        pipeline.push(getXslFile("ODK2jr.xsl"));
+        return pipeline;
+    }
 }

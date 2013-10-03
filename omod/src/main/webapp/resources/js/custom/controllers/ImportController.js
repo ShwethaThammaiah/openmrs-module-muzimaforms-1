@@ -1,15 +1,16 @@
 'use strict';
 function ImportCtrl($scope, FileUploadService, _, $location) {
-    $scope.validate = function (file) {
-        FileUploadService.post({url: 'validate.form', file: file}).then(function (result) {
+
+    $scope.validate = function (file, isODK) {
+        FileUploadService.post({url: 'validate.form', file: file, params: { isODK: isODK } }).then(function (result) {
             $scope.validations = result.data;
         });
     };
 
-    $scope.upload = function (file, name, description) {
+    $scope.upload = function (file, name, description, isODK) {
         FileUploadService.post({
             url: 'upload.form', file: file, params: {
-                name: name, description: description
+                name: name, description: description || "", isODK: isODK
             }
         }).then(function () {
                 $location.path("#/list/forms");

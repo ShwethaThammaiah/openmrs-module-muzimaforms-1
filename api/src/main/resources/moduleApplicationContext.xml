@@ -12,6 +12,9 @@
     <bean id="xform2html5XSLPipeline" class="org.openmrs.module.muzimaforms.xForm2MuzimaTransform.XslTransformPipeline"
           factory-method="xform2HTML5Pipeline"/>
 
+    <bean id="xform2JavarosaXSLPipeline" class="org.openmrs.module.muzimaforms.xForm2MuzimaTransform.XslTransformPipeline"
+          factory-method="ODK2Javarosa"/>
+
     <bean id="modelXml2JsonXSLPipeline"
           class="org.openmrs.module.muzimaforms.xForm2MuzimaTransform.XslTransformPipeline"
           factory-method="modelXml2JsonXSLPipeline"/>
@@ -20,6 +23,11 @@
     <bean id="xform2HtmlTransformer" class="org.openmrs.module.muzimaforms.xForm2MuzimaTransform.EnketoXslTransformer">
         <constructor-arg name="transformerFactory" ref="transformerFactory"/>
         <constructor-arg name="transformPipeline" ref="xform2html5XSLPipeline"/>
+    </bean>
+
+    <bean id="xform2JavarosaTransformer" class="org.openmrs.module.muzimaforms.xForm2MuzimaTransform.XForm2JavarosaXslTransformer">
+        <constructor-arg name="transformerFactory" ref="transformerFactory"/>
+        <constructor-arg name="transformPipeline" ref="xform2JavarosaXSLPipeline"/>
     </bean>
 
     <bean id="modelXml2JsonTransformer"

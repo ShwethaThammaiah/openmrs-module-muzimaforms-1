@@ -2,6 +2,7 @@ package org.openmrs.module.muzimaforms.resource;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.Cohort;
 import org.openmrs.annotation.Handler;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.muzimaforms.MuzimaConstants;
@@ -14,6 +15,7 @@ import org.openmrs.module.webservices.rest.web.representation.CustomRepresentati
 import org.openmrs.module.webservices.rest.web.representation.DefaultRepresentation;
 import org.openmrs.module.webservices.rest.web.representation.RefRepresentation;
 import org.openmrs.module.webservices.rest.web.representation.Representation;
+import org.openmrs.module.webservices.rest.web.resource.api.PageableResult;
 import org.openmrs.module.webservices.rest.web.resource.impl.DataDelegatingCrudResource;
 import org.openmrs.module.webservices.rest.web.resource.impl.DelegatingResourceDescription;
 import org.openmrs.module.webservices.rest.web.resource.impl.NeedsPaging;
@@ -32,6 +34,12 @@ public class MuzimaFormResource extends DataDelegatingCrudResource<MuzimaForm> {
         MuzimaFormService service = Context.getService(MuzimaFormService.class);
         List<MuzimaForm> all = service.getAll();
         return new NeedsPaging<MuzimaForm>(all, context);
+    }
+
+    @Override
+    protected PageableResult doSearch(final RequestContext context) {
+        List<MuzimaForm> muzimaForms = Context.getService(MuzimaFormService.class).findByName(context.getParameter("q"));
+        return new NeedsPaging<MuzimaForm>(muzimaForms, context);
     }
 
     @Override

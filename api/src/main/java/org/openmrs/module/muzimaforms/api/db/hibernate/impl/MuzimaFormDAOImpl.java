@@ -1,7 +1,10 @@
 package org.openmrs.module.muzimaforms.api.db.hibernate.impl;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 import org.openmrs.module.muzimaforms.MuzimaForm;
 import org.openmrs.module.muzimaforms.MuzimaXForm;
 import org.openmrs.module.muzimaforms.api.db.hibernate.MuzimaFormDAO;
@@ -40,6 +43,12 @@ public class MuzimaFormDAOImpl implements MuzimaFormDAO {
 
     public MuzimaForm findByUuid(String uuid) {
         return (MuzimaForm) session().createQuery("from MuzimaForm form where form.uuid = '" + uuid + "'").uniqueResult();
+    }
+
+    public List<MuzimaForm> findByName(final String name) {
+        Criteria criteria = session().createCriteria(MuzimaForm.class);
+        criteria.add(Restrictions.ilike("name", name, MatchMode.ANYWHERE));
+        return criteria.list();
     }
 
     private Session session() {

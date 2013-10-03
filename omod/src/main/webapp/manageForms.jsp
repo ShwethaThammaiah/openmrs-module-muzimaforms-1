@@ -25,7 +25,7 @@
 <!--TODO : text styles if put in css file are overridden by something else. Need to figure it out-->
     <div class="navbar navbar-inverse navbar-custom">
         <div>
-            <a class="navbar-brand" href="#/list/forms" style="color: #ffffff; font-size: 20px"><i class="icon-home"></i> Muzima Home</a>
+            <a class="navbar-brand" href="#/list/forms" style="color: #ffffff; font-size: 20px"><i class="icon-home"></i></a>
 
             <ul class="nav navbar-nav pull-right">
                 <li>

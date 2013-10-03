@@ -27,6 +27,8 @@ public interface MuzimaFormService extends OpenmrsService {
 
     MuzimaForm findByUniqueId(String uuid);
 
+    List<MuzimaForm> findByName(final String name);
+
     @Transactional
     MuzimaForm create(String xformXml, String description, String name) throws IOException, TransformerException, ParserConfigurationException, DocumentException;
 

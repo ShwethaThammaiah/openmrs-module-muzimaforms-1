@@ -423,14 +423,10 @@ XSLT Stylesheet that transforms OpenRosa style (X)Forms into valid HTMl5 forms
         </xsl:variable>
         <xsl:variable name="value">
             <xsl:choose>
-                <xsl:when test="string(xf:value) and not(contains(xf:value, ' '))">
+                <xsl:when test="string(xf:value)">
                     <xsl:value-of select="xf:value"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:if test="contains(xf:value, ' ')">
-                        <xsl:message terminate="yes">ERROR: Select item found with a value that contains spaces!
-                        </xsl:message>
-                    </xsl:if>
                     <xsl:if test="not(string(xf:value))">
                         <xsl:message terminate="no">WARNING: Select item found without a value!</xsl:message>
                     </xsl:if>

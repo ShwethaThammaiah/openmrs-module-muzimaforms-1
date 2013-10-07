@@ -58,15 +58,7 @@
         </form>
     </xsl:template>
 
-    <xsl:template match="hint">
-
-    </xsl:template>
-
-    <!--<xsl:template match="group">-->
-    <!--<xsl:element name="{local-name()}">-->
-    <!--<xsl:apply-templates/>-->
-    <!--</xsl:element>-->
-    <!--</xsl:template>-->
+    <xsl:template match="hint"></xsl:template>
 
     <xsl:template match="body | xf:body">
         <h:body>

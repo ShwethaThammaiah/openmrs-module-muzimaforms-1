@@ -34,16 +34,22 @@
         </h:head>
     </xsl:template>
 
+    <xsl:template match="title | xf:title">
+        <h:title>
+            <xsl:apply-templates/>
+        </h:title>
+    </xsl:template>
+
     <xsl:template match="model | xf:model">
         <model>
             <xsl:apply-templates/>
         </model>
     </xsl:template>
 
-    <xsl:template match="title | xf:title">
-        <h:title>
+    <xsl:template match="instance | xf:instance">
+        <xsl:element name="{local-name()}">
             <xsl:apply-templates/>
-        </h:title>
+        </xsl:element>
     </xsl:template>
 
     <xsl:template match="form">
@@ -54,12 +60,6 @@
 
     <xsl:template match="hint">
 
-    </xsl:template>
-
-    <xsl:template match="instance | xf:instance">
-        <xsl:element name="{local-name()}">
-            <xsl:apply-templates/>
-        </xsl:element>
     </xsl:template>
 
     <!--<xsl:template match="group">-->

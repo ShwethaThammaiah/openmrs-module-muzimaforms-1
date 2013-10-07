@@ -24,8 +24,8 @@ public class XFormToJavaRosaModelXSLTest extends ResourceTest {
 
     @Test
     public void shouldConvertModelTagWithMultipleAttributeToTemplateAttribute() throws Exception {
-        EnketoResult result = transformer.transform(getText("test-xform-model-multiple.xml"));
-        Diff diff = new Diff(result.getModel(), getText("test-xform-model-multiple-result-expected.xml"));
+        EnketoResult result = transformer.transform(getText("xform/test-xform-model-multiple.xml"));
+        Diff diff = new Diff(result.getModel(), getText("xform/test-xform-model-multiple-result-expected.xml"));
         assertThat(diff.similar(), is(true));
     }
 

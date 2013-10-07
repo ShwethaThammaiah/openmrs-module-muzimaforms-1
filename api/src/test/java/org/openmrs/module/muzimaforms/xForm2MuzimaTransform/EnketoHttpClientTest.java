@@ -58,17 +58,17 @@ public class EnketoHttpClientTest {
 
     private String getSampleXForm() throws IOException {
         ApplicationContext context = new ClassPathXmlApplicationContext();
-        return IOUtils.toString(context.getResource("/enketoSampleRequest.xml").getInputStream());
+        return IOUtils.toString(context.getResource("/enketo/enketoSampleRequest.xml").getInputStream());
     }
 
 
     private String getTestXForm() throws IOException {
         ApplicationContext context = new ClassPathXmlApplicationContext();
-        return IOUtils.toString(context.getResource("/test-xform4webclient.xml").getInputStream());
+        return IOUtils.toString(context.getResource("/xform/test-xform4webclient.xml").getInputStream());
     }
 
     private InputStream getConvertedXForm() throws IOException {
         ApplicationContext context = new ClassPathXmlApplicationContext();
-        return context.getResource("/enketoSampleResult.xml").getInputStream();
+        return context.getResource("/enketo/enketoSampleResult.xml").getInputStream();
     }
 }

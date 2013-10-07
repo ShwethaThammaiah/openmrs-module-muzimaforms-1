@@ -154,19 +154,19 @@ public class EnketoXslTransformerTest extends ResourceTest {
     }
 
     private String getSampleXForm() throws IOException {
-        return getText("/test-xform.xml");
+        return getText("/xform/test-xform.xml");
     }
 
     private String getSampleODKregistrationForm() throws IOException {
-        return getText("/test-odk-registration-form.xml");
+        return getText("/odk/registration-form.xml");
     }
 
     private String getSampleODKDisplasia() throws IOException {
-        return getText("/test-odk-dysplasia-form.xml");
+        return getText("/odk/dysplasia-form.xml");
     }
 
     private String getSampleODKForm() throws IOException {
-        return getText("/test-odk-hispatology-form.xml");
+        return getText("/odk/hispatology-form.xml");
     }
 
     private File getXform2JRTransformer() throws IOException {

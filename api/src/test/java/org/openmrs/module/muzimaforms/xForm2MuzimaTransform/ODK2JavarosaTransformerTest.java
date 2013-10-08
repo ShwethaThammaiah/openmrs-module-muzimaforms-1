@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-public class ODK2JavaRosaTransformerTest extends ResourceTest {
+public class ODK2JavarosaTransformerTest extends ResourceTest {
 
     private EnketoXslTransformer transformer;
 

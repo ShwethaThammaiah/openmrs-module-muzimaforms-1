@@ -28,7 +28,7 @@
         <constructor-arg name="transformPipeline" ref="xform2html5XSLPipeline"/>
     </bean>
 
-    <bean id="odk2JavaRosaTransformer" class="org.openmrs.module.muzimaforms.xForm2MuzimaTransform.ODK2JavaRosaTransformer">
+    <bean id="odk2JavarosaTransformer" class="org.openmrs.module.muzimaforms.xForm2MuzimaTransform.ODK2JavarosaTransformer">
         <constructor-arg name="transformerFactory" ref="transformerFactory"/>
         <constructor-arg name="transformPipeline" ref="odk2JavarosaXSLPipeline"/>
     </bean>
@@ -93,7 +93,7 @@
                             <constructor-arg name="dao" ref="muzimaFormDAO"/>
                             <constructor-arg name="html5Transformer" ref="xform2HtmlTransformer"/>
                             <constructor-arg name="modelXml2JsonTransformer" ref="modelXml2JsonTransformer"/>
-                            <constructor-arg name="odk2JavaRosaTransformer" ref="odk2JavaRosaTransformer"/>
+                            <constructor-arg name="odk2JavarosaTransformer" ref="odk2JavarosaTransformer"/>
                             <constructor-arg name="odk2HTML5Transformer" ref="odk2HTML5Transformer"/>
                         </bean>
                     </property>

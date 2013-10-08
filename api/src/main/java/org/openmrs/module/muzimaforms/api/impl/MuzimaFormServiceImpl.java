@@ -8,7 +8,6 @@ import org.openmrs.module.muzimaforms.MuzimaForm;
 import org.openmrs.module.muzimaforms.MuzimaXForm;
 import org.openmrs.module.muzimaforms.api.MuzimaFormService;
 import org.openmrs.module.muzimaforms.api.db.hibernate.MuzimaFormDAO;
-import org.openmrs.module.muzimaforms.api.db.hibernate.impl.MuzimaFormDAOImpl;
 import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.*;
 import org.openmrs.module.xforms.Xform;
 
@@ -21,17 +20,17 @@ import java.util.List;
 public class MuzimaFormServiceImpl extends BaseOpenmrsService implements MuzimaFormService {
     private XForm2Html5Transformer html5Transformer;
     private ModelXml2JsonTransformer modelXml2JsonTransformer;
-    private ODK2JavaRosaTransformer odk2JavaRosaTransformer;
+    private ODK2JavarosaTransformer odk2JavarosaTransformer;
     private ODK2HTML5Transformer odk2HTML5Transformer;
     private MuzimaFormDAO dao;
 
     public MuzimaFormServiceImpl(MuzimaFormDAO dao, XForm2Html5Transformer html5Transformer,
                                  ModelXml2JsonTransformer modelXml2JsonTransformer,
-                                 ODK2JavaRosaTransformer odk2JavaRosaTransformer, ODK2HTML5Transformer odk2HTML5Transformer) {
+                                 ODK2JavarosaTransformer odk2JavarosaTransformer, ODK2HTML5Transformer odk2HTML5Transformer) {
         this.dao = dao;
         this.html5Transformer = html5Transformer;
         this.modelXml2JsonTransformer = modelXml2JsonTransformer;
-        this.odk2JavaRosaTransformer = odk2JavaRosaTransformer;
+        this.odk2JavarosaTransformer = odk2JavarosaTransformer;
         this.odk2HTML5Transformer = odk2HTML5Transformer;
     }
 
@@ -71,7 +70,7 @@ public class MuzimaFormServiceImpl extends BaseOpenmrsService implements MuzimaF
     }
 
     public ValidationMessages validateODK(String xml) throws ParserConfigurationException, TransformerException, DocumentException, IOException {
-        String result = odk2JavaRosaTransformer.transform(xml).getResult();
+        String result = odk2JavarosaTransformer.transform(xml).getResult();
         return new XFormParser(new StringReader(result)).validate();
     }
 

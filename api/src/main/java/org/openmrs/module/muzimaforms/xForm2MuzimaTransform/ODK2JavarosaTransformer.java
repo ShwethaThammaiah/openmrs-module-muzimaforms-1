@@ -16,9 +16,9 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Stack;
 
-public class ODK2JavaRosaTransformer extends EnketoXslTransformer {
+public class ODK2JavarosaTransformer extends EnketoXslTransformer {
 
-    public ODK2JavaRosaTransformer(TransformerFactory transformerFactory, XslTransformPipeline transformPipeline) {
+    public ODK2JavarosaTransformer(TransformerFactory transformerFactory, XslTransformPipeline transformPipeline) {
         super(transformerFactory, transformPipeline);
     }
 }

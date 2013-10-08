@@ -10,7 +10,7 @@ import org.openmrs.module.muzimaforms.api.impl.EnketoResult;
 import org.openmrs.module.muzimaforms.api.impl.MuzimaFormServiceImpl;
 import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.ModelXml2JsonTransformer;
 import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.ODK2HTML5Transformer;
-import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.ODK2JavaRosaTransformer;
+import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.ODK2JavarosaTransformer;
 import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.XForm2Html5Transformer;
 
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class MuzimaFormServiceImplTest {
     MuzimaFormDAO dao;
     XForm2Html5Transformer transformer;
     ModelXml2JsonTransformer modelTransformer;
-    private ODK2JavaRosaTransformer odk2JavaRosaTransformer;
+    private ODK2JavarosaTransformer odk2JavarosaTransformer;
     private ODK2HTML5Transformer odk2HTML5Transformer;
 
     @Before
@@ -37,9 +37,9 @@ public class MuzimaFormServiceImplTest {
         dao = mock(MuzimaFormDAO.class);
         transformer = mock(XForm2Html5Transformer.class);
         modelTransformer = mock(ModelXml2JsonTransformer.class);
-        odk2JavaRosaTransformer = mock(ODK2JavaRosaTransformer.class);
+        odk2JavarosaTransformer = mock(ODK2JavarosaTransformer.class);
         odk2HTML5Transformer = mock(ODK2HTML5Transformer.class);
-        service = new MuzimaFormServiceImpl(dao, transformer, modelTransformer, odk2JavaRosaTransformer, odk2HTML5Transformer);
+        service = new MuzimaFormServiceImpl(dao, transformer, modelTransformer, odk2JavarosaTransformer, odk2HTML5Transformer);
     }
 
     void setUpDao() {
@@ -155,11 +155,11 @@ public class MuzimaFormServiceImplTest {
 
     @Test
     public void validateODK() throws Exception {
-        when(odk2JavaRosaTransformer.transform("odk")).thenReturn(new EnketoResult("xml"));
+        when(odk2JavarosaTransformer.transform("odk")).thenReturn(new EnketoResult("xml"));
 
         ValidationMessages messages = service.validateODK("odk");
 
-        verify(odk2JavaRosaTransformer).transform("odk");
+        verify(odk2JavarosaTransformer).transform("odk");
         assertThat(messages.getList().get(0).getMessage(), is("Document has no root element!"));
     }
 

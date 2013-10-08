@@ -51,9 +51,9 @@ public class EnketoResultTest {
         TransformerFactory transformerFactory = new TransformerFactoryImpl();
         EnketoXslTransformer enketoXslTransformer = new EnketoXslTransformer(transformerFactory, XslTransformPipeline.xform2HTML5Pipeline());
         ModelXml2JsonTransformer modelXml2JsonTransformer = new ModelXml2JsonTransformer(transformerFactory, XslTransformPipeline.modelXml2JsonXSLPipeline());
-        ODK2JavaRosaTransformer odk2JavaRosaTransformer = new ODK2JavaRosaTransformer(transformerFactory, XslTransformPipeline.modelXml2JsonXSLPipeline());
+        ODK2JavarosaTransformer odk2JavarosaTransformer = new ODK2JavarosaTransformer(transformerFactory, XslTransformPipeline.modelXml2JsonXSLPipeline());
         ODK2HTML5Transformer odk2HTML5Transformer = new ODK2HTML5Transformer(transformerFactory, XslTransformPipeline.ODK2HTML5());
-        MuzimaFormServiceImpl muzimaFormService = new MuzimaFormServiceImpl(muzimaFormDAO, enketoXslTransformer, modelXml2JsonTransformer, odk2JavaRosaTransformer, odk2HTML5Transformer);
+        MuzimaFormServiceImpl muzimaFormService = new MuzimaFormServiceImpl(muzimaFormDAO, enketoXslTransformer, modelXml2JsonTransformer, odk2JavarosaTransformer, odk2HTML5Transformer);
         Xform xform = new Xform();
         xform.setXformXml(xformXml);
         when(muzimaFormDAO.getXform(1)).thenReturn(xform);

@@ -12,8 +12,11 @@
     <bean id="xform2html5XSLPipeline" class="org.openmrs.module.muzimaforms.xForm2MuzimaTransform.XslTransformPipeline"
           factory-method="xform2HTML5Pipeline"/>
 
-    <bean id="xform2JavarosaXSLPipeline" class="org.openmrs.module.muzimaforms.xForm2MuzimaTransform.XslTransformPipeline"
+    <bean id="odk2JavarosaXSLPipeline" class="org.openmrs.module.muzimaforms.xForm2MuzimaTransform.XslTransformPipeline"
           factory-method="ODK2Javarosa"/>
+
+    <bean id="odk2HTML5XSLPipeline" class="org.openmrs.module.muzimaforms.xForm2MuzimaTransform.XslTransformPipeline"
+          factory-method="ODK2HTML5"/>
 
     <bean id="modelXml2JsonXSLPipeline"
           class="org.openmrs.module.muzimaforms.xForm2MuzimaTransform.XslTransformPipeline"
@@ -25,9 +28,14 @@
         <constructor-arg name="transformPipeline" ref="xform2html5XSLPipeline"/>
     </bean>
 
-    <bean id="xform2JavarosaTransformer" class="org.openmrs.module.muzimaforms.xForm2MuzimaTransform.XForm2JavarosaXslTransformer">
+    <bean id="odk2JavaRosaTransformer" class="org.openmrs.module.muzimaforms.xForm2MuzimaTransform.ODK2JavaRosaTransformer">
         <constructor-arg name="transformerFactory" ref="transformerFactory"/>
-        <constructor-arg name="transformPipeline" ref="xform2JavarosaXSLPipeline"/>
+        <constructor-arg name="transformPipeline" ref="odk2JavarosaXSLPipeline"/>
+    </bean>
+
+    <bean id="odk2HTML5Transformer" class="org.openmrs.module.muzimaforms.xForm2MuzimaTransform.ODK2HTML5Transformer">
+        <constructor-arg name="transformerFactory" ref="transformerFactory"/>
+        <constructor-arg name="transformPipeline" ref="odk2HTML5XSLPipeline"/>
     </bean>
 
     <bean id="modelXml2JsonTransformer"
@@ -85,6 +93,8 @@
                             <constructor-arg name="dao" ref="muzimaFormDAO"/>
                             <constructor-arg name="html5Transformer" ref="xform2HtmlTransformer"/>
                             <constructor-arg name="modelXml2JsonTransformer" ref="modelXml2JsonTransformer"/>
+                            <constructor-arg name="odk2JavaRosaTransformer" ref="odk2JavaRosaTransformer"/>
+                            <constructor-arg name="odk2HTML5Transformer" ref="odk2HTML5Transformer"/>
                         </bean>
                     </property>
                     <property name="preInterceptors">

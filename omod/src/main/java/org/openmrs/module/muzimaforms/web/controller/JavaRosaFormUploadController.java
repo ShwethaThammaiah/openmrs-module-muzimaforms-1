@@ -2,12 +2,8 @@ package org.openmrs.module.muzimaforms.web.controller;
 
 import org.dom4j.DocumentException;
 import org.javarosa.xform.parse.ValidationMessages;
-import org.javarosa.xform.parse.XFormParser;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.muzimaforms.api.MuzimaFormService;
-import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.EnketoXslTransformer;
-import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.XForm2JavarosaXslTransformer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,7 +16,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.StringReader;
 import java.util.Scanner;
 
 @Controller
@@ -28,35 +23,38 @@ import java.util.Scanner;
 
 public class JavaRosaFormUploadController {
 
-    private EnketoXslTransformer transformer;
-
-    @Autowired
-    public JavaRosaFormUploadController(XForm2JavarosaXslTransformer transformer) {
-        this.transformer = transformer;
-    }
 
     @ResponseBody
-    @RequestMapping(value = "/validate.form", method = RequestMethod.POST)
-    public ValidationMessages validate(MultipartHttpServletRequest request) throws IOException, DocumentException, TransformerException, ParserConfigurationException {
-        return new XFormParser(new StringReader(extractJavarosaXMLFromRequest(request))).validate();
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/upload.form", method = RequestMethod.POST)
-    public void upload(MultipartHttpServletRequest request, @RequestParam String name, @RequestParam String description) throws IOException, DocumentException, TransformerException, ParserConfigurationException {
+    @RequestMapping(value = "/javarosa/validate.form", method = RequestMethod.POST)
+    public ValidationMessages validateJavaRosa(MultipartHttpServletRequest request) throws IOException, DocumentException, TransformerException, ParserConfigurationException {
         MuzimaFormService service = Context.getService(MuzimaFormService.class);
-        service.create(extractJavarosaXMLFromRequest(request), description, name);
+        return service.validateJavaRosa(extractFile(request));
     }
 
-    private String extractJavarosaXMLFromRequest(MultipartHttpServletRequest request) throws IOException, DocumentException, TransformerException, ParserConfigurationException {
-        MultipartFile file = request.getFile("file");
-        String content = readStream(file.getInputStream());
+    @ResponseBody
+    @RequestMapping(value = "/odk/validate.form", method = RequestMethod.POST)
+    public ValidationMessages validateODK(MultipartHttpServletRequest request) throws IOException, DocumentException, TransformerException, ParserConfigurationException {
+        MuzimaFormService service = Context.getService(MuzimaFormService.class);
+        return service.validateODK(extractFile(request));
+    }
 
-        String[] isODK = (String[]) request.getParameterMap().get("isODK");
-        if (isODK != null && "true".equals(isODK[0])) {
-            content = transformer.transform(content).getResult();
-        }
-        return content;
+    @ResponseBody
+    @RequestMapping(value = "/javarosa/upload.form", method = RequestMethod.POST)
+    public void uploadJavaRosa(MultipartHttpServletRequest request, @RequestParam String name, @RequestParam String description) throws IOException, DocumentException, TransformerException, ParserConfigurationException {
+        MuzimaFormService service = Context.getService(MuzimaFormService.class);
+        service.create(extractFile(request), description, name);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/odk/upload.form", method = RequestMethod.POST)
+    public void uploadODK(MultipartHttpServletRequest request, @RequestParam String name, @RequestParam String description) throws IOException, DocumentException, TransformerException, ParserConfigurationException {
+        MuzimaFormService service = Context.getService(MuzimaFormService.class);
+        service.importODK(extractFile(request), description, name);
+    }
+
+    private String extractFile(MultipartHttpServletRequest request) throws IOException, DocumentException, TransformerException, ParserConfigurationException {
+        MultipartFile file = request.getFile("file");
+        return readStream(file.getInputStream());
     }
 
     private String readStream(InputStream stream) throws IOException {

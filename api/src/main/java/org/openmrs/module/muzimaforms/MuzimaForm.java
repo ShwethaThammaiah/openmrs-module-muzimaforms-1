@@ -23,6 +23,14 @@ public class MuzimaForm extends BaseMuzimaData {
     public MuzimaForm() {
     }    // used by hibernate
 
+    public MuzimaForm(String name, String description, String model, String html, String modelJson) {
+        this.name = name;
+        this.description = description;
+        this.model = model;
+        this.html = html;
+        this.modelJson = modelJson;
+    }
+
     public Integer getId() {
         return id;
     }

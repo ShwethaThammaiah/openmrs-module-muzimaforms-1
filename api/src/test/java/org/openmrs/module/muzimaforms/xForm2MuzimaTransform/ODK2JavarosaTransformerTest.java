@@ -2,6 +2,7 @@ package org.openmrs.module.muzimaforms.xForm2MuzimaTransform;
 
 import org.custommonkey.xmlunit.Diff;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.xml.transform.*;
@@ -11,7 +12,7 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-public class ODK2JavarosaTransformerTest extends ResourceTest {
+public class ODK2JavaRosaTransformerTest extends ResourceTest {
 
     private EnketoXslTransformer transformer;
 
@@ -118,5 +119,19 @@ public class ODK2JavarosaTransformerTest extends ResourceTest {
         assertThat(diff.similar(), is(true));
     }
 
+    @Test
+    @Ignore
+    public void convertBindAttributeToRef() throws Exception {
+        String result = transformer.transform(getText("/odk/with-bind-attribute.xml")).getResult();
+        Diff diff = new Diff(result, getText("/odk/with-bind-attribute-result.xml"));
+        assertThat(diff.similar(), is(true));
+    }
 
+    @Test
+    @Ignore
+    public void ignoreBindAttributeOnRepeatTag() throws Exception {
+        String result = transformer.transform(getText("/odk/with-repeat-tag.xml")).getResult();
+        Diff diff = new Diff(result, getText("/odk/with-repeat-tag-result.xml"));
+        assertThat(diff.similar(), is(true));
+    }
 }

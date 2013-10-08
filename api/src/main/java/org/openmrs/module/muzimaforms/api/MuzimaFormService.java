@@ -1,6 +1,7 @@
 package org.openmrs.module.muzimaforms.api;
 
 import org.dom4j.DocumentException;
+import org.javarosa.xform.parse.ValidationMessages;
 import org.openmrs.api.OpenmrsService;
 import org.openmrs.module.muzimaforms.MuzimaForm;
 import org.openmrs.module.muzimaforms.MuzimaXForm;
@@ -33,5 +34,12 @@ public interface MuzimaFormService extends OpenmrsService {
     MuzimaForm create(String xformXml, String description, String name) throws IOException, TransformerException, ParserConfigurationException, DocumentException;
 
     @Transactional
+    MuzimaForm importODK(String xformXml, String description, String name) throws IOException, TransformerException, ParserConfigurationException, DocumentException;
+
+    @Transactional
     MuzimaForm save(MuzimaForm form) throws IOException, TransformerException, ParserConfigurationException, DocumentException;
+
+    ValidationMessages validateJavaRosa(String xml);
+
+    ValidationMessages validateODK(String xml) throws ParserConfigurationException, TransformerException, DocumentException, IOException;
 }

@@ -1,5 +1,6 @@
 package org.openmrs.module.muzimaforms.api;
 
+import org.javarosa.xform.parse.ValidationMessages;
 import org.junit.Before;
 import org.junit.Test;
 import org.openmrs.module.muzimaforms.MuzimaForm;
@@ -8,6 +9,8 @@ import org.openmrs.module.muzimaforms.api.impl.CompositeEnketoResult;
 import org.openmrs.module.muzimaforms.api.impl.EnketoResult;
 import org.openmrs.module.muzimaforms.api.impl.MuzimaFormServiceImpl;
 import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.ModelXml2JsonTransformer;
+import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.ODK2HTML5Transformer;
+import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.ODK2JavaRosaTransformer;
 import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.XForm2Html5Transformer;
 
 import java.util.ArrayList;
@@ -20,19 +23,23 @@ import static org.openmrs.module.muzimaforms.MuzimaFormBuilder.muzimaform;
 import static org.openmrs.module.muzimaforms.MuzimaFormTagBuilder.tag;
 import static org.openmrs.module.muzimaforms.XFormBuilder.xForm;
 
-public class MuzimaFormServiceTest {
+public class MuzimaFormServiceImplTest {
 
     private MuzimaFormService service;
     MuzimaFormDAO dao;
     XForm2Html5Transformer transformer;
     ModelXml2JsonTransformer modelTransformer;
+    private ODK2JavaRosaTransformer odk2JavaRosaTransformer;
+    private ODK2HTML5Transformer odk2HTML5Transformer;
 
     @Before
     public void setUp() throws Exception {
         dao = mock(MuzimaFormDAO.class);
         transformer = mock(XForm2Html5Transformer.class);
         modelTransformer = mock(ModelXml2JsonTransformer.class);
-        service = new MuzimaFormServiceImpl(dao, transformer, modelTransformer);
+        odk2JavaRosaTransformer = mock(ODK2JavaRosaTransformer.class);
+        odk2HTML5Transformer = mock(ODK2HTML5Transformer.class);
+        service = new MuzimaFormServiceImpl(dao, transformer, modelTransformer, odk2JavaRosaTransformer, odk2HTML5Transformer);
     }
 
     void setUpDao() {
@@ -108,6 +115,20 @@ public class MuzimaFormServiceTest {
     }
 
     @Test
+    public void importODKShouldTransformUsingTheODK2HTML5Pipeline() throws Exception {
+        when(odk2HTML5Transformer.transform("odk")).thenReturn(new EnketoResult("xml"));
+        CompositeEnketoResult result = mock(CompositeEnketoResult.class);
+        when(modelTransformer.transform("xml")).thenReturn(result);
+
+        service.importODK("odk", "name", "description");
+
+        verify(modelTransformer).transform("xml");
+        verify(odk2HTML5Transformer).transform("odk");
+        verify(dao).saveForm(any(MuzimaForm.class));
+
+    }
+
+    @Test
     public void save_shouldSaveExistingForm() throws Exception {
         MuzimaForm form = muzimaform().withId(1).instance();
         service.save(form);
@@ -125,4 +146,22 @@ public class MuzimaFormServiceTest {
         service.findByUniqueId("foo");
         verify(dao, times(1)).findByUuid("foo");
     }
+
+    @Test
+    public void validateJavaRosa() throws Exception {
+        ValidationMessages messages = service.validateJavaRosa("xml");
+        assertThat(messages.getList().get(0).getMessage(), is("Document has no root element!"));
+    }
+
+    @Test
+    public void validateODK() throws Exception {
+        when(odk2JavaRosaTransformer.transform("odk")).thenReturn(new EnketoResult("xml"));
+
+        ValidationMessages messages = service.validateODK("odk");
+
+        verify(odk2JavaRosaTransformer).transform("odk");
+        assertThat(messages.getList().get(0).getMessage(), is("Document has no root element!"));
+    }
+
+
 }

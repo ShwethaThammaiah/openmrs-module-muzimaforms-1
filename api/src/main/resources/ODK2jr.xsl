@@ -65,16 +65,11 @@
             <xsl:apply-templates/>
         </h:body>
     </xsl:template>
-    <!--
-      <xsl:template match="*">
-        <xsl:element name="{local-name()}">
-          <xsl:apply-templates select="@*|node()" />
-        </xsl:element>
-      </xsl:template> -->
 
     <xsl:template match="@multiple">
         <xsl:attribute name="template">
             <xsl:value-of select="."/>
         </xsl:attribute>
     </xsl:template>
+
 </xsl:stylesheet>

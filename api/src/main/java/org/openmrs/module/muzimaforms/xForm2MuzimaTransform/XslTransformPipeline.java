@@ -65,4 +65,11 @@ public class XslTransformPipeline {
         pipeline.push(getXslFile("ODK2jr.xsl"));
         return pipeline;
     }
+
+    public static XslTransformPipeline ODK2HTML5() throws IOException {
+        XslTransformPipeline pipeline = new XslTransformPipeline();
+        pipeline.push(getXslFile("ODK2jr.xsl"));
+        pipeline.push(getXslFile("jr2html5_php5.xsl"));
+        return pipeline;
+    }
 }

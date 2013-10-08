@@ -23,7 +23,7 @@ describe('muzima Import controllers', function () {
 
             scope.upload(file, "name", "description");
 
-            expect(FileUploadService.post).toHaveBeenCalledWith({url: 'upload.form', file: file, params: {name: "name", description: "description"}});
+            expect(FileUploadService.post).toHaveBeenCalledWith({url: 'javarosa/upload.form', file: file, params: {name: "name", description: "description"}});
         });
 
         it('should return the error style when the validation type is error', function () {

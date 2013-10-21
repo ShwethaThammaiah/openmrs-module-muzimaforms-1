@@ -43,35 +43,35 @@
             <dependency>
                 <groupId>org.openmrs.api</groupId>
                 <artifactId>openmrs-api</artifactId>
-                <version>${openMRSVersion}</version>
+                <version>${openmrs.version}</version>
                 <type>jar</type>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.openmrs.api</groupId>
                 <artifactId>openmrs-api</artifactId>
-                <version>${openMRSVersion}</version>
+                <version>${openmrs.version}</version>
                 <type>test-jar</type>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.openmrs.web</groupId>
                 <artifactId>openmrs-web</artifactId>
-                <version>${openMRSVersion}</version>
+                <version>${openmrs.version}</version>
                 <type>jar</type>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.openmrs.web</groupId>
                 <artifactId>openmrs-web</artifactId>
-                <version>${openMRSVersion}</version>
+                <version>${openmrs.version}</version>
                 <type>test-jar</type>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.openmrs.test</groupId>
                 <artifactId>openmrs-test</artifactId>
-                <version>${openMRSVersion}</version>
+                <version>${openmrs.version}</version>
                 <type>pom</type>
                 <scope>test</scope>
             </dependency>
@@ -240,6 +240,7 @@
             </activation>
             <properties>
                 <openmrs.standalone.path>/Users/zabil/projects/openmrs-standalone-1.9.3</openmrs.standalone.path>
+                <openmrs.version>1.9.3</openmrs.version>
             </properties>
         </profile>
         <profile>
@@ -261,7 +262,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <openMRSVersion>1.9.3</openMRSVersion>
+                <openmrs.version>1.9.3</openmrs.version>
             </properties>
         </profile>
         <profile>
@@ -293,7 +294,7 @@
                 </dependency>
             </dependencies>
             <properties>
-                <openMRSVersion>1.8.2</openMRSVersion>
+                <openmrs.version>1.8.2</openmrs.version>
             </properties>
         </profile>
         <profile>
@@ -312,7 +313,7 @@
                                 <configuration>
                                     <tasks>
                                         <copy todir="${deploy.path}/WEB-INF/view/module/${project.parent.artifactId}">
-                                            <fileset dir="src/main/webapp" includes="**/*"/>
+                                            <fileset dir="omod/src/main/webapp" includes="**/*"/>
                                         </copy>
                                     </tasks>
                                 </configuration>

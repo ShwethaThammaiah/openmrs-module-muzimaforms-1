@@ -8,10 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <link href="css/drishti.css" media="all" rel="stylesheet" type="text/css">
+    <link href="css/muzima.css" media="all" rel="stylesheet" type="text/css">
 
     <script type="text/javascript" src="test/main.js"></script>
     <script type="text/javascript" src="js/libraries-all-min.js"></script>
+    <!--<script type="text/javascript" src="js/webform-drishti-all-min.js"></script>-->
 
     <script type="text/javascript" src="js/form.js"></script>
     <script type="text/javascript" src="js/gui.js"></script>
@@ -22,13 +23,18 @@
 
     <script type="text/javascript" src="../ziggy/ziggy.js"></script>
     <script type="text/javascript">
+        window.onerror = function (m, u, l) {
+            console.error("Javascript Error: , msg: {0}, url: {1}, line: {2}".format(m, u, l));
+            return true;
+        };
+
         var settings = {};
         settings['mapsDynamicAPIKey'] = 'AIzaSyDF5xYZfxN7r5SsNPGstjAeTzwa6dVU4Ik';
         settings['mapsStaticAPIKey'] = 'AIzaSyDF5xYZfxN7r5SsNPGstjAeTzwa6dVU4Ik';
         settings['supportEmail'] = '';
         settings['returnURL'] = '';
 
-        var modelStr = formInterface.getModel();
+        var modelStr = formInstance.getModel();
     </script>
 </head>
 <body>
@@ -59,7 +65,6 @@
     </div>
     <div class="modal-body">
         <p class="alert alert-block alert-error"></p>
-
         <p class="msg"></p>
     </div>
     <div class="modal-footer">
@@ -87,18 +92,14 @@
     </div>
 </div>
 <div class="main">
-    <article class="paper">
+    <div class="paper">
         <div class="form-header clearfix"><span class="form-language-selector"><span>Choose Language</span></span></div>
 
-        <script id="content">
-            document.write(formInterface.getHTML());
+        <script>
+            document.write(formInstance.getHTML());
         </script>
 
-        <div>
-            <button id="submit-form" class="btn btn-info btn-large">Validate</button>
-        </div>
-        <div class="enketo-power">Powered by <img src="images/enketo_bare_100x37.png" alt="enketo logo"/></div>
-    </article>
+    </div>
 </div>
 </body>
 </html>

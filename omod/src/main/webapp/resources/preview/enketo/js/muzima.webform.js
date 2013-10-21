@@ -22,7 +22,7 @@ var /**@type {*}*/fileManager;
 $(document).ready(function () {
     'use strict';
     var existingInstanceJ, instanceToEdit, loadErrors, jDataO,
-        queryParams = helper.getAllQueryParams(),
+        queryParams = {id:"", formName:""},
         formDataController = new FormDataController(queryParams);
 
     existingInstanceJ = formDataController.get();
@@ -38,14 +38,37 @@ $(document).ready(function () {
 
     loadErrors = form.init();
 
-    //controller for submission of data to drishti
-    $(document).on('click', 'button#submit-form', function () {
+    function save(status) {
+        progressDialog.show("Saving...");
+        var jData = jDataO.get();
+        delete jData.errors;
+        formDataController.save(jData, status);
+        progressDialog.hide();
+    }
+
+    document.saveDraft =  function() {
+        if (typeof form !== 'undefined') {
+            save("incomplete");
+        }
+        return false;
+    };
+
+    document.submit =  function () {
         if (typeof form !== 'undefined') {
             form.validateForm();
             if (!form.isValid()) {
                 gui.alert('Form contains errors <br/>(please see fields marked in red)');
                 return;
             }
+            else {
+                save("complete");
+            }
         }
-    });
+    };
+
+    //controller for submission of data to drishti
+//    $(document).on('click', 'button#draft-form', document.saveDraft);
+
+    //controller for submission of data to drishti
+//    $(document).on('click', 'button#submit-form', submit);
 });

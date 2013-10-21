@@ -72,9 +72,6 @@ function Form (formSelector, dataStr, dataStrToEdit){
         form.init();
         //profiler.report();
         
-        if (loadErrors.length > 0){
-            console.error('loadErrors: ',JSON.stringify(loadErrors));
-        }
         return loadErrors;
     };
 
@@ -278,9 +275,6 @@ function Form (formSelector, dataStr, dataStrToEdit){
          * @returns {?boolean} null is returned when the node is not found or multiple nodes were selected
          */
         Nodeset.prototype.setVal = function(newVals, expr, xmlDataType){
-            console.error('<<<<newVals:' + newVals);
-            console.error('<<<<expr:' + expr);
-            console.error('<<<<xmlDataType:' + xmlDataType);
             var $target, curVal, /**@type {string}*/ newVal, success;
 
             curVal = this.getVal()[0];
@@ -292,7 +286,6 @@ function Form (formSelector, dataStr, dataStrToEdit){
             newVal = this.convert(newVal, xmlDataType);
 
             $target = this.get();
-            console.error('<<<<target:' + $target);
 
             if ( $target.length === 1 && $.trim(newVal.toString()) !== $.trim(curVal.toString()) ){ //|| (target.length > 1 && typeof this.index == 'undefined') ){
                 //first change the value so that it can be evaluated in XPath (validated)
@@ -464,12 +457,9 @@ function Form (formSelector, dataStr, dataStrToEdit){
             }, 
             'date' : {
                 validate : function(x){
-                    console.error(">>>>>date validate was called.")
                     var pattern = (/([0-9]{4})([\-]|[\/])([0-9]{2})([\-]|[\/])([0-9]{2})/),
                         segments = pattern.exec(x);
 
-                    //console.debug('datestring: '+x+ ' type: '+ typeof x + 'is valid? -> '+new Date(x.toString()).toString());
-                    //return ( new Date(x).toString() !== 'Invalid Date' || new Date(x+'T00:00:00.000Z') !== 'Invalid Date');
                     return (segments && segments.length === 6) ? (new Date(Number(segments[1]), Number(segments[3]) - 1, Number(segments[5])).toString() !== 'Invalid Date') : false;
                 },
                 convert : function(x){
@@ -678,7 +668,7 @@ function Form (formSelector, dataStr, dataStrToEdit){
         instanceID = this.node('*>meta>instanceID');
         if (instanceID.get().length !== 1){
             error = 'InstanceID node in default instance error (found '+instanceID.get().length+' instanceID nodes)';
-            console.error(error);
+            console.debug(error);
             loadErrors.push(error);
             return;
         }
@@ -2062,13 +2052,8 @@ function Form (formSelector, dataStr, dataStrToEdit){
             if (!Modernizr.touch || !Modernizr.inputtypes.datetime){
                 this.dateTimeWidget();
             }
-            if (!Modernizr.touch){
-                this.selectWidget();
-            }
-            else{
-                this.mobileSelectWidget();
-                this.touchRadioCheckWidget();
-            }
+            this.mobileSelectWidget();
+            this.touchRadioCheckWidget();
             this.geopointWidget();
             this.tableWidget();
             this.spinnerWidget();

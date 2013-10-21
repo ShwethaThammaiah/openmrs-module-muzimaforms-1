@@ -29,8 +29,8 @@ function FormDataController(params){
 	 * @param  {*}		data		Form Data JSON object 
 	 * @return {boolean}     
 	 */
-	this.save = function(instanceId, data){
-		controller.save(params, data);
+	this.save = function(data, status){
+		controller.save(data, status);
 	};
 
 	this.remove = function(instanceId){
@@ -101,8 +101,7 @@ function JData(data){
 				}
 			}
 		}
-        var rootNode = $instance.find('instance>*:first')[0];
-		return (new XMLSerializer()).serializeToString(rootNode ? rootNode : $.parseXML("<root/>"));
+		return (new XMLSerializer()).serializeToString($instance.find('instance>*:first')[0]);
 	};
 
 	/**

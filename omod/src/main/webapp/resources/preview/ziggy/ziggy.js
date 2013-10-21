@@ -16,7 +16,9 @@ if (!String.prototype.format) {
             return typeof args[number] !== 'undefined' ? args[number] : match;
         });
     };
-};/*global formDataRepositoryContext*/
+}
+;
+/*global formDataRepositoryContext*/
 
 if (typeof enketo === "undefined" || !enketo) {
     var enketo = {};
@@ -44,7 +46,8 @@ enketo.IdFactoryBridge = function () {
         }
     };
 };
-;if (typeof enketo === "undefined" || !enketo) {
+;
+if (typeof enketo === "undefined" || !enketo) {
     var enketo = {};
 }
 
@@ -236,8 +239,10 @@ enketo.FormModelMapper = function (formDataRepository, queryBuilder, idFactory) 
     var setupSubFormFieldsAndInstances = function (formDefinition) {
         if (enketo.hasValue(formDefinition.form.sub_forms)) {
             formDefinition.form.sub_forms.forEach(function (subForm) {
-                addSourceToFields(subForm.fields, subForm.bind_type);
-                subForm.instances = [];
+                if (!enketo.hasValue(subForm.instances)) {
+                    addSourceToFields(subForm.fields, subForm.bind_type);
+                    subForm.instances = [];
+                }
             });
         }
     };
@@ -245,8 +250,14 @@ enketo.FormModelMapper = function (formDataRepository, queryBuilder, idFactory) 
     return {
         mapToFormModel: function (entitiesDefinition, formDefinition, params) {
             //TODO: Handle errors, savedFormInstance could be null!
-            var savedFormInstance = JSON.parse(formDataRepository.getFormInstanceByFormTypeAndId(params.id, params.formName));
+            var savedFormInstance;
+            var formInstance = formDataRepository.getFormInstanceByFormTypeAndId(params.id, params.formName);
+            if (formInstance) {
+                savedFormInstance = JSON.parse(formInstance);
+            }
+
             if (enketo.hasValue(savedFormInstance)) {
+                setupSubFormFieldsAndInstances(savedFormInstance);
                 return savedFormInstance;
             }
             if (!enketo.hasValue(entitiesDefinition)) {
@@ -301,7 +312,8 @@ enketo.FormModelMapper = function (formDataRepository, queryBuilder, idFactory) 
         }
     };
 };
-;/*global ziggyFileLoader*/
+;
+/*global ziggyFileLoader*/
 
 if (typeof enketo === "undefined" || !enketo) {
     var enketo = {};
@@ -312,10 +324,12 @@ enketo.EntityRelationshipLoader = function () {
 
     return {
         load: function () {
-            return JSON.parse(ziggyFileLoader.loadAppData("entity_relationship.json"));
+            return [];
         }
     };
-};;if (typeof enketo === "undefined" || !enketo) {
+};
+;
+if (typeof enketo === "undefined" || !enketo) {
     var enketo = {};
 }
 
@@ -379,7 +393,8 @@ enketo.Relation = function (type, kind, as, from, to) {
     self.from = from;
     self.to = to;
 };
-;if (typeof enketo === "undefined" || !enketo) {
+;
+if (typeof enketo === "undefined" || !enketo) {
     var enketo = {};
 }
 
@@ -432,7 +447,9 @@ enketo.Entities = function () {
     self.contains = function (entity) {
         return enketo.hasValue(self.findEntityByTypeAndId(entity));
     };
-};;if (typeof enketo === "undefined" || !enketo) {
+};
+;
+if (typeof enketo === "undefined" || !enketo) {
     var enketo = {};
 }
 
@@ -484,7 +501,8 @@ enketo.RelationDef = function (type, kind, as, from, to) {
         return new enketo.Relation(self.type, self.kind, self.as, self.from, self.to);
     };
 };
-;if (typeof enketo === "undefined" || !enketo) {
+;
+if (typeof enketo === "undefined" || !enketo) {
     var enketo = {};
 }
 
@@ -528,7 +546,9 @@ enketo.EntityDefinitions = function () {
         }
         return null;
     };
-};;if (typeof enketo === "undefined" || !enketo) {
+};
+;
+if (typeof enketo === "undefined" || !enketo) {
     var enketo = {};
 }
 
@@ -540,7 +560,9 @@ enketo.RelationKind = {
 
 enketo.RelationKind.one_to_one.inverse = enketo.RelationKind.one_to_one;
 enketo.RelationKind.one_to_many.inverse = enketo.RelationKind.many_to_one;
-enketo.RelationKind.many_to_one.inverse = enketo.RelationKind.one_to_many;;if (typeof enketo === "undefined" || !enketo) {
+enketo.RelationKind.many_to_one.inverse = enketo.RelationKind.one_to_many;
+;
+if (typeof enketo === "undefined" || !enketo) {
     var enketo = {};
 }
 
@@ -585,7 +607,8 @@ enketo.EntityRelationships = function (jsonDefinition) {
         }
     };
 };
-;/*global ziggyFileLoader*/
+;
+/*global ziggyFileLoader*/
 if (typeof enketo === "undefined" || !enketo) {
     var enketo = {};
 }
@@ -595,10 +618,12 @@ enketo.FormDefinitionLoader = function () {
 
     return {
         load: function (formName) {
-            return JSON.parse(ziggyFileLoader.loadAppData(formName + "/form_definition.json"));
+            return JSON.parse(ziggyFileLoader.loadAppData());
         }
     };
-};;if (typeof enketo === "undefined" || !enketo) {
+};
+;
+if (typeof enketo === "undefined" || !enketo) {
     var enketo = {};
 }
 
@@ -656,7 +681,8 @@ enketo.SQLQueryBuilder = function (formDataRepository) {
         }
     };
 };
-;/*global formDataRepositoryContext*/
+;
+/*global formDataRepositoryContext*/
 
 if (typeof enketo === "undefined" || !enketo) {
     var enketo = {};
@@ -672,7 +698,7 @@ enketo.FormDataRepository = function () {
 
     return {
         getFormInstanceByFormTypeAndId: function (formID, formName) {
-            return repository.getFormInstanceByFormTypeAndId(formID, formName);
+            return repository.getFormPayload();
         },
         queryUniqueResult: function (sql) {
             return repository.queryUniqueResult(sql);
@@ -680,14 +706,16 @@ enketo.FormDataRepository = function () {
         queryList: function (sql) {
             return repository.queryList(sql);
         },
-        saveFormSubmission: function (params, data) {
-            return repository.saveFormSubmission(JSON.stringify(params), JSON.stringify(data));
+        saveFormSubmission: function (data, status) {
+            return repository.save(JSON.stringify(data), status);
         },
         saveEntity: function (entityType, entity) {
             return repository.saveEntity(entityType, JSON.stringify(entity));
         }
     };
-};;/*global formSubmissionRouter*/
+};
+;
+/*global formSubmissionRouter*/
 
 if (typeof enketo === "undefined" || !enketo) {
     var enketo = {};
@@ -705,7 +733,9 @@ enketo.FormSubmissionRouter = function () {
             return submissionRouter.route(instanceId);
         }
     };
-};;if (typeof enketo === "undefined" || !enketo) {
+};
+;
+if (typeof enketo === "undefined" || !enketo) {
     var enketo = {};
 }
 
@@ -731,18 +761,11 @@ enketo.FormDataController = function (entityRelationshipLoader, formDefinitionLo
         init(params);
         return formModelMapper.mapToFormModel(self.entityDefinitions, self.formDefinition, params);
     };
-    self.save = function (params, data) {
-        if (typeof params !== 'object') {
-            params = JSON.parse(params);
-        }
-        if (typeof data !== 'object') {
-            data = JSON.parse(data);
-        }
-        params = updateEntityAndParams(params, data);
-        if (enketo.hasValue(formDataRepository.saveFormSubmission(params, data))) {
-            submissionRouter.route(params.instanceId);
-        }
+
+    self.save = function (data, status) {
+        formDataRepository.saveFormSubmission(data, status);
     };
+
     self.createOrUpdateEntity = function (params, data) {
         if (typeof params !== 'object') {
             params = JSON.parse(params);

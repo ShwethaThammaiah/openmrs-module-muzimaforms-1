@@ -1,4 +1,4 @@
-var formInterface = formInterface || { getModel: function () {
+var formInstance = formInstance || { getModel: function () {
     return window.formModel;
 }, getHTML: function () {
     return window.formHTML ? window.formHTML : "Could not find a valid form";
@@ -9,7 +9,7 @@ var ziggyFileLoader = ziggyFileLoader || {loadAppData: function (file) {
 }};
 
 var formDataRepositoryContext = formDataRepositoryContext || {
-    getFormInstanceByFormTypeAndId: function () {
+    getFormPayload: function () {
         return window.formJSON;
     }
 }

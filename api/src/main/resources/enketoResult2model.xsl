@@ -46,6 +46,11 @@
                             <xsl:value-of select="normalize-space($model/text())"/>
                         </xsl:attribute>
                     </xsl:if>
+                    <xsl:if test="$model[@openmrs_concept]">
+                        <xsl:attribute name="concept">
+                            <xsl:value-of select="$model/@openmrs_concept"/>
+                        </xsl:attribute>
+                    </xsl:if>
                 </xsl:element>
 
             </xsl:if>

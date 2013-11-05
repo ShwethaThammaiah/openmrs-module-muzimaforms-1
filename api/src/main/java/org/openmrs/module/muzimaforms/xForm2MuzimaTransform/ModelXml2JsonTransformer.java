@@ -34,8 +34,9 @@ public class ModelXml2JsonTransformer extends XForm2Html5Transformer {
         if (transforms.isEmpty()) return new EnketoResult("");
 
         StringWriter writer = new StringWriter();
+        Result streamResult = new StreamResult(writer);
 
-        Result intermediateResult = new StreamResult(writer);
+        Result intermediateResult = streamResult;
         while (!transforms.isEmpty()) {
             Templates templates = transformerFactory.newTemplates(new StreamSource(transforms.pop()));
             TransformerHandler transformerHandler = transformerFactory.newTransformerHandler(templates);

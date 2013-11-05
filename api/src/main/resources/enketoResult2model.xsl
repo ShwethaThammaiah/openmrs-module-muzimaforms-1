@@ -9,21 +9,13 @@
     <xsl:strip-space elements="*"/>
     <xsl:template match="/">
         <form>
-            <xsl:apply-templates
-                    select="model/instance/node()//node()[not(@openmrs_concept) and not(ancestor::*[@openmrs_concept]) and not(@template) and not(ancestor::*[@template])]"/>
+            <xsl:apply-templates select="model/instance/node()//node()[not(@template) and not(ancestor::*[@template])]"/>
             <xsl:apply-templates select="model/instance/node()//node()[@template]"/>
-            <xsl:apply-templates select="model/instance/form/obs/node()[@openmrs_concept]"/>
         </form>
     </xsl:template>
 
-    <xsl:template match="model/instance/form/obs/node()[@openmrs_concept]">
-        <xsl:call-template name="add-concept">
-            <xsl:with-param name="concept" select="current()"/>
-        </xsl:call-template>
-    </xsl:template>
 
-    <xsl:template
-            match="model/instance/node()//node()[not(@openmrs_concept) and not(ancestor::*[@openmrs_concept]) and not(@template) and not(ancestor::*[@template])]">
+    <xsl:template match="model/instance/node()//node()[not(@template) and not(ancestor::*[@template])]">
         <xsl:call-template name="copy-model">
             <xsl:with-param name="model" select="current()"/>
         </xsl:call-template>
@@ -35,24 +27,6 @@
         </xsl:call-template>
     </xsl:template>
 
-    <xsl:template name="add-concept">
-        <xsl:param name="concept"/>
-        <xsl:element name="obs">
-            <xsl:attribute name="json:force-array" select="true()"/>
-            <xsl:attribute name="concept-name">
-                <xsl:value-of select="$concept/@openmrs_concept"/>
-            </xsl:attribute>
-            <xsl:attribute name="date">
-                <xsl:value-of select="$concept/date"/>
-            </xsl:attribute>
-            <xsl:attribute name="time">
-                <xsl:value-of select="$concept/time"/>
-            </xsl:attribute>
-            <xsl:attribute name="value">
-                <xsl:value-of select="$concept/value"/>
-            </xsl:attribute>
-        </xsl:element>
-    </xsl:template>
 
     <xsl:template name="copy-model">
         <xsl:param name="model"/>

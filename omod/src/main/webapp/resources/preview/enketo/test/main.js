@@ -12,4 +12,4 @@ var formDataRepositoryContext = formDataRepositoryContext || {
     getFormPayload: function () {
         return window.formJSON;
     }
-}
+};

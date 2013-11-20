@@ -22,7 +22,7 @@ var /**@type {*}*/fileManager;
 $(document).ready(function () {
     'use strict';
     var existingInstanceJ, instanceToEdit, loadErrors, jDataO,
-        queryParams = {id:"", formName:""},
+        queryParams = {id: "", formName: ""},
         formDataController = new FormDataController(queryParams);
 
     existingInstanceJ = formDataController.get();
@@ -39,21 +39,19 @@ $(document).ready(function () {
     loadErrors = form.init();
 
     function save(status) {
-        progressDialog.show("Saving...");
         var jData = jDataO.get();
         delete jData.errors;
         formDataController.save(jData, status);
-        progressDialog.hide();
     }
 
-    document.saveDraft =  function() {
+    document.saveDraft = function () {
         if (typeof form !== 'undefined') {
             save("incomplete");
         }
         return false;
     };
 
-    document.submit =  function () {
+    document.submit = function () {
         if (typeof form !== 'undefined') {
             form.validateForm();
             if (!form.isValid()) {
@@ -66,11 +64,24 @@ $(document).ready(function () {
         }
     };
 
-    $('input[type="barcode"]').after("<input type='button' class='barcode_img'>");
+    /*Start- BarCode Functionality*/
 
-    //controller for submission of data to drishti
-//    $(document).on('click', 'button#draft-form', document.saveDraft);
+    document.populateBarCode = function (jsonString) {
+        $.each(jsonString, function (key, value) {
+            var $inputField = $("input[name='" + key + "']");
+            $inputField.val(value);
+            $inputField.trigger('change');  //Need this to trigger the event so AMRS id gets populated.
+        })
+    };
 
-    //controller for submission of data to drishti
-//    $(document).on('click', 'button#submit-form', submit);
+    var $barcodeInput = $('input[type="barcode"]');
+
+    $barcodeInput.after("<input type='button' class='barcode_img'>");
+    $barcodeInput.click(function () {
+        //barCodeComponent is defined in FormWebViewActivity.java
+        barCodeComponent.startBarCodeIntent($barcodeInput.attr('name'));
+    });
+
+    /*End- BarCode Functionality*/
+
 });

@@ -21,6 +21,13 @@ XSLT Stylesheet that transforms OpenRosa style (X)Forms into valid HTMl5 forms
 (exception: when non-IANA lang attributes are used the form will not validate (but that's not serious))
 *****************************************************************************************************
 -->
+<!--
+* @preserve Edited on November 2013
+* This file was edited by muzima-dev@googlegroups.com
+* to have it work properly on Android 2.2 devices
+*
+* Contact us if you want to know more
+-->
 
 <xsl:stylesheet
         xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -821,8 +828,8 @@ XSLT Stylesheet that transforms OpenRosa style (X)Forms into valid HTMl5 forms
     </xsl:template>
 
 
-    <xsl:template match="xf:select | xf:select1">
-        <xsl:variable name="nodeset_used">
+    <xsl:template match="xf:select">
+    <xsl:variable name="nodeset_used">
             <xsl:call-template name="nodeset_used"/>
         </xsl:variable>
         <xsl:variable name="nodeset">
@@ -846,6 +853,23 @@ XSLT Stylesheet that transforms OpenRosa style (X)Forms into valid HTMl5 forms
                 </xsl:call-template>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:template>
+
+    <xsl:template match="xf:select1">
+        <xsl:variable name="nodeset_used">
+            <xsl:call-template name="nodeset_used"/>
+        </xsl:variable>
+        <xsl:variable name="nodeset">
+            <xsl:call-template name="nodeset_absolute">
+                <xsl:with-param name="nodeset_u" select="$nodeset_used"/>
+            </xsl:call-template>
+        </xsl:variable>
+        <xsl:variable name="binding"
+                      select="/h:html/h:head/xf:model/xf:bind[@nodeset=$nodeset_used] | /h:html/h:head/xf:model/xf:bind[@nodeset=$nodeset]"/>
+        <xsl:call-template name="select-select">
+            <xsl:with-param name="nodeset" select="$nodeset"/>
+            <xsl:with-param name="binding" select="$binding"/>
+        </xsl:call-template>
     </xsl:template>
 
 

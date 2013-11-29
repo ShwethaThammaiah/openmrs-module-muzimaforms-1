@@ -32,6 +32,7 @@ public class XPathArithExpr extends XPathBinaryOpExpr {
 	public static final int MULTIPLY = 2;
 	public static final int DIVIDE = 3;
 	public static final int MODULO = 4;
+	public static final int POW = 5;
 
 	public int op;
 
@@ -53,6 +54,7 @@ public class XPathArithExpr extends XPathBinaryOpExpr {
 		case MULTIPLY: result = aval * bval; break;
 		case DIVIDE: result = aval / bval; break;
 		case MODULO: result = aval % bval; break;
+		case POW: result = Math.pow(aval,bval); break;
 		}
 		return new Double(result);
 	}
@@ -66,6 +68,7 @@ public class XPathArithExpr extends XPathBinaryOpExpr {
 		case MULTIPLY: sOp = "*"; break;
 		case DIVIDE: sOp = "/"; break;
 		case MODULO: sOp = "%"; break;
+		case POW: sOp = "^"; break;
 		}
 		
 		return super.toString(sOp);

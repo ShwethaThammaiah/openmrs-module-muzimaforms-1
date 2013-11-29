@@ -73,6 +73,7 @@ public class ASTNodeBinaryOp extends ASTNode {
 		case Token.MULT: return new XPathArithExpr(XPathArithExpr.MULTIPLY, a, b);
 		case Token.DIV: return new XPathArithExpr(XPathArithExpr.DIVIDE, a, b);
 		case Token.MOD: return new XPathArithExpr(XPathArithExpr.MODULO, a, b);
+		case Token.POW: return new XPathArithExpr(XPathArithExpr.POW, a, b);
 		case Token.UNION: return new XPathUnionExpr(a, b);
 		default: throw new XPathSyntaxException();
 		}

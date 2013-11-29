@@ -119,7 +119,7 @@ action code {:
 	}
 :}
 
-terminal OR, AND, EQ, NEQ, LT, LTE, GT, GTE, PLUS, MINUS, MULT, DIV, MOD, UNION, SLASH, DBL_SLASH, WILDCARD;
+terminal OR, AND, EQ, NEQ, LT, LTE, GT, GTE, PLUS, MINUS, MULT, DIV, MOD, POW, UNION, SLASH, DBL_SLASH, WILDCARD;
 terminal LBRACK, RBRACK, LPAREN, RPAREN, DOT, DBL_DOT, AT, DBL_COLON, COMMA, UMINUS;
 terminal NODETYPE_NODE, NODETYPE_TEXT, NODETYPE_COMMENT, NODETYPE_PROCINSTR;
 
@@ -142,7 +142,7 @@ precedence right AND;
 precedence left EQ, NEQ;
 precedence left LT, LTE, GT, GTE;
 precedence left PLUS, MINUS;
-precedence left MULT, DIV, MOD;
+precedence left MULT, DIV, MOD, POW;
 precedence nonassoc UMINUS;
 precedence left UNION;
 
@@ -170,6 +170,7 @@ op_expr	::=	expr:a OR expr:b				{: RESULT = new XPathBoolExpr(XPathBoolExpr.OR, 
 	|	expr:a MULT expr:b				{: RESULT = new XPathArithExpr(XPathArithExpr.MULTIPLY, a, b); :}
 	|	expr:a DIV expr:b				{: RESULT = new XPathArithExpr(XPathArithExpr.DIVIDE, a, b); :}
 	|	expr:a MOD expr:b				{: RESULT = new XPathArithExpr(XPathArithExpr.MODULO, a, b); :}
+	|	expr:a POW expr:b				{: RESULT = new XPathArithExpr(XPathArithExpr.POW, a, b); :}
 	|	MINUS expr:a					{: RESULT = new XPathNumNegExpr(a); :}
 		  %prec UMINUS
 	|	expr:a UNION expr:b				{: RESULT = new XPathUnionExpr(a, b); :}

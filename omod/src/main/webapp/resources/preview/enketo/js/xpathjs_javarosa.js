@@ -2737,6 +2737,13 @@ XPathJS = (function () {
             );
         },
 
+        pow: function (left, right) {
+            return new NumberType(
+                Math.pow(evaluateExpressionTree(this, left).toNumber(),
+                    evaluateExpressionTree(this, right).toNumber())
+            );
+        },
+
         mod: function (left, right) {
             return new NumberType(
                 evaluateExpressionTree(this, left).toNumber()

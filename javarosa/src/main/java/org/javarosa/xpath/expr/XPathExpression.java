@@ -100,6 +100,7 @@ public abstract class XPathExpression implements Externalizable {
 			case XPathArithExpr.MULTIPLY: op = "mult"; break;
 			case XPathArithExpr.DIVIDE: op = "div"; break;
 			case XPathArithExpr.MODULO: op = "mod"; break;
+			case XPathArithExpr.POW: op = "pow"; break;
 			}
 			printStr(op + " {{");
 			print(x.a);

@@ -51,8 +51,9 @@ public class Token {
 	public static final int UNION = 30;
 	public static final int VAR = 31;
 	public static final int WILDCARD = 32;
-	
-	public int type;
+    public static final int POW = 33;
+
+    public int type;
 	public Object val;
 	
 	public Token (int type) {
@@ -100,6 +101,7 @@ public class Token {
 		case UNION: s = "UNION"; break;
 		case VAR: s = "VAR(" + ((XPathQName)val).toString() + ")"; break;
 		case WILDCARD: s = "WILDCARD"; break;		
+		case POW: s = "POW"; break;
 		}
 		
 		return s;

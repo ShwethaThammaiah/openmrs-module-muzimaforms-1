@@ -93,6 +93,7 @@ public abstract class ASTNode {
 					case Token.MINUS: printStr("minus:"); break;
 					case Token.DIV: printStr("div:"); break;
 					case Token.MOD: printStr("mod:"); break;
+					case Token.POW: printStr("pow:"); break;
 					case Token.MULT: printStr("mult:"); break;
 					case Token.UNION: printStr("union:"); break;					
 					}

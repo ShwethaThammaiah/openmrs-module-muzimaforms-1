@@ -53,7 +53,7 @@ public class Parser {
 		int[] eqOps = {Token.EQ, Token.NEQ};
 		int[] cmpOps = {Token.LT, Token.LTE, Token.GT, Token.GTE};
 		int[] addOps = {Token.PLUS, Token.MINUS};
-		int[] multOps = {Token.MULT, Token.DIV, Token.MOD};
+		int[] multOps = {Token.MULT, Token.DIV, Token.MOD,Token.POW};
 		int[] unionOp = {Token.UNION};
 		
 		parseBinaryOp(root, orOp, ASTNodeBinaryOp.ASSOC_RIGHT);

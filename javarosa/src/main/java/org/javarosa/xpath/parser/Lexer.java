@@ -110,7 +110,10 @@ public class Lexer {
 			} else if (context == LEX_CONTEXT_OP && i + 3 <= expr.length() && "mod".equals(expr.substring(i, i + 3))) {
 				token = new Token(Token.MOD);
 				skip = 3;				
-			} else if (c == '$') {
+			}else if (context == LEX_CONTEXT_OP && i + 3 <= expr.length() && "pow".equals(expr.substring(i, i + 3))) {
+                token = new Token(Token.POW);
+                skip = 3;
+            } else if (c == '$') {
 				int len = matchQName(expr, i + 1);
 				if (len == 0) {
 					throw new XPathSyntaxException();

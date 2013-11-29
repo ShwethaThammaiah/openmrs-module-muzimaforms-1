@@ -7013,6 +7013,17 @@ XPathJS._parser = (function () {
                                     }
                                 }
                             }
+                            if (result3 === null) {
+                                if (input.substr(pos, 3) === "pow") {
+                                    result3 = "pow";
+                                    pos += 3;
+                                } else {
+                                    result3 = null;
+                                    if (reportFailures === 0) {
+                                        matchFailed("\"pow\"");
+                                    }
+                                }
+                            }
                         }
                         if (result3 !== null) {
                             result4 = parse__();

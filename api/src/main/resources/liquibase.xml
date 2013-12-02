@@ -224,4 +224,36 @@
         </sql>
     </changeSet>
 
+    <changeSet id="muzimaform-2013-12-01-09:30" author="ThoughtWorks">
+        <comment>
+            Adding default values for boolean columns in muzimaforms_form related tables
+        </comment>
+        <addDefaultValue tableName="muzimaforms_form" columnName="retired" defaultValueBoolean="false"/>
+        <addDefaultValue tableName="muzimaforms_tag" columnName="retired" defaultValueBoolean="false"/>
+        <addDefaultValue tableName="muzimaforms_tag_map" columnName="retired" defaultValueBoolean="false"/>
+    </changeSet>
+
+    <changeSet id="muzimaform-2013-12-02-09:30" author="ThoughtWorks">
+        <comment>
+            Adding default values for the existing records in muzimaforms_form related tables
+        </comment>
+        <update tableName="muzimaforms_form">
+            <column name="retired" valueBoolean="false"/>
+            <where>
+                retired is null
+            </where>
+        </update>
+        <update tableName="muzimaforms_tag">
+            <column name="retired" valueBoolean="false"/>
+            <where>
+                retired is null
+            </where>
+        </update>
+        <update tableName="muzimaforms_tag_map">
+            <column name="retired" valueBoolean="false"/>
+            <where>
+                retired is null
+            </where>
+        </update>
+    </changeSet>
 </databaseChangeLog>

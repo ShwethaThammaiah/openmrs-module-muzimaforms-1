@@ -1,17 +1,13 @@
 package org.openmrs.module.muzimaforms;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.openmrs.Form;
-import org.openmrs.module.xforms.Xform;
+import org.openmrs.BaseOpenmrsData;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MuzimaForm extends BaseMuzimaData {
+public class MuzimaForm extends BaseOpenmrsData {
     private Integer id;
     private String name;
     private String description;

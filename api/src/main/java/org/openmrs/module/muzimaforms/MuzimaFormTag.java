@@ -5,7 +5,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.openmrs.BaseOpenmrsData;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MuzimaFormTag extends BaseMuzimaData {
+public class MuzimaFormTag extends BaseOpenmrsData {
     private Integer id;
     private String name;
 

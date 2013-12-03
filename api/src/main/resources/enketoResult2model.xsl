@@ -72,6 +72,11 @@
                     <xsl:attribute name="default_bind_path">
                         <xsl:call-template name="genPath"/>
                     </xsl:attribute>
+                    <xsl:if test="$model[@openmrs_concept]">
+                        <xsl:attribute name="concept">
+                            <xsl:value-of select="$model/@openmrs_concept"/>
+                        </xsl:attribute>
+                    </xsl:if>
                     <xsl:if test="$model/*">
                         <xsl:for-each select="$model/node()">
                             <xsl:call-template name="copy-model">

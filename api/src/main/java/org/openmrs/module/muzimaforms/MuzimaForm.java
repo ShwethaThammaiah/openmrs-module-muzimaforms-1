@@ -5,6 +5,7 @@ import org.openmrs.BaseOpenmrsData;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MuzimaForm extends BaseOpenmrsData {
@@ -20,6 +21,12 @@ public class MuzimaForm extends BaseOpenmrsData {
     }    // used by hibernate
 
     public MuzimaForm(String name, String description, String model, String html, String modelJson) {
+        // Correcting for the fact that in v1.8.2 of the stand-alone server the uuid of BaseOpenmrsObject is
+        // not computed each time the empty constructor is called as is the case in v1.9.3
+        if (getUuid()==null) {
+            setUuid(UUID.randomUUID().toString());
+        }
+
         this.name = name;
         this.description = description;
         this.model = model;

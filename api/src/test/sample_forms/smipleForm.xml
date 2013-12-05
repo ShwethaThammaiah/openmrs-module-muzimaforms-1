@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xf:xforms xmlns:xf="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml"
+           xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jr="http://openrosa.org/javarosa">
+    <xf:head>
+        <xf:title>Registration Form</xf:title>
+        <xf:model id="openmrs_model">
+            <xf:instance id="openmrs_model_instance">
+                <form id="1" name="Registration Form" version="0.1" xmlns:openmrs="/moduleServlet/formentry/forms/schema/4-1" xmlns:xd="http://schemas.microsoft.com/office/infopath/2003">
+                    <header>
+                        <enterer/>
+                        <date_entered/>
+                        <session/>
+                        <uid/>
+                    </header>
+                    <patient>
+                        <patient.birthdate openmrs_table="patient" openmrs_attribute="birthdate"/>
+                        <patient.birthdate_estimated openmrs_table="patient" openmrs_attribute="birthdate_estimated"/>
+                        <tmp>
+                            <birthdate_type>birthdate</birthdate_type>
+                            <age>0</age>
+                            <birth_date_temp/>
+                            <age_in_years/>
+                            <birth_date/>
+                            <birthdate_estimated/>
+                        </tmp>
+                    </patient>
+                    <obs openmrs_concept="1238^MEDICAL RECORD OBSERVATIONS^99DCT" openmrs_datatype="ZZ">
+                    </obs>
+                </form>
+            </xf:instance>
+            <bind id="patient" nodeset="/form/patient"/>
+
+            <!--  Birth Date Calculations -->
+            <!-- UNCOMMENTED TO CALCULATE DATE (IF NOT USING mCLINIC OR REGISTERING PATIENTS) -->
+            <bind id="birthdate_type" nodeset="/form/patient/tmp/birthdate_type" type="string" required="true()"/>
+            <bind id="age" nodeset="/form/patient/tmp/age" type="int" relevant="../birthdate_type = 'age'" required="true()"
+                  constraint=". &gt;= 0 and . &lt;=125" jr:constraintMsg="Allowed ages is between 0 and 125 years"/>
+            <bind id="birthdate" nodeset="/form/patient/tmp/birth_date" type="date" relevant="../birthdate_type = 'birthdate'" required="true()"
+                  constraint=". &lt;= today()" jr:constraintMsg="Birthdate cannot be in the future"/>
+            <bind id="birthdate_estimated" nodeset="/form/patient/tmp/birthdate_estimated" relevant="../birthdate_type = 'birthdate'" required="true()"/>
+            <bind id="birth_date_temp" nodeset="/form/patient/tmp/birth_date_temp" type="string" readonly="true()"
+                  calculate="concat(format-date(date(today() - (../age) * 365.2425), '%Y'),'/01/01')"/>
+            <bind id="patient.birthdate" nodeset="/form/patient/patient.birthdate" type="date" readonly="true()"
+                  calculate="if(../tmp/birthdate_type = 'age', date(../tmp/birth_date_temp), ../tmp/birth_date)"/>
+            <bind id="age_in_years" nodeset="/form/patient/tmp/age_in_years" type="decimal"
+                  calculate="if(../birthdate_type = 'age', ../age, int(today() - ../../patient.birthdate))"/>
+            <bind id="patient.birthdate_estimated" nodeset="/form/patient/patient.birthdate_estimated" type="string"
+                  calculate="if(../tmp/birthdate_type = 'age', 'true', ../tmp/birthdate_estimated)"/>
+        </xf:model>
+    </xf:head>
+    <xf:body>
+        <group appearance="field-list">
+            <select1 bind="birthdate_type">
+                <label>Will Record Date of Birth...</label>
+                <hint>How will you capture the patients birth-date?</hint>
+                <item>
+                    <label>By Birth-Date</label>
+                    <value>birthdate</value>
+                </item>
+                <item>
+                    <label>By Age</label>
+                    <value>age</value>
+                </item>
+            </select1>
+            <input bind="age">
+                <label>How old are you now?</label>
+                <hint>Age in complete years</hint>
+            </input>
+            <input bind="birthdate">
+                <label>Select Birthdate</label>
+            </input>
+            <select1 bind="birthdate_estimated">
+                <label>Is this birthdate an estimate?</label>
+                <item>
+                    <label>Yes</label>
+                    <value>true</value>
+                </item>
+                <item>
+                    <label>No</label>
+                    <value>false</value>
+                </item>
+            </select1>
+        </group>
+    </xf:body>
+</xf:xforms>

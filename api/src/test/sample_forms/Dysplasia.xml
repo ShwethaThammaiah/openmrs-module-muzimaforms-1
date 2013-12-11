@@ -84,7 +84,7 @@
 							<time/>
 							<value/>
 						</last_cd4_by_facs>
-						<history_of_dysplasia openmrs_concept="7379^HISTORY OF DYSPLASIA ^99DCT" openmrs_datatype="CWE" multiple="0">
+						<history_of_dysplasia openmrs_concept="7379^HISTORY OF DYSPLASIA^99DCT" openmrs_datatype="CWE" multiple="0">
 							<date/>
 							<time/>
 							<value/>
@@ -98,12 +98,12 @@
 							<date/>
 							<time/>
 							<normal openmrs_concept="1115^NORMAL^99DCT">false</normal>
-							<atypical_squamous_cells_of_undetermined_significance openmrs_concept="7417^ATYPICAL SQUAMOUS CELLS OF UNDETERMINED SIGNIFICANCE ^99DCT">false</atypical_squamous_cells_of_undetermined_significance>
-							<atypical_glandular_cells_of_undetermined_significance openmrs_concept="7418^ATYPICAL GLANDULAR CELLS OF UNDETERMINED SIGNIFICANCE ^99DCT">false</atypical_glandular_cells_of_undetermined_significance>
+							<atypical_squamous_cells_of_undetermined_significance openmrs_concept="7417^ATYPICAL SQUAMOUS CELLS OF UNDETERMINED SIGNIFICANCE^99DCT">false</atypical_squamous_cells_of_undetermined_significance>
+							<atypical_glandular_cells_of_undetermined_significance openmrs_concept="7418^ATYPICAL GLANDULAR CELLS OF UNDETERMINED SIGNIFICANCE^99DCT">false</atypical_glandular_cells_of_undetermined_significance>
 							<low_grade_squamous_intraepithelial_lesion openmrs_concept="7419^LOW GRADE SQUAMOUS INTRAEPITHELIAL LESION^99DCT">false</low_grade_squamous_intraepithelial_lesion>
 							<high_grade_squamous_intraepithelial_lesion openmrs_concept="7420^HIGH GRADE SQUAMOUS INTRAEPITHELIAL LESION^99DCT">false</high_grade_squamous_intraepithelial_lesion>
-							<squamous_cell_carcinoma_not_otherwise_specified openmrs_concept="7421^SQUAMOUS CELL CARCINOMA, NOT OTHERWISE SPECIFIED ^99DCT">false</squamous_cell_carcinoma_not_otherwise_specified>
-							<adenocarcinoma openmrs_concept="7422^ADENOCARCINOMA ^99DCT">false</adenocarcinoma>
+							<squamous_cell_carcinoma_not_otherwise_specified openmrs_concept="7421^SQUAMOUS CELL CARCINOMA, NOT OTHERWISE SPECIFIED^99DCT">false</squamous_cell_carcinoma_not_otherwise_specified>
+							<adenocarcinoma openmrs_concept="7422^ADENOCARCINOMA^99DCT">false</adenocarcinoma>
 							<not_applicable openmrs_concept="1175^NOT_APPLICABLE^99DCT">false</not_applicable>
 							<do_not_know openmrs_concept="1624^DO NOT KNOW^99DCT">false</do_not_know>
 							<xforms_value/>
@@ -114,7 +114,7 @@
 							<normal openmrs_concept="1115^NORMAL^99DCT">false</normal>
 							<cervical_intraepithelial_neoplasia_grade_1 openmrs_concept="7424^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 1^99DCT">false</cervical_intraepithelial_neoplasia_grade_1>
 							<cervical_intraepithelial_neoplasia_grade_2 openmrs_concept="7425^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 2^99DCT">false</cervical_intraepithelial_neoplasia_grade_2>
-							<cervical_intraepithelial_neoplasia_grade_3 openmrs_concept="7216^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 3 ^99DCT">false</cervical_intraepithelial_neoplasia_grade_3>
+							<cervical_intraepithelial_neoplasia_grade_3 openmrs_concept="7216^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 3^99DCT">false</cervical_intraepithelial_neoplasia_grade_3>
 							<cervical_cancer openmrs_concept="6537^CERVICAL CANCER^99DCT">false</cervical_cancer>
 							<not_applicable openmrs_concept="1175^NOT_APPLICABLE^99DCT">false</not_applicable>
 							<do_not_know openmrs_concept="1624^DO NOT KNOW^99DCT">false</do_not_know>
@@ -144,32 +144,31 @@
 								<cervical_intraepithelial_neoplasia_grade_1 openmrs_concept="7424^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 1^99DCT">false
 								</cervical_intraepithelial_neoplasia_grade_1>
 								<cervical_intraepithelial_neoplasia_grade_2 openmrs_concept="7425^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 2^99DCT">false</cervical_intraepithelial_neoplasia_grade_2>
-								<cervical_intraepithelial_neoplasia_grade_3 openmrs_concept="7216^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 3 ^99DCT">false</cervical_intraepithelial_neoplasia_grade_3>
-								<squamous_cell_carcinoma_not_otherwise_specified openmrs_concept="7421^SQUAMOUS CELL CARCINOMA, NOT OTHERWISE SPECIFIED ^99DCT">false</squamous_cell_carcinoma_not_otherwise_specified>
-								<adenocarcinoma openmrs_concept="7422^ADENOCARCINOMA ^99DCT">false</adenocarcinoma>
+								<cervical_intraepithelial_neoplasia_grade_3 openmrs_concept="7216^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 3^99DCT">false</cervical_intraepithelial_neoplasia_grade_3>
+								<squamous_cell_carcinoma_not_otherwise_specified openmrs_concept="7421^SQUAMOUS CELL CARCINOMA, NOT OTHERWISE SPECIFIED^99DCT">false</squamous_cell_carcinoma_not_otherwise_specified>
+								<adenocarcinoma openmrs_concept="7422^ADENOCARCINOMA^99DCT">false</adenocarcinoma>
 								<other_non-coded openmrs_concept="5622^OTHER NON-CODED^99DCT">false</other_non-coded>
 								<do_not_know openmrs_concept="1624^DO NOT KNOW^99DCT">false</do_not_know>
 								<xforms_value/>
 							</dysplasia_histopathological_findings_based_on_last_treatment>
-							<visual_vulval_exam_findings openmrs_concept="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT" openmrs_datatype="CWE" multiple="1">
+							<visual_vulval_exam_findings openmrs_concept="7487^VISUAL VULVAL EXAM FINDINGS^99DCT" openmrs_datatype="CWE" multiple="1">
 								<date/>
 								<time/>
 								<normal openmrs_concept="1115^NORMAL^99DCT">false</normal>
 								<positive_visual_inspection_with_acetic_acid_with_aceto_white_area  openmrs_concept="7507^POSITIVE VISUAL INSPECTION WITH ACETIC ACID WITH ACETO WHITE AREA^99DCT">false</positive_visual_inspection_with_acetic_acid_with_aceto_white_area>
 <!--								<condyloma_or_vulvar_intraepithelial_neoplasia_grade_1 openmrs_concept="7489^CONDYLOMA OR VULVAR INTRAEPITHELIAL NEOPLASIA GRADE 1^99DCT">false</condyloma_or_vulvar_intraepithelial_neoplasia_grade_1>-->
 <!--								<vulvar_intraepithelial_neoplasia_grade_2 openmrs_concept="7488^VULVAR INTRAEPITHELIAL NEOPLASIA GRADE 2^99DCT">false</vulvar_intraepithelial_neoplasia_grade_2>-->
-<!--								<vulvar_intraepithelial_neoplasia_grade_3 openmrs_concept="7483^VULVAR INTRAEPITHELIAL NEOPLASIA GRADE 3^99DCT">false</vulvar_intraepithelial_neoplasia_grade_3>-->
 								<other_non-coded openmrs_concept="5622^OTHER NON-CODED^99DCT">false</other_non-coded>
 								<not_applicable openmrs_concept="1175^NOT_APPLICABLE^99DCT">false</not_applicable>
 								<do_not_know openmrs_concept="1624^DO NOT KNOW^99DCT">false</do_not_know>
 								<xforms_value/>
 							</visual_vulval_exam_findings>
-							<visual_vaginal_exam_findings openmrs_concept="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT" openmrs_datatype="CWE" multiple="1">
+							<visual_vaginal_exam_findings openmrs_concept="7490^VISUAL VAGINAL EXAM FINDINGS^99DCT" openmrs_datatype="CWE" multiple="1">
 								<date/>
 								<time/>
 								<normal openmrs_concept="1115^NORMAL^99DCT">false</normal>
 								<vaginal_intraepithelial_neoplasia_grade_1 openmrs_concept="7492^VAGINAL INTRAEPITHELIAL NEOPLASIA GRADE 1^99DCT">false</vaginal_intraepithelial_neoplasia_grade_1>
-								<vaginal_intraepithelial_neoplasia_grade_2 openmrs_concept="7491^VAGINAL INTRAEPITHELIAL NEOPLASIA GRADE 2 ^99DCT">false</vaginal_intraepithelial_neoplasia_grade_2>
+								<vaginal_intraepithelial_neoplasia_grade_2 openmrs_concept="7491^VAGINAL INTRAEPITHELIAL NEOPLASIA GRADE 2^99DCT">false</vaginal_intraepithelial_neoplasia_grade_2>
 								<vaginal_intraepithelial_neoplasia_grade_3 openmrs_concept="7435^VAGINAL INTRAEPITHELIAL NEOPLASIA GRADE 3^99DCT">false</vaginal_intraepithelial_neoplasia_grade_3>
 								<other_non-coded openmrs_concept="5622^OTHER NON-CODED^99DCT">false</other_non-coded>
 								<not_applicable openmrs_concept="1175^NOT_APPLICABLE^99DCT">false</not_applicable>
@@ -182,7 +181,7 @@
 								<normal openmrs_concept="1115^NORMAL^99DCT">false</normal>
 								<cervical_intraepithelial_neoplasia_grade_1 openmrs_concept="7424^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 1^99DCT">false</cervical_intraepithelial_neoplasia_grade_1>
 								<cervical_intraepithelial_neoplasia_grade_2 openmrs_concept="7425^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 2^99DCT">false</cervical_intraepithelial_neoplasia_grade_2>
-								<cervical_intraepithelial_neoplasia_grade_3 openmrs_concept="7216^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 3 ^99DCT">false</cervical_intraepithelial_neoplasia_grade_3>
+								<cervical_intraepithelial_neoplasia_grade_3 openmrs_concept="7216^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 3^99DCT">false</cervical_intraepithelial_neoplasia_grade_3>
 								<cervical_cancer openmrs_concept="6537^CERVICAL CANCER^99DCT">false</cervical_cancer>
 								<other_non-coded openmrs_concept="5622^OTHER NON-CODED^99DCT">false</other_non-coded>
 								<positive_visual_inspection_with_acetic_acid_with_aceto_white_area openmrs_concept="7507^POSITIVE VISUAL INSPECTION WITH ACETIC ACID WITH ACETO WHITE AREA^99DCT">false</positive_visual_inspection_with_acetic_acid_with_aceto_white_area>
@@ -192,12 +191,12 @@
 								<xforms_value/>
 							</visual_cervical_exam_findings>
 						</past_treatment_of_dysplasia_detailed>
-						<ccsp_satisfactory_colpo openmrs_concept="7428^Satisfactory Colposcopy^99DCT" openmrs_datatype="CWE">
+						<ccsp_satisfactory_colpo openmrs_concept="7428^SUCCESSFUL COMPLETION OF COLPOSCOPY^99DCT" openmrs_datatype="CWE">
 							<date/>
 							<time/>
 							<value/>
 						</ccsp_satisfactory_colpo>
-						<ccsp_lesion openmrs_concept="7477^Lesion^99DCT" openmrs_datatype="CWE">
+						<ccsp_lesion openmrs_concept="7477^SIZE OF CERVICAL LESION, CODED^99DCT" openmrs_datatype="CWE">
 							<date/>
 							<time/>
 							<value/>
@@ -207,7 +206,7 @@
 							<time/>
 							<value/>
 						</ccsp_findings>
-						<ccsp_procedures_done openmrs_concept="7479^Procedures Done^99DCT" openmrs_datatype="CWE" multiple="0">
+						<ccsp_procedures_done openmrs_concept="7479^PROCEDURES DONE THIS VISIT^99DCT" openmrs_datatype="CWE" multiple="0">
 							<date/>
 							<time/>
 							<value/>
@@ -234,7 +233,7 @@
 								<time/>
 								<value/>
 							</anatomic_location_description>
-							<clock_face_cervical_biopsy_location openmrs_concept="7481^CLOCK FACE CERVICAL BIOPSY LOCATION ^99DCT" openmrs_datatype="NM">
+							<clock_face_cervical_biopsy_location openmrs_concept="7481^CLOCK FACE CERVICAL BIOPSY LOCATION^99DCT" openmrs_datatype="NM">
 								<date/>
 								<time/>
 								<value/>
@@ -248,17 +247,17 @@
 							<pathological_diagnosis_added_vagina/>
 							<pathological_diagnosis_added_vulva/>
 						</procedures_done_this_visit_detailed>
-						<ccsp_plan openmrs_concept="7500^Plan^99DCT" openmrs_datatype="CWE" multiple="0">
+						<ccsp_plan openmrs_concept="7500^GYNECOLOGIC ONCOLOGY PLAN^99DCT" openmrs_datatype="CWE" multiple="0">
 							<date/>
 							<time/>
 							<value/>
 						</ccsp_plan>
-						<ccsp_directive_fp openmrs_concept="6681^Directive FP^99DCT" openmrs_datatype="CWE" multiple="0">
+						<ccsp_directive_fp openmrs_concept="6681^FAMILY PLANNING COUNSELING PERFORMED^99DCT" openmrs_datatype="CWE" multiple="0">
 							<date/>
 							<time/>
 							<value/>
 						</ccsp_directive_fp>
-						<ccsp_refill_dispense openmrs_concept="7495^Refill dispensed^99DCT" openmrs_datatype="CWE" multiple="1">
+						<ccsp_refill_dispense openmrs_concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT" openmrs_datatype="CWE" multiple="1">
 							<date/>
 							<time/>
 							<condoms openmrs_concept="190^CONDOMS^99DCT">false</condoms>
@@ -274,7 +273,7 @@
 							<none openmrs_concept="1107^NONE^99DCT">false</none>
 							<xforms_value/>
 						</ccsp_refill_dispense>
-						<ccsp_new_method openmrs_concept="7240^New method initiated^99DCT" openmrs_datatype="CWE" multiple="1">
+						<ccsp_new_method openmrs_concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT" openmrs_datatype="CWE" multiple="1">
 							<date/>
 							<time/>
 							<condoms openmrs_concept="190^CONDOMS^99DCT">false</condoms>
@@ -505,7 +504,7 @@
 				<hint>What is the current visit type?</hint>
 				<item>
 					<label>New visit</label>
-					<value>7850^INITIAL VISIT ^99DCT</value>
+					<value>7850^INITIAL VISIT^99DCT</value>
 				</item>
 				<item>
 					<label>Revisit</label>

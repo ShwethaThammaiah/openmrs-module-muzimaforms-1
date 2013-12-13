@@ -14,6 +14,14 @@
  * limitations under the License.
  */
 
+/**
+ * @preserve Edited on November 2013
+ * This file was edited by muzima-dev@googlegroups.com
+ * to have it work properly on Android 2.2 devices
+ *
+ * Contact us if you want to know more
+ */
+
 /*jslint browser:true, devel:true, jquery:true, smarttabs:true, trailing:false*//*global XPathJS, XMLSerializer:true, Profiler, Modernizr, google, settings, connection, fileManager, xPathEvalTime*/
 
 /**
@@ -292,7 +300,11 @@ function Form (formSelector, dataStr, dataStrToEdit){
                 $target.text(newVal);
                 //then return validation result
                 success = this.validate(expr, xmlDataType);
-                $form.trigger('dataupdate', $target.prop('nodeName'));
+                var originalSelector = this.originalSelector;
+                var nodeNameMatch = originalSelector.match(/\/\w+\/value$/);
+                var nodeName = nodeNameMatch?nodeNameMatch[0]:$target.prop('nodeName');
+
+                $form.trigger('dataupdate', nodeName);
                 //add type="file" attribute for file references
                 if (xmlDataType === 'binary'){
                     if (newVal.length > 0 ){
@@ -465,8 +477,9 @@ function Form (formSelector, dataStr, dataStrToEdit){
                 convert : function(x){
                     var pattern = /([0-9]{4})([\-]|[\/])([0-9]{2})([\-]|[\/])([0-9]{2})/,
                         segments = pattern.exec(x),
-                        date = new Date(x);
-                    if (new Date(x).toString() == 'Invalid Date'){
+                        date = new Date(Date.parse(x));
+
+                    if (date.toString() == 'Invalid Date'){
                         //this code is really only meant for the Rhino and PhantomJS engines, in browsers it may never be reached
                         if (segments && Number(segments[1]) > 0 && Number(segments[3]) >=0 && Number(segments[3]) < 12 && Number(segments[5]) < 32){
                             date = new Date(Number(segments[1]), (Number(segments[3])-1), Number(segments[5]));
@@ -474,7 +487,7 @@ function Form (formSelector, dataStr, dataStrToEdit){
                     }
                     //date.setUTCHours(0,0,0,0);
                     //return date.toUTCString();//.getUTCFullYear(), datetime.getUTCMonth(), datetime.getUTCDate());
-                    return date.getUTCFullYear().toString().pad(4)+'-'+(date.getUTCMonth()+1).toString().pad(2)+'-'+date.getUTCDate().toString().pad(2);
+                    return date.getFullYear().toString().pad(4)+'-'+(date.getMonth()+1).toString().pad(2)+'-'+date.getDate().toString().pad(2);
                 }
             },
             'datetime' : {
@@ -1328,6 +1341,7 @@ function Form (formSelector, dataStr, dataStrToEdit){
                 if ( type === 'date' || type === 'datetime'){
                     //convert current value (loaded from instance) to a value that a native datepicker understands
                     //TODO test for IE, FF, Safari when those browsers start including native datepickers
+
                     value = data.node().convert(value, type);
 
                     console.debug('converting date before setting input field to: '+value);
@@ -1958,6 +1972,17 @@ function Form (formSelector, dataStr, dataStrToEdit){
             });
 
         });
+
+        // This dynamically update read only calculated fields in the form
+        $form.find('.readOnlyCalculated').find(cleverSelector.join()).each(function(){
+            name = $(this).attr('name');
+            expr = $(this).attr('data-calculate');
+            dataType = $(this).attr('data-type-xml');
+            constraint = $(this).attr('data-constraint'); //obsolete?
+            relevantExpr = $(this).attr('data-relevant');
+            relevant = (relevantExpr) ? data.evaluate(relevantExpr, 'boolean', name) : true;
+            $(this).parent().find('.note-value')[0].innerHTML= data.evaluate(expr, 'string', name, 0);
+        });
     };
 
     FormHTML.prototype.bootstrapify = function(){               
@@ -2295,10 +2320,17 @@ function Form (formSelector, dataStr, dataStrToEdit){
                         name = 'name="'+$(this).find('input').attr('name')+'"',
                         attributes = (typeof relevant !== 'undefined') ? 'data-relevant="'+relevant+'" '+name : name,
                         value = $(this).find('input, select, textarea').val(),
-                         html = $(this).markdownToHtml().html();
-                    $('<fieldset class="trigger'+branch+'" '+attributes+'></fieldset>')
-                        .insertBefore($(this)).append(html).append('<div class="note-value">'+value+'</div>').find('input').remove(); 
-                    $(this).remove();
+                         html = $(this).markdownToHtml().html(),
+                        dataCalculate= $(this).find('input').attr('data-calculate')+'"';;
+                    if(dataCalculate === 'undefined'){
+                        $('<fieldset class="trigger'+branch+'" '+attributes+'></fieldset>')
+                            .insertBefore($(this)).append(html).append('<div class="note-value">'+value+'</div>').find('input').remove();
+                        $(this).remove();
+                    } else{
+                        $('<fieldset class="readOnlyCalculated trigger'+branch+'" '+attributes+'></fieldset>')
+                            .insertBefore($(this)).append(html).append('<div class="note-value">'+value+'</div>').find('input').attr('type', 'hidden');
+                            $(this).remove();
+                    }
                 });
             }
         },

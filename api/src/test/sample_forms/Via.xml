@@ -78,7 +78,7 @@
 							<time></time>
 							<value></value>
 						</hiv_status>
-						<last_cd4_by_facs openmrs_concept="1871^LAST CD4, BY FACS^99DCT" openmrs_datatype="NM">
+						<last_cd4_by_facs openmrs_concept="1871^MOST RECENT CD4^99DCT" openmrs_datatype="NM">
 							<date></date>
 							<time></time>
 							<value></value>
@@ -200,12 +200,12 @@
 							<pathological_diagnosis_added_vagina/>
 							<pathological_diagnosis_added_vulva/>
 						</procedures_done_this_visit_detailed>
-						<ccsp_plan openmrs_concept="7500^Plan^99DCT" openmrs_datatype="CWE" multiple="0">
+						<ccsp_plan openmrs_concept="7500^GYNECOLOGIC ONCOLOGY PLAN^99DCT" openmrs_datatype="CWE" multiple="0">
 							<date/>
 							<time/>
 							<value/>
 						</ccsp_plan>
-						<ccsp_directive_fp openmrs_concept="6681^Directive FP^99DCT" openmrs_datatype="CWE" multiple="0">
+						<ccsp_directive_fp openmrs_concept="6681^FAMILY PLANNING COUNSELING PERFORMED^99DCT" openmrs_datatype="CWE" multiple="0">
 							<date/>
 							<time/>
 							<value/>
@@ -238,7 +238,7 @@
 							<do_not_know openmrs_concept="1624^DO NOT KNOW^99DCT">false</do_not_know>
 							<xforms_value/>
 						</ccsp_refill_dispense>
-						<ccsp_new_method openmrs_concept="7240^New method initiated^99DCT" openmrs_datatype="CWE" multiple="1">
+						<ccsp_new_method openmrs_concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT" openmrs_datatype="CWE" multiple="1">
 							<date/>
 							<time/>
 							<injectable_contraceptives openmrs_concept="5279^INJECTABLE CONTRACEPTIVES^99DCT">false</injectable_contraceptives>

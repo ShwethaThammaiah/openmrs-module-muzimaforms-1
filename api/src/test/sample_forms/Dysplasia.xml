@@ -79,7 +79,7 @@
 							<time/>
 							<value/>
 						</hiv_status>
-						<last_cd4_by_facs openmrs_concept="1871^LAST CD4, BY FACS^99DCT" openmrs_datatype="NM">
+						<last_cd4_by_facs openmrs_concept="1871^MOST RECENT CD4^99DCT" openmrs_datatype="NM">
 							<date/>
 							<time/>
 							<value/>
@@ -201,7 +201,7 @@
 							<time/>
 							<value/>
 						</ccsp_lesion>
-						<ccsp_findings openmrs_concept="7383^Findings^99DCT" openmrs_datatype="CWE">
+						<ccsp_findings openmrs_concept="7383^COLPOSCOPY^99DCT" openmrs_datatype="CWE">
 							<date/>
 							<time/>
 							<value/>
@@ -299,7 +299,7 @@
 							<time/>
 							<value/>
 						</freetext_general>
-						<ccsp_currentfp openmrs_concept="374^Current FP^99DCT" openmrs_datatype="CWE" multiple="1">
+						<ccsp_currentfp openmrs_concept="374^METHOD OF FAMILY PLANNING^99DCT" openmrs_datatype="CWE" multiple="1">
 							<date/>
 							<time/>
 							<condoms openmrs_concept="190^CONDOMS^99DCT">false</condoms>

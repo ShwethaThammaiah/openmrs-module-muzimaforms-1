@@ -41,7 +41,7 @@
 						<end_time openmrs_concept="1694^END TIME^99DCT" openmrs_datatype="TM">
 							<value/>
 						</end_time>
-						<current_sit_type openmrs_concept="1839^CURRENT SIT TYPE^99DCT" openmrs_datatype="CWE">
+						<current_sit_type openmrs_concept="1839^CURRENT VISIT TYPE^99DCT" openmrs_datatype="CWE">
 							<value/>
 						</current_sit_type>
 						<last_menstrual_period_date openmrs_concept="1836^LAST MENSTRUAL PERIOD DATE^99DCT" openmrs_datatype="DT">

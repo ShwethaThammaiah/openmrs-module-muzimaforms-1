@@ -21,7 +21,21 @@
     <script type="text/javascript" src="js/muzima.storage.js"></script>
     <script type="text/javascript" src="js/muzima.webform.js"></script>
     <script type="text/javascript" src="js/widgets.js"></script>
+
     <script type="text/javascript" src="../ziggy/ziggy.js"></script>
+    <script type="text/javascript">
+        // Date.parse("yyyy-MM-dd"), new Date("yyyy-MM-dd") is not supported in android 2.2. Added this patch for libraries-all-min.js to fix it.
+        var ecmaScriptDateParse = Date.parse;
+        Date.parse = function(dateString){
+            if(!dateString){
+                return;
+            }
+            dateString = dateString.replace(/-/g, "/");
+            return ecmaScriptDateParse(dateString);
+        }
+
+        DateType.prototype.toDate=function(){var date=new Date(this.value);if(!isNaN(date.getTime())) return date;return new Date(Date.parse(this.value))}
+    </script>
     <script type="text/javascript">
         window.onerror = function (m, u, l) {
             console.error("Javascript Error: , msg: {0}, url: {1}, line: {2}".format(m, u, l));
@@ -34,7 +48,7 @@
         settings['supportEmail'] = '';
         settings['returnURL'] = '';
 
-        var modelStr = formInstance.getModel();
+        var modelStr = formInstance.getModel()+"";
     </script>
 </head>
 <body>
@@ -65,7 +79,6 @@
     </div>
     <div class="modal-body">
         <p class="alert alert-block alert-error"></p>
-
         <p class="msg"></p>
     </div>
     <div class="modal-footer">
@@ -99,7 +112,10 @@
         <script>
             document.write(formInstance.getHTML());
         </script>
-
+        <div class="form-buttons">
+            <input type="button" value="Save as Draft" class="form-button" onclick="javascript:document.saveDraft()">
+            <input type="button" value="Save as Complete" class="form-button" onclick="javascript:document.submit()">
+        </div>
     </div>
 </div>
 </body>

@@ -618,7 +618,7 @@ enketo.FormDefinitionLoader = function () {
 
     return {
         load: function (formName) {
-            return JSON.parse(ziggyFileLoader.loadAppData());
+            return JSON.parse(ziggyFileLoader.loadAppData()+"");
         }
     };
 };
@@ -706,8 +706,11 @@ enketo.FormDataRepository = function () {
         queryList: function (sql) {
             return repository.queryList(sql);
         },
-        saveFormSubmission: function (data, status) {
-            return repository.save(JSON.stringify(data), status);
+        saveFormSubmission: function (data,xmlData, status) {
+            var payload = JSON.stringify(data);
+            console.log("The json payload saved is:"+payload);
+            console.log("The xml payload saved is:"+xmlData);
+            return repository.save(payload,xmlData, status);
         },
         saveEntity: function (entityType, entity) {
             return repository.saveEntity(entityType, JSON.stringify(entity));
@@ -762,8 +765,8 @@ enketo.FormDataController = function (entityRelationshipLoader, formDefinitionLo
         return formModelMapper.mapToFormModel(self.entityDefinitions, self.formDefinition, params);
     };
 
-    self.save = function (data, status) {
-        formDataRepository.saveFormSubmission(data, status);
+    self.save = function (jsonData,xmlData, status) {
+        formDataRepository.saveFormSubmission(jsonData,xmlData, status);
     };
 
     self.createOrUpdateEntity = function (params, data) {

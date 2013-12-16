@@ -70,37 +70,37 @@
 						<!-- Metformin -->
 						<patient_reported_current_other_treatment openmrs_concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT" openmrs_datatype="ZZ">
 							<medication_added openmrs_concept="1895^MEDICATION ADDED^99DCT" openmrs_datatype="CWE"><value/></medication_added>
-							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><number_of_milligram_value/></number_of_milligram>
+							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><value/></number_of_milligram>
 							<medication_frequency_per_day openmrs_concept="1896^MEDICATION FREQUENCY^99DCT" openmrs_datatype="CWE"><value/></medication_frequency_per_day>
 						</patient_reported_current_other_treatment>
 						<!-- Glibenclamide -->
 						<patient_reported_current_other_treatment_1 openmrs_concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT" openmrs_datatype="ZZ">
 							<medication_added openmrs_concept="1895^MEDICATION ADDED^99DCT" openmrs_datatype="CWE"><value/></medication_added>
-							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><number_of_milligram_value/></number_of_milligram>
+							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><value/></number_of_milligram>
 							<medication_frequency_per_day openmrs_concept="1896^MEDICATION FREQUENCY^99DCT" openmrs_datatype="CWE"><value/></medication_frequency_per_day>
 						</patient_reported_current_other_treatment_1>
 						<!-- Enalapril -->
 						<patient_reported_current_other_treatment_2 openmrs_concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT" openmrs_datatype="ZZ">
 							<medication_added openmrs_concept="1895^MEDICATION ADDED^99DCT" openmrs_datatype="CWE"><value/></medication_added>
-							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><number_of_milligram_value/></number_of_milligram>
+							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><value/></number_of_milligram>
 							<medication_frequency_per_day openmrs_concept="1896^MEDICATION FREQUENCY^99DCT" openmrs_datatype="CWE"><value/></medication_frequency_per_day>
 						</patient_reported_current_other_treatment_2>
 						<!-- HCTZ -->
 						<patient_reported_current_other_treatment_3 openmrs_concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT" openmrs_datatype="ZZ">
 							<medication_added openmrs_concept="1895^MEDICATION ADDED^99DCT" openmrs_datatype="CWE"><value/></medication_added>
-							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><number_of_milligram_value/></number_of_milligram>
+							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><value/></number_of_milligram>
 							<medication_frequency_per_day openmrs_concept="1896^MEDICATION FREQUENCY^99DCT" openmrs_datatype="CWE"><value/></medication_frequency_per_day>
 						</patient_reported_current_other_treatment_3>
 						<!-- Losartan -->
 						<patient_reported_current_other_treatment_4 openmrs_concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT" openmrs_datatype="ZZ">
 							<medication_added openmrs_concept="1895^MEDICATION ADDED^99DCT" openmrs_datatype="CWE"><value/></medication_added>
-							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><number_of_milligram_value/></number_of_milligram>
+							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><value/></number_of_milligram>
 							<medication_frequency_per_day openmrs_concept="1896^MEDICATION FREQUENCY^99DCT" openmrs_datatype="CWE"><value/></medication_frequency_per_day>
 						</patient_reported_current_other_treatment_4>
 						<!-- Nifedipine -->
 						<patient_reported_current_other_treatment_5 openmrs_concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT" openmrs_datatype="ZZ">
 							<medication_added openmrs_concept="1895^MEDICATION ADDED^99DCT" openmrs_datatype="CWE"><value/></medication_added>
-							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><number_of_milligram_value/></number_of_milligram>
+							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><value/></number_of_milligram>
 							<medication_frequency_per_day openmrs_concept="1896^MEDICATION FREQUENCY^99DCT" openmrs_datatype="CWE"><value/></medication_frequency_per_day>
 						</patient_reported_current_other_treatment_5>
 						<!-- Other Medications -->
@@ -367,8 +367,8 @@
 						<!-- Metformin -->
 						<other_medication_order openmrs_concept="1901^OTHER MEDICATION ORDER^99DCT" openmrs_datatype="ZZ">
 							<medication_added openmrs_concept="1895^MEDICATION ADDED^99DCT" openmrs_datatype="CWE"><value/></medication_added>
-							<number_of_tablets openmrs_concept="1898^NUMBER OF TABLETS^99DCT" openmrs_datatype="NM"><value/></number_of_tablets
-							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><number_of_milligram_value/></number_of_milligram>
+							<number_of_tablets openmrs_concept="1898^NUMBER OF TABLETS^99DCT" openmrs_datatype="NM"><value/></number_of_tablets>
+							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><value/></number_of_milligram>
 							<medication_frequency_per_day openmrs_concept="1896^MEDICATION FREQUENCY^99DCT" openmrs_datatype="CWE"><value/></medication_frequency_per_day>
 							<dosage_change openmrs_concept="1931^DOSAGE CHANGE^99DCT" openmrs_datatype="CWE"><value/></dosage_change>
 							<tmp_dosage_change/>
@@ -378,7 +378,7 @@
 						<other_medication_order_1 openmrs_concept="1901^OTHER MEDICATION ORDER^99DCT" openmrs_datatype="ZZ">
 							<medication_added openmrs_concept="1895^MEDICATION ADDED^99DCT" openmrs_datatype="CWE"><value/></medication_added>
 							<number_of_tablets openmrs_concept="1898^NUMBER OF TABLETS^99DCT" openmrs_datatype="NM"><value/></number_of_tablets>
-							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><number_of_milligram_value/></number_of_milligram>
+							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><value/></number_of_milligram>
 							<medication_frequency_per_day openmrs_concept="1896^MEDICATION FREQUENCY^99DCT" openmrs_datatype="CWE"><value/></medication_frequency_per_day>
 							<medication_received_at_vist openmrs_concept="1276^MEDICATION RECEIVED AT VIST^99DCT" openmrs_datatype="BIT"><value/></medication_received_at_vist>
 						</other_medication_order_1>
@@ -386,7 +386,7 @@
 						<other_medication_order_2 openmrs_concept="1901^OTHER MEDICATION ORDER^99DCT" openmrs_datatype="ZZ">
 							<medication_added openmrs_concept="1895^MEDICATION ADDED^99DCT" openmrs_datatype="CWE"><value/></medication_added>
 							<number_of_tablets openmrs_concept="1898^NUMBER OF TABLETS^99DCT" openmrs_datatype="NM"><value/></number_of_tablets>
-							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><number_of_milligram_value/></number_of_milligram>
+							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><value/></number_of_milligram>
 							<medication_frequency_per_day openmrs_concept="1896^MEDICATION FREQUENCY^99DCT" openmrs_datatype="CWE"><value/></medication_frequency_per_day>
 							<medication_received_at_vist openmrs_concept="1276^MEDICATION RECEIVED AT VIST^99DCT" openmrs_datatype="BIT"><value/></medication_received_at_vist>
 						</other_medication_order_2>
@@ -394,7 +394,7 @@
 						<other_medication_order_3 openmrs_concept="1901^OTHER MEDICATION ORDER^99DCT" openmrs_datatype="ZZ">
 							<medication_added openmrs_concept="1895^MEDICATION ADDED^99DCT" openmrs_datatype="CWE"><value/></medication_added>
 							<number_of_tablets openmrs_concept="1898^NUMBER OF TABLETS^99DCT" openmrs_datatype="NM"><value/></number_of_tablets>
-							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><number_of_milligram_value/></number_of_milligram>
+							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><value/></number_of_milligram>
 							<medication_frequency_per_day openmrs_concept="1896^MEDICATION FREQUENCY^99DCT" openmrs_datatype="CWE"><value/></medication_frequency_per_day>
 							<medication_received_at_vist openmrs_concept="1276^MEDICATION RECEIVED AT VIST^99DCT" openmrs_datatype="BIT"><value/></medication_received_at_vist>
 						</other_medication_order_3>
@@ -402,7 +402,7 @@
 						<other_medication_order_4 openmrs_concept="1901^OTHER MEDICATION ORDER^99DCT" openmrs_datatype="ZZ">
 							<medication_added openmrs_concept="1895^MEDICATION ADDED^99DCT" openmrs_datatype="CWE"><value/></medication_added>
 							<number_of_tablets openmrs_concept="1898^NUMBER OF TABLETS^99DCT" openmrs_datatype="NM"><value/></number_of_tablets>
-							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><number_of_milligram_value/></number_of_milligram>
+							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><value/></number_of_milligram>
 							<medication_frequency_per_day openmrs_concept="1896^MEDICATION FREQUENCY^99DCT" openmrs_datatype="CWE"><value/></medication_frequency_per_day>
 							<medication_received_at_vist openmrs_concept="1276^MEDICATION RECEIVED AT VIST^99DCT" openmrs_datatype="BIT"><value/></medication_received_at_vist>
 						</other_medication_order_4>
@@ -410,14 +410,14 @@
 						<other_medication_order_5 openmrs_concept="1901^OTHER MEDICATION ORDER^99DCT" openmrs_datatype="ZZ">
 							<medication_added openmrs_concept="1895^MEDICATION ADDED^99DCT" openmrs_datatype="CWE"><value/></medication_added>
 							<number_of_tablets openmrs_concept="1898^NUMBER OF TABLETS^99DCT" openmrs_datatype="NM"><value/></number_of_tablets>
-							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><number_of_milligram_value/></number_of_milligram>
+							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><value/></number_of_milligram>
 							<medication_frequency_per_day openmrs_concept="1896^MEDICATION FREQUENCY^99DCT" openmrs_datatype="CWE"><value/></medication_frequency_per_day>
 							<medication_received_at_vist openmrs_concept="1276^MEDICATION RECEIVED AT VIST^99DCT" openmrs_datatype="BIT"><value/></medication_received_at_vist>
 						</other_medication_order_5>
 						<!-- Other Medications -->
 						<other_medication_order_6 openmrs_concept="1901^OTHER MEDICATION ORDER^99DCT" openmrs_datatype="ZZ">
 							<number_of_tablets openmrs_concept="1898^NUMBER OF TABLETS^99DCT" openmrs_datatype="NM"><value/></number_of_tablets>
-							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><number_of_milligram_value/></number_of_milligram>
+							<number_of_milligram openmrs_concept="1899^NUMBER OF MILLIGRAM^99DCT" openmrs_datatype="NM"><value/></number_of_milligram>
 							<medication_frequency_per_day openmrs_concept="1896^MEDICATION FREQUENCY^99DCT" openmrs_datatype="CWE"><value/></medication_frequency_per_day>
 							<medication_received_at_vist openmrs_concept="1276^MEDICATION RECEIVED AT VIST^99DCT" openmrs_datatype="BIT"><value/></medication_received_at_vist>
 							<medication_name_freetext openmrs_concept="1779^MEDICATION NAME, FREETEXT^99DCT" openmrs_datatype="ST"><value/></medication_name_freetext>

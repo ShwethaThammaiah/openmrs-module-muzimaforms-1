@@ -565,8 +565,11 @@
 			<bind id="missed_medication_added_metformin" nodeset="/form/obs/missed_medication_for_past_week/missed_medication_added/value" type="string"
 				calculate="../../../patient_reported_current_other_treatment/medication_added/value"/>
     		<bind id="number_of_pills_taken_in_the_last_week_any_medication_metformin" nodeset="/form/obs/missed_medication_for_past_week/number_of_pills_taken_in_the_last_week_any_medication/value" type="string" required="true()"/>
-			<bind id="missed_medication_reason_metformin" nodeset="/form/obs/missed_medication_for_past_week/missed_medication_reason/xforms_value" required="true()" type="string" 
-				relevant="../../number_of_pills_taken_in_the_last_week_any_medication/value !='1163^ALL^99DCT'"/>
+			<bind id="missed_medication_reason_metformin" nodeset="/form/obs/missed_medication_for_past_week/missed_medication_reason/xforms_value" required="true()" type="string"
+                  relevant="(../../number_of_pills_taken_in_the_last_week_any_medication/value ='1162^MOST^99DCT')
+                    or (../../number_of_pills_taken_in_the_last_week_any_medication/value ='1161^HALF^99DCT')
+                    or (../../number_of_pills_taken_in_the_last_week_any_medication/value ='1160^FEW^99DC')
+                    or (../../number_of_pills_taken_in_the_last_week_any_medication/value ='1107^NONE^99DCT')"/>
 			<bind id="freetext_general_metformin" nodeset="/form/obs/missed_medication_for_past_week/freetext_general/value" type="string"/>
 			
 			<!-- GLIBENCLAMIDE CURRENT -->
@@ -583,7 +586,10 @@
 				calculate="../../../patient_reported_current_other_treatment_1/medication_added/value"/>
     		<bind id="number_of_pills_taken_in_the_last_week_any_medication_glibenclamide" nodeset="/form/obs/missed_medication_for_past_week_1/number_of_pills_taken_in_the_last_week_any_medication/value" type="string"/>
 			<bind id="missed_medication_reason_glibenclamide" nodeset="/form/obs/missed_medication_for_past_week_1/missed_medication_reason/xforms_value" required="true()" type="string"
-				relevant="../../number_of_pills_taken_in_the_last_week_any_medication/value !='1163^ALL^99DCT'"/>
+                  relevant="(../../number_of_pills_taken_in_the_last_week_any_medication/value ='1162^MOST^99DCT')
+                    or (../../number_of_pills_taken_in_the_last_week_any_medication/value ='1161^HALF^99DCT')
+                    or (../../number_of_pills_taken_in_the_last_week_any_medication/value ='1160^FEW^99DC')
+                    or (../../number_of_pills_taken_in_the_last_week_any_medication/value ='1107^NONE^99DCT')"/>
 			<bind id="freetext_general_glibenclamide" nodeset="/form/obs/missed_medication_for_past_week_1/freetext_general/value" type="string"/>
 			
 			<!-- ENALAPRIL CURRENT-->
@@ -600,7 +606,10 @@
 				calculate="../../../patient_reported_current_other_treatment_2/medication_added/value"/>
     		<bind id="number_of_pills_taken_in_the_last_week_any_medication_enalapril" nodeset="/form/obs/missed_medication_for_past_week_2/number_of_pills_taken_in_the_last_week_any_medication/value" type="string"/>
 			<bind id="missed_medication_reason_enalapril" nodeset="/form/obs/missed_medication_for_past_week_2/missed_medication_reason/xforms_value" required="true()" type="string"
-				relevant="../../number_of_pills_taken_in_the_last_week_any_medication/value !='1163^ALL^99DCT'"/>
+                  relevant="(../../number_of_pills_taken_in_the_last_week_any_medication/value ='1162^MOST^99DCT')
+                    or (../../number_of_pills_taken_in_the_last_week_any_medication/value ='1161^HALF^99DCT')
+                    or (../../number_of_pills_taken_in_the_last_week_any_medication/value ='1160^FEW^99DC')
+                    or (../../number_of_pills_taken_in_the_last_week_any_medication/value ='1107^NONE^99DCT')"/>
 			<bind id="freetext_general_enalapril" nodeset="/form/obs/missed_medication_for_past_week_2/freetext_general/value" type="string"/>
 			
 			<!-- HCTZ CURRENT-->
@@ -617,7 +626,10 @@
 				calculate="../../../patient_reported_current_other_treatment_3/medication_added/value"/>
     		<bind id="number_of_pills_taken_in_the_last_week_any_medication_hctz" nodeset="/form/obs/missed_medication_for_past_week_3/number_of_pills_taken_in_the_last_week_any_medication/value" type="string"/>
 			<bind id="missed_medication_reason_hctz" nodeset="/form/obs/missed_medication_for_past_week_3/missed_medication_reason/xforms_value" required="true()" type="string"
-				relevant="../../number_of_pills_taken_in_the_last_week_any_medication/value !='1163^ALL^99DCT'"/>
+                  relevant="(../../number_of_pills_taken_in_the_last_week_any_medication/value ='1162^MOST^99DCT')
+                    or (../../number_of_pills_taken_in_the_last_week_any_medication/value ='1161^HALF^99DCT')
+                    or (../../number_of_pills_taken_in_the_last_week_any_medication/value ='1160^FEW^99DC')
+                    or (../../number_of_pills_taken_in_the_last_week_any_medication/value ='1107^NONE^99DCT')"/>
 			<bind id="freetext_general_hctz" nodeset="/form/obs/missed_medication_for_past_week_3/freetext_general/value" type="string"/>
 			
 			<!-- LOSARTAN CURRENT -->
@@ -634,7 +646,10 @@
 				calculate="../../../patient_reported_current_other_treatment_4/medication_added/value"/>
     		<bind id="number_of_pills_taken_in_the_last_week_any_medication_losartan" nodeset="/form/obs/missed_medication_for_past_week_4/number_of_pills_taken_in_the_last_week_any_medication/value" type="string"/>
 			<bind id="missed_medication_reason_losartan" nodeset="/form/obs/missed_medication_for_past_week_4/missed_medication_reason/xforms_value" required="true()" type="string"
-				relevant="../../number_of_pills_taken_in_the_last_week_any_medication/value !='1163^ALL^99DCT'"/>
+                  relevant="(../../number_of_pills_taken_in_the_last_week_any_medication/value ='1162^MOST^99DCT')
+                    or (../../number_of_pills_taken_in_the_last_week_any_medication/value ='1161^HALF^99DCT')
+                    or (../../number_of_pills_taken_in_the_last_week_any_medication/value ='1160^FEW^99DC')
+                    or (../../number_of_pills_taken_in_the_last_week_any_medication/value ='1107^NONE^99DCT')"/>
 			<bind id="freetext_general_losartan" nodeset="/form/obs/missed_medication_for_past_week_4/freetext_general/value" type="string"/>
 			
 			<!-- NIFEDIPINE CURRENT -->
@@ -651,7 +666,10 @@
 				calculate="../../../patient_reported_current_other_treatment_5/medication_added/value"/>
     		<bind id="number_of_pills_taken_in_the_last_week_any_medication_nifedipine" nodeset="/form/obs/missed_medication_for_past_week_5/number_of_pills_taken_in_the_last_week_any_medication/value" type="string"/>
 			<bind id="missed_medication_reason_nifedipine" nodeset="/form/obs/missed_medication_for_past_week_5/missed_medication_reason/xforms_value" required="true()" type="string"
-				relevant="../../number_of_pills_taken_in_the_last_week_any_medication/value !='1163^ALL^99DCT'"/>
+                  relevant="(../../number_of_pills_taken_in_the_last_week_any_medication/value ='1162^MOST^99DCT')
+                    or (../../number_of_pills_taken_in_the_last_week_any_medication/value ='1161^HALF^99DCT')
+                    or (../../number_of_pills_taken_in_the_last_week_any_medication/value ='1160^FEW^99DC')
+                    or (../../number_of_pills_taken_in_the_last_week_any_medication/value ='1107^NONE^99DCT')"/>
 			<bind id="freetext_general_nifedipine" nodeset="/form/obs/missed_medication_for_past_week_5/freetext_general/value" type="string"/>
 			
 			<!-- OTHER MEDICATIONS CURRENT -->
@@ -667,7 +685,10 @@
 				relevant="selected(../tmp_drugs, 'other')"/>
     		<bind id="number_of_pills_taken_in_the_last_week_any_medication_other" nodeset="/form/obs/missed_medication_for_past_week_6/number_of_pills_taken_in_the_last_week_any_medication/value" type="string"/>
 			<bind id="missed_medication_reason_other" nodeset="/form/obs/missed_medication_for_past_week_6/missed_medication_reason/xforms_value" required="true()" type="string"
-				relevant="../../number_of_pills_taken_in_the_last_week_any_medication/value !='1163^ALL^99DCT'"/>
+                  relevant="(../../number_of_pills_taken_in_the_last_week_any_medication/value ='1162^MOST^99DCT')
+                    or (../../number_of_pills_taken_in_the_last_week_any_medication/value ='1161^HALF^99DCT')
+                    or (../../number_of_pills_taken_in_the_last_week_any_medication/value ='1160^FEW^99DC')
+                    or (../../number_of_pills_taken_in_the_last_week_any_medication/value ='1107^NONE^99DCT')"/>
 			<bind id="freetext_general_other" nodeset="/form/obs/missed_medication_for_past_week_6/freetext_general/value" type="string"
 				calculate="../../../patient_reported_current_other_treatment_6/medication_name_freetext/value"/>
     

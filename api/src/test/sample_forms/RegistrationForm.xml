@@ -76,7 +76,7 @@
             <bind id="patient.family_name" nodeset="/form/patient/patient.family_name" required="true()" type="string" />
             <bind id="patient.given_name" nodeset="/form/patient/patient.given_name" required="true()" type="string"/>
             <bind id="patient.middle_name" nodeset="/form/patient/patient.middle_name" type="string"/>
-            <bind id="patient.phone_number" nodeset="/form/patient/patient.phone_number" type="string"/>
+            <bind id="patient.phone_number" nodeset="/form/patient/patient.phone_number" type="string" constraint="regex(., '^\d{8,12}$')" jr:constraintMsg="Invalid Phone Number. Please check and re-enter."/>
             <bind id="patient.sex" nodeset="/form/patient/patient.sex" required="true()" type="string"/>
             <bind id="encounter.encounter_datetime" nodeset="/form/encounter/encounter.encounter_datetime" type="date"
                   constraint=". &lt;= today()" jr:constraintMsg="Encounter date cannot be in the future" required="true()"/>

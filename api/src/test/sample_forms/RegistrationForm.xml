@@ -134,7 +134,7 @@
                     </item>
                 </select1>
                 <input bind="age">
-                    <label>How old are you now?</label>
+                    <label>How old are you now (in years)?</label>
                     <hint>Age in complete years</hint>
                 </input>
                 <input bind="birthdate">

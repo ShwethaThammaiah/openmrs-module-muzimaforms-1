@@ -512,8 +512,8 @@
 			<bind id="patient.given_name" nodeset="/form/patient/patient.given_name" required="true()" type="string" readonly="true()"/>
 			<bind id="patient.middle_name" nodeset="/form/patient/patient.middle_name" type="string" readonly="true()"/>
 			<bind id="patient.sex" nodeset="/form/patient/patient.sex" required="true()" type="string" readonly="true()"/>
-			<bind id="encounter.encounter_datetime" nodeset="/form/encounter/encounter.encounter_datetime" type="date" 
-				constraint=". &lt;= today()" jr:constraintMsg="Encounter date cannot be in the future" required="true()"/>
+			<bind id="encounter.encounter_datetime" nodeset="/form/encounter/encounter.encounter_datetime" type="date"
+                  constraint=". &lt; (today() + 1)" jr:constraintMsg="Encounter date cannot be in the future" required="true()"/>
 			<bind id="encounter.location_id" nodeset="/form/encounter/encounter.location_id" type="string" required="true()"/>
 			<bind id="provider_id_select" nodeset="/form/encounter/tmp/provider_id_select" type="select1"/>
 			<bind id="provider_id_text" nodeset="/form/encounter/tmp/provider_id_text" type="string" required="true()"
@@ -526,7 +526,7 @@
     		<bind id="end_time" nodeset="/form/obs/end_time/value" jr:preload="time" jr:preloadParams="end" type="time"/>
 			<bind id="current_visit_type" nodeset="/form/obs/current_visit_type/value" required="true()" type="string"/>
 			<bind id="date_of_initial_hct_encounter" nodeset="/form/obs/date_of_initial_hct_encounter/value" type="date"
-				constraint=". &lt;= today()" jr:constraintMsg="pHCT Encounter date cannot be in the future" 
+                constraint=". &lt; (today() + 1)" jr:constraintMsg="pHCT Encounter date cannot be in the future"
 				relevant="../../current_visit_type/value='7034^FIRST DISPENSARY VISIT AFTER HCT^99DCT'"/>
 			<bind id="systolic_blood_pressure_detailed" nodeset="/form/obs/systolic_blood_pressure_detailed"/>
 			<bind id="location_of_contact_sbpd" nodeset="/form/obs/systolic_blood_pressure_detailed/location_of_contact/value"

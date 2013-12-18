@@ -323,8 +323,8 @@
 			<bind id="end_time" nodeset="/form/obs/end_time/value" jr:preload="time" jr:preloadParams="end" type="time"/>
 
 			<bind id="current_visit_type" nodeset="/form/obs/current_visit_type/value" required="true()" type="string"/>
-			<bind id="encounter.encounter_datetime" nodeset="/form/encounter/encounter.encounter_datetime" required="true()" type="date" 
-				constraint=". &lt;= today()" jr:constraintMsg="Encounter date cannot be after today"/>
+			<bind id="encounter.encounter_datetime" nodeset="/form/encounter/encounter.encounter_datetime" required="true()" type="date"
+                  constraint=". &lt; (today() + 1)" jr:constraintMsg="Encounter date cannot be after today"/>
 			<bind id="encounter.location_id" nodeset="/form/encounter/encounter.location_id" type="string" required="true()"/>
 			<bind id="encounter.provider_id" nodeset="/form/encounter/encounter.provider_id" type="string" required="true()"/>
 			<bind id="encounter" nodeset="/form/encounter" relevant="../patient/patient.sex= 'F'"/>
@@ -342,14 +342,14 @@
 			<bind id="no_male" nodeset="/form/patient/no_male" type="string" readonly="true()" relevant="../patient/patient.sex= 'M'"/>
 
 			<bind id="obs" nodeset="/form/obs" relevant="../patient/patient.sex= 'F'"/>
-			<bind id="gravida" nodeset="/form/obs/gravida/value" required="true()" type="integer" 
+			<bind id="gravida" nodeset="/form/obs/gravida/value" required="true()" type="int"
 				constraint="not(. &lt;=-1)" jr:constraintMsg="Value cannot be negative"/>
 			<bind id="parity" nodeset="/form/obs/parity/value" required="true()" type="int" 
 				constraint=". &lt;=../../gravida/value and not(. &lt;=0)" jr:constraintMsg="Deliveries cannot be negative or more than number of pregnancies"
 				relevant="../../gravida/value &gt;0"/>
 			<bind id="menstruation_status" nodeset="/form/obs/menstruation_status/value" type="string" required="true()"/>
-			<bind id="last_menstrual_period_date" nodeset="/form/obs/last_menstrual_period_date/value" type="date" required="true()" 
-				constraint=". &lt;=today()" jr:constraintMsg="LMP cannot be in the future"
+			<bind id="last_menstrual_period_date" nodeset="/form/obs/last_menstrual_period_date/value" type="date" required="true()"
+                  constraint=". &lt; (today() + 1)" jr:constraintMsg="LMP cannot be in the future"
 				relevant="not(selected(../../menstruation_status/value,'2060^AMENORRHEA^99DCT')) and
 						  not(selected(../../menstruation_status/value,'6496^POST-MENOPAUSAL^99DCT'))"/>
 			<bind id="urine_pregnancy_test_qualitative" nodeset="/form/obs/urine_pregnancy_test_qualitative/value" type="string" required="true()"
@@ -363,14 +363,14 @@
 				constraint=". &gt;=0" jr:constraintMsg="Value cannot be negative"/>
 			<bind id="date_of_last_cd4_by_facs" nodeset="/form/obs/last_cd4_by_facs/date" type="date" required="true()" 
 				relevant="(selected(../../hiv_status/value,'703^POSITIVE^99DCT'))"
-				constraint=". &lt;=today()" jr:constraintMsg="Test date cannot be in the future"/>
+                constraint=". &lt; (today() + 1)" jr:constraintMsg="Test date cannot be in the future"/>
 			<bind id="history_of_dysplasia" nodeset="/form/obs/history_of_dysplasia/value" type="string" required="true()"/>
 			<bind id="most_recent_colposcopy_result" nodeset="/form/obs/most_recent_colposcopy_result/xforms_value" type="string" required="true()"
 				constraint="not((selected(., 'normal') or selected(., 'do_not_know') or selected(., 'not_applicable'))and count-selected(.) > 1)"
 				jr:constraintMsg="If normal, not applicable or don't know is selected, it should be the only option"/>
 			<bind id="date_of_most_recent_colposcopy_result" nodeset="/form/obs/most_recent_colposcopy_result/date" type="date" required="true()"
 				relevant="not(selected(../xforms_value,'do_not_know') or selected(../xforms_value,'not_applicable'))"
-				constraint=". &lt;=today()" jr:constraintMsg="Test date cannot be in the future"/>
+				cconstraint=". &lt; (today() + 1)" jr:constraintMsg="Test date cannot be in the future"/>
 			<bind id="past_treatment_of_dysplasia_detailed" nodeset="/form/obs/past_treatment_of_dysplasia_detailed"/>
 			<bind id="past_treatment_of_dysplasia" nodeset="/form/obs/past_treatment_of_dysplasia_detailed/past_treatment_of_dysplasia/xforms_value" type="string" required="true()"
 				constraint="not((selected(., 'none') or selected(., 'not_applicable'))and count-selected(.) > 1)"
@@ -400,20 +400,20 @@
 				jr:constraintMsg="If normal, not applicable or don't know is selected, it should be the only option"/>
 			<bind id="date_of_most_recent_papanicolaou_smear_result" nodeset="/form/obs/most_recent_papanicolaou_smear_result/date" type="date" required="true()"
 				relevant="not(selected(../xforms_value,'do_not_know') or selected(../xforms_value,'not_applicable'))"
-				constraint=". &lt;=today()" jr:constraintMsg="Test date cannot be in the future"/>
+                constraint=". &lt; (today() + 1)" jr:constraintMsg="Test date cannot be in the future"/>
 			<bind id="ccsp_satisfactory_colpo" nodeset="/form/obs/ccsp_satisfactory_colpo/value" type="string" required="true()"/>
 			<bind id="ccsp_lesion" nodeset="/form/obs/ccsp_lesion/value" type="string" required="true()"
 				relevant="not(selected(../../ccsp_satisfactory_colpo/value,'1118^Colposcopy not done today^99DCT'))"/>
 			<bind id="most_recent_biopsy_result" nodeset="/form/obs/most_recent_biopsy_result/value" type="string"/>
 			<bind id="date_of_most_recent_biopsy_result" nodeset="/form/obs/most_recent_biopsy_result/date" type="date" 
-				relevant="../value != ''" constraint=". &lt;=today()" jr:constraintMsg="Test date cannot be in the future"/>
+				relevant="../value != ''" constraint=". &lt; (today() + 1)" jr:constraintMsg="Test date cannot be in the future"/>
 			<bind id="ccsp_findings" nodeset="/form/obs/ccsp_findings/value" type="string" required="true()"
 				relevant="not(selected(../../ccsp_satisfactory_colpo/value,'1118^Colposcopy not done today^99DCT'))"
 				constraint="not(selected(., '1115^Normal^99DCT') or selected(., '1624^Dont_know^99DCT') and count-selected(.)>1 )"
 				jr:constraintMsg="If normal or don't know, is selected, it should be the only option"/>
 			<bind id="ccsp_procedures_done" nodeset="/form/obs/ccsp_procedures_done/value" type="string" required="true()"/>
 			<bind id="procedures_done_this_visit_detailed" nodeset="/form/obs/procedures_done_this_visit_detailed"/>
-			<bind id="number_of_specimen_collected" nodeset="/form/obs/procedures_done_this_visit_detailed/number_of_specimen_collected/value" type="integer" required="true()"
+			<bind id="number_of_specimen_collected" nodeset="/form/obs/procedures_done_this_visit_detailed/number_of_specimen_collected/value" type="int" required="true()"
 				relevant="../../procedures_done_this_visit/value = '7147^Loop electrosurgical excision procedure^99DCT'"/>
 			<bind id="body_part" nodeset="/form/obs/procedures_done_this_visit_detailed/body_part/value" type="string" required="true()"/>
 			<bind id="procedures_done_this_visit" nodeset="/form/obs/procedures_done_this_visit_detailed/procedures_done_this_visit/value" type="string" required="true()"

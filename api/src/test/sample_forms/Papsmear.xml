@@ -123,8 +123,8 @@
 			<bind id="start_time" nodeset="/form/obs/start_time/value" jr:preload="time" jr:preloadParams="start" type="time"/>
 			<bind id="end_time" nodeset="/form/obs/end_time/value" jr:preload="time" jr:preloadParams="end" type="time"/>
 			<bind id="current_sit_type" nodeset="/form/obs/current_sit_type/value" required="true()" type="string"/>
-			<bind id="encounter.encounter_datetime" nodeset="/form/encounter/encounter.encounter_datetime" type="date" required="true()" 
-				constraint=". &lt;=today()" jr:constraintMsg="Encounter date cannot be in the future"/>
+			<bind id="encounter.encounter_datetime" nodeset="/form/encounter/encounter.encounter_datetime" type="date" required="true()"
+                  constraint=". &lt; (today() + 1)" jr:constraintMsg="Encounter date cannot be in the future"/>
 			<bind id="encounter.location_id" nodeset="/form/encounter/encounter.location_id" type="string" required="true()"/>
 			<bind id="encounter.provider_id" nodeset="/form/encounter/encounter.provider_id" type="string" required="true()"/>
 			<bind id="encounter" nodeset="/form/encounter" relevant="../patient/patient.sex= 'F'"/>
@@ -132,8 +132,8 @@
 			<bind id="patient.patient_id" nodeset="/form/patient/patient.patient_id" type="int" required="true()"/>
 			<bind id="patient_identifier.identifier_type_id" nodeset="/form/patient/patient_identifier.identifier_type_id" calculate="3" type="integer"/>
 			<bind id="patient.medical_record_number" nodeset="/form/patient/patient.medical_record_number" type="string"/>
-			<bind id="patient.birthdate" nodeset="/form/patient/patient.birthdate" type="date" 
-				constraint=". &lt;=today()" jr:constraintMsg="Birth date cannot be in the future"/>
+			<bind id="patient.birthdate" nodeset="/form/patient/patient.birthdate" type="date"
+                  constraint=". &lt; (today() + 1)" jr:constraintMsg="Birth date cannot be in the future"/>
 			<bind id="patient.birthdate_estimated" nodeset="/form/patient/patient.birthdate_estimated" type="string"/>
 			<bind id="patient.family_name" nodeset="/form/patient/patient.family_name" type="string" required="true()"/>
 			<bind id="patient.given_name" nodeset="/form/patient/patient.given_name" type="string" required="true()"/>
@@ -141,8 +141,8 @@
 			<bind id="patient.sex" nodeset="/form/patient/patient.sex" type="string" required="true()"/>
 			<bind id="no_male" nodeset="/form/patient/no_male" type="string" readonly="true()" relevant="../patient/patient.sex= 'M'"/>
 			<bind id="obs" nodeset="/form/obs" relevant="../patient/patient.sex= 'F'"/>
-			<bind id="last_menstrual_period_date" nodeset="/form/obs/last_menstrual_period_date/value" type="date" 
-				constraint=". &lt;=today()" jr:constraintMsg="LMP date cannot be in the future"/>
+			<bind id="last_menstrual_period_date" nodeset="/form/obs/last_menstrual_period_date/value" type="date"
+                  constraint=". &lt; (today() + 1)" jr:constraintMsg="LMP date cannot be in the future"/>
 			<bind id="chief_complaint" nodeset="/form/obs/chief_complaint/xforms_value" type="string" required="true()"
 				constraint="not(selected(., 'none') and count-selected(.)>1)"
 				jr:constraintMsg="If None, is selected, it should be the only option"/>
@@ -153,7 +153,7 @@
 				jr:constraintMsg="If normal, not applicable or don't know is selected, it should be the only option"/>
 			<bind id="date_most_recent_papanicolaou_smear_performed" nodeset="/form/obs/date_most_recent_papanicolaou_smear_performed/value" type="date"
 				relevant="not(selected(../../most_recent_papanicolaou_smear_result/xforms_value,'do_not_know'))"
-				constraint=". &lt;=today()" jr:constraintMsg="The date result was read cannot be in the future"/>
+                constraint=". &lt; (today() + 1)" jr:constraintMsg="The date result was read cannot be in the future"/>
 			<bind id="freetext_general" nodeset="/form/obs/freetext_general/value" type="string"/>
 		</xf:model>
 	</xf:head>

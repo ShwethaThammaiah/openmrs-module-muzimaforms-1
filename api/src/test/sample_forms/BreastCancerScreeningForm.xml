@@ -333,11 +333,11 @@
 			<bind id="patient.medical_record_number" nodeset="/form/patient/patient.medical_record_number" type="string" required="true()"/>
 			<bind id="patient.middle_name" nodeset="/form/patient/patient.middle_name" type="string"/>
 			<bind id="patient.patient_id" nodeset="/form/patient/patient.patient_id" type="int" required="true()"/>
-			<bind id="patient.birthdate" nodeset="/form/patient/patient.birthdate" type="date" 
-					constraint=". &lt;=today()" jr:constraintMsg="Date of birth cannot be in the future"/>
+			<bind id="patient.birthdate" nodeset="/form/patient/patient.birthdate" type="date"
+                  constraint=". &lt; (today() + 1)" jr:constraintMsg="Date of birth cannot be in the future"/>
 			<bind id="patient.sex" nodeset="/form/patient/patient.sex" type="string" required="true()"/>
-			<bind id="encounter.encounter_datetime" nodeset="/form/encounter/encounter.encounter_datetime" type="date" 
-					constraint=". &lt;= today()" jr:constraintMsg="Encounter date cannot be after today" required="true()"/>
+			<bind id="encounter.encounter_datetime" nodeset="/form/encounter/encounter.encounter_datetime" type="date"
+                  constraint=". &lt; (today() + 1)" jr:constraintMsg="Encounter date cannot be after today" required="true()"/>
 			<bind id="encounter" nodeset="/form/encounter"/>
 			<bind id="encounter.location_id" nodeset="/form/encounter/encounter.location_id" type="string" required="true()"/>
 			<bind id="encounter.provider_id" nodeset="/form/encounter/encounter.provider_id" type="string" required="true()"/>
@@ -361,7 +361,7 @@
 					relevant="../../patient/patient.sex='F'"/>
 			<bind id="age_of_menarche" nodeset="/form/obs/age_of_menarche/value" 
 					constraint=". &gt;= 8 and . &lt;= 23" jr:constraintMsg="Value should be between 8 and 20 inclusive" type="decimal"/>
-			<bind id="gravida" nodeset="/form/obs/gravida/value" required="true()" type="integer"
+			<bind id="gravida" nodeset="/form/obs/gravida/value" required="true()" type="int"
 					constraint="not(. &lt;=-1)" jr:constraintMsg="Value cannot be negative"/>
 			<bind id="parity" nodeset="/form/obs/parity/value" required="true()" type="int"
 					constraint=". &lt;=../../gravida/value and not(. &lt;=0)" jr:constraintMsg="Deliveries cannot be negative or more than number of pregnancies"
@@ -373,7 +373,7 @@
 					relevant="../../parity/value &gt;0"/>
 			<bind id="menstruation_status" nodeset="/form/obs/menstruation_status/value" type="string" required="true()"/>
 			<bind id="last_menstrual_period_date" nodeset="/form/obs/last_menstrual_period_date/value" type="date" required="true()"
-					constraint=". &lt;=today()" jr:constraintMsg="LMP cannot be in the future"
+                  constraint=". &lt; (today() + 1)" jr:constraintMsg="LMP cannot be in the future"
 					relevant="not(selected(../../menstruation_status/value,'2060^AMENORRHEA^99DCT')) and
 							  not(selected(../../menstruation_status/value,'6496^POST-MENOPAUSAL^99DCT'))"/> 
 			<bind id="reason_for_lack_of_period" nodeset="/form/obs/reason_for_lack_of_period/value" type="string" required="true()"

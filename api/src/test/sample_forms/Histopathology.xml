@@ -109,8 +109,8 @@
 			<bind id="start_time" nodeset="/form/obs/start_time/value" jr:preload="time" jr:preloadParams="start" type="time"/>
 			<bind id="end_time" nodeset="/form/obs/end_time/value" jr:preload="time" jr:preloadParams="end" type="time"/>
 			<bind id="current_visit_type" nodeset="/form/obs/current_visit_type/value" required="true()" type="string"/>
-			<bind id="encounter.encounter_datetime" nodeset="/form/encounter/encounter.encounter_datetime" required="true()" type="date" 
-				constraint=". &lt;=today()" jr:constraintMsg="Encounter date cannot be in the future"/>
+			<bind id="encounter.encounter_datetime" nodeset="/form/encounter/encounter.encounter_datetime" required="true()" type="date"
+                  constraint=". &lt; (today() + 1)" jr:constraintMsg="Encounter date cannot be in the future"/>
 			<bind id="encounter.location_id" nodeset="/form/encounter/encounter.location_id" type="string" required="true()"/>
 			<bind id="encounter.provider_id" nodeset="/form/encounter/encounter.provider_id" type="string" required="true()"/>
 			<bind id="encounter" nodeset="/form/encounter" relevant="../patient/patient.sex= 'F'"/>
@@ -118,8 +118,8 @@
 			<bind id="patient.patient_id" nodeset="/form/patient/patient.patient_id" type="int" required="true()"/>
 			<bind id="patient_identifier.identifier_type_id" nodeset="/form/patient/patient_identifier.identifier_type_id" calculate="3" type="integer"/>
 			<bind id="patient.medical_record_number" nodeset="/form/patient/patient.medical_record_number" type="string"/>
-			<bind id="patient.birthdate" nodeset="/form/patient/patient.birthdate" type="date" 
-				constraint=". &lt;=today()" jr:constraintMsg="Birth date cannot be in the future"/>
+			<bind id="patient.birthdate" nodeset="/form/patient/patient.birthdate" type="date"
+                  constraint=". &lt; (today() + 1)" jr:constraintMsg="Birth date cannot be in the future"/>
 			<bind id="patient.birthdate_estimated" nodeset="/form/patient/patient.birthdate_estimated" type="string"/>
 			<bind id="patient.family_name" nodeset="/form/patient/patient.family_name" type="string" required="true()"/>
 			<bind id="patient.given_name" nodeset="/form/patient/patient.given_name" type="string" required="true()"/>
@@ -131,7 +131,7 @@
 			<bind id="ccsp_pathology_vulva" nodeset="/form/obs/ccsp_pathology_vulva/value" type="string" required="true()"/>
 			<bind id="ccsp_pathology_vagina" nodeset="/form/obs/ccsp_pathology_vagina/value" type="string" required="true()"/>
 			<bind id="procedures_done_this_visit_detailed" nodeset="/form/obs/procedures_done_this_visit_detailed"/>
-			<bind id="number_of_specimen_collected" nodeset="/form/obs/procedures_done_this_visit_detailed/number_of_specimen_collected/value" type="integer" required="true()"/>
+			<bind id="number_of_specimen_collected" nodeset="/form/obs/procedures_done_this_visit_detailed/number_of_specimen_collected/value" type="int" required="true()"/>
 			<bind id="body_part" nodeset="/form/obs/procedures_done_this_visit_detailed/body_part/value" type="string" required="true()"/>
 			<bind id="procedures_done_this_visit" nodeset="/form/obs/procedures_done_this_visit_detailed/procedures_done_this_visit/value" type="string" required="true()"/>
 			<bind id="anatomic_location_description" nodeset="/form/obs/procedures_done_this_visit_detailed/anatomic_location_description/value" type="string"

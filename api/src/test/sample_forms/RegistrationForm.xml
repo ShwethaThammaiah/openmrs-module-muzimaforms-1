@@ -63,7 +63,7 @@
             <bind id="age" nodeset="/form/patient/tmp/age" type="int" relevant="../birthdate_type = 'age'" required="true()"
                   constraint=". &gt;= 0 and . &lt;=125" jr:constraintMsg="Allowed ages is between 0 and 125 years"/>
             <bind id="birthdate" nodeset="/form/patient/tmp/birth_date" type="date" relevant="../birthdate_type = 'birthdate'" required="true()"
-                  constraint=". &lt;= today()" jr:constraintMsg="Birthdate cannot be in the future"/>
+                  constraint=". &lt; (today() + 1)" jr:constraintMsg="Birthdate cannot be in the future"/>
             <bind id="birthdate_estimated" nodeset="/form/patient/tmp/birthdate_estimated" relevant="../birthdate_type = 'birthdate'" required="true()"/>
             <bind id="birth_date_temp" nodeset="/form/patient/tmp/birth_date_temp" type="string" readonly="true()"
                   calculate="concat(format-date(date(today() - (../age) * 365.2425), '%Y'),'/01/01')"/>
@@ -79,7 +79,7 @@
             <bind id="patient.phone_number" nodeset="/form/patient/patient.phone_number" type="string" constraint="regex(., '^\d{8,12}$')" jr:constraintMsg="Invalid Phone Number. Please check and re-enter."/>
             <bind id="patient.sex" nodeset="/form/patient/patient.sex" required="true()" type="string"/>
             <bind id="encounter.encounter_datetime" nodeset="/form/encounter/encounter.encounter_datetime" type="date"
-                  constraint=". &lt;= today()" jr:constraintMsg="Encounter date cannot be in the future" required="true()"/>
+                  constraint=". &lt; (today() + 1)" jr:constraintMsg="Encounter date cannot be in the future" required="true()"/>
             <bind id="encounter.location_id" nodeset="/form/encounter/encounter.location_id" type="string" required="true()"/>
             <bind id="encounter.provider_id" nodeset="/form/encounter/encounter.provider_id" type="select1" required="true()"/>
             <bind id="mothers_name" nodeset="/form/patient/person_attribute4" type="string"/>

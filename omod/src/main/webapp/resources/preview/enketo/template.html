@@ -27,19 +27,19 @@
         // Date.parse("yyyy-MM-dd"), new Date("yyyy-MM-dd") is not supported in android 2.2. Added this patch for libraries-all-min.js to fix it.
         var ecmaScriptDateParse = Date.parse;
         Date.parse = function(dateString){
-            if(!dateString){
-                return;
-            }
-            dateString = dateString.replace(/-/g, "/");
-            return ecmaScriptDateParse(dateString);
+        if(!dateString){
+        return;
+        }
+        dateString = dateString.replace(/-/g, "/");
+        return ecmaScriptDateParse(dateString);
         }
 
         DateType.prototype.toDate=function(){var date=new Date(this.value);if(!isNaN(date.getTime())) return date;return new Date(Date.parse(this.value))}
     </script>
     <script type="text/javascript">
         window.onerror = function (m, u, l) {
-            console.error("Javascript Error: , msg: {0}, url: {1}, line: {2}".format(m, u, l));
-            return true;
+        console.error("Javascript Error: , msg: {0}, url: {1}, line: {2}".format(m, u, l));
+        return true;
         };
 
         var settings = {};
@@ -116,6 +116,11 @@
             <input type="button" value="Save as Draft" class="form-button" onclick="javascript:document.saveDraft()">
             <input type="button" value="Save as Complete" class="form-button" onclick="javascript:document.submit()">
         </div>
+        <script>
+            if(formDataRepositoryContext.getFormStatus()==="complete"){
+            $(".form-buttons").hide();
+            }
+        </script>
     </div>
 </div>
 </body>

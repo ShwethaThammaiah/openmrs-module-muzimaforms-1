@@ -370,7 +370,7 @@
 				jr:constraintMsg="If normal, not applicable or don't know is selected, it should be the only option"/>
 			<bind id="date_of_most_recent_colposcopy_result" nodeset="/form/obs/most_recent_colposcopy_result/date" type="date" required="true()"
 				relevant="not(selected(../xforms_value,'do_not_know') or selected(../xforms_value,'not_applicable'))"
-				cconstraint=". &lt; (today() + 1)" jr:constraintMsg="Test date cannot be in the future"/>
+				constraint=". &lt; (today() + 1)" jr:constraintMsg="Test date cannot be in the future"/>
 			<bind id="past_treatment_of_dysplasia_detailed" nodeset="/form/obs/past_treatment_of_dysplasia_detailed"/>
 			<bind id="past_treatment_of_dysplasia" nodeset="/form/obs/past_treatment_of_dysplasia_detailed/past_treatment_of_dysplasia/xforms_value" type="string" required="true()"
 				constraint="not((selected(., 'none') or selected(., 'not_applicable'))and count-selected(.) > 1)"

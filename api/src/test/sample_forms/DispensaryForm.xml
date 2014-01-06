@@ -2241,21 +2241,24 @@
 			</group>
 			
 			<!-- Images -->
-			<input bind="algorithm_diabetes">
-				<label ref="jr:itext('algorithm_diabetes')"/>
-			</input>
-			<input bind="algorithm_htn">
-				<label ref="jr:itext('algorithm_htn')"/>
-			</input>
-			
+            <group>
+                <input bind="algorithm_diabetes">
+                    <label ref="jr:itext('algorithm_diabetes')"/>
+                </input>
+                <input bind="algorithm_htn">
+                    <label ref="jr:itext('algorithm_htn')"/>
+                </input>
+            </group>
 			<!-- 
 				MEDICATIONS DISPENSED TMP
 				The tmp_drugs section holds the medications for us to allow for logic programming
 				Every addition of new drug will require that its added in this tmp section
 			-->
-			<input bind="drugs_dispensed_info">
-				<label>For Medications Prescribed, if there are different doses for the medication for different times of day, you should enter each as a separate prescription using the ‘Add Group’ feature.</label>
-			</input>
+            <group>
+                <input bind="drugs_dispensed_info">
+                    <label>For Medications Prescribed, if there are different doses for the medication for different times of day, you should enter each as a separate prescription using the ‘Add Group’ feature.</label>
+                </input>
+            </group>
 			<select bind="drugs_dispensed" appearance="full">
 				<label>Medications Prescribed</label>
 				<hint>Select all medications prescriped during this visit</hint>
@@ -2293,7 +2296,7 @@
 				</item>
 			</select>
 			<!-- METFORMIN -->
-			<group>
+			<group bind="other_medication_order_metformin">
 				<label>Metformin Dispense</label>
 			    <repeat appearance="field-list" bind="other_medication_order_metformin">
 					<select1 appearance="minimal" bind="omo_dosage_change_metformin">
@@ -2353,7 +2356,7 @@
 				</repeat>
 			</group>
 			<!-- GLIBENCLAMIDE -->
-			<group> 
+			<group bind="other_medication_order_glibenclamide">
 				<label>Glibenclamide Dispense</label>
 				<repeat appearance="field-list" bind="other_medication_order_glibenclamide">
 					<group appearance="field-list">
@@ -2397,7 +2400,7 @@
 				</repeat>
 			</group>
 			<!-- ENALAPRIL -->
-			<group>
+			<group bind="other_medication_order_enalapril">
 				<label>Enalapril Dispense</label>
 				<repeat appearance="field-list" bind="other_medication_order_enalapril">
 					<group appearance="field-list">
@@ -2441,7 +2444,7 @@
 				</repeat>
 			</group>
 			<!-- HCTZ -->
-			<group>
+			<group bind="other_medication_order_hctz">
 				<label>HCTZ Dispense</label>
 				<repeat appearance="field-list" bind="other_medication_order_hctz">
 					<group appearance="field-list">
@@ -2485,7 +2488,7 @@
 				</repeat>
 			</group>
 			<!-- LOSARTAN -->
-			<group>
+			<group bind="other_medication_order_losartan">
 				<label>Losartan Dispense</label>
 				<repeat appearance="field-list" bind="other_medication_order_losartan">
 					<group appearance="field-list">
@@ -2529,7 +2532,7 @@
 				</repeat>
 			</group>
 			<!-- NIFEDIPINE -->
-			<group>
+			<group bind="other_medication_order_nifedipine">
 				<label>Nifedipine Dispense</label>
 				<repeat appearance="field-list" bind="other_medication_order_nifedipine">
 					<group appearance="field-list">
@@ -2573,7 +2576,7 @@
 				</repeat>
 			</group>
 			<!-- OTHER MEDICATIONS -->			
-			<group>
+			<group bind="other_medication_order_other">
 				<label>Other Medication</label>
 				<repeat appearance="field-list" bind="other_medication_order_other">
 					<group appearance="field-list">

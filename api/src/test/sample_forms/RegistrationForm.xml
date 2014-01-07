@@ -51,7 +51,7 @@
             </xf:instance>
             <bind id="patient" nodeset="/form/patient"/>
             <bind id="patient.patient_id" nodeset="/form/patient/patient.patient_id" type="int" required="true()"/>
-            <bind id="patient_identifier.identifier_type_id" nodeset="/form/patient/patient_identifier.identifier_type_id" calculate="3" type="integer" />
+            <bind id="patient_identifier.identifier_type_id" nodeset="/form/patient/patient_identifier.identifier_type_id" calculate="1" type="integer" />
             <!-- UNCOMMENT TO ENTER PATIENT IDENTIFIER -->
             <bind id="amrs_id" nodeset="/form/patient/tmp/amrs_id" type="barcode" constraint="regex(., '^\w+[-]?\d{1}') and (checkdigit(.))" required="true()"
                   jr:constraintMsg="Invalid ID format and/or CheckDigit. Please Re-enter your ID."/>

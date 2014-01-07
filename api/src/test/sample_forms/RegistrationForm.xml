@@ -23,6 +23,7 @@
                         <patient.given_name openmrs_table="patient_name" openmrs_attribute="given_name"/>
                         <patient.middle_name openmrs_table="patient_name" openmrs_attribute="middle_name"/>
                         <patient.sex openmrs_table="patient" openmrs_attribute="gender"/>
+                        <patient.uuid openmrs_table="patient" openmrs_attribute="uuid"/>
                         <patient.phone_number openmrs_table="patient" openmrs_attribute="phone_number"/>
                         <person_attribute4 openmrs_table="" openmrs_attribute=""/>
                         <tmp>
@@ -78,6 +79,7 @@
             <bind id="patient.middle_name" nodeset="/form/patient/patient.middle_name" type="string"/>
             <bind id="patient.phone_number" nodeset="/form/patient/patient.phone_number" type="string" constraint="regex(., '^\d{8,12}$')" jr:constraintMsg="Invalid Phone Number. Please check and re-enter."/>
             <bind id="patient.sex" nodeset="/form/patient/patient.sex" required="true()" type="string"/>
+            <bind id="patient.uuid" nodeset="/form/patient/patient.uuid" type="string"/>
             <bind id="encounter.encounter_datetime" nodeset="/form/encounter/encounter.encounter_datetime" type="date"
                   constraint=". &lt; (today() + 1)" jr:constraintMsg="Encounter date cannot be in the future" required="true()"/>
             <bind id="encounter.location_id" nodeset="/form/encounter/encounter.location_id" type="string" required="true()"/>

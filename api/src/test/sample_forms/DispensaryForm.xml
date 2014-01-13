@@ -1032,7 +1032,7 @@
 			<!-- groups mapping -->
 			<bind id="phct_review" nodeset="/form/obs/phct_review" relevant="../current_visit_type/value='7034^FIRST DISPENSARY VISIT AFTER HCT^99DCT'"/>
 			
-			<itext>
+			<!--<itext>
 				<translation lang="English" default="">
 					<text id="algorithm_diabetes">
 						<value form="long">Diabetes Screening and care algorithm</value>
@@ -1043,7 +1043,7 @@
 						<value form="image">jr://images/HTNAlgorithm.jpg</value>
 					</text>
 				</translation>
-			</itext>
+			</itext>-->
 		</xf:model>
 	</xf:head>
 	<xf:body>
@@ -2243,14 +2243,14 @@
 			</group>
 			
 			<!-- Images -->
-            <group>
+            <!--<group>
                 <input bind="algorithm_diabetes">
                     <label ref="jr:itext('algorithm_diabetes')"/>
                 </input>
                 <input bind="algorithm_htn">
                     <label ref="jr:itext('algorithm_htn')"/>
                 </input>
-            </group>
+            </group>-->
 			<!-- 
 				MEDICATIONS DISPENSED TMP
 				The tmp_drugs section holds the medications for us to allow for logic programming

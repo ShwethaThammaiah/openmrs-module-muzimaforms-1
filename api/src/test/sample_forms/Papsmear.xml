@@ -32,6 +32,10 @@
 						<encounter.encounter_datetime openmrs_table="encounter" openmrs_attribute="encounter_datetime"/>
 						<encounter.location_id openmrs_table="encounter" openmrs_attribute="location_id"/>
 						<encounter.provider_id openmrs_table="encounter" openmrs_attribute="provider_id"/>
+                        <tmp>
+							<provider_id_select/>
+							<provider_id_text/>
+						</tmp>
 					</encounter>
 					<obs openmrs_concept="1238^MEDICAL RECORD OBSERVATIONS^99DCT" openmrs_datatype="ZZ">
 						<temporary.registration.uuid openmrs_concept="9000^TEMPORARY REGISTRATION UUID^99DCT" openmrs_datatype="CWE"/>
@@ -127,11 +131,16 @@
 			<bind id="encounter.encounter_datetime" nodeset="/form/encounter/encounter.encounter_datetime" type="date" required="true()"
                   constraint=". &lt; (today() + 1)" jr:constraintMsg="Encounter date cannot be in the future"/>
 			<bind id="encounter.location_id" nodeset="/form/encounter/encounter.location_id" type="string" required="true()"/>
-			<bind id="encounter.provider_id" nodeset="/form/encounter/encounter.provider_id" type="string" required="true()"/>
+			<bind id="provider_id_select" nodeset="/form/encounter/tmp/provider_id_select" type="select1"/>
+            <bind id="provider_id_text" nodeset="/form/encounter/tmp/provider_id_text" type="string" required="true()"
+            relevant="../provider_id_select = ''" constraint="regex(., '^\w+[-]?\d{1}') and (checkdigit(.))"
+            jr:constraintMsg="Invalid ID format and/or CheckDigit. Please Re-enter your ID."/>
+			<bind id="encounter.provider_id" nodeset="/form/encounter/encounter.provider_id" type="string"
+            calculate="if(../tmp/provider_id_select != '',../tmp/provider_id_select,../tmp/provider_id_text)"/>
 			<bind id="encounter" nodeset="/form/encounter" relevant="../patient/patient.sex= 'F'"/>
 			<bind id="patient" nodeset="/form/patient"/>
 			<bind id="patient.patient_id" nodeset="/form/patient/patient.patient_id" type="int" required="true()"/>
-			<bind id="patient_identifier.identifier_type_id" nodeset="/form/patient/patient_identifier.identifier_type_id" calculate="3" type="integer"/>
+			<bind id="patient_identifier.identifier_type_id" nodeset="/form/patient/patient_identifier.identifier_type_id" calculate="1" type="integer"/>
 			<bind id="patient.medical_record_number" nodeset="/form/patient/patient.medical_record_number" type="string"/>
 			<bind id="patient.birthdate" nodeset="/form/patient/patient.birthdate" type="date"
                   constraint=". &lt; (today() + 1)" jr:constraintMsg="Birth date cannot be in the future"/>
@@ -223,7 +232,7 @@
 				    <value>9</value>
 				  </item>
 				</select1>
-				<select1 bind="encounter.provider_id">
+				<select1 appearance="autocomplete" bind="provider_id_select">
 					<label>Provider For This Encounter</label>
 					 <item>
 				    <label>Daurine Achieng Agumba</label>
@@ -235,7 +244,7 @@
 				  </item>
 				  <item>
 				    <label>Rose	Cheruto	Toroitich</label>
-				    <value>3421-5</value>
+				    <value>3-4</value>
 				  </item>
 				  <item>
 				    <label>Mary	Kipkurui Kimosop</label>
@@ -320,6 +329,9 @@
 				    <value>1485-7</value>
 				  </item>
 				</select1>
+                <input bind="provider_id_text">
+                    <label>Enter provider's system-id</label>
+                </input>
 			</group>
 			<input bind="last_menstrual_period_date">
 				<label>First Day Of Your Last Period (LMP)</label>

@@ -23,7 +23,8 @@
 						<patient.given_name openmrs_table="patient_name" openmrs_attribute="given_name"/>
 						<patient.middle_name openmrs_table="patient_name" openmrs_attribute="middle_name"/>
 						<patient.sex openmrs_table="patient" openmrs_attribute="gender"/>
-						<person_attribute10 openmrs_table="" openmrs_attribute=""/>
+                        <patient.uuid openmrs_table="patient" openmrs_attribute="uuid"/>
+                        <person_attribute10 openmrs_table="" openmrs_attribute=""/>
 						<tmp>
 							<amrs_id_scan/>
 							<amrs_id_manual/>
@@ -516,7 +517,8 @@
                   constraint=". &lt; (today() + 1)" jr:constraintMsg="Encounter date cannot be in the future" required="true()"/>
 			<bind id="encounter.location_id" nodeset="/form/encounter/encounter.location_id" type="string" required="true()"/>
 			<bind id="provider_id_select" nodeset="/form/encounter/tmp/provider_id_select" type="select1"/>
-			<bind id="provider_id_text" nodeset="/form/encounter/tmp/provider_id_text" type="string" required="true()"
+            <bind id="patient.uuid" nodeset="/form/patient/patient.uuid" type="string"/>
+            <bind id="provider_id_text" nodeset="/form/encounter/tmp/provider_id_text" type="string" required="true()"
 				relevant="../provider_id_select = ''" constraint="regex(., '^\w+[-]?\d{1}') and (checkdigit(.))" 
 						jr:constraintMsg="Invalid ID format and/or CheckDigit. Please Re-enter your ID."/>
 			<bind id="encounter.provider_id" nodeset="/form/encounter/encounter.provider_id" type="string" 

@@ -23,7 +23,8 @@
 						<patient.birthdate_estimated openmrs_table="patient" openmrs_attribute="birthdate_estimated"/>
 						<patient.family_name openmrs_table="patient_name" openmrs_attribute="family_name"/>
 						<patient.given_name openmrs_table="patient_name" openmrs_attribute="given_name"/>
-						<patient.middle_name openmrs_table="patient_name" openmrs_attribute="middle_name"/>
+                        <patient.uuid openmrs_table="patient" openmrs_attribute="uuid"/>
+                        <patient.middle_name openmrs_table="patient_name" openmrs_attribute="middle_name"/>
 						<patient.sex openmrs_table="patient" openmrs_attribute="gender"/>
 						<no_male/>
 					</patient>
@@ -140,7 +141,8 @@
 				relevant="../../procedures_done_this_visit/value != '7147^LOOP ELECTROSURGICAL EXCISION PROCEDURE^99DCT'"
 				constraint=". &gt;= 1 and . &lt;= 12" jr:constraintMsg="Values should be between 1 and 12 inclusive"/>
 			<bind id="pathological_diagnosis_added_cervix" nodeset="/form/obs/procedures_done_this_visit_detailed/pathological_diagnosis_added_cervix" type="string" required="true()" relevant="../body_part/value='8279^CERVIX^99DCT'"/>
-			<bind id="pathological_diagnosis_added_vagina" nodeset="/form/obs/procedures_done_this_visit_detailed/pathological_diagnosis_added_vagina" type="string" required="true()" relevant="../body_part/value='8280^VAGINA^99DCT'"/>
+            <bind id="patient.uuid" nodeset="/form/patient/patient.uuid" type="string"/>
+            <bind id="pathological_diagnosis_added_vagina" nodeset="/form/obs/procedures_done_this_visit_detailed/pathological_diagnosis_added_vagina" type="string" required="true()" relevant="../body_part/value='8280^VAGINA^99DCT'"/>
 			<bind id="pathological_diagnosis_added_vulva" nodeset="/form/obs/procedures_done_this_visit_detailed/pathological_diagnosis_added_vulva" type="string" required="true()" relevant="../body_part/value='8281^VULVA^99DCT'"/>
 			<bind id="pathological_diagnosis_added" nodeset="/form/obs/procedures_done_this_visit_detailed/pathological_diagnosis_added/value" type="string"
 				calculate="if(../../body_part/value='8279^CERVIX^99DCT',../../pathological_diagnosis_added_cervix,
@@ -221,7 +223,7 @@
 					<label>Provider For This Encounter</label>
 					 <item>
 				    <label>Daurine Achieng Agumba</label>
-				    <value>3419-9</value>
+				    <value>3-4</value>
 				  </item>
 				  <item>
 				    <label>Irene Chepkosgei	Kurgat</label>

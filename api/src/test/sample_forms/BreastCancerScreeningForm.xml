@@ -21,7 +21,8 @@
 					  <patient.patient_id openmrs_table="patient" openmrs_attribute="patient_id"/>
 					  <patient.birthdate openmrs_table="patient" openmrs_attribute="birthdate"/>
 					  <patient.sex openmrs_table="patient" openmrs_attribute="gender"/>
-					</patient>
+                      <patient.uuid openmrs_table="patient" openmrs_attribute="uuid"/>
+                    </patient>
 					<encounter>
 					  <encounter.encounter_datetime openmrs_table="encounter" openmrs_attribute="encounter_datetime"/>
 					  <encounter.location_id openmrs_table="encounter" openmrs_attribute="location_id"/>
@@ -333,7 +334,8 @@
 			<bind id="patient.medical_record_number" nodeset="/form/patient/patient.medical_record_number" type="string" required="true()"/>
 			<bind id="patient.middle_name" nodeset="/form/patient/patient.middle_name" type="string"/>
 			<bind id="patient.patient_id" nodeset="/form/patient/patient.patient_id" type="int" required="true()"/>
-			<bind id="patient.birthdate" nodeset="/form/patient/patient.birthdate" type="date"
+            <bind id="patient.uuid" nodeset="/form/patient/patient.uuid" type="string"/>
+            <bind id="patient.birthdate" nodeset="/form/patient/patient.birthdate" type="date"
                   constraint=". &lt; (today() + 1)" jr:constraintMsg="Date of birth cannot be in the future"/>
 			<bind id="patient.sex" nodeset="/form/patient/patient.sex" type="string" required="true()"/>
 			<bind id="encounter.encounter_datetime" nodeset="/form/encounter/encounter.encounter_datetime" type="date"

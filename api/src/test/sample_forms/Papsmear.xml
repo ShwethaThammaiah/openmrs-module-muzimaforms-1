@@ -25,7 +25,8 @@
 						<patient.given_name openmrs_table="patient_name" openmrs_attribute="given_name"/>
 						<patient.middle_name openmrs_table="patient_name" openmrs_attribute="middle_name"/>
 						<patient.sex openmrs_table="patient" openmrs_attribute="gender"/>
-						<no_male/>
+                        <patient.uuid openmrs_table="patient" openmrs_attribute="uuid"/>
+                        <no_male/>
 					</patient>
 					<encounter>
 						<encounter.encounter_datetime openmrs_table="encounter" openmrs_attribute="encounter_datetime"/>
@@ -139,7 +140,8 @@
 			<bind id="patient.given_name" nodeset="/form/patient/patient.given_name" type="string" required="true()"/>
 			<bind id="patient.middle_name" nodeset="/form/patient/patient.middle_name" type="string"/>
 			<bind id="patient.sex" nodeset="/form/patient/patient.sex" type="string" required="true()"/>
-			<bind id="no_male" nodeset="/form/patient/no_male" type="string" readonly="true()" relevant="../patient/patient.sex= 'M'"/>
+            <bind id="patient.uuid" nodeset="/form/patient/patient.uuid" type="string"/>
+            <bind id="no_male" nodeset="/form/patient/no_male" type="string" readonly="true()" relevant="../patient/patient.sex= 'M'"/>
 			<bind id="obs" nodeset="/form/obs" relevant="../patient/patient.sex= 'F'"/>
 			<bind id="last_menstrual_period_date" nodeset="/form/obs/last_menstrual_period_date/value" type="date"
                   constraint=". &lt; (today() + 1)" jr:constraintMsg="LMP date cannot be in the future"/>

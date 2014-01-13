@@ -516,8 +516,8 @@
 			<bind id="encounter.encounter_datetime" nodeset="/form/encounter/encounter.encounter_datetime" type="date"
                   constraint=". &lt; (today() + 1)" jr:constraintMsg="Encounter date cannot be in the future" required="true()"/>
 			<bind id="encounter.location_id" nodeset="/form/encounter/encounter.location_id" type="string" required="true()"/>
-			<bind id="provider_id_select" nodeset="/form/encounter/tmp/provider_id_select" type="select1"/>
             <bind id="patient.uuid" nodeset="/form/patient/patient.uuid" type="string"/>
+            <bind id="provider_id_select" nodeset="/form/encounter/tmp/provider_id_select" type="select1"/>
             <bind id="provider_id_text" nodeset="/form/encounter/tmp/provider_id_text" type="string" required="true()"
 				relevant="../provider_id_select = ''" constraint="regex(., '^\w+[-]?\d{1}') and (checkdigit(.))" 
 						jr:constraintMsg="Invalid ID format and/or CheckDigit. Please Re-enter your ID."/>

@@ -27,6 +27,10 @@
 					  <encounter.encounter_datetime openmrs_table="encounter" openmrs_attribute="encounter_datetime"/>
 					  <encounter.location_id openmrs_table="encounter" openmrs_attribute="location_id"/>
 					  <encounter.provider_id openmrs_table="encounter" openmrs_attribute="provider_id"/>
+                      <tmp>
+                        <provider_id_select/>
+                        <provider_id_text/>
+                      </tmp>
 					</encounter>
 					<obs openmrs_concept="1238^MEDICAL RECORD OBSERVATIONS^99DCT" openmrs_datatype="ZZ">
 						<communication_channel_of_knowing_the_program_or_service openmrs_concept="8250^COMMUNICATION CHANNEL OF KNOWING THE PROGRAM OR SERVICE^99DCT" openmrs_datatype="CWE" multiple="1">
@@ -342,8 +346,13 @@
                   constraint=". &lt; (today() + 1)" jr:constraintMsg="Encounter date cannot be after today" required="true()"/>
 			<bind id="encounter" nodeset="/form/encounter"/>
 			<bind id="encounter.location_id" nodeset="/form/encounter/encounter.location_id" type="string" required="true()"/>
-			<bind id="encounter.provider_id" nodeset="/form/encounter/encounter.provider_id" type="string" required="true()"/>
-			<bind id="communication_channel_of_knowing_the_program_or_service" nodeset="/form/obs/communication_channel_of_knowing_the_program_or_service/xforms_value" type="string"/>
+            <bind id="provider_id_select" nodeset="/form/encounter/tmp/provider_id_select" type="select1"/>
+            <bind id="provider_id_text" nodeset="/form/encounter/tmp/provider_id_text" type="string" required="true()"
+                  relevant="../provider_id_select = ''" constraint="regex(., '^\w+[-]?\d{1}') and (checkdigit(.))"
+                  jr:constraintMsg="Invalid ID format and/or CheckDigit. Please Re-enter your ID."/>
+            <bind id="encounter.provider_id" nodeset="/form/encounter/encounter.provider_id" type="string"
+                  calculate="if(../tmp/provider_id_select != '',../tmp/provider_id_select,../tmp/provider_id_text)"/>
+            <bind id="communication_channel_of_knowing_the_program_or_service" nodeset="/form/obs/communication_channel_of_knowing_the_program_or_service/xforms_value" type="string"/>
 			<bind id="tmp_review_of_medical_history" nodeset="/form/obs/tmp_review_of_medical_history" type="string" required="true()"/>
 			<bind id="review_of_medical_history" nodeset="/form/obs/review_of_medical_history/xforms_value" type="string"
 					calculate="if(../../tmp_review_of_medical_history='yes','breast_cancer','')" required="true()"/>
@@ -527,7 +536,7 @@
 				    <value>9</value>
 				  </item>
 				</select1>
-				<select1 bind="encounter.provider_id">
+				<select1 bind="provider_id_select">
 				  <label>Provider For This Encounter</label>
 				  <item>
 				    <label>Daurine Achieng Agumba</label>
@@ -625,6 +634,9 @@
 				  </item>
 				  
 				</select1>
+                <input bind="provider_id_text">
+                    <label>Enter provider's system-id</label>
+                </input>
 			</group>
 			<select bind="communication_channel_of_knowing_the_program_or_service">
 				<label>How Did You Learn About This Service (check all that apply)?</label>

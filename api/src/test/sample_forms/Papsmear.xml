@@ -29,7 +29,8 @@
                         <no_male/>
 					</patient>
 					<encounter>
-						<encounter.encounter_datetime openmrs_table="encounter" openmrs_attribute="encounter_datetime"/>
+                        <encounter.form_uuid openmrs_attribute="form_uuid"/>
+                        <encounter.encounter_datetime openmrs_table="encounter" openmrs_attribute="encounter_datetime"/>
 						<encounter.location_id openmrs_table="encounter" openmrs_attribute="location_id"/>
 						<encounter.provider_id openmrs_table="encounter" openmrs_attribute="provider_id"/>
                         <tmp>
@@ -130,6 +131,7 @@
 			<bind id="current_sit_type" nodeset="/form/obs/current_sit_type/value" required="true()" type="string"/>
 			<bind id="encounter.encounter_datetime" nodeset="/form/encounter/encounter.encounter_datetime" type="date" required="true()"
                   constraint=". &lt; (today() + 1)" jr:constraintMsg="Encounter date cannot be in the future"/>
+            <bind id="encounter.form_uuid" nodeset="/form/encounter/encounter.form_uuid" type="string" required="true()"/>
 			<bind id="encounter.location_id" nodeset="/form/encounter/encounter.location_id" type="string" required="true()"/>
 			<bind id="provider_id_select" nodeset="/form/encounter/tmp/provider_id_select" type="select1"/>
             <bind id="provider_id_text" nodeset="/form/encounter/tmp/provider_id_text" type="string" required="true()"

@@ -37,6 +37,7 @@
                         </tmp>
                     </patient>
                     <encounter>
+                        <encounter.form_uuid openmrs_attribute="form_uuid"/>
                         <encounter.encounter_datetime openmrs_table="encounter" openmrs_attribute="encounter_datetime"/>
                         <encounter.location_id openmrs_table="encounter" openmrs_attribute="location_id"/>
                         <encounter.provider_id openmrs_table="encounter" openmrs_attribute="provider_id"/>
@@ -82,6 +83,7 @@
             <bind id="patient.uuid" nodeset="/form/patient/patient.uuid" type="string"/>
             <bind id="encounter.encounter_datetime" nodeset="/form/encounter/encounter.encounter_datetime" type="date"
                   constraint=". &lt; (today() + 1)" jr:constraintMsg="Encounter date cannot be in the future" required="true()"/>
+            <bind id="encounter.form_uuid" nodeset="/form/encounter/encounter.form_uuid" type="string" required="true()"/>
             <bind id="encounter.location_id" nodeset="/form/encounter/encounter.location_id" type="string" required="true()"/>
             <bind id="encounter.provider_id" nodeset="/form/encounter/encounter.provider_id" type="select1" required="true()"/>
             <bind id="mothers_name" nodeset="/form/patient/person_attribute4" type="string"/>

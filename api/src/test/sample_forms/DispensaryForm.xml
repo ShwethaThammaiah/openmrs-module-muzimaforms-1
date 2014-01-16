@@ -1975,7 +1975,7 @@
 				</item>
 			</select>
 			<!-- OTHER MEDICATIONS -->			
-			<group>
+			<group bind="patient_reported_current_other_treatment_other">
 				<label>Other Medication</label>
 				<repeat appearance="field-list" bind="patient_reported_current_other_treatment_other">
 					<group appearance="field-list">

@@ -1,6 +1,17 @@
 'use strict';
 function ImportCtrl($scope, FileUploadService, _, $location) {
 
+    var showErrorMessage = function(content, cl, time) {
+        $('<div/>')
+            .addClass('alert')
+            .addClass('alert-error')
+            .hide()
+            .fadeIn('slow')
+            .delay(time)
+            .appendTo('#error-alert')
+            .text(content);
+    };
+
     $scope.validate = function (file, isODK) {
         FileUploadService.post({url: isODK ? 'odk/validate.form' : 'javarosa/validate.form§', file: file, params: { isODK: isODK } }).then(function (result) {
             $scope.validations = result.data;
@@ -12,8 +23,10 @@ function ImportCtrl($scope, FileUploadService, _, $location) {
             url: isODK ? 'odk/upload.form' : 'javarosa/upload.form', file: file, params: {
                 name: name, description: description || ""
             }
-        }).then(function () {
+        }).success(function () {
                 $location.path("#/list/forms");
+            }).error(function () {
+                showErrorMessage("The form name already exists !! Please use some other name.");
             });
     };
 

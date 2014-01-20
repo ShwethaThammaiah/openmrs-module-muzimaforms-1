@@ -1,5 +1,6 @@
 package org.openmrs.module.muzimaforms.api;
 
+import org.dom4j.DocumentException;
 import org.javarosa.xform.parse.ValidationMessages;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,9 +14,13 @@ import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.ODK2HTML5Transformer
 import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.ODK2JavarosaTransformer;
 import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.XForm2Html5Transformer;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.Arrays.asList;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
@@ -161,6 +166,36 @@ public class MuzimaFormServiceImplTest {
 
         verify(odk2JavarosaTransformer).transform("odk");
         assertThat(messages.getList().get(0).getMessage(), is("Document has no root element!"));
+    }
+
+    @Test(expected = DocumentException.class)
+    public void shouldNotCreateFormIfTheNameAlreadyExists() throws ParserConfigurationException, TransformerException, DocumentException, IOException {
+        List<MuzimaForm> muzimaForms = asList(getMuzimaFormWithName("Something like name"),
+                getMuzimaFormWithName("name"));
+        when(dao.findByName("name")).thenReturn(muzimaForms);
+        service.create("xml", "description", "name");
+        verify(modelTransformer,never()).transform(anyString());
+    }
+
+    @Test
+    public void shouldCreateFormIfSimilarNameExistsButNotExactMatch() throws ParserConfigurationException, TransformerException, DocumentException, IOException {
+        List<MuzimaForm> muzimaForms = asList(getMuzimaFormWithName("Something like name"),
+                getMuzimaFormWithName("very much similar to name"));
+        EnketoResult enketoResult = mock(EnketoResult.class);
+        CompositeEnketoResult compositeEnketResult = mock(CompositeEnketoResult.class);
+
+        when(dao.findByName("name")).thenReturn(muzimaForms);
+        when(transformer.transform(anyString())).thenReturn(enketoResult);
+        when(modelTransformer.transform(anyString())).thenReturn(compositeEnketResult);
+
+        service.create("xml", "description", "name");
+        verify(modelTransformer).transform(anyString());
+    }
+
+    private MuzimaForm getMuzimaFormWithName(String name) {
+        MuzimaForm form1 = new MuzimaForm();
+        form1.setName(name);
+        return form1;
     }
 
 

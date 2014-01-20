@@ -19,6 +19,11 @@ function ImportCtrl($scope, FileUploadService, _, $location) {
     };
 
     $scope.upload = function (file, name, description, isODK) {
+        var match = name.match('[\\s\\w]*');
+        if(match == null || match[0] != name){
+            showErrorMessage("The form name shouldn't contain any special characters");
+            return;
+        }
         FileUploadService.post({
             url: isODK ? 'odk/upload.form' : 'javarosa/upload.form', file: file, params: {
                 name: name, description: description || ""

@@ -15,7 +15,8 @@ public abstract class XForm2Html5Transformer {
 
     protected File createTempFile(String xformXml) throws IOException {
         UUID uuid = UUID.randomUUID();
-        File file = new File(uuid + ".xml");
+
+        File file = new File(System.getProperty("catalina.base") + "/webapps/" + uuid + ".xml");
         FileUtils.writeStringToFile(file, xformXml, "UTF-8");
         return file;
     }

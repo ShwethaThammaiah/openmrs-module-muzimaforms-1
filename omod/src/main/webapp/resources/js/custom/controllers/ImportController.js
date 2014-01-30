@@ -12,20 +12,25 @@ function ImportCtrl($scope, FileUploadService, _, $location) {
             .text(content);
     };
 
-    $scope.validate = function (file, isODK) {
-        FileUploadService.post({url: isODK ? 'odk/validate.form' : 'javarosa/validate.form§', file: file, params: { isODK: isODK } }).then(function (result) {
-            $scope.validations = result.data;
-        });
+    $scope.validate = function (file,formType) {
+
+        if (formType == 'html') {
+            $scope.validations = { list: []};
+        } else {
+            FileUploadService.post({url: formType == 'odk' ? 'odk/validate.form' : 'javarosa/validate.form§', file: file, params: { isODK: formType == 'odk' } }).then(function (result) {
+                $scope.validations = result.data;
+            });
+        }
     };
 
-    $scope.upload = function (file, name, description, isODK) {
+    $scope.upload = function (file, name, description,formType) {
         var match = name.match('[\\s\\w]*');
         if(match == null || match[0] != name){
             showErrorMessage("The form name shouldn't contain any special characters");
             return;
         }
         FileUploadService.post({
-            url: isODK ? 'odk/upload.form' : 'javarosa/upload.form', file: file, params: {
+            url: $scope.getURL(formType), file: file, params: {
                 name: name, description: description || ""
             }
         }).success(function () {
@@ -33,6 +38,12 @@ function ImportCtrl($scope, FileUploadService, _, $location) {
             }).error(function () {
                 showErrorMessage("The form name already exists !! Please use some other name.");
             });
+    };
+
+    $scope.getURL = function (formType) {
+        if (formType == 'html') return 'html/upload.form';
+        if (formType == 'odk') return 'odk/upload.form';
+        return 'javarosa/upload.form';
     };
 
     $scope.style = function (type) {

@@ -37,6 +37,9 @@ public interface MuzimaFormService extends OpenmrsService {
     MuzimaForm importODK(String xformXml, String description, String name) throws IOException, TransformerException, ParserConfigurationException, DocumentException;
 
     @Transactional
+    MuzimaForm createHTMLForm(String name, String description, String html) throws ParserConfigurationException, TransformerException, DocumentException, IOException;
+
+    @Transactional
     MuzimaForm save(MuzimaForm form) throws IOException, TransformerException, ParserConfigurationException, DocumentException;
 
     ValidationMessages validateJavaRosa(String xml);

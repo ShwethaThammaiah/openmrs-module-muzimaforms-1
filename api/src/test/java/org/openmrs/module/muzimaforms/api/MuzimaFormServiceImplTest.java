@@ -81,6 +81,23 @@ public class MuzimaFormServiceImplTest {
     }
 
     @Test
+    public void shouldNotInteractWithAnyTransformersWhileUploadingHTML() throws Exception {
+        service.createHTMLForm("name", "description", "html");
+        verifyZeroInteractions(transformer,modelTransformer,odk2JavarosaTransformer,odk2HTML5Transformer);
+        verify(dao).saveForm(any(MuzimaForm.class));
+    }
+
+    @Test(expected = DocumentException.class)
+    public void shouldNotCreateHTMLFormIfFormNameAlreadyExists() throws Exception {
+        List<MuzimaForm> muzimaForms = asList(getMuzimaFormWithName("Something like name"),
+                getMuzimaFormWithName("name"));
+        when(dao.findByName("name")).thenReturn(muzimaForms);
+        service.createHTMLForm("name", "description", "html");
+        verifyZeroInteractions(transformer,modelTransformer,odk2JavarosaTransformer,odk2HTML5Transformer);
+        verify(dao,never()).saveForm(any(MuzimaForm.class));
+    }
+
+    @Test
     public void importExisting_shouldRetrieveExistingXFormAndConvertItIntoHTML5AndPersistAMuzimaForm() throws Exception {
         String xFormXml = "<xml><some/><valid/></xml>";
         String htmlForm = "<foo><form><ul><li/><li/></ul></form><model/></foo>";

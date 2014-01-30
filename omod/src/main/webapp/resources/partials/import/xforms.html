@@ -3,23 +3,23 @@
     <div ng-hide="isValidated()">
         <div class="row">
             <div class="col-lg-12">
-                <file-upload message="Click here to upload XForm"/>
+                <file-upload message="Click here to upload Form"/>
             </div>
         </div>
         <div class="row" ng-show="hasFile()">
             <div class="col-lg-12">
-                <input id="isODK" type="checkbox"
-                       name="isODK" ng-model="isODK"
-                       ng-true-value="true"
-                       ng-false-value="false" />
-
-                <label for="isODK">ODK form</label>
+                <label for="formType">Select the FormType: </label>
+                <select id="formType" ng-model="formType" name="formType">
+                    <option value="odk">ODK</option>
+                    <option value="html">HTML</option>
+                    <option value="javarosa">JavaRosa</option>
+                </select>
             </div>
         </div>
         <div class="row" ng-show="hasFile()">
             <div class="col-lg-12">
                 <button ng-click="cancel()" class="btn btn-danger">Cancel</button>
-                <input type="button" ng-click="validate(file, isODK)" class="btn btn-success"
+                <input type="button" ng-click="validate(file,formType)" class="btn btn-success"
                        value="Validate">
             </div>
         </div>
@@ -27,9 +27,9 @@
 
     <div class="row" ng-show="isValidXForm()">
         <div class="col-lg-6 panel">
-            <div class="alert alert-success">The xForm is valid! Use the upload button to import it.</div>
+            <div class="alert alert-success">The Form is valid! Use the upload button to import it.</div>
             <div id="error-alert"></div>
-            <form role="form" ng-submit="upload(file, name, description, isODK)">
+            <form role="form" ng-submit="upload(file, name, description,formType)">
                 <div class="form-group">
                     <label for="xFormName">Name</label>
                     <input type="text" class="form-control" id="xFormName" ng-model="name"
@@ -53,7 +53,7 @@
         <div class="row">
             <div class="col-lg-12 well-small">
                 <button ng-click="cancel()" class="btn btn-danger">Cancel</button>
-                <button ng-click="validate(file, isODK)" class="btn btn-success">Re-Validate</button>
+                <button ng-click="validate(file, formType)" class="btn btn-success">Re-Validate</button>
             </div>
         </div>
         <div class="row" ng-repeat="validation in validations.list">

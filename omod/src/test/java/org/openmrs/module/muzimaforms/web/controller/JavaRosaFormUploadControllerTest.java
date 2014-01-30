@@ -15,9 +15,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.*;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 
 @RunWith(PowerMockRunner.class)
@@ -65,6 +66,15 @@ public class JavaRosaFormUploadControllerTest {
 
         verify(service).validateJavaRosa(readStream(request.getFile("file").getInputStream()));
 
+    }
+
+    @Test
+    public void shouldCreateHTMLFormWithGivenNameAndDescription() throws Exception {
+        String formName = "name";
+        String formDescription = "description";
+        request.addFile(multipartFile("file", "sampleUploadForm.xml"));
+        controller.uploadHTMLForm(request, formName, formDescription);
+        verify(service).createHTMLForm(eq(formName),eq(formDescription),anyString());
     }
 
     private MockMultipartFile multipartFile(String name, String fileName) throws IOException {

@@ -79,6 +79,13 @@ public class MuzimaFormServiceImpl extends BaseOpenmrsService implements MuzimaF
         throw new DocumentException("The file name already Exists !");
     }
 
+    public MuzimaForm createHTMLForm(String name, String description, String html) throws ParserConfigurationException, TransformerException, DocumentException, IOException {
+        if (!isFormNameExists(name)) {
+            return save(new MuzimaForm(name, description, null, html, null));
+        }
+        throw new DocumentException("The file name already Exists !");
+    }
+
     public MuzimaForm save(MuzimaForm form) throws IOException, TransformerException, ParserConfigurationException, DocumentException {
         dao.saveForm(form);
         return form;

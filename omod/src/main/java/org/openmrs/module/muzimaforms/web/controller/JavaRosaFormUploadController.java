@@ -46,6 +46,13 @@ public class JavaRosaFormUploadController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "/html/upload.form",method = RequestMethod.POST)
+    public void uploadHTMLForm(MultipartHttpServletRequest request, @RequestParam String name, @RequestParam String description) throws ParserConfigurationException, TransformerException, DocumentException, IOException {
+        MuzimaFormService service = Context.getService(MuzimaFormService.class);
+        service.createHTMLForm(name,description,extractFile(request));
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/odk/upload.form", method = RequestMethod.POST)
     public void uploadODK(MultipartHttpServletRequest request, @RequestParam String name, @RequestParam String description) throws IOException, DocumentException, TransformerException, ParserConfigurationException {
         MuzimaFormService service = Context.getService(MuzimaFormService.class);

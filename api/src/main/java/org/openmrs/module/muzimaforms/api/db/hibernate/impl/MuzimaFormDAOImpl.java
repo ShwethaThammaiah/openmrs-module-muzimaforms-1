@@ -10,6 +10,7 @@ import org.openmrs.module.muzimaforms.MuzimaXForm;
 import org.openmrs.module.muzimaforms.api.db.hibernate.MuzimaFormDAO;
 import org.openmrs.module.xforms.Xform;
 
+import java.util.Date;
 import java.util.List;
 
 public class MuzimaFormDAOImpl implements MuzimaFormDAO {
@@ -45,9 +46,22 @@ public class MuzimaFormDAOImpl implements MuzimaFormDAO {
         return (MuzimaForm) session().createQuery("from MuzimaForm form where form.uuid = '" + uuid + "'").uniqueResult();
     }
 
-    public List<MuzimaForm> findByName(final String name) {
+    public List<MuzimaForm> findByName(final String name, final Date syncDate) {
         Criteria criteria = session().createCriteria(MuzimaForm.class);
         criteria.add(Restrictions.ilike("name", name, MatchMode.ANYWHERE));
+        if (syncDate != null) {
+            criteria.add(Restrictions.or(
+                    Restrictions.or(
+                            Restrictions.and(
+                                    Restrictions.and(Restrictions.isNotNull("dateCreated"), Restrictions.ge("dateCreated", syncDate)),
+                                    Restrictions.and(Restrictions.isNull("dateChanged"), Restrictions.isNull("dateRetired"))),
+                            Restrictions.and(
+                                    Restrictions.and(Restrictions.isNotNull("dateChanged"), Restrictions.ge("dateChanged", syncDate)),
+                                    Restrictions.and(Restrictions.isNotNull("dateCreated"), Restrictions.isNull("dateRetired")))),
+                    Restrictions.and(
+                            Restrictions.and(Restrictions.isNotNull("dateRetired"), Restrictions.ge("dateRetired", syncDate)),
+                            Restrictions.and(Restrictions.isNotNull("dateCreated"), Restrictions.isNotNull("dateChanged")))));
+        }
         return criteria.list();
     }
 

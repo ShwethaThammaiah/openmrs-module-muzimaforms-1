@@ -1,5 +1,6 @@
 package org.openmrs.module.muzimaforms.resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Cohort;
@@ -22,6 +23,11 @@ import org.openmrs.module.webservices.rest.web.resource.impl.NeedsPaging;
 import org.openmrs.module.webservices.rest.web.response.ResourceDoesNotSupportOperationException;
 import org.openmrs.module.webservices.rest.web.response.ResponseException;
 
+import javax.servlet.http.HttpServletRequest;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Resource(name = RestConstants.VERSION_1 + "/" + MuzimaConstants.MODULE_ID + "/form", supportedClass = MuzimaForm.class, supportedOpenmrsVersions = {"1.8.*", "1.9.*"})
@@ -36,9 +42,31 @@ public class MuzimaFormResource extends DataDelegatingCrudResource<MuzimaForm> {
         return new NeedsPaging<MuzimaForm>(all, context);
     }
 
+    private Date parseDate(final String iso8601String) {
+        if (!StringUtils.isNotBlank(iso8601String)) {
+            return null;
+        }
+        Date date = null;
+        try {
+            String s = iso8601String.replace("Z", "+00:00");
+            s = s.substring(0, 22) + s.substring(23);
+            date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").parse(s);
+        } catch (ParseException e) {
+            log.error("Unable to parse date information.");
+        }
+        return date;
+    }
+
     @Override
     protected PageableResult doSearch(final RequestContext context) {
-        List<MuzimaForm> muzimaForms = Context.getService(MuzimaFormService.class).findByName(context.getParameter("q"));
+        HttpServletRequest request = context.getRequest();
+        String nameParameter = request.getParameter("q");
+        String syncDateParameter = request.getParameter("syncDate");
+        List<MuzimaForm> muzimaForms = new ArrayList<MuzimaForm>();
+        if (nameParameter != null) {
+            Date syncDate = parseDate(syncDateParameter);
+            muzimaForms = Context.getService(MuzimaFormService.class).findByName(nameParameter, syncDate);
+        }
         return new NeedsPaging<MuzimaForm>(muzimaForms, context);
     }
 

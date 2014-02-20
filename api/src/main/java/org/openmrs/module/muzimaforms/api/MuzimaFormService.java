@@ -12,6 +12,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.xpath.XPathExpressionException;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 public interface MuzimaFormService extends OpenmrsService {
@@ -28,7 +29,7 @@ public interface MuzimaFormService extends OpenmrsService {
 
     MuzimaForm findByUniqueId(String uuid);
 
-    List<MuzimaForm> findByName(final String name);
+    List<MuzimaForm> findByName(final String name, final Date syncDate);
 
     @Transactional
     MuzimaForm create(String xformXml, String description, String name) throws IOException, TransformerException, ParserConfigurationException, DocumentException;

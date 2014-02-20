@@ -18,6 +18,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.Date;
 import java.util.List;
 
 public class MuzimaFormServiceImpl extends BaseOpenmrsService implements MuzimaFormService {
@@ -61,7 +62,7 @@ public class MuzimaFormServiceImpl extends BaseOpenmrsService implements MuzimaF
     }
 
     private boolean isFormNameExists(String name) {
-        List<MuzimaForm> formsWithSimilarNames = dao.findByName(name);
+        List<MuzimaForm> formsWithSimilarNames = dao.findByName(name, null);
         for (MuzimaForm form : formsWithSimilarNames) {
             if (form.getName().equals(name)) {
                 return true;
@@ -108,7 +109,7 @@ public class MuzimaFormServiceImpl extends BaseOpenmrsService implements MuzimaF
         return dao.findByUuid(uuid);  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    public List<MuzimaForm> findByName(final String name) {
-        return dao.findByName(name);
+    public List<MuzimaForm> findByName(final String name, final Date syncDate) {
+        return dao.findByName(name, syncDate);
     }
 }

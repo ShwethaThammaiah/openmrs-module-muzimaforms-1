@@ -4,6 +4,7 @@ import org.openmrs.module.muzimaforms.MuzimaForm;
 import org.openmrs.module.muzimaforms.MuzimaXForm;
 import org.openmrs.module.xforms.Xform;
 
+import java.util.Date;
 import java.util.List;
 
 public interface MuzimaFormDAO {
@@ -19,5 +20,5 @@ public interface MuzimaFormDAO {
 
     MuzimaForm findByUuid(String uuid);
 
-    List<MuzimaForm> findByName(final String name);
+    List<MuzimaForm> findByName(final String name, final Date syncDate);
 }

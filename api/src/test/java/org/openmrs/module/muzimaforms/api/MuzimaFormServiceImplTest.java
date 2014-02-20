@@ -91,7 +91,7 @@ public class MuzimaFormServiceImplTest {
     public void shouldNotCreateHTMLFormIfFormNameAlreadyExists() throws Exception {
         List<MuzimaForm> muzimaForms = asList(getMuzimaFormWithName("Something like name"),
                 getMuzimaFormWithName("name"));
-        when(dao.findByName("name")).thenReturn(muzimaForms);
+        when(dao.findByName("name", syncDate)).thenReturn(muzimaForms);
         service.createHTMLForm("name", "description", "html");
         verifyZeroInteractions(transformer,modelTransformer,odk2JavarosaTransformer,odk2HTML5Transformer);
         verify(dao,never()).saveForm(any(MuzimaForm.class));
@@ -189,7 +189,7 @@ public class MuzimaFormServiceImplTest {
     public void shouldNotCreateFormIfTheNameAlreadyExists() throws ParserConfigurationException, TransformerException, DocumentException, IOException {
         List<MuzimaForm> muzimaForms = asList(getMuzimaFormWithName("Something like name"),
                 getMuzimaFormWithName("name"));
-        when(dao.findByName("name")).thenReturn(muzimaForms);
+        when(dao.findByName("name", syncDate)).thenReturn(muzimaForms);
         service.create("xml", "description", "name");
         verify(modelTransformer,never()).transform(anyString());
     }
@@ -201,7 +201,7 @@ public class MuzimaFormServiceImplTest {
         EnketoResult enketoResult = mock(EnketoResult.class);
         CompositeEnketoResult compositeEnketResult = mock(CompositeEnketoResult.class);
 
-        when(dao.findByName("name")).thenReturn(muzimaForms);
+        when(dao.findByName("name", syncDate)).thenReturn(muzimaForms);
         when(transformer.transform(anyString())).thenReturn(enketoResult);
         when(modelTransformer.transform(anyString())).thenReturn(compositeEnketResult);
 

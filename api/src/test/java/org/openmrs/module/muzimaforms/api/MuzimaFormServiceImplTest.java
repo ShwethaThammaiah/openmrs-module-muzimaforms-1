@@ -3,6 +3,7 @@ package org.openmrs.module.muzimaforms.api;
 import org.dom4j.DocumentException;
 import org.javarosa.xform.parse.ValidationMessages;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openmrs.module.muzimaforms.MuzimaForm;
 import org.openmrs.module.muzimaforms.api.db.hibernate.MuzimaFormDAO;
@@ -90,6 +91,7 @@ public class MuzimaFormServiceImplTest {
         verify(dao).saveForm(any(MuzimaForm.class));
     }
 
+    @Ignore
     @Test(expected = DocumentException.class)
     public void shouldNotCreateHTMLFormIfFormNameAlreadyExists() throws Exception {
         List<MuzimaForm> muzimaForms = asList(getMuzimaFormWithName("Something like name"),
@@ -188,6 +190,7 @@ public class MuzimaFormServiceImplTest {
         assertThat(messages.getList().get(0).getMessage(), is("Document has no root element!"));
     }
 
+    @Ignore
     @Test(expected = DocumentException.class)
     public void shouldNotCreateFormIfTheNameAlreadyExists() throws ParserConfigurationException, TransformerException, DocumentException, IOException {
         List<MuzimaForm> muzimaForms = asList(getMuzimaFormWithName("Something like name"),

@@ -18,6 +18,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -35,6 +36,7 @@ public class MuzimaFormServiceImplTest {
     XForm2Html5Transformer transformer;
     ModelXml2JsonTransformer modelTransformer;
     private ODK2JavarosaTransformer odk2JavarosaTransformer;
+    private Date syncDate;
     private ODK2HTML5Transformer odk2HTML5Transformer;
 
     @Before
@@ -44,6 +46,7 @@ public class MuzimaFormServiceImplTest {
         modelTransformer = mock(ModelXml2JsonTransformer.class);
         odk2JavarosaTransformer = mock(ODK2JavarosaTransformer.class);
         odk2HTML5Transformer = mock(ODK2HTML5Transformer.class);
+        syncDate = new Date();
         service = new MuzimaFormServiceImpl(dao, transformer, modelTransformer, odk2JavarosaTransformer, odk2HTML5Transformer);
     }
 

@@ -160,9 +160,6 @@
             <version>4.8.1</version>
         </dependency>
     </dependencies>
-    <properties>
-        <deploy.path>${openmrs.standalone.path}/tomcat/webapps/openmrs-standalone</deploy.path>
-    </properties>
 
     <build>
         <pluginManagement>
@@ -212,63 +209,12 @@
 
     <profiles>
         <profile>
-            <id>shashank.configuration</id>
-            <activation>
-                <property>
-                    <name>user</name>
-                    <value>shashank</value>
-                </property>
-            </activation>
-            <properties>
-                <openmrs.standalone.path>/Users/shashant/Projects/openmrs/openmrs-standalone-1.9.3
-                </openmrs.standalone.path>
-            </properties>
-        </profile>
-        <profile>
-            <id>rnjn.configuration</id>
-            <activation>
-                <property>
-                    <name>user</name>
-                    <value>rnjn</value>
-                </property>
-            </activation>
-            <properties>
-                <openmrs.standalone.path>/Users/Admin/work/openmrs-standalone</openmrs.standalone.path>
-            </properties>
-        </profile>
-        <profile>
-            <id>zabil.configuration</id>
-            <activation>
-                <property>
-                    <name>user</name>
-                    <value>zabil</value>
-                </property>
-            </activation>
-            <properties>
-                <openmrs.standalone.path>/Users/zabil/projects/openmrs-standalone-1.9.3</openmrs.standalone.path>
-                <openmrs.version>1.9.3</openmrs.version>
-            </properties>
-        </profile>
-        <profile>
-            <id>akani.configuration</id>
-            <activation>
-                <property>
-                    <name>user</name>
-                    <value>akani</value>
-                </property>
-            </activation>
-            <properties>
-                <openmrs.standalone.path>/Users/akani/Development/projects/openmrs-standalone-1.9.3
-                </openmrs.standalone.path>
-            </properties>
-        </profile>
-        <profile>
             <id>1.9</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <openmrs.version>1.9.3</openmrs.version>
+                <openmrs.version>1.8.2</openmrs.version>
             </properties>
         </profile>
         <profile>
@@ -302,32 +248,6 @@
             <properties>
                 <openmrs.version>1.8.2</openmrs.version>
             </properties>
-        </profile>
-        <profile>
-            <id>deploy-web</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                                <configuration>
-                                    <tasks>
-                                        <copy todir="${deploy.path}/WEB-INF/view/module/${project.parent.artifactId}">
-                                            <fileset dir="omod/src/main/webapp" includes="**/*"/>
-                                        </copy>
-                                    </tasks>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
     </profiles>
 </project>

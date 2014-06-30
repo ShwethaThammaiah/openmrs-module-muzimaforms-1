@@ -79,7 +79,11 @@ public class MuzimaFormResourceTest {
     public void save_shouldDelegateToService() throws SAXException, DocumentException, TransformerException, IOException, XPathExpressionException, ParserConfigurationException {
         MuzimaForm form = getForm("");
         controller.save(form);
-        verify(service, times(1)).save(form);
+        try {
+            verify(service, times(1)).save(form);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test

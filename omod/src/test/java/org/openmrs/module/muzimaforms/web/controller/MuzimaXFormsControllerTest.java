@@ -51,6 +51,6 @@ public class MuzimaXFormsControllerTest {
     @Test
     public void importXForm_shouldImportAnExistingXForm() throws Exception {
         controller.importXForm(1, "name", "discriminator", "description");
-        verify(service).importExisting(1, "name", "discriminator", "description");
+        verify(service).importExisting(1, "name", "description", "discriminator");
     }
 }

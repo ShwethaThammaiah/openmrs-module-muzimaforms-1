@@ -11,8 +11,8 @@ import java.util.UUID;
 public class MuzimaForm extends BaseOpenmrsData {
     private Integer id;
     private String name;
-    private String discriminator;
     private String description;
+    private String discriminator;
     private String model;
     private String html;
     private String modelJson;
@@ -29,8 +29,8 @@ public class MuzimaForm extends BaseOpenmrsData {
         }
 
         this.name = name;
-        this.discriminator = discriminator;
         this.description = description;
+        this.discriminator = discriminator;
         this.model = model;
         this.html = html;
         this.modelJson = modelJson;
@@ -52,20 +52,20 @@ public class MuzimaForm extends BaseOpenmrsData {
         this.name = name;
     }
 
-    public String getDiscriminator() {
-        return discriminator;
-    }
-
-    public void setDiscriminator(final String discriminator) {
-        this.discriminator = discriminator;
-    }
-
     public String getDescription() {
         return description == null ? "" : description;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getDiscriminator() {
+        return discriminator == null ? "" : discriminator;
+    }
+
+    public void setDiscriminator(final String discriminator) {
+        this.discriminator = discriminator;
     }
 
     public String getModelJson() {

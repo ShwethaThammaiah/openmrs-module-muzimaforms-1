@@ -46,7 +46,7 @@ public class JavaRosaFormUploadControllerTest {
 
         controller.uploadJavaRosa(request, "name", "discriminator", "description");
 
-        verify(service).create(readStream(request.getFile("file").getInputStream()), "name", "discriminator", "description");
+        verify(service).create(readStream(request.getFile("file").getInputStream()), "name", "description", "discriminator");
     }
 
     @Test
@@ -55,7 +55,7 @@ public class JavaRosaFormUploadControllerTest {
 
         controller.uploadODK(request, "name", "discriminator", "description");
 
-        verify(service).importODK(readStream(request.getFile("file").getInputStream()), "name", "discriminator", "description");
+        verify(service).importODK(readStream(request.getFile("file").getInputStream()), "name", "description", "discriminator");
     }
 
     @Test
@@ -75,7 +75,7 @@ public class JavaRosaFormUploadControllerTest {
         String formDescription = "description";
         request.addFile(multipartFile("file", "sampleUploadForm.xml"));
         controller.uploadHTMLForm(request, formName, formDiscriminator, formDescription);
-        verify(service).createHTMLForm(eq(formName), eq(formDiscriminator), eq(formDescription), anyString());
+        verify(service).createHTMLForm(eq(formName), eq(formDescription), eq(formDiscriminator), anyString());
     }
 
     private MockMultipartFile multipartFile(String name, String fileName) throws IOException {

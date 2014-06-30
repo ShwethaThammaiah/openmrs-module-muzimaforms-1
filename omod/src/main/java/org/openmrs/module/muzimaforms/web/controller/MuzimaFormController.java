@@ -24,7 +24,7 @@ public class MuzimaFormController {
     //TODO: Use MuzimaFormResource to handle the save
     @RequestMapping(method = RequestMethod.POST, value = "form")
     @ResponseBody
-    public void save(@RequestBody MuzimaForm form) throws SAXException, DocumentException, TransformerException, IOException, XPathExpressionException, ParserConfigurationException {
+    public void save(final @RequestBody MuzimaForm form) throws Exception {
         MuzimaFormService service = Context.getService(MuzimaFormService.class);
         service.save(form);
     }

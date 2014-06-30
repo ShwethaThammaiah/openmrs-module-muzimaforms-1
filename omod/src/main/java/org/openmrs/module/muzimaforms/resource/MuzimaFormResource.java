@@ -3,7 +3,6 @@ package org.openmrs.module.muzimaforms.resource;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.Cohort;
 import org.openmrs.annotation.Handler;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.muzimaforms.MuzimaConstants;
@@ -30,7 +29,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Resource(name = RestConstants.VERSION_1 + "/" + MuzimaConstants.MODULE_ID + "/form", supportedClass = MuzimaForm.class, supportedOpenmrsVersions = {"1.8.*", "1.9.*"})
+@Resource(name = RestConstants.VERSION_1 + "/" + MuzimaConstants.MODULE_ID + "/form",
+        supportedClass = MuzimaForm.class, supportedOpenmrsVersions = {"1.8.*", "1.9.*"})
 @Handler(supports = MuzimaForm.class)
 public class MuzimaFormResource extends DataDelegatingCrudResource<MuzimaForm> {
     private static final Log log = LogFactory.getLog(MuzimaFormResource.class);

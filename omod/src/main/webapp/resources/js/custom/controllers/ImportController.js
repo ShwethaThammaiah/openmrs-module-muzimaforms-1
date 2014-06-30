@@ -23,7 +23,7 @@ function ImportCtrl($scope, FileUploadService, _, $location) {
         }
     };
 
-    $scope.upload = function (file, name, description,formType) {
+    $scope.upload = function (file, name, discriminator, description, formType) {
         var match = name.match('[\\s\\w]*');
         if(match == null || match[0] != name){
             showErrorMessage("The form name shouldn't contain any special characters");
@@ -31,7 +31,7 @@ function ImportCtrl($scope, FileUploadService, _, $location) {
         }
         FileUploadService.post({
             url: $scope.getURL(formType), file: file, params: {
-                name: name, description: description || ""
+                name: name, discriminator: discriminator,  description: description || ""
             }
         }).success(function () {
                 $location.path("#/list/forms");

@@ -256,4 +256,13 @@
             </where>
         </update>
     </changeSet>
+
+    <changeSet id="muzimaform-2014-06-29-22:55" author="nribeka">
+        <comment>
+            Adding the discriminator column
+        </comment>
+        <addColumn tableName="muzimaforms_form">
+            <column name="discriminator" type="varchar(255)" />
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

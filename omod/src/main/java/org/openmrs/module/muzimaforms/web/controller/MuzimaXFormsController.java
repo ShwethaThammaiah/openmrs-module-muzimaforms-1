@@ -29,8 +29,8 @@ public class MuzimaXFormsController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
-    public void importXForm(@RequestParam Integer id, @RequestParam String name, @RequestParam String description) throws SAXException, DocumentException, TransformerException, IOException, XPathExpressionException, ParserConfigurationException {
+    public void importXForm(@RequestParam Integer id, @RequestParam String name, @RequestParam String discriminator, @RequestParam String description) throws SAXException, DocumentException, TransformerException, IOException, XPathExpressionException, ParserConfigurationException {
         MuzimaFormService service = Context.getService(MuzimaFormService.class);
-        service.importExisting(id, name, description);
+        service.importExisting(id, name, discriminator, description);
     }
 }

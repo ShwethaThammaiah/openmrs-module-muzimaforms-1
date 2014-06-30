@@ -110,17 +110,17 @@ public class MuzimaFormResource extends DataDelegatingCrudResource<MuzimaForm> {
         DelegatingResourceDescription description = null;
 
         if (rep instanceof DefaultRepresentation || rep instanceof RefRepresentation) {
-            DelegatingResourceDescription description1 = new DelegatingResourceDescription();
-            description1.addProperty("uuid");
-            description1.addProperty("id");
-            description1.addProperty("name");
-            description1.addProperty("description");
-            description1.addProperty("model");
-            description1.addProperty("html");
-            description1.addProperty("modelJson");
-            description1.addProperty("tags", new CustomRepresentation("(id,uuid,name)"));
-            description1.addSelfLink();
-            description = description1;
+            description = new DelegatingResourceDescription();
+            description.addProperty("uuid");
+            description.addProperty("id");
+            description.addProperty("name");
+            description.addProperty("discriminator");
+            description.addProperty("description");
+            description.addProperty("model");
+            description.addProperty("html");
+            description.addProperty("modelJson");
+            description.addProperty("tags", new CustomRepresentation("(id,uuid,name)"));
+            description.addSelfLink();
         }
 
         return description;

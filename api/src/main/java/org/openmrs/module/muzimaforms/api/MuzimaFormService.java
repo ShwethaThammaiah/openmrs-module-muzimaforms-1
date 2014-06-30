@@ -23,7 +23,7 @@ public interface MuzimaFormService extends OpenmrsService {
     List<MuzimaXForm> getXForms();
 
     @Transactional
-    MuzimaForm importExisting(Integer xFormId, String name, String description) throws IOException, TransformerException, ParserConfigurationException, XPathExpressionException, SAXException, DocumentException;
+    MuzimaForm importExisting(Integer xFormId, String name, String discriminator, String description) throws IOException, TransformerException, ParserConfigurationException, XPathExpressionException, SAXException, DocumentException;
 
     MuzimaForm findById(Integer id);
 
@@ -32,13 +32,13 @@ public interface MuzimaFormService extends OpenmrsService {
     List<MuzimaForm> findByName(final String name, final Date syncDate);
 
     @Transactional
-    MuzimaForm create(String xformXml, String description, String name) throws IOException, TransformerException, ParserConfigurationException, DocumentException;
+    MuzimaForm create(String xformXml, String name, String discriminator, String description) throws IOException, TransformerException, ParserConfigurationException, DocumentException;
 
     @Transactional
-    MuzimaForm importODK(String xformXml, String description, String name) throws IOException, TransformerException, ParserConfigurationException, DocumentException;
+    MuzimaForm importODK(String xformXml, String name, String discriminator, String description) throws IOException, TransformerException, ParserConfigurationException, DocumentException;
 
     @Transactional
-    MuzimaForm createHTMLForm(String name, String description, String html) throws ParserConfigurationException, TransformerException, DocumentException, IOException;
+    MuzimaForm createHTMLForm(String name, String discriminator, String description, String html) throws ParserConfigurationException, TransformerException, DocumentException, IOException;
 
     @Transactional
     MuzimaForm save(MuzimaForm form) throws IOException, TransformerException, ParserConfigurationException, DocumentException;

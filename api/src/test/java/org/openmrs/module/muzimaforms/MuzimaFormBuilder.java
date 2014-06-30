@@ -11,6 +11,7 @@ public class MuzimaFormBuilder extends Builder<MuzimaForm> {
     private String uuid;
     private Set<MuzimaFormTag> tags = new HashSet<MuzimaFormTag>();
     private String name;
+    private String discriminator;
     private String description;
 
     private MuzimaFormBuilder() {
@@ -23,6 +24,7 @@ public class MuzimaFormBuilder extends Builder<MuzimaForm> {
         muzimaForm.setUuid(uuid);
         muzimaForm.setTags(tags);
         muzimaForm.setName(name);
+        muzimaForm.setDiscriminator(discriminator);
         muzimaForm.setDescription(description);
         return muzimaForm;
     }
@@ -49,6 +51,11 @@ public class MuzimaFormBuilder extends Builder<MuzimaForm> {
 
     public MuzimaFormBuilder withName(String name) {
         this.name = name;
+        return this;
+    }
+
+    public MuzimaFormBuilder withDiscriminator(String discriminator) {
+        this.discriminator = discriminator;
         return this;
     }
 

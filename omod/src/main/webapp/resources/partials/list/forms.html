@@ -35,29 +35,36 @@
         <div class="row">
             <div class="col-lg-12 panel">
                 <div class="panel-heading">
-                        <span><a title="Preview Form" ng-click="showFormPreview(muzimaform.form.html, muzimaform.form.model, muzimaform.form.modelJson)">
-                            <i class="icon-eye-open"></i></a></span>
-                        <span>
-                            <a title="Add Tags" ng-click="editMode = !editMode">
-                                <i class="icon-tags"></i></a>
-                        </span>
-                        <span class="form-heading content_wrap">
-                            <strong>{{muzimaform.form.name}}</strong>
-                        </span>
+                    <span>
+                        <a title="Preview Form"
+                           ng-click="showFormPreview(muzimaform.form.html, muzimaform.form.model, muzimaform.form.modelJson)">
+                            <i class="icon-eye-open"></i>
+                        </a>
+                    </span>
+                    <span>
+                        <a title="Add Tags" ng-click="editMode = !editMode">
+                            <i class="icon-tags"></i>
+                        </a>
+                    </span>
+                    <span class="form-heading content_wrap">
+                        <strong>{{muzimaform.form.name}}</strong>
+                    </span>
                 </div>
                 <div>
-                    <p>
-                        <small>{{muzimaform.form.description || ""}}</small>
-                    </p>
+                    <p><small>{{muzimaform.form.discriminator || ""}}</small></p>
                 </div>
                 <div>
-                            <span class="tag" ng-repeat="tag in muzimaform.form.tags">
-                                <span class="label form-tag" ng-style="tagStyle(tag.id)">
-                                <span ng-click="addTagFilter(tag);$event.stopPropagation()">{{tag.name}} </span><span
-                                        ng-click="removeTag(muzimaform.form, tag)"><i
-                                        class="icon-remove"></i></span>
-                                </span>
+                    <p><small>{{muzimaform.form.description || ""}}</small></p>
+                </div>
+                <div>
+                    <span class="tag" ng-repeat="tag in muzimaform.form.tags">
+                        <span class="label form-tag" ng-style="tagStyle(tag.id)">
+                            <span ng-click="addTagFilter(tag);$event.stopPropagation()">{{tag.name}} </span>
+                            <span ng-click="removeTag(muzimaform.form, tag)">
+                                <i class="icon-remove"></i>
                             </span>
+                        </span>
+                    </span>
                 </div>
 
                 <div ng-show="editMode">

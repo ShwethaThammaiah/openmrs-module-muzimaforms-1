@@ -58,7 +58,7 @@ public class EnketoResultTest {
         xform.setXformXml(xformXml);
         when(muzimaFormDAO.getXform(1)).thenReturn(xform);
 
-        muzimaFormService.importExisting(1, null, null);
+        muzimaFormService.importExisting(1, null, null, null);
     }
 
     private String xformXml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><xf:xforms xmlns:xf=\"http://www.w3.org/2002/xforms\" xmlns:jr=\"http://openrosa.org/javarosa\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" +

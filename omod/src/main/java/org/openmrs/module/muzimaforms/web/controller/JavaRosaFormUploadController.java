@@ -40,23 +40,23 @@ public class JavaRosaFormUploadController {
 
     @ResponseBody
     @RequestMapping(value = "/javarosa/upload.form", method = RequestMethod.POST)
-    public void uploadJavaRosa(MultipartHttpServletRequest request, @RequestParam String name, @RequestParam String description) throws IOException, DocumentException, TransformerException, ParserConfigurationException {
+    public void uploadJavaRosa(MultipartHttpServletRequest request, @RequestParam String name, @RequestParam String discriminator, @RequestParam String description) throws IOException, DocumentException, TransformerException, ParserConfigurationException {
         MuzimaFormService service = Context.getService(MuzimaFormService.class);
-        service.create(extractFile(request), description, name);
+        service.create(extractFile(request), name, discriminator, description);
     }
 
     @ResponseBody
     @RequestMapping(value = "/html/upload.form",method = RequestMethod.POST)
-    public void uploadHTMLForm(MultipartHttpServletRequest request, @RequestParam String name, @RequestParam String description) throws ParserConfigurationException, TransformerException, DocumentException, IOException {
+    public void uploadHTMLForm(MultipartHttpServletRequest request, @RequestParam String name, @RequestParam String discriminator, @RequestParam String description) throws ParserConfigurationException, TransformerException, DocumentException, IOException {
         MuzimaFormService service = Context.getService(MuzimaFormService.class);
-        service.createHTMLForm(name,description,extractFile(request));
+        service.createHTMLForm(name, discriminator, description, extractFile(request));
     }
 
     @ResponseBody
     @RequestMapping(value = "/odk/upload.form", method = RequestMethod.POST)
-    public void uploadODK(MultipartHttpServletRequest request, @RequestParam String name, @RequestParam String description) throws IOException, DocumentException, TransformerException, ParserConfigurationException {
+    public void uploadODK(MultipartHttpServletRequest request, @RequestParam String name, @RequestParam String discriminator, @RequestParam String description) throws IOException, DocumentException, TransformerException, ParserConfigurationException {
         MuzimaFormService service = Context.getService(MuzimaFormService.class);
-        service.importODK(extractFile(request), description, name);
+        service.importODK(extractFile(request), name, discriminator, description);
     }
 
     private String extractFile(MultipartHttpServletRequest request) throws IOException, DocumentException, TransformerException, ParserConfigurationException {

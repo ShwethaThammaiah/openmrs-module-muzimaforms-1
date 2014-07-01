@@ -12,6 +12,7 @@
 
         <property name="name" type="java.lang.String"/>
         <property name="description" type="java.lang.String"/>
+        <property name="discriminator" type="java.lang.String"/>
         <set name="tags" table="muzimaforms_tag_map" cascade="all-delete-orphan">
             <key column="form_id" not-null="true"/>
             <many-to-many column="tag_id" class="MuzimaFormTag"/>

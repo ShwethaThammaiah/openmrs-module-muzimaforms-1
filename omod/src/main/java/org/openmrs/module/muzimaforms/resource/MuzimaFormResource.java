@@ -48,9 +48,11 @@ public class MuzimaFormResource extends DataDelegatingCrudResource<MuzimaForm> {
         }
         Date date = null;
         try {
-            String s = iso8601String.replace("Z", "+00:00");
-            s = s.substring(0, 22) + s.substring(23);
-            date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").parse(s);
+//            String s = iso8601String.replace("Z", "+00:00");
+//            s = s.substring(0, 22) + s.substring(23);
+//            date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").parse(s);
+            String s = iso8601String.substring(0, 10);
+            date = new SimpleDateFormat("yyyy-MM-dd").parse(s);
         } catch (ParseException e) {
             log.error("Unable to parse date information.");
         }

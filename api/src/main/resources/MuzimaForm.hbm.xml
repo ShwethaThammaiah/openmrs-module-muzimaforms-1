@@ -21,6 +21,7 @@
         <property name="html" column="form_html"/>
         <property name="modelJson" column="model_json"/>
 
+        <property name="form" type="java.lang.String" column="form" />
 
         <property name="dateCreated" type="java.util.Date"
                   column="date_created" length="19"/>

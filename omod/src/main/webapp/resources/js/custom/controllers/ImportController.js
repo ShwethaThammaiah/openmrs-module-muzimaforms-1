@@ -1,7 +1,7 @@
 'use strict';
-function ImportCtrl($scope, FileUploadService, _, $location) {
+function ImportCtrl($scope, FileUploadService, FormService, _, $location) {
 
-    var showErrorMessage = function(content, cl, time) {
+    var showErrorMessage = function (content, cl, time) {
         $('<div/>')
             .addClass('alert')
             .addClass('alert-error')
@@ -12,7 +12,11 @@ function ImportCtrl($scope, FileUploadService, _, $location) {
             .text(content);
     };
 
-    $scope.validate = function (file,formType) {
+    FormService.getForms().then(function (results) {
+        $scope.forms = results.data.results;
+    });
+
+    $scope.validate = function (file, formType) {
 
         if (formType == 'html') {
             $scope.validations = { list: []};
@@ -23,21 +27,26 @@ function ImportCtrl($scope, FileUploadService, _, $location) {
         }
     };
 
-    $scope.upload = function (file, name, discriminator, description, formType) {
+    $scope.upload = function (file, name, form, discriminator, description, formType) {
         var match = name.match('[\\s\\w]*');
-        if(match == null || match[0] != name){
+        if (match == null || match[0] != name) {
             showErrorMessage("The form name shouldn't contain any special characters");
             return;
         }
+        var uuid = "";
+        if (form != null && form !== 'undefined') {
+            uuid = form.uuid;
+        }
+
         FileUploadService.post({
             url: $scope.getURL(formType), file: file, params: {
-                name: name, discriminator: discriminator,  description: description || ""
+                name: name, form: uuid, description: description || "", discriminator: discriminator
             }
         }).success(function () {
-                $location.path("#/list/forms");
-            }).error(function () {
-                showErrorMessage("The form name already exists !! Please use some other name.");
-            });
+            $location.path("#/list/forms");
+        }).error(function () {
+            showErrorMessage("The form name already exists !! Please use some other name.");
+        });
     };
 
     $scope.getURL = function (formType) {

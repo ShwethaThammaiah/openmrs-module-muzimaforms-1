@@ -265,4 +265,13 @@
             <column name="discriminator" type="varchar(255)" />
         </addColumn>
     </changeSet>
+
+    <changeSet id="muzimaform-2014-07-14-21:36" author="nribeka">
+        <comment>
+            Adding the form relation to resolve the encounter type.
+        </comment>
+        <addColumn tableName="muzimaforms_form">
+            <column name="form" type="varchar(38)" />
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

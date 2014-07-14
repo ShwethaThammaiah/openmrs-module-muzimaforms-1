@@ -27,9 +27,10 @@ public class MuzimaXFormsController {
     @ResponseBody
     public void importXForm(final @RequestParam Integer id,
                             final @RequestParam String name,
+                            final @RequestParam String form,
                             final @RequestParam String discriminator,
                             final @RequestParam String description) throws Exception {
         MuzimaFormService service = Context.getService(MuzimaFormService.class);
-        service.importExisting(id, name, description, discriminator);
+        service.importExisting(id, name, form, description, discriminator);
     }
 }

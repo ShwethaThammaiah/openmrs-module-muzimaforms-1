@@ -59,7 +59,7 @@ public class EnketoResultTest {
         when(muzimaFormDAO.getXform(1)).thenReturn(xform);
 
         try {
-            muzimaFormService.importExisting(1, null, null, null);
+            muzimaFormService.importExisting(1, null, null, null, null);
         } catch (Exception e) {
             e.printStackTrace();
         }

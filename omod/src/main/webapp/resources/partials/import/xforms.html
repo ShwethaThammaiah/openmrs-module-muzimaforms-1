@@ -29,7 +29,7 @@
         <div class="col-lg-6 panel">
             <div class="alert alert-success">The Form is valid! Use the upload button to import it.</div>
             <div id="error-alert"></div>
-            <form role="form" ng-submit="upload(file, name, discriminator, description, formType)">
+            <form role="form" ng-submit="upload(file, name, form, discriminator, description, formType)">
                 <div class="form-group">
                     <label for="xFormName">Name</label>
                     <input type="text" class="form-control" id="xFormName" ng-model="name"
@@ -38,7 +38,14 @@
                 <div class="form-group">
                     <label for="xFormDiscriminator">Form Discriminator</label>
                     <input type="text" class="form-control" id="xformdiscriminator" ng-model="discriminator"
-                            placeholder="Enter discriminator" required="true">
+                           placeholder="Enter discriminator" required="true">
+                </div>
+                <div class="form-group">
+                    <label for="xFormFormDefinition">Form Definition</label>
+                    <select class="form-control" id="xFormFormDefinition" ng-model="form"
+                            ng-options="form.name for form in forms">
+                        <option value="">None</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="xFormDescription">Description</label>

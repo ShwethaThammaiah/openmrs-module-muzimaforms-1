@@ -54,7 +54,10 @@ function FormsCtrl($scope, $window, FormService, TagService, _) {
         var tag = $scope.tagColorMap[tagId];
         if (!tag) {
             $scope.tagColorMap[tagId] = {};
-            $scope.tagColorMap[tagId].color = 'rgb(' + (50 + Math.floor(Math.random() * 150)) + ',' + (50 + Math.floor(Math.random() * 150)) + ',' + (50 + Math.floor(Math.random() * 150)) + ')';
+            $scope.tagColorMap[tagId].color =
+                'rgb(' + (50 + Math.floor(Math.random() * 150))
+                + ',' + (50 + Math.floor(Math.random() * 150))
+                + ',' + (50 + Math.floor(Math.random() * 150)) + ')';
         }
         return $scope.tagColorMap[tagId].color;
     };
@@ -75,6 +78,19 @@ function FormsCtrl($scope, $window, FormService, TagService, _) {
         return _.find(tags, function (tag) {
             return angular.lowercase(tag.name) === angular.lowercase(newTag);
         });
+    };
+
+    $scope.remove = function (muzimaform) {
+        var form = muzimaform.form;
+        form.voided = true;
+        FormService.save(form)
+            .then(function (form) {
+                $scope.muzimaforms = _.reject($scope.muzimaforms, function (muzimaform) {
+                    if (muzimaform.form == form) {
+                        return false;
+                    }
+                })
+            });
     };
 
     $scope.saveTag = function (muzimaform) {

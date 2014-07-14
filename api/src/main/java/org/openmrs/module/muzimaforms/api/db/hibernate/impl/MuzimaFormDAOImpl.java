@@ -21,7 +21,9 @@ public class MuzimaFormDAOImpl implements MuzimaFormDAO {
     }
 
     public List<MuzimaForm> getAll() {
-        return (List<MuzimaForm>) session().createCriteria(MuzimaForm.class).list();
+        Criteria criteria = session().createCriteria(MuzimaForm.class);
+        criteria.add(Restrictions.eq("voided", false));
+        return criteria.list();
 
     }
 

@@ -14,10 +14,10 @@ function XFormsCtrl($scope, $location, XFormService, _, $q) {
     $scope.done = function () {
         $q.all(_.map($scope.selectedXForms, function (value) {
             return XFormService.save(_.find($scope.xForms, function (xForm) {
-                    return xForm.id == value
-                })).then(function () {
-                    $location.path("#/list/forms");
-                });
+                return xForm.id == value
+            })).then(function () {
+                $location.path("#/list/forms");
+            });
         }));
     };
 

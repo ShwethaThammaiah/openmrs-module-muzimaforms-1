@@ -44,18 +44,18 @@ public class JavaRosaFormUploadControllerTest {
     public void shouldConvertJavaRosaFormToHTMLAndSaveIt() throws Exception {
         request.addFile(multipartFile("file", "sampleUploadForm.xml"));
 
-        controller.uploadJavaRosa(request, "name", "discriminator", "description");
+        controller.uploadJavaRosa(request, "name", "form", "description", "discriminator");
 
-        verify(service).create(readStream(request.getFile("file").getInputStream()), "name", "description", "discriminator");
+        verify(service).create(readStream(request.getFile("file").getInputStream()), "name", "form", "description", "discriminator");
     }
 
     @Test
     public void shouldConvertODKFormToHTMLAndSaveIt() throws Exception {
         request.addFile(multipartFile("file", "sampleUploadForm.xml"));
 
-        controller.uploadODK(request, "name", "discriminator", "description");
+        controller.uploadODK(request, "name", "form", "description", "discriminator");
 
-        verify(service).importODK(readStream(request.getFile("file").getInputStream()), "name", "description", "discriminator");
+        verify(service).importODK(readStream(request.getFile("file").getInputStream()), "name", "form", "description", "discriminator");
     }
 
     @Test
@@ -70,12 +70,13 @@ public class JavaRosaFormUploadControllerTest {
 
     @Test
     public void shouldCreateHTMLFormWithGivenNameAndDescription() throws Exception {
+        String form = "form";
         String formName = "name";
-        String formDiscriminator = "discriminator";
         String formDescription = "description";
+        String formDiscriminator = "discriminator";
         request.addFile(multipartFile("file", "sampleUploadForm.xml"));
-        controller.uploadHTMLForm(request, formName, formDiscriminator, formDescription);
-        verify(service).createHTMLForm(eq(formName), eq(formDescription), eq(formDiscriminator), anyString());
+        controller.uploadHTMLForm(request, formName, form, formDescription, formDiscriminator);
+        verify(service).createHTMLForm(anyString(), eq(formName), eq(form), eq(formDescription), eq(formDiscriminator));
     }
 
     private MockMultipartFile multipartFile(String name, String fileName) throws IOException {

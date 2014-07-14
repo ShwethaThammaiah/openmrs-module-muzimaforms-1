@@ -26,10 +26,15 @@ muzimaformsModule.factory('FormService', function ($http) {
         return $http.get('../../ws/rest/v1/muzimaforms/form', {cache: false});
     };
 
+    var getForms = function() {
+        return $http.get('../../ws/rest/v1/form?v=custom:(name,uuid)');
+    };
+
     return {
         all: all,
         get: get,
-        save: save
+        save: save,
+        getForms: getForms
     }
 });
 

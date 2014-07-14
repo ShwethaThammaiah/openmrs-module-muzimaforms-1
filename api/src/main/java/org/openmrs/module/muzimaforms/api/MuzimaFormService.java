@@ -23,7 +23,7 @@ public interface MuzimaFormService extends OpenmrsService {
     List<MuzimaXForm> getXForms();
 
     @Transactional
-    MuzimaForm importExisting(Integer xFormId, String name, String description, String discriminator) throws Exception;
+    MuzimaForm importExisting(Integer xFormId, String name, String form, String description, String discriminator) throws Exception;
 
     MuzimaForm findById(Integer id);
 
@@ -32,13 +32,13 @@ public interface MuzimaFormService extends OpenmrsService {
     List<MuzimaForm> findByName(final String name, final Date syncDate);
 
     @Transactional
-    MuzimaForm create(String xformXml, String name, String description, String discriminator) throws Exception;
+    MuzimaForm create(String xformXml, String name, String form, String description, String discriminator) throws Exception;
 
     @Transactional
-    MuzimaForm importODK(String xformXml, String name, String description, String discriminator) throws Exception;
+    MuzimaForm importODK(String xformXml, String name, String form, String description, String discriminator) throws Exception;
 
     @Transactional
-    MuzimaForm createHTMLForm(String name, String description, String discriminator, String html) throws Exception;
+    MuzimaForm createHTMLForm(String html, String name, String form, String description, String discriminator) throws Exception;
 
     @Transactional
     MuzimaForm save(MuzimaForm form) throws Exception;

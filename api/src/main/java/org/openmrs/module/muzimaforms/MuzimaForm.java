@@ -2,6 +2,7 @@ package org.openmrs.module.muzimaforms;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.openmrs.BaseOpenmrsData;
+import org.openmrs.Form;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,23 +17,25 @@ public class MuzimaForm extends BaseOpenmrsData {
     private String model;
     private String html;
     private String modelJson;
+    private String form;
     private Set<MuzimaFormTag> tags = new HashSet<MuzimaFormTag>();
 
     public MuzimaForm() {
     }    // used by hibernate
 
-    public MuzimaForm(String name, String discriminator, String description, String model, String html, String modelJson) {
+    public MuzimaForm(String name, String form, String description, String discriminator, String html, String model, String modelJson) {
         // Correcting for the fact that in v1.8.2 of the stand-alone server the uuid of BaseOpenmrsObject is
         // not computed each time the empty constructor is called as is the case in v1.9.3
         if (getUuid()==null) {
             setUuid(UUID.randomUUID().toString());
         }
-
         this.name = name;
+        this.form = form;
         this.description = description;
         this.discriminator = discriminator;
-        this.model = model;
+        // form structure
         this.html = html;
+        this.model = model;
         this.modelJson = modelJson;
     }
 
@@ -100,6 +103,13 @@ public class MuzimaForm extends BaseOpenmrsData {
         this.tags = tags;
     }
 
+    public String getForm() {
+        return form;
+    }
+
+    public void setForm(final String form) {
+        this.form = form;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -112,6 +122,7 @@ public class MuzimaForm extends BaseOpenmrsData {
             return false;
         if (id != null ? !id.equals(muzimaForm.id) : muzimaForm.id != null) return false;
         if (getName() != null ? !getName().equals(muzimaForm.getName()) : muzimaForm.getName() != null) return false;
+        if (getForm() != null ? !getForm().equals(muzimaForm.getForm()) : muzimaForm.getForm() != null) return false;
         if (getDiscriminator() != null ? !getDiscriminator().equals(muzimaForm.getDiscriminator()) : muzimaForm.getDiscriminator() != null) return false;
         if (tags != null ? !tags.equals(muzimaForm.tags) : muzimaForm.tags != null) return false;
 
@@ -122,6 +133,7 @@ public class MuzimaForm extends BaseOpenmrsData {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + (getForm() != null ? getForm().hashCode() : 0);
         result = 31 * result + (getDiscriminator() != null ? getDiscriminator().hashCode() : 0);
         result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
         result = 31 * result + (tags != null ? tags.hashCode() : 0);
@@ -134,6 +146,7 @@ public class MuzimaForm extends BaseOpenmrsData {
                 "id=" + id +
                 ", uuid=" + getUuid() +
                 ", name='" + getName() + '\'' +
+                ", form='" + getForm() + '\'' +
                 ", discriminator='" + getDiscriminator() + '\'' +
                 ", description='" + getDescription() + '\'' +
                 ", tags=" + tags +

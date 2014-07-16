@@ -21,7 +21,12 @@ function ImportCtrl($scope, FileUploadService, FormService, _, $location) {
         if (formType == 'html') {
             $scope.validations = { list: []};
         } else {
-            FileUploadService.post({url: formType == 'odk' ? 'odk/validate.form' : 'javarosa/validate.form§', file: file, params: { isODK: formType == 'odk' } }).then(function (result) {
+            FileUploadService.post({
+                url: formType == 'odk' ? 'odk/validate.form' : 'javarosa/validate.form§',
+                file: file,
+                params: { isODK: formType == 'odk'
+                }
+            }).then(function (result) {
                 $scope.validations = result.data;
             });
         }

@@ -14,10 +14,12 @@ function ImportCtrl($scope, FileUploadService, FormService, _, $location) {
 
     FormService.getForms().then(function (results) {
         $scope.forms = results.data.results;
+        if ($scope.forms.length > 0) {
+            $scope.form = $scope.forms[0];
+        }
     });
 
     $scope.validate = function (file, formType) {
-
         if (formType == 'html') {
             $scope.validations = { list: []};
         } else {

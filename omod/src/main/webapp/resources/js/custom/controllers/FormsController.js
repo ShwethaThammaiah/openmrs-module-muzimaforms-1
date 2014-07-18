@@ -84,12 +84,13 @@ function FormsCtrl($scope, $window, FormService, TagService, _) {
         var form = muzimaform.form;
         form.voided = true;
         FormService.save(form)
-            .then(function (form) {
-                $scope.muzimaforms = _.reject($scope.muzimaforms, function (muzimaform) {
-                    if (muzimaform.form == form) {
-                        return false;
+            .then(function () {
+                for (var i = $scope.muzimaforms.length - 1; i >= 0; i--) {
+                    var muzimaform = $scope.muzimaforms[i].form;
+                    if (muzimaform.id == form.id) {
+                        $scope.muzimaforms.splice(i, 1);
                     }
-                })
+                }
             });
     };
 

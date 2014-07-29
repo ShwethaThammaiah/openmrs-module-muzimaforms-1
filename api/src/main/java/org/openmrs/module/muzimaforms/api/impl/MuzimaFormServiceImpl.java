@@ -61,7 +61,7 @@ public class MuzimaFormServiceImpl extends BaseOpenmrsService implements MuzimaF
     private boolean isFormNameExists(String name) {
         List<MuzimaForm> formsWithSimilarNames = dao.findByName(name, null);
         for (MuzimaForm form : formsWithSimilarNames) {
-            if (form.getName().equals(name)) {
+            if (form.getName().equals(name) && !form.isVoided()) {
                 return true;
             }
         }

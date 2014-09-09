@@ -121,6 +121,7 @@ public class MuzimaFormResource extends DataDelegatingCrudResource<MuzimaForm> {
             description.addProperty("model");
             description.addProperty("html");
             description.addProperty("modelJson");
+            description.addProperty("form");
             description.addProperty("tags", new CustomRepresentation("(id,uuid,name)"));
             description.addSelfLink();
         }

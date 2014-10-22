@@ -8249,3 +8249,7 @@ fieldset .remove {
     height: auto !important;
     font-size: 60%;
 }
+
+.form-group-label-value {
+    font-weight: normal
+}

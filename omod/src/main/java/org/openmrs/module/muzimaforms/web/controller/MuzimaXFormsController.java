@@ -29,8 +29,9 @@ public class MuzimaXFormsController {
                             final @RequestParam String name,
                             final @RequestParam String form,
                             final @RequestParam String discriminator,
-                            final @RequestParam String description) throws Exception {
+                            final @RequestParam String description,
+                            final @RequestParam String version) throws Exception {
         MuzimaFormService service = Context.getService(MuzimaFormService.class);
-        service.importExisting(id, name, form, description, discriminator);
+        service.importExisting(id, name, form, description, discriminator, version);
     }
 }

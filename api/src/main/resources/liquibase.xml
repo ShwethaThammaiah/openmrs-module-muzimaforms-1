@@ -210,6 +210,15 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="muzimaform-2014-10-16" author="SahajSoft">
+        <comment>
+            Adding version column
+        </comment>
+        <addColumn tableName="muzimaforms_form">
+            <column name="version" type="varchar(255)" />
+        </addColumn>
+    </changeSet>
+
     <changeSet id="muzimaform-2013-08-20-17:08" author="ThoughtWorks">
         <comment>
             Migrating already imported form names and descriptions

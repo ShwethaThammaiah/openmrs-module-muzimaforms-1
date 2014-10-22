@@ -11,14 +11,20 @@ function ImportCtrl($scope, FileUploadService, FormService, _, $location) {
             .appendTo('#error-alert')
             .text(content);
     };
-
     FormService.getForms().then(function (results) {
         $scope.forms = results.data.results;
         if ($scope.forms.length > 0) {
             $scope.form = $scope.forms[0];
+            $scope.loadData();
         }
     });
 
+    $scope.loadData = function(){
+        $scope.name = $scope.form.name;
+        $scope.version = $scope.form.version;
+        $scope.description = $scope.form.description;
+
+    }
     $scope.validate = function (file, formType) {
         if (formType == 'html') {
             $scope.validations = { list: []};
@@ -34,7 +40,7 @@ function ImportCtrl($scope, FileUploadService, FormService, _, $location) {
         }
     };
 
-    $scope.upload = function (file, name, form, discriminator, description, formType) {
+    $scope.upload = function (file, name, version , form, discriminator, description, formType) {
         var match = name.match('[\\s\\w]*');
         if (match == null || match[0] != name) {
             showErrorMessage("The form name shouldn't contain any special characters");
@@ -47,7 +53,7 @@ function ImportCtrl($scope, FileUploadService, FormService, _, $location) {
 
         FileUploadService.post({
             url: $scope.getURL(formType), file: file, params: {
-                name: name, form: uuid, description: description || "", discriminator: discriminator
+                name: name, form: uuid, description: description || "", discriminator: discriminator, version: version
             }
         }).success(function () {
             $location.path("#/list/forms");
@@ -91,5 +97,9 @@ function ImportCtrl($scope, FileUploadService, FormService, _, $location) {
     $scope.cancel = function () {
         $scope.validations = null;
         if ($scope.clearFile) $scope.clearFile();
+    }
+
+    $scope.cancelUpload = function () {
+        $location.path('/list/forms');
     }
 }

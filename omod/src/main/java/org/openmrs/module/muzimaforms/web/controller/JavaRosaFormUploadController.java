@@ -48,6 +48,16 @@ public class JavaRosaFormUploadController {
     }
 
     @ResponseBody
+    @RequestMapping(value="/javarosa/update.form", method = RequestMethod.POST)
+    public  void updateJavaRosa(final MultipartHttpServletRequest request,
+                                final @RequestParam String name,
+                                final @RequestParam String form_id) throws Exception {
+        MuzimaFormService service = Context.getService(MuzimaFormService.class);
+        service.update(extractFile(request), name, form_id);
+
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/html/upload.form", method = RequestMethod.POST)
     public void uploadHTMLForm(final MultipartHttpServletRequest request,
                                final @RequestParam String name,
@@ -57,6 +67,15 @@ public class JavaRosaFormUploadController {
                                final @RequestParam String version) throws Exception {
         MuzimaFormService service = Context.getService(MuzimaFormService.class);
         service.createHTMLForm(extractFile(request), name, form, description, discriminator, version);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/html/update.form", method = RequestMethod.POST)
+    public void updateHTMLForm(final MultipartHttpServletRequest request,
+                               final @RequestParam String name,
+                               final @RequestParam String form) throws Exception {
+        MuzimaFormService service = Context.getService(MuzimaFormService.class);
+        service.updateHTMLForm(extractFile(request), name, form);
     }
 
     @ResponseBody

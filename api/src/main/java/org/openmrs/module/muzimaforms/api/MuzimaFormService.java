@@ -35,10 +35,16 @@ public interface MuzimaFormService extends OpenmrsService {
     MuzimaForm create(String xformXml, String name, String form, String description, String discriminator, String version) throws Exception;
 
     @Transactional
+    MuzimaForm update(String html, String name, String form) throws Exception;
+
+    @Transactional
     MuzimaForm importODK(String xformXml, String name, String form, String description, String discriminator, String version) throws Exception;
 
     @Transactional
     MuzimaForm createHTMLForm(String html, String name, String form, String description, String discriminator, String version) throws Exception;
+
+    @Transactional
+    MuzimaForm updateHTMLForm(String html, String name, String form) throws Exception;
 
     @Transactional
     MuzimaForm save(MuzimaForm form) throws Exception;

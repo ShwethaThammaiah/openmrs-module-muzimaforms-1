@@ -1,5 +1,5 @@
 'use strict';
-function ImportCtrl($scope, FileUploadService, FormService, _, $location) {
+function ImportCtrl($scope, FileUploadService, FormService, _, $location, $routeParams) {
 
     var showErrorMessage = function (content, cl, time) {
         $('<div/>')
@@ -24,12 +24,13 @@ function ImportCtrl($scope, FileUploadService, FormService, _, $location) {
         $scope.version = $scope.form.version;
         $scope.description = $scope.form.description;
 
-    }
+    };
+
     $scope.validate = function (file, formType) {
         if (formType == 'html') {
             $scope.validations = { list: []};
         } else {
-            FileUploadService.post({
+            formType.post({
                 url: formType == 'odk' ? 'odk/validate.form' : 'javarosa/validate.form§',
                 file: file,
                 params: { isODK: formType == 'odk'
@@ -41,26 +42,28 @@ function ImportCtrl($scope, FileUploadService, FormService, _, $location) {
     };
 
     $scope.upload = function (file, name, version , form, discriminator, description, formType) {
+
         var match = name.match('[\\s\\w]*');
-        if (match == null || match[0] != name) {
-            showErrorMessage("The form name shouldn't contain any special characters");
-            return;
-        }
-        var uuid = "";
-        if (form != null && form !== 'undefined') {
-            uuid = form.uuid;
+                if (match == null || match[0] != name) {
+                    showErrorMessage("The form name shouldn't contain any special characters");
+                    return;
+                }
+                var uuid = "";
+                if (form != null && form !== 'undefined') {
+                    uuid = form.uuid;
+                }
+
+                FileUploadService.post({
+                    url: $scope.getURL(formType), file: file, params: {
+                        name: name, form: uuid, description: description || "", discriminator: discriminator, version: version
+                    }
+                }).success(function () {
+                    $location.path("#/list/forms");
+                }).error(function () {
+                    showErrorMessage("The form name already exists !! Please use some other name.");
+                });
         }
 
-        FileUploadService.post({
-            url: $scope.getURL(formType), file: file, params: {
-                name: name, form: uuid, description: description || "", discriminator: discriminator, version: version
-            }
-        }).success(function () {
-            $location.path("#/list/forms");
-        }).error(function () {
-            showErrorMessage("The form name already exists !! Please use some other name.");
-        });
-    };
 
     $scope.getURL = function (formType) {
         if (formType == 'html') return 'html/upload.form';
@@ -97,9 +100,9 @@ function ImportCtrl($scope, FileUploadService, FormService, _, $location) {
     $scope.cancel = function () {
         $scope.validations = null;
         if ($scope.clearFile) $scope.clearFile();
-    }
+    };
 
     $scope.cancelUpload = function () {
         $location.path('/list/forms');
-    }
+    };
 }

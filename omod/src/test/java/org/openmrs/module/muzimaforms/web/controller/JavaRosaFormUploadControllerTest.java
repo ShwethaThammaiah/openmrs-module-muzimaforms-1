@@ -80,6 +80,16 @@ public class JavaRosaFormUploadControllerTest {
         verify(service).createHTMLForm(anyString(), eq(formName), eq(form), eq(formDescription), eq(formDiscriminator), eq(version));
     }
 
+    @Test
+    public void shouldUpdateHTMLFormWithGivenNameAndDescription() throws Exception {
+        String formName = "UpdateForm";
+        String formId = "123";
+        request.addFile(multipartFile("file", "sampleUploadForm.xml"));
+        controller.updateHTMLForm(request, formName,formId);
+        verify(service).updateHTMLForm(anyString(), eq(formName), eq(formId));
+
+    }
+
     private MockMultipartFile multipartFile(String name, String fileName) throws IOException {
         return new MockMultipartFile(name, getClass().getClassLoader().getResourceAsStream(fileName));
     }

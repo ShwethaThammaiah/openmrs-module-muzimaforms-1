@@ -11,7 +11,6 @@ function ImportCtrl($scope, FileUploadService, FormService, _, $location) {
             .appendTo('#error-alert')
             .text(content);
     };
-
     FormService.getForms().then(function (results) {
         $scope.forms = results.data.results;
         if ($scope.forms.length > 0) {

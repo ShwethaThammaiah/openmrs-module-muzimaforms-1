@@ -10,6 +10,7 @@
         <property name="uuid" type="java.lang.String"
                   column="uuid" length="38" unique="true"/>
 
+        <property name="version" type="java.lang.String"/>
         <property name="name" type="java.lang.String"/>
         <property name="description" type="java.lang.String"/>
         <property name="discriminator" type="java.lang.String"/>

@@ -41,9 +41,10 @@ public class JavaRosaFormUploadController {
                                final @RequestParam String name,
                                final @RequestParam String form,
                                final @RequestParam String description,
-                               final @RequestParam String discriminator) throws Exception {
+                               final @RequestParam String discriminator,
+                               final @RequestParam String version) throws Exception {
         MuzimaFormService service = Context.getService(MuzimaFormService.class);
-        service.create(extractFile(request), name, form, description, discriminator);
+        service.create(extractFile(request), name, form, description, discriminator, version);
     }
 
     @ResponseBody
@@ -52,9 +53,10 @@ public class JavaRosaFormUploadController {
                                final @RequestParam String name,
                                final @RequestParam String form,
                                final @RequestParam String description,
-                               final @RequestParam String discriminator) throws Exception {
+                               final @RequestParam String discriminator,
+                               final @RequestParam String version) throws Exception {
         MuzimaFormService service = Context.getService(MuzimaFormService.class);
-        service.createHTMLForm(extractFile(request), name, form, description, discriminator);
+        service.createHTMLForm(extractFile(request), name, form, description, discriminator, version);
     }
 
     @ResponseBody
@@ -63,9 +65,10 @@ public class JavaRosaFormUploadController {
                           final @RequestParam String name,
                           final @RequestParam String form,
                           final @RequestParam String description,
-                          final @RequestParam String discriminator) throws Exception {
+                          final @RequestParam String discriminator,
+                          final @RequestParam String version) throws Exception {
         MuzimaFormService service = Context.getService(MuzimaFormService.class);
-        service.importODK(extractFile(request), name, form, description, discriminator);
+        service.importODK(extractFile(request), name, form, description, discriminator, version);
     }
 
     private String extractFile(final MultipartHttpServletRequest request) throws Exception {

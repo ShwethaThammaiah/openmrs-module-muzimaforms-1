@@ -18,12 +18,13 @@ public class MuzimaForm extends BaseOpenmrsData {
     private String html;
     private String modelJson;
     private String form;
+    private String version;
     private Set<MuzimaFormTag> tags = new HashSet<MuzimaFormTag>();
 
     public MuzimaForm() {
     }    // used by hibernate
 
-    public MuzimaForm(String name, String form, String description, String discriminator, String html, String model, String modelJson) {
+    public MuzimaForm(String name, String form, String description, String discriminator, String html, String model, String modelJson, String version) {
         // Correcting for the fact that in v1.8.2 of the stand-alone server the uuid of BaseOpenmrsObject is
         // not computed each time the empty constructor is called as is the case in v1.9.3
         if (getUuid()==null) {
@@ -37,6 +38,7 @@ public class MuzimaForm extends BaseOpenmrsData {
         this.html = html;
         this.model = model;
         this.modelJson = modelJson;
+        this.version = version;
     }
 
     public Integer getId() {
@@ -151,5 +153,13 @@ public class MuzimaForm extends BaseOpenmrsData {
                 ", description='" + getDescription() + '\'' +
                 ", tags=" + tags +
                 '}';
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
     }
 }

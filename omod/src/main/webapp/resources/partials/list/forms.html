@@ -57,10 +57,13 @@
                     </span>
                 </div>
                 <div>
-                    <p><small>{{muzimaform.form.discriminator || ""}}</small></p>
+                    <p><small><strong>Version : </strong>{{muzimaform.form.version || ""}}</small></p>
                 </div>
                 <div>
-                    <p><small>{{muzimaform.form.description || ""}}</small></p>
+                    <p><small><strong>Discriminator : </strong>{{muzimaform.form.discriminator || ""}}</small></p>
+                </div>
+                <div>
+                    <p><small><strong>Description : </strong>{{muzimaform.form.description || ""}}</small></p>
                 </div>
                 <div>
                     <span class="tag" ng-repeat="tag in muzimaform.form.tags">

@@ -44,16 +44,16 @@ public class MuzimaFormServiceImpl extends BaseOpenmrsService implements MuzimaF
         return dao.getXForms();
     }
 
-    public MuzimaForm importExisting(Integer xFormId, String name, String form, String description, String discriminator) throws Exception {
+    public MuzimaForm importExisting(Integer xFormId, String name, String form, String description, String discriminator, String version) throws Exception {
         Xform xform = dao.getXform(xFormId);
-        return create(xform.getXformXml(), name, form, description, discriminator);
+        return create(xform.getXformXml(), name, form, description, discriminator, version);
     }
 
-    public MuzimaForm create(String xformXml, String name, String form, String description, String discriminator) throws Exception {
+    public MuzimaForm create(String xformXml, String name, String form, String description, String discriminator, String version) throws Exception {
         if (!isFormNameExists(name)) {
             CompositeEnketoResult result = (CompositeEnketoResult) modelXml2JsonTransformer.
                     transform(html5Transformer.transform(xformXml).getResult());
-            return save(new MuzimaForm(name, form, description, discriminator, result.getForm(), result.getModel(), result.getModelAsJson()));
+            return save(new MuzimaForm(name, form, description, discriminator, result.getForm(), result.getModel(), result.getModelAsJson(), version));
         }
         throw new DocumentException("The file name already Exists !");
     }
@@ -68,18 +68,18 @@ public class MuzimaFormServiceImpl extends BaseOpenmrsService implements MuzimaF
         return false;
     }
 
-    public MuzimaForm importODK(String xformXml, String name, String form, String description, String discriminator) throws Exception {
+    public MuzimaForm importODK(String xformXml, String name, String form, String description, String discriminator, String version) throws Exception {
         if (!isFormNameExists(name)) {
             CompositeEnketoResult result = (CompositeEnketoResult) modelXml2JsonTransformer.
                     transform(odk2HTML5Transformer.transform(xformXml).getResult());
-            return save(new MuzimaForm(name, form, description, discriminator, result.getForm(), result.getModel(), result.getModelAsJson()));
+            return save(new MuzimaForm(name, form, description, discriminator, result.getForm(), result.getModel(), result.getModelAsJson(), version));
         }
         throw new DocumentException("The file name already Exists !");
     }
 
-    public MuzimaForm createHTMLForm(String html, String name, String form, String description, String discriminator) throws Exception {
+    public MuzimaForm createHTMLForm(String html, String name, String form, String description, String discriminator, String version) throws Exception {
         if (!isFormNameExists(name)) {
-            return save(new MuzimaForm(name, form, description, discriminator, html, null, null));
+            return save(new MuzimaForm(name, form, description, discriminator, html, null, null, version));
         }
         throw new DocumentException("The file name already Exists !");
     }

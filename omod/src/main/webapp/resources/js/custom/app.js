@@ -17,7 +17,7 @@ muzimaformsModule.factory('_', function () {
 muzimaformsModule.factory('FormService', function ($http) {
 
     var get = function (id) {
-        return $http.get('../../ws/rest/v1/muzimaforms/form/' + id + "?v=custom:(id,uuid,name,model,modelJson,html,tags)");
+        return $http.get('../../ws/rest/v1/muzimaforms/form/' + id + "?v=custom:(id,uuid,name,model,modelJson,html,tags,version)");
     };
     var save = function (form) {
         return $http.post('form.form', form);
@@ -27,7 +27,7 @@ muzimaformsModule.factory('FormService', function ($http) {
     };
 
     var getForms = function() {
-        return $http.get('../../ws/rest/v1/form?v=custom:(name,uuid)');
+        return $http.get('../../ws/rest/v1/form?v=custom:(name,uuid,version,description)');
     };
 
     return {

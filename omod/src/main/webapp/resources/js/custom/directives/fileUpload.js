@@ -19,11 +19,13 @@ muzimaformsModule.directive("fileUpload", function () {
             scope.$parent.clearFile = function() {
                 scope.file = scope.$parent.file = null;
                 $(activator).text(attrs.message);
+                scope.$parent.$apply();
             };
 
             $(fileUploadButton).on("change", function () {
                 scope.file = scope.$parent.file = this.files[0];
                 $(activator).text((scope.file == undefined ? attrs.message : scope.file.name));
+                scope.validations = scope.$parent.validations = null;
                 scope.$parent.$apply();
             });
         }

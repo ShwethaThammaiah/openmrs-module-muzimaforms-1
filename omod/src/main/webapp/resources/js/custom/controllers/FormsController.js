@@ -1,5 +1,5 @@
 'use strict';
-function FormsCtrl($scope, $window, FormService, TagService, _) {
+function FormsCtrl($location, $scope, $window, FormService, TagService, _) {
     $scope.init = function () {
         $scope.editMode = false;
         $scope.tagColorMap = {};
@@ -48,6 +48,10 @@ function FormsCtrl($scope, $window, FormService, TagService, _) {
         previewWindow.formHTML = formHTML;
         previewWindow.formModel = formModel;
         previewWindow.formJSON = formJSON;
+    };
+
+    $scope.editForm = function(muzimaform){
+        $location.path('/update/xforms/' + muzimaform.form.uuid);
     };
 
     var tagColor = function (tagId) {

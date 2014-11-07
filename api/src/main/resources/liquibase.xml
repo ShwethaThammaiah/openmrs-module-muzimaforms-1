@@ -210,15 +210,6 @@
         </addColumn>
     </changeSet>
 
-    <changeSet id="muzimaform-2014-10-16" author="SahajSoft">
-        <comment>
-            Adding version column
-        </comment>
-        <addColumn tableName="muzimaforms_form">
-            <column name="version" type="varchar(255)" />
-        </addColumn>
-    </changeSet>
-
     <changeSet id="muzimaform-2013-08-20-17:08" author="ThoughtWorks">
         <comment>
             Migrating already imported form names and descriptions
@@ -282,5 +273,31 @@
         <addColumn tableName="muzimaforms_form">
             <column name="form" type="varchar(38)" />
         </addColumn>
+    </changeSet>
+
+    <changeSet id="muzimaform-2014-10-16" author="SahajSoft">
+        <comment>
+            Adding version column
+        </comment>
+        <addColumn tableName="muzimaforms_form">
+            <column name="version" type="varchar(255)" />
+        </addColumn>
+    </changeSet>
+
+    <changeSet  id="muzimaform-2014-10-31" author="SahajSoft">
+        <addForeignKeyConstraint baseColumnNames="form"
+                                 baseTableName="muzimaforms_form"
+                                 constraintName="fk_muzimaforms_form_openmrs_form"
+                                 referencedColumnNames="uuid"
+                                 referencedTableName="form"/>
+    </changeSet>
+
+    <changeSet author="liquibase-docs" id="dropColumn-example">
+        <dropColumn columnName="name"
+                    tableName="muzimaforms_form"/>
+        <dropColumn columnName="description"
+                    tableName="muzimaforms_form"/>
+        <dropColumn columnName="version"
+                    tableName="muzimaforms_form"/>
     </changeSet>
 </databaseChangeLog>

@@ -44,18 +44,18 @@ public class JavaRosaFormUploadControllerTest {
     public void shouldConvertJavaRosaFormToHTMLAndSaveIt() throws Exception {
         request.addFile(multipartFile("file", "sampleUploadForm.xml"));
 
-        controller.uploadJavaRosa(request, "name", "form", "description", "discriminator", "1.0");
+        controller.uploadJavaRosa(request,  "form", "discriminator");
 
-        verify(service).create(readStream(request.getFile("file").getInputStream()), "name", "form", "description", "discriminator", "1.0");
+        verify(service).create(readStream(request.getFile("file").getInputStream()),  "form",  "discriminator");
     }
 
     @Test
     public void shouldConvertODKFormToHTMLAndSaveIt() throws Exception {
         request.addFile(multipartFile("file", "sampleUploadForm.xml"));
 
-        controller.uploadODK(request, "name", "form", "description", "discriminator", "1.0");
+        controller.uploadODK(request,  "form",  "discriminator");
 
-        verify(service).importODK(readStream(request.getFile("file").getInputStream()), "name", "form", "description", "discriminator", "1.0");
+        verify(service).importODK(readStream(request.getFile("file").getInputStream()),"form",  "discriminator");
     }
 
     @Test
@@ -76,8 +76,8 @@ public class JavaRosaFormUploadControllerTest {
         String formDiscriminator = "discriminator";
         String version = "1.0";
         request.addFile(multipartFile("file", "sampleUploadForm.xml"));
-        controller.uploadHTMLForm(request, formName, form, formDescription, formDiscriminator,version);
-        verify(service).createHTMLForm(anyString(), eq(formName), eq(form), eq(formDescription), eq(formDiscriminator), eq(version));
+        controller.uploadHTMLForm(request, form, formDiscriminator);
+        verify(service).createHTMLForm(anyString(), eq(form),  eq(formDiscriminator));
     }
 
     @Test
@@ -85,8 +85,8 @@ public class JavaRosaFormUploadControllerTest {
         String formName = "UpdateForm";
         String formId = "123";
         request.addFile(multipartFile("file", "sampleUploadForm.xml"));
-        controller.updateHTMLForm(request, formName,formId);
-        verify(service).updateHTMLForm(anyString(), eq(formName), eq(formId));
+        controller.updateHTMLForm(request,formId);
+        verify(service).updateHTMLForm(anyString(), eq(formId));
 
     }
 

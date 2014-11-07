@@ -21,4 +21,6 @@ public interface MuzimaFormDAO {
     MuzimaForm findByUuid(String uuid);
 
     List<MuzimaForm> findByName(final String name, final Date syncDate);
+
+    List<MuzimaForm> findByForm(String form);
 }

@@ -47,7 +47,9 @@ public class MuzimaFormDAOImpl implements MuzimaFormDAO {
     public MuzimaForm findByUuid(String uuid) {
         return (MuzimaForm) session().createQuery("from MuzimaForm form where form.uuid = '" + uuid + "'").uniqueResult();
     }
-
+    public List<MuzimaForm> findByForm(String form){
+        return (List<MuzimaForm>) session().createQuery("from MuzimaForm form where form.form = '" + form + "'").list();
+    }
     public List<MuzimaForm> findByName(final String name, final Date syncDate) {
         Criteria criteria = session().createCriteria(MuzimaForm.class);
         criteria.add(Restrictions.ilike("name", name, MatchMode.ANYWHERE));

@@ -38,29 +38,26 @@ public class MuzimaFormDAOTest extends BaseModuleContextSensitiveTest {
         assertThat(list.size(), is(3));
         assertThat(list, hasItem(muzimaform()
                 .withId(1)
-                .withName("Registration Form")
-                .withForm("x")
+                .withForm("c0c579b0-8e59-401d-8a4a-976a0b183519")
                 .withDiscriminator("a")
-                .withDescription("Form for registration")
                 .with(tag().withId(1).withName("Registration"))
                 .with(tag().withId(2).withName("Patient"))
+                .withFormDefinition(Context.getFormService().getFormByUuid("c0c579b0-8e59-401d-8a4a-976a0b183519"))
                 .instance()));
         assertThat(list, hasItem(muzimaform()
                 .withId(2)
-                .withName("PMTCT Form")
-                .withForm("y")
+                .withForm("c0c579b0-8e59-401d-8a4a-976a0b183520")
                 .withDiscriminator("b")
-                .withDescription("Form for PMTCT")
                 .with(tag().withId(1).withName("Registration"))
                 .with(tag().withId(3).withName("Encounter"))
                 .with(tag().withId(4).withName("HIV"))
+                .withFormDefinition(Context.getFormService().getFormByUuid("c0c579b0-8e59-401d-8a4a-976a0b183520"))
                 .instance()));
         assertThat(list, hasItem(muzimaform()
                 .withId(3)
-                .withName("Ante-Natal Form")
-                .withForm("z")
+                .withForm("c0c579b0-8e59-401d-8a4a-976a0b183521")
                 .withDiscriminator("c")
-                .withDescription("Form for ante-natal care")
+                .withFormDefinition(Context.getFormService().getFormByUuid("c0c579b0-8e59-401d-8a4a-976a0b183521"))
                 .instance()));
     }
 
@@ -75,12 +72,11 @@ public class MuzimaFormDAOTest extends BaseModuleContextSensitiveTest {
         MuzimaForm form = dao.findById(1);
         assertThat(form, is(muzimaform()
                 .withId(1)
-                .withName("Registration Form")
-                .withForm("x")
+                .withForm("c0c579b0-8e59-401d-8a4a-976a0b183519")
                 .withDiscriminator("a")
-                .withDescription("Form for registration")
                 .with(tag().withId(1).withName("Registration"))
                 .with(tag().withId(2).withName("Patient"))
+                .withFormDefinition(Context.getFormService().getFormByUuid("c0c579b0-8e59-401d-8a4a-976a0b183519"))
                 .instance()));
     }
 
@@ -90,27 +86,39 @@ public class MuzimaFormDAOTest extends BaseModuleContextSensitiveTest {
         assertThat(form, is(muzimaform()
                 .withId(1)
                 .withUuid("foo")
-                .withName("Registration Form")
-                .withForm("x")
+                .withForm("c0c579b0-8e59-401d-8a4a-976a0b183519")
                 .withDiscriminator("a")
-                .withDescription("Form for registration")
                 .with(tag().withId(1).withName("Registration"))
                 .with(tag().withId(2).withName("Patient"))
+                .withFormDefinition(Context.getFormService().getFormByUuid("c0c579b0-8e59-401d-8a4a-976a0b183519"))
                 .instance()));
     }
 
     @Test
     public void saveForm_shouldSaveForm() {
-        dao.saveForm(muzimaform().withId(1).with(tag().withId(1).withName("Registration")).instance());
+        dao.saveForm(muzimaform()
+                .withId(1)
+                .with(tag().withId(1).withName("Registration"))
+                .withForm("c0c579b0-8e59-401d-8a4a-976a0b183522")
+                .withFormDefinition(Context.getFormService().getFormByUuid("c0c579b0-8e59-401d-8a4a-976a0b183522"))
+                .instance());
         List<MuzimaForm> list = dao.getAll();
-        assertThat(list, hasItem(muzimaform().withId(1).with(tag().withId(1).withName("Registration")).instance()));
+        assertThat(list, hasItem(muzimaform().withId(1).with(tag().withId(1).withName("Registration"))
+                .withForm("c0c579b0-8e59-401d-8a4a-976a0b183522")
+                .withFormDefinition(Context.getFormService().getFormByUuid("c0c579b0-8e59-401d-8a4a-976a0b183522")).instance()));
     }
 
     @Test
     public void saveForm_shouldAssignAnExistingTag() throws IOException {
-        dao.saveForm(muzimaform().withId(1).with(tag().withId(1).withName("Registration")).instance());
+        dao.saveForm(muzimaform().withId(1).with(tag().withId(1).withName("Registration"))
+                .withForm("c0c579b0-8e59-401d-8a4a-976a0b183519")
+                .withFormDefinition(Context.getFormService().getFormByUuid("c0c579b0-8e59-401d-8a4a-976a0b183519"))
+                .instance());
         List<MuzimaForm> list = dao.getAll();
-        assertThat(list, hasItem(muzimaform().withId(1).with(tag().withId(1).withName("Registration")).instance()));
+        assertThat(list, hasItem(muzimaform().withId(1).with(tag().withId(1).withName("Registration"))
+                .withForm("c0c579b0-8e59-401d-8a4a-976a0b183519")
+                .withFormDefinition(Context.getFormService().getFormByUuid("c0c579b0-8e59-401d-8a4a-976a0b183519"))
+                .instance()));
     }
 
     @Test

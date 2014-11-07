@@ -3,6 +3,7 @@ package org.openmrs.module.muzimaforms.api.impl;
 import org.dom4j.DocumentException;
 import org.javarosa.xform.parse.ValidationMessages;
 import org.javarosa.xform.parse.XFormParser;
+import org.openmrs.api.context.Context;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.muzimaforms.MuzimaForm;
 import org.openmrs.module.muzimaforms.MuzimaXForm;
@@ -44,76 +45,86 @@ public class MuzimaFormServiceImpl extends BaseOpenmrsService implements MuzimaF
         return dao.getXForms();
     }
 
-    public MuzimaForm importExisting(Integer xFormId, String name, String form, String description, String discriminator, String version) throws Exception {
+    public MuzimaForm importExisting(Integer xFormId, String form,  String discriminator) throws Exception {
         Xform xform = dao.getXform(xFormId);
-        return create(xform.getXformXml(), name, form, description, discriminator, version);
+        return create(xform.getXformXml(), form,  discriminator);
     }
 
-    public MuzimaForm create(String xformXml, String name, String form, String description, String discriminator, String version) throws Exception {
-        if (!isFormNameExists(name)) {
+    public MuzimaForm create(String xformXml, String form,  String discriminator) throws Exception {
+        if (!isFormDefinitionExists(form)) {
             CompositeEnketoResult result = (CompositeEnketoResult) modelXml2JsonTransformer.
                     transform(html5Transformer.transform(xformXml).getResult());
-            return save(new MuzimaForm(name, form, description, discriminator, result.getForm(), result.getModel(), result.getModelAsJson(), version));
+
+            return save(new MuzimaForm(form, discriminator, result.getForm(), result.getModel(), result.getModelAsJson(), Context.getFormService().getFormByUuid(form)));
         }
         throw new DocumentException("The file name already Exists !");
     }
 
-    public MuzimaForm update(String xformXml, String name, String form) throws Exception {
-        if (isFormNameExists(name)) {
+    public MuzimaForm update(String xformXml, String formUUID) throws Exception {
+        if (isFormExists(formUUID)) {
             CompositeEnketoResult result = (CompositeEnketoResult) modelXml2JsonTransformer.
                     transform(html5Transformer.transform(xformXml).getResult());
-            MuzimaForm retrievedForm = dao.findByUuid(form);
+            MuzimaForm retrievedForm = dao.findByUuid(formUUID);
             if(retrievedForm != null){
-                retrievedForm.setForm(result.getForm());
+                retrievedForm.setHtml(result.getForm());
                 retrievedForm.setModel(result.getModel());
                 retrievedForm.setModelJson(result.getModelAsJson());
             }
             return save(retrievedForm);
         }else{
-            throw new DocumentException("Unable to update form with name !" + name);
+            throw new DocumentException("Unable to update form with form definition !" + formUUID);
         }
 
     }
 
-    private boolean isFormNameExists(String name) {
-        List<MuzimaForm> formsWithSimilarNames = dao.findByName(name, null);
-        for (MuzimaForm form : formsWithSimilarNames) {
-            if (form.getName().equals(name) && !form.isVoided()) {
+    private boolean isFormExists(String formUUID) {
+        MuzimaForm muzimaforms = dao.findByUuid(formUUID);
+        if(muzimaforms != null)
+            return true;
+        else
+            return false;
+    }
+
+    private boolean isFormDefinitionExists(String formUUID) {
+        List<MuzimaForm> formsWithUUID = dao.findByForm(formUUID);
+        for (MuzimaForm form : formsWithUUID) {
+            if (form.getForm().equals(formUUID) && !form.isVoided()) {
                 return true;
             }
         }
         return false;
     }
 
-    public MuzimaForm importODK(String xformXml, String name, String form, String description, String discriminator, String version) throws Exception {
-        if (!isFormNameExists(name)) {
+    public MuzimaForm importODK(String xformXml,  String form, String discriminator) throws Exception {
+        if (!isFormDefinitionExists(form)) {
             CompositeEnketoResult result = (CompositeEnketoResult) modelXml2JsonTransformer.
                     transform(odk2HTML5Transformer.transform(xformXml).getResult());
-            return save(new MuzimaForm(name, form, description, discriminator, result.getForm(), result.getModel(), result.getModelAsJson(), version));
+            return save(new MuzimaForm(form, discriminator, result.getForm(), result.getModel(), result.getModelAsJson(), Context.getFormService().getFormByUuid(form)));
         }
         throw new DocumentException("The file name already Exists !");
     }
 
-    public MuzimaForm createHTMLForm(String html, String name, String form, String description, String discriminator, String version) throws Exception {
-        if (!isFormNameExists(name)) {
-            return save(new MuzimaForm(name, form, description, discriminator, html, null, null, version));
+    public MuzimaForm createHTMLForm(String html,  String form,  String discriminator) throws Exception {
+        if (!isFormDefinitionExists(form)) {
+            return save(new MuzimaForm(form, discriminator, html, null, null, Context.getFormService().getFormByUuid(form)));
         }
         throw new DocumentException("The file name already Exists !");
     }
 
-    public MuzimaForm updateHTMLForm(String html, String name, String form_id) throws Exception {
-
-        if (isFormNameExists(name)) {
-            MuzimaForm retrievedForm = dao.findByUuid(form_id);
+    public MuzimaForm updateHTMLForm(String html,  String formUUID) throws Exception {
+        if (isFormExists(formUUID)) {
+            MuzimaForm retrievedForm = dao.findByUuid(formUUID);
             if (retrievedForm != null) {
                 retrievedForm.setHtml(html);
                 return save(retrievedForm);
             }
         }
-        throw  new DocumentException("Unable to update form with name !" + name);
+        throw new DocumentException("Unable to update form with id !" + formUUID);
     }
 
     public MuzimaForm save(MuzimaForm form) throws Exception {
+        if(form.getFormDefinition() == null)
+            form.setFormDefinition(Context.getFormService().getFormByUuid(form.getForm()));
         dao.saveForm(form);
         return form;
     }

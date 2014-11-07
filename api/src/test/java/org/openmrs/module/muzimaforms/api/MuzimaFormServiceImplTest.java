@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mock;
+import org.openmrs.Form;
+import org.openmrs.api.context.Context;
 import org.openmrs.module.muzimaforms.MuzimaForm;
 import org.openmrs.module.muzimaforms.api.db.hibernate.MuzimaFormDAO;
 import org.openmrs.module.muzimaforms.api.impl.CompositeEnketoResult;
@@ -15,6 +17,7 @@ import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.ModelXml2JsonTransfo
 import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.ODK2HTML5Transformer;
 import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.ODK2JavarosaTransformer;
 import org.openmrs.module.muzimaforms.xForm2MuzimaTransform.XForm2Html5Transformer;
+import org.openmrs.test.BaseModuleContextSensitiveTest;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -39,7 +42,7 @@ import static org.openmrs.module.muzimaforms.MuzimaFormBuilder.muzimaform;
 import static org.openmrs.module.muzimaforms.MuzimaFormTagBuilder.tag;
 import static org.openmrs.module.muzimaforms.XFormBuilder.xForm;
 
-public class MuzimaFormServiceImplTest {
+public class MuzimaFormServiceImplTest extends BaseModuleContextSensitiveTest {
 
     private MuzimaFormService service;
     MuzimaFormDAO dao;
@@ -52,6 +55,7 @@ public class MuzimaFormServiceImplTest {
     @Before
     public void setUp() throws Exception {
         dao = mock(MuzimaFormDAO.class);
+        executeDataSet("xformTestData.xml");
         transformer = mock(XForm2Html5Transformer.class);
         modelTransformer = mock(ModelXml2JsonTransformer.class);
         odk2JavarosaTransformer = mock(ODK2JavarosaTransformer.class);
@@ -63,18 +67,18 @@ public class MuzimaFormServiceImplTest {
     void setUpDao() {
         List<MuzimaForm> muzimaForms = new ArrayList<MuzimaForm>();
         muzimaForms.add(
-                muzimaform().withId(1).withName("Registration Form").withDescription("Form for registration")
+                muzimaform().withId(1)//.withName("Registration Form").withDescription("Form for registration")
                         .with(tag().withId(1).withName("Registration"))
                         .with(tag().withId(2).withName("Patient"))
                         .instance()
         );
-        muzimaForms.add(muzimaform().withId(2).withName("PMTCT Form").withDescription("Form for PMTCT")
+        muzimaForms.add(muzimaform().withId(2)//.withName("PMTCT Form").withDescription("Form for PMTCT")
                 .with(tag().withId(1).withName("Registration"))
                 .with(tag().withId(3).withName("Encounter"))
                 .with(tag().withId(4).withName("HIV"))
                 .instance());
 
-        muzimaForms.add(muzimaform().withId(3).withName("Ante-Natal Form").withDescription("Form for ante-natal care")
+        muzimaForms.add(muzimaform().withId(3)//.withName("Ante-Natal Form").withDescription("Form for ante-natal care")
                 .instance());
 
         when(dao.getAll()).thenReturn(muzimaForms);
@@ -96,7 +100,7 @@ public class MuzimaFormServiceImplTest {
 
     @Test
     public void shouldNotInteractWithAnyTransformersWhileUploadingHTML() throws Exception {
-        service.createHTMLForm("name", "form", "description", "discriminator", "html", "1.0");
+        service.createHTMLForm("html", "c0c579b0-8e59-401d-8a4a-976a0b183519", "discriminator");
         verifyZeroInteractions(transformer, modelTransformer, odk2JavarosaTransformer, odk2HTML5Transformer);
         verify(dao).saveForm(any(MuzimaForm.class));
     }
@@ -107,7 +111,7 @@ public class MuzimaFormServiceImplTest {
         List<MuzimaForm> muzimaForms = asList(getMuzimaFormWithName("Something like name"),
                 getMuzimaFormWithName("name"));
         when(dao.findByName("name", syncDate)).thenReturn(muzimaForms);
-        service.createHTMLForm("name", "form", "description", "discriminator", "html", "1.0");
+        service.createHTMLForm("html", "c0c579b0-8e59-401d-8a4a-976a0b183519",  "discriminator");
         verifyZeroInteractions(transformer, modelTransformer, odk2JavarosaTransformer, odk2HTML5Transformer);
         verify(dao, never()).saveForm(any(MuzimaForm.class));
     }
@@ -115,21 +119,25 @@ public class MuzimaFormServiceImplTest {
     @Test
     public void shouldUpdateTheHTMLFormOfAnExistingForm() throws Exception {
         List<MuzimaForm> muzimaForms = new ArrayList<MuzimaForm>();
-        MuzimaForm registrationForm = muzimaform().withId(1).withName("Registration Form").withDescription("Form for registration")
+        MuzimaForm registrationForm = muzimaform().withId(1)//.withName("Registration Form").withDescription("Form for registration")
                 .with(tag().withId(1).withName("Registration"))
                 .with(tag().withId(2).withName("Patient"))
+                .withForm("c0c579b0-8e59-401d-8a4a-976a0b183522")
+                .withFormDefinition(Context.getFormService().getFormByUuid("c0c579b0-8e59-401d-8a4a-976a0b183522"))
                 .instance();
-        MuzimaForm pmtctForm = muzimaform().withId(2).withName("PMTCT Form").withDescription("Form for PMTCT")
+        MuzimaForm pmtctForm = muzimaform().withId(2)//.withName("PMTCT Form").withDescription("Form for PMTCT")
                 .with(tag().withId(1).withName("Registration"))
                 .with(tag().withId(3).withName("Encounter"))
                 .with(tag().withId(4).withName("HIV"))
+                .withForm("c0c579b0-8e59-401d-8a4a-976a0b183522")
+                .withFormDefinition(Context.getFormService().getFormByUuid("c0c579b0-8e59-401d-8a4a-976a0b183522"))
                 .instance();
         muzimaForms.add(registrationForm);
         muzimaForms.add(pmtctForm);
         when(dao.findByUuid("1")).thenReturn(registrationForm);
         when(dao.findByUuid("2")).thenReturn(pmtctForm);
         when(dao.findByName("PMTCT Form", null)).thenReturn(asList(pmtctForm));
-        service.updateHTMLForm("UPDATED", "PMTCT Form", "2");
+        service.updateHTMLForm("UPDATED",  "2");
         assertEquals("UPDATED",pmtctForm.getHtml());
     }
 
@@ -143,14 +151,14 @@ public class MuzimaFormServiceImplTest {
         when(transformer.transform(xFormXml)).thenReturn(new EnketoResult(htmlForm));
         when(modelTransformer.transform(htmlForm)).thenReturn(new CompositeEnketoResult(htmlForm, modelJson));
 
-        service.importExisting(1, "name", "form", "description", "discriminator", "1.0");
+        MuzimaForm testForm = service.importExisting(1,  "c0c579b0-8e59-401d-8a4a-976a0b183519",  "discriminator");
 
         verify(dao, times(1)).getXform(1);
         verify(dao, times(1)).saveForm(muzimaform()
-                .withName("name")
-                .withForm("form")
-                .withDescription("description")
+                .withUuid(testForm.getUuid())
                 .withDiscriminator("discriminator")
+                .withForm("c0c579b0-8e59-401d-8a4a-976a0b183519")
+                .withFormDefinition(Context.getFormService().getFormByUuid("c0c579b0-8e59-401d-8a4a-976a0b183519"))
                 .instance());
     }
 
@@ -165,13 +173,13 @@ public class MuzimaFormServiceImplTest {
         when(modelTransformer.transform(htmlForm)).thenReturn(new CompositeEnketoResult(htmlForm, modelJson));
         when(dao.getXform(1)).thenReturn(xForm().withId(1).withXFormXml(xFormXml).instance());
 
-        service.importExisting(1, "name", "form", "description", "discriminator", "1.0");
+        service.importExisting(1, "c0c579b0-8e59-401d-8a4a-976a0b183522",  "discriminator");
 
         verify(dao, times(1)).saveForm(muzimaform()
-                .withName("name")
                 .withForm("form")
-                .withDescription("description")
                 .withDiscriminator("discriminator")
+                .withForm("c0c579b0-8e59-401d-8a4a-976a0b183522")
+                .withFormDefinition(Context.getFormService().getFormByUuid("c0c579b0-8e59-401d-8a4a-976a0b183522"))
                 .instance());
         verify(transformer, times(1)).transform(xFormXml);
         verify(modelTransformer, times(1)).transform(htmlForm);
@@ -184,7 +192,7 @@ public class MuzimaFormServiceImplTest {
         CompositeEnketoResult result = mock(CompositeEnketoResult.class);
         when(modelTransformer.transform("xml")).thenReturn(result);
 
-        service.importODK("odk", "name", "form", "description", "discriminator", "1.0");
+        service.importODK("odk", "c0c579b0-8e59-401d-8a4a-976a0b183522",  "discriminator");
 
         verify(modelTransformer).transform("xml");
         verify(odk2HTML5Transformer).transform("odk");
@@ -233,7 +241,7 @@ public class MuzimaFormServiceImplTest {
                 getMuzimaFormWithName("name"));
         when(dao.findByName("name", syncDate)).thenReturn(muzimaForms);
         try {
-            service.create("xml", "name", "form", "description", "discriminator", "1.0");
+            service.create("xml",  "form",  "discriminator");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -242,7 +250,8 @@ public class MuzimaFormServiceImplTest {
 
     @Test
     public void shouldUpdateForm() throws ParserConfigurationException, TransformerException, DocumentException, IOException {
-        MuzimaForm updateTestForm = muzimaform().withId(123).withName("Update Test Form").withDescription("Form for Update Test").instance();
+        MuzimaForm updateTestForm = muzimaform().withId(123).withForm("c0c579b0-8e59-401d-8a4a-976a0b183522")//.withName("Update Test Form").withDescription("Form for Update Test")
+         .instance();
 
         String xFormXml = "<xml><some/><valid/></xml>";
         String htmlForm = "<foo><form><ul><li/><li/></ul></form><model/></foo>";
@@ -251,18 +260,19 @@ public class MuzimaFormServiceImplTest {
         when(dao.getXform(1)).thenReturn(xForm().withId(1).withXFormXml(xFormXml).instance());
         when(transformer.transform(xFormXml)).thenReturn(new EnketoResult(htmlForm));
         when(modelTransformer.transform(htmlForm)).thenReturn(new CompositeEnketoResult(htmlForm, modelJson));
-        when(dao.findByName("Update Test Form", null)).thenReturn(asList(updateTestForm));
+        when(dao.findByForm("c0c579b0-8e59-401d-8a4a-976a0b183522")).thenReturn(asList(updateTestForm));
         when(dao.findByUuid("123")).thenReturn(updateTestForm);
 
         try {
-            service.update("<xml><some/><valid/></xml>", "Update Test Form", "123");
+            service.update("<xml><some/><valid/></xml>",  "123");
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        assertEquals("<form><ul><li/><li/></ul></form>", service.findByUniqueId("123").getForm());
-        assertEquals("<model/>",service.findByUniqueId("123").getModel());
-        assertEquals("{form : [{name:'', bind: ''}]}",service.findByUniqueId("123").getModelJson());
+        MuzimaForm form = service.findByUniqueId("123");
+        assertEquals("<form><ul><li/><li/></ul></form>", form.getHtml());
+        assertEquals("<model/>",form.getModel());
+        assertEquals("{form : [{name:'', bind: ''}]}",form.getModelJson());
         verify(modelTransformer).transform(anyString());
     }
 
@@ -278,7 +288,7 @@ public class MuzimaFormServiceImplTest {
         when(modelTransformer.transform(anyString())).thenReturn(compositeEnketResult);
 
         try {
-            service.create("xml", "name", "form", "description", "discriminator", "1.0");
+            service.create("xml","form", "discriminator");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -287,7 +297,7 @@ public class MuzimaFormServiceImplTest {
 
     private MuzimaForm getMuzimaFormWithName(String name) {
         MuzimaForm form1 = new MuzimaForm();
-        form1.setName(name);
+        //form1.setName(name);
         return form1;
     }
 

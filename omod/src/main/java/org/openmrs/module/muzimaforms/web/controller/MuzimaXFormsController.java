@@ -26,12 +26,9 @@ public class MuzimaXFormsController {
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
     public void importXForm(final @RequestParam Integer id,
-                            final @RequestParam String name,
                             final @RequestParam String form,
-                            final @RequestParam String discriminator,
-                            final @RequestParam String description,
-                            final @RequestParam String version) throws Exception {
+                            final @RequestParam String discriminator) throws Exception {
         MuzimaFormService service = Context.getService(MuzimaFormService.class);
-        service.importExisting(id, name, form, description, discriminator, version);
+        service.importExisting(id, form, discriminator);
     }
 }

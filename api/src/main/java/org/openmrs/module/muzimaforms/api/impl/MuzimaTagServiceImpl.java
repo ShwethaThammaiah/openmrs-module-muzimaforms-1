@@ -1,6 +1,7 @@
 package org.openmrs.module.muzimaforms.api.impl;
 
 import org.openmrs.api.impl.BaseOpenmrsService;
+import org.openmrs.module.muzimaforms.MuzimaForm;
 import org.openmrs.module.muzimaforms.MuzimaFormTag;
 import org.openmrs.module.muzimaforms.api.MuzimaTagService;
 import org.openmrs.module.muzimaforms.api.db.hibernate.TagDAO;

@@ -40,6 +40,4 @@ public class TagServiceTest extends BaseModuleContextSensitiveTest {
         Collection<MuzimaFormTag> list = service.getAll();
         assertThat(list.contains(tag().withId(tag.getId()).withName("Observation").instance()), is(true));
     }
-
-
 }

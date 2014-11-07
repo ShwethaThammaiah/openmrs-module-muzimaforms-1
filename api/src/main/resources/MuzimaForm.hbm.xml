@@ -10,9 +10,9 @@
         <property name="uuid" type="java.lang.String"
                   column="uuid" length="38" unique="true"/>
 
-        <property name="version" type="java.lang.String"/>
+        <!--property name="version" type="java.lang.String"/>
         <property name="name" type="java.lang.String"/>
-        <property name="description" type="java.lang.String"/>
+        <property name="description" type="java.lang.String"/-->
         <property name="discriminator" type="java.lang.String"/>
         <set name="tags" table="muzimaforms_tag_map" cascade="all-delete-orphan">
             <key column="form_id" not-null="true"/>
@@ -22,7 +22,7 @@
         <property name="html" column="form_html"/>
         <property name="modelJson" column="model_json"/>
 
-        <property name="form" type="java.lang.String" column="form" />
+        <property name="form" type="java.lang.String" column="form" insert="false" update="false"/>
 
         <property name="dateCreated" type="java.util.Date"
                   column="date_created" length="19"/>
@@ -38,6 +38,8 @@
         <many-to-one name="creator" class="org.openmrs.User"/>
         <many-to-one name="voidedBy" class="org.openmrs.User" column="retired_by"/>
         <many-to-one name="changedBy" class="org.openmrs.User" column="changed_by"/>
+        <many-to-one name="formDefinition" class="org.openmrs.Form" column="form" property-ref="uuid"/>
+
 
     </class>
 </hibernate-mapping>

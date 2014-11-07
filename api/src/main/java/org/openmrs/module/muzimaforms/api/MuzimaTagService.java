@@ -1,6 +1,7 @@
 package org.openmrs.module.muzimaforms.api;
 
 import org.openmrs.api.OpenmrsService;
+import org.openmrs.module.muzimaforms.MuzimaForm;
 import org.openmrs.module.muzimaforms.MuzimaFormTag;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,4 +13,5 @@ public interface MuzimaTagService extends OpenmrsService {
 
     @Transactional
     public MuzimaFormTag add(String name);
+
 }

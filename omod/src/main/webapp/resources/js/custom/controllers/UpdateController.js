@@ -33,7 +33,7 @@ function UpdateCtrl($location, $scope, $window,FileUploadService, FormService, _
                     return 'javarosa/update.form';
      };
 
-    $scope.update = function (file, name, form,formType) {
+    $scope.update = function (file, form,formType) {
 
                 var uuid = "";
                 if (form != null && form !== 'undefined') {
@@ -42,12 +42,12 @@ function UpdateCtrl($location, $scope, $window,FileUploadService, FormService, _
 
                 FileUploadService.post({
                     url: $scope.getUpdateURL(formType), file: file, params: {
-                        name: name, form: uuid
+                        form: uuid
                     }
                 }).success(function () {
                     $location.path("#/list/forms");
                 }).error(function () {
-                    showErrorMessage("Unable to update form with name " + name + " And uuid " + uuid );
+                    showErrorMessage("Unable to update form with uuid " + uuid );
                 });
     };
 

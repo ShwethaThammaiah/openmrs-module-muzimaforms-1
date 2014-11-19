@@ -1,7 +1,6 @@
 package org.openmrs.module.muzimaforms;
 
 import org.openmrs.Form;
-import org.openmrs.module.xforms.Xform;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,10 +9,9 @@ public class MuzimaFormBuilder extends Builder<MuzimaForm> {
     private Integer id;
     private String uuid;
     private Set<MuzimaFormTag> tags = new HashSet<MuzimaFormTag>();
-    private String name;
     private String form;
     private String discriminator;
-    private String description;
+    private Form formDefinition;
 
     private MuzimaFormBuilder() {
     }
@@ -24,10 +22,9 @@ public class MuzimaFormBuilder extends Builder<MuzimaForm> {
         muzimaForm.setId(id);
         muzimaForm.setUuid(uuid);
         muzimaForm.setTags(tags);
-        muzimaForm.setName(name);
         muzimaForm.setForm(form);
         muzimaForm.setDiscriminator(discriminator);
-        muzimaForm.setDescription(description);
+        muzimaForm.setFormDefinition(formDefinition);
         return muzimaForm;
     }
 
@@ -51,10 +48,6 @@ public class MuzimaFormBuilder extends Builder<MuzimaForm> {
         return this;
     }
 
-    public MuzimaFormBuilder withName(String name) {
-        this.name = name;
-        return this;
-    }
 
     public MuzimaFormBuilder withForm(String form) {
         this.form = form;
@@ -66,8 +59,8 @@ public class MuzimaFormBuilder extends Builder<MuzimaForm> {
         return this;
     }
 
-    public MuzimaFormBuilder withDescription(String description) {
-        this.description = description;
+    public MuzimaFormBuilder withFormDefinition(Form formDefinition) {
+        this.formDefinition = formDefinition;
         return this;
     }
 }

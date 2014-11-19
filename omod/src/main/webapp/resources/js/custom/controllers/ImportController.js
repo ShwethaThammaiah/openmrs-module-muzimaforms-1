@@ -41,13 +41,7 @@ function ImportCtrl($scope, FileUploadService, FormService, _, $location, $route
         }
     };
 
-    $scope.upload = function (file, name, version , form, discriminator, description, formType) {
-
-        var match = name.match('[\\s\\w]*');
-                if (match == null || match[0] != name) {
-                    showErrorMessage("The form name shouldn't contain any special characters");
-                    return;
-                }
+    $scope.upload = function (file, form, discriminator, formType) {
                 var uuid = "";
                 if (form != null && form !== 'undefined') {
                     uuid = form.uuid;
@@ -55,7 +49,7 @@ function ImportCtrl($scope, FileUploadService, FormService, _, $location, $route
 
                 FileUploadService.post({
                     url: $scope.getURL(formType), file: file, params: {
-                        name: name, form: uuid, description: description || "", discriminator: discriminator, version: version
+                        form: uuid, discriminator: discriminator
                     }
                 }).success(function () {
                     $location.path("#/list/forms");

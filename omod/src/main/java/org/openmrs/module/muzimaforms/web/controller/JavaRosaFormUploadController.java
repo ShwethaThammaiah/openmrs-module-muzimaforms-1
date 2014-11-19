@@ -38,56 +38,45 @@ public class JavaRosaFormUploadController {
     @ResponseBody
     @RequestMapping(value = "/javarosa/upload.form", method = RequestMethod.POST)
     public void uploadJavaRosa(final MultipartHttpServletRequest request,
-                               final @RequestParam String name,
                                final @RequestParam String form,
-                               final @RequestParam String description,
-                               final @RequestParam String discriminator,
-                               final @RequestParam String version) throws Exception {
+                               final @RequestParam String discriminator) throws Exception {
         MuzimaFormService service = Context.getService(MuzimaFormService.class);
-        service.create(extractFile(request), name, form, description, discriminator, version);
+        service.create(extractFile(request),  form, discriminator);
     }
 
     @ResponseBody
     @RequestMapping(value="/javarosa/update.form", method = RequestMethod.POST)
     public  void updateJavaRosa(final MultipartHttpServletRequest request,
-                                final @RequestParam String name,
                                 final @RequestParam String form_id) throws Exception {
         MuzimaFormService service = Context.getService(MuzimaFormService.class);
-        service.update(extractFile(request), name, form_id);
+        service.update(extractFile(request), form_id);
 
     }
 
     @ResponseBody
     @RequestMapping(value = "/html/upload.form", method = RequestMethod.POST)
     public void uploadHTMLForm(final MultipartHttpServletRequest request,
-                               final @RequestParam String name,
                                final @RequestParam String form,
-                               final @RequestParam String description,
-                               final @RequestParam String discriminator,
-                               final @RequestParam String version) throws Exception {
+                               final @RequestParam String discriminator) throws Exception {
         MuzimaFormService service = Context.getService(MuzimaFormService.class);
-        service.createHTMLForm(extractFile(request), name, form, description, discriminator, version);
+        service.createHTMLForm(extractFile(request), form, discriminator);
     }
 
     @ResponseBody
     @RequestMapping(value = "/html/update.form", method = RequestMethod.POST)
     public void updateHTMLForm(final MultipartHttpServletRequest request,
-                               final @RequestParam String name,
                                final @RequestParam String form) throws Exception {
         MuzimaFormService service = Context.getService(MuzimaFormService.class);
-        service.updateHTMLForm(extractFile(request), name, form);
+        service.updateHTMLForm(extractFile(request), form);
     }
 
     @ResponseBody
     @RequestMapping(value = "/odk/upload.form", method = RequestMethod.POST)
     public void uploadODK(final MultipartHttpServletRequest request,
-                          final @RequestParam String name,
                           final @RequestParam String form,
-                          final @RequestParam String description,
-                          final @RequestParam String discriminator,
-                          final @RequestParam String version) throws Exception {
+                          final @RequestParam String discriminator) throws Exception {
         MuzimaFormService service = Context.getService(MuzimaFormService.class);
-        service.importODK(extractFile(request), name, form, description, discriminator, version);
+        service.importODK(extractFile(request), form, discriminator);
     }
 
     private String extractFile(final MultipartHttpServletRequest request) throws Exception {

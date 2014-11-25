@@ -2,6 +2,7 @@ package org.openmrs.module.muzimaforms;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.openmrs.BaseOpenmrsData;
+import org.openmrs.BaseOpenmrsMetadata;
 import org.openmrs.Form;
 
 import java.util.HashSet;
@@ -9,7 +10,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MuzimaForm extends BaseOpenmrsData {
+public class MuzimaForm extends BaseOpenmrsMetadata {
     private Integer id;
     private String discriminator;
     private String model;

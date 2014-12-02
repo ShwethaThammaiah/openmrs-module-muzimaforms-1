@@ -125,6 +125,7 @@ public class MuzimaFormResource extends MetadataDelegatingCrudResource<MuzimaFor
             description.addProperty("form");
             description.addProperty("tags", new CustomRepresentation("(id,uuid,name)"));
             description.addProperty("version");
+            description.addProperty("retired");
             description.addSelfLink();
         }
 

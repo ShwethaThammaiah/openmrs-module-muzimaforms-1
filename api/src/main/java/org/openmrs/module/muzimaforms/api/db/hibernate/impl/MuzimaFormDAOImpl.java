@@ -22,7 +22,7 @@ public class MuzimaFormDAOImpl implements MuzimaFormDAO {
 
     public List<MuzimaForm> getAll() {
         Criteria criteria = session().createCriteria(MuzimaForm.class);
-        criteria.add(Restrictions.eq("retired", false));
+        //criteria.add(Restrictions.eq("retired", false));
         return criteria.list();
 
     }

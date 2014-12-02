@@ -1,78 +1,92 @@
+<br/>
+<!--new ui-->
 <div ng-controller="ImportCtrl" ng-init = "init()">
-    <div class="row">
-        <div class="col-lg-6 ">
-            <div id="error-alert"></div>
-            <form role="form" ng-submit="upload(file, form, discriminator, formType)">
-                <div class="panel">
-                    <div class="form-group">
-                        <label for="xFormFormDefinition">Form Definition</label>
-                        <select class="form-control" id="xFormFormDefinition" ng-model="form"
-                                ng-options="form.name for form in forms" required="true" ng-change = loadData()>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label >Name</label>
-                        <input type="text" class="form-control" id="xFormName" ng-model="name"
-                               placeholder="Enter name" required="true" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="xFormVersion">Version</label>
-                        <input type="text" class="form-control" id="xFormVersion" ng-model="version"
-                               placeholder="Enter Version" required="true" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="xFormDescription">Description</label>
-                        <textarea class="form-control" id="xFormDescription" rows="3"
-                                  placeholder="Enter description" ng-model="description" readonly></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="xFormDiscriminator">Form Discriminator</label>
-                        <input type="text" class="form-control" id="xformdiscriminator" ng-model="discriminator"
-                               placeholder="Enter discriminator" required="true">
-                    </div>
+    <header id="style-guide-header">
+        <div  class="col-lg-8">
+            <h2><a href=""><i class="icon-home"></i> </a> Upload Muzima Form</h2>
+        </div>
+    </header>
+    <div>
+        </br>
+        <div class="row">
+            <form role="form">
+            <div class="col-lg-12 panel panel-custom">
+                <div class="panel-heading">
+                <span class="form-heading content_wrap">
+                    <strong class="ng-binding"><i class= " icon-file-alt"></i> Create form template </strong>
+                </span>
+                <span class="form-heading content_wrap pull-right">
+                    <span>
+                        <i class="icon-save" ng-disabled = "!isValidXForm()" ng-click="upload(file, form, discriminator, formType)" title = "Save Form template"></i>
+                    </span>
+                    <span>
+                        <i class="icon-remove" ng-click="cancelUpload()" title = "cancel"></i>
+                    </span>
+            </span>
                 </div>
-                <div class = "panel">
-                    <div class="form-group">
-
-                        <file-upload message="Click here to upload form."/>
-                    </div>
-                    <div class="form-group" ng-hide="isValidated()">
-                        <div ng-show="hasFile()">
-                            <label for="formType">Select the FormType: </label>
-                            <select id="formType" ng-model="formType" name="formType">
-                                <option value="odk">ODK</option>
-                                <option value="html">HTML</option>
-                                <option value="javarosa">JavaRosa</option>
+                    <div class="panel create-panel">
+                        <div id="error-alert"></div>
+                        <div class="form-group">
+                            <label for="xFormFormDefinition">Select form Definition</label>
+                            <select class="form-control" id="xFormFormDefinition" ng-model="form"
+                            ng-options="form.name for form in forms" required="true" ng-change = loadData()>
                             </select>
                         </div>
-                        <div ng-show="hasFile()">
-                            <button ng-click="cancel()" class="btn btn-danger">Cancel</button>
-                            <input type="button" ng-click="validate(file,formType)" class="btn btn-success" value="Validate">
+                        <div class="form-group">
+                            <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" id="xFormName" ng-model="name" placeholder="Form name" required="true" readonly="">
                         </div>
-                    </div>
-                    <div ng-show = "isValidXForm()">
-                        <div class="alert alert-success">The Form is valid! Use the upload button to import it.</div>
-                    </div>
-                    <div ng-show="isInvalidXForm()">
-                        <div class="row">
-                            <div class="col-lg-12 well-small">
-                                <button ng-click="validate(file, formType)" class="btn btn-success">Re-Validate</button>
-                            </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" id="xFormVersion" ng-model="version" placeholder="Form Version" required="true" readonly="">
                         </div>
-                        <div class="row" ng-repeat="validation in validations.list">
-                            <div class="col-lg-12 panel">
-                                <pre class="alert" ng-class="style(validation.type)">{{validation.message}}</pre>
-                            </div>
+                        <div class="form-group">
+                            <textarea class="form-control ng-pristine ng-valid" id="xFormDescription" rows="3" placeholder="Form description" ng-model="description" readonly=""></textarea>
                         </div>
-                    </div>
-                </div>
-                <div class="well-small">
-                    <button ng-click="cancelUpload()" class="btn btn-danger">Cancel</button>
-                    <button type="submit" class="btn btn-success" ng-disabled = "!isValidXForm()">Upload</button>
-                </div>
-            </form>
 
+                        <div class="form-group">
+                            <label for="xFormDiscriminator">Form Discriminator</label>
+                            <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" id="xformdiscriminator" ng-model="discriminator" placeholder="Enter discriminator" required="true">
+                        </div>
+                    </div>
+                    <div class="panel create-panel">
+                        <div class="form-group">
+                            <file-upload message="Click here to update the form template">
+                                <input id="fileUploadControl" type="file" name="form[files][]" style="display: none;">
+                                <div id="fileUploadControlActivator" class="well well-lg">
+                                    Click here to update the form template
+                                </div>
+                            </file-upload>
+                        </div>
+                        <div class="form-group" ng-hide="isValidated()">
+                            <div ng-show="hasFile()" style="display: none;">
+                                <label for="formType">Select the FormType: </label>
+                                <select id="formType" ng-model="formType" name="formType" class="ng-pristine ng-valid">
+                                    <option value="odk">ODK</option>
+                                    <option value="html">HTML</option>
+                                    <option value="javarosa">JavaRosa</option>
+                                </select>
+                            </div>
+                            <div ng-show="hasFile()" style="display: none;">
+                                <a ng-click="validate(file,formType)" class="button">Validate</a>
+                            </div>
+                        </div>
+                        <div ng-show="isValidXForm()" style="display: none;">
+                            <div class="alert alert-success">The Form is valid! Use the upload button to import it.</div>
+                        </div>
+                        <div ng-show="isInvalidXForm()" style="display: none;">
+                            <div class="row">
+                                <div class="col-lg-12 well-small">
+                                    <button ng-click="validate(file, formType)" class="btn btn-success">Re-Validate</button>
+                                </div>
+                            </div>
+                            <!-- ngRepeat: validation in validations.list -->
+                        </div>
+                    </div>
+                    <div class="well-small">
+                        <!-- <span class="button confirm"> Upload </span>
+                        <span class="bu tton cancel" ng-click = "editHtml = !editHtml"> Cancel </span> -->
+                    </div>
+            </div>
+            </form>
         </div>
     </div>
 </div>

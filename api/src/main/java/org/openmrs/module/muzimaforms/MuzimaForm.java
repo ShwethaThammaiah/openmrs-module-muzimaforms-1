@@ -147,6 +147,7 @@ public class MuzimaForm extends BaseOpenmrsMetadata {
                 ", form='" + getForm() + '\'' +
                 ", discriminator='" + getDiscriminator() + '\'' +
                 ", tags=" + tags +
+                ", retired=" + getRetired() +
                 '}';
     }
 

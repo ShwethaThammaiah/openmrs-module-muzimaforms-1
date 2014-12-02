@@ -4,6 +4,8 @@ muzimaformsModule.
     config(['$routeProvider', function ($routeProvider) {
         $routeProvider.
             when('/list/forms', {templateUrl: '../../moduleResources/muzimaforms/partials/list/forms.html'}).
+            when('/list/view/:muzimaform_uuid', {templateUrl: '../../moduleResources/muzimaforms/partials/list/viewForm.html'}).
+            when('/import/upload',{templateUrl: '../../moduleResources/muzimaforms/partials/import/upload.html'}).
             when('/list/xforms', {templateUrl: '../../moduleResources/muzimaforms/partials/list/xforms.html'}).
             when('/import/xforms', {templateUrl: '../../moduleResources/muzimaforms/partials/import/xforms.html'}).
             when('/update/xforms/:muzimaform_uuid',{templateUrl: '../../moduleResources/muzimaforms/partials/update/xforms.html'}).
@@ -18,7 +20,7 @@ muzimaformsModule.factory('_', function () {
 muzimaformsModule.factory('FormService', function ($http) {
 
     var get = function (id) {
-        return $http.get('../../ws/rest/v1/muzimaforms/form/' + id + "?v=custom:(id,uuid,name,model,modelJson,html,tags,version,description,discriminator)");
+        return $http.get('../../ws/rest/v1/muzimaforms/form/' + id + "?v=custom:(id,uuid,name,model,modelJson,html,tags,version,description,discriminator,retired,form)");
     };
     var save = function (form) {
         return $http.post('form.form', form);

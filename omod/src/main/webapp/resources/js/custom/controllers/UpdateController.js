@@ -6,6 +6,8 @@ function UpdateCtrl($location, $scope, $window,FileUploadService, FormService, _
         $scope.xformToUpload = "";
         $scope.htmlFormToUpload = "";
         $scope.fetchingForms = false;
+        getTags().then(setTags);
+        getForms().then(setForms);
 
         getForm($scope.form_uuid).then(setForm);
 

@@ -5,6 +5,9 @@
 <openmrs:htmlInclude file="/moduleResources/muzimaforms/styles/animate/animate.css"/>
 <openmrs:htmlInclude file="/moduleResources/muzimaforms/styles/bootstrap/css/bootstrap.min.css"/>
 <openmrs:htmlInclude file="/moduleResources/muzimaforms/styles/custom/custom.css"/>
+<openmrs:htmlInclude file="/moduleResources/muzimaforms/styles/openmrs2.0/index.css"/>
+<openmrs:htmlInclude file="/moduleResources/muzimaforms/styles/openmrs2.0/openmrs.css"/>
+
 
 <openmrs:htmlInclude file="/moduleResources/muzimaforms/js/jquery/jquery.js"/>
 <openmrs:htmlInclude file="/moduleResources/muzimaforms/js/underscore/underscore-min.js"/>
@@ -20,29 +23,10 @@
 <openmrs:htmlInclude file="/moduleResources/muzimaforms/js/custom/controllers/ImportController.js"/>
 <openmrs:htmlInclude file="/moduleResources/muzimaforms/js/custom/controllers/XFormsController.js"/>
 <openmrs:htmlInclude file="/moduleResources/muzimaforms/js/custom/controllers/UpdateController.js"/>
+<openmrs:htmlInclude file="/moduleResources/muzimaforms/js/custom/controllers/FormViewController.js"/>
 <openmrs:htmlInclude file="/moduleResources/muzimaforms/js/custom/directives/fileUpload.js"/>
 
 <div class="bootstrap-scope" ng-app="muzimaforms">
-<!--TODO : text styles if put in css file are overridden by something else. Need to figure it out-->
-    <div class="navbar navbar-inverse navbar-custom">
-        <div>
-            <a class="navbar-brand" href="#/list/forms" style="color: #ffffff; font-size: 20px"><i class="icon-home"></i></a>
-
-            <ul class="nav navbar-nav pull-right">
-                <li>
-                    <button type="button" class="btn btn-success dropdown-toggle navbar-btn" data-toggle="dropdown">
-                        Import <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#/list/xforms"
-                               style="color: #323232 ;text-decoration: none">Existing</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#/import/xforms" style="color: #323232 ;text-decoration: none">Upload</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
 
     <div class="row-fluid">
         <div class="col-lg-12">
@@ -51,6 +35,4 @@
     </div>
 
 </div>
-
-<%@ include file="/WEB-INF/template/footer.jsp" %>
 

@@ -1,7 +1,6 @@
 'use strict';
 function FormsCtrl($location, $scope, $window, FormService, TagService, _) {
     $scope.init = function () {
-        $scope.editMode = false;
         $scope.tagColorMap = {};
         $scope.activeTagFilters = [];
         $scope.xformToUpload = "";
@@ -30,7 +29,6 @@ function FormsCtrl($location, $scope, $window, FormService, TagService, _) {
         $scope.fetchingForms = false;
         $scope.forms = result.data.results;
         $scope.muzimaforms = _.map(result.data.results, function (form) {
-
             return {
                 form: form,
                 newTag: ""
@@ -51,7 +49,7 @@ function FormsCtrl($location, $scope, $window, FormService, TagService, _) {
     };
 
     $scope.editForm = function(muzimaform){
-        $location.path('/update/xforms/' + muzimaform.form.uuid);
+        $location.path('/list/view/' + muzimaform.form.uuid);
     };
 
     var tagColor = function (tagId) {
@@ -149,5 +147,8 @@ function FormsCtrl($location, $scope, $window, FormService, TagService, _) {
         $scope.activeTagFilters = _.union($scope.activeTagFilters, [tag]);
     };
 
+    $scope.go = function (path) {
+      $location.path(path);
+    };
 }
 

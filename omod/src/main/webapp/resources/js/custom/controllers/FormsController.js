@@ -86,7 +86,7 @@ function FormsCtrl($location, $scope, $window, FormService, TagService, _) {
 
     $scope.remove = function (muzimaform) {
         var form = muzimaform.form;
-        form.voided = true;
+        form.retired = true;
         FormService.save(form)
             .then(function () {
                 for (var i = $scope.muzimaforms.length - 1; i >= 0; i--) {

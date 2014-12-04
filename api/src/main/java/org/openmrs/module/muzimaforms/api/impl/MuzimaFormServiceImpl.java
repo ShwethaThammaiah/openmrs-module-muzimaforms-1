@@ -88,7 +88,7 @@ public class MuzimaFormServiceImpl extends BaseOpenmrsService implements MuzimaF
     private boolean isFormDefinitionExists(String formUUID) {
         List<MuzimaForm> formsWithUUID = dao.findByForm(formUUID);
         for (MuzimaForm form : formsWithUUID) {
-            if (form.getForm().equals(formUUID) && !form.isVoided()) {
+            if (form.getForm().equals(formUUID) && !form.isRetired()) {
                 return true;
             }
         }

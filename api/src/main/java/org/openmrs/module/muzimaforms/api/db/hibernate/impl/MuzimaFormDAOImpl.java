@@ -22,7 +22,7 @@ public class MuzimaFormDAOImpl implements MuzimaFormDAO {
 
     public List<MuzimaForm> getAll() {
         Criteria criteria = session().createCriteria(MuzimaForm.class);
-        criteria.add(Restrictions.eq("voided", false));
+        criteria.add(Restrictions.eq("retired", false));
         return criteria.list();
 
     }
@@ -50,22 +50,23 @@ public class MuzimaFormDAOImpl implements MuzimaFormDAO {
     public List<MuzimaForm> findByForm(String form){
         return (List<MuzimaForm>) session().createQuery("from MuzimaForm form where form.form = '" + form + "'").list();
     }
+
     public List<MuzimaForm> findByName(final String name, final Date syncDate) {
-        Criteria criteria = session().createCriteria(MuzimaForm.class);
-        criteria.add(Restrictions.ilike("name", name, MatchMode.ANYWHERE));
+        Criteria criteriaform = session().createCriteria(MuzimaForm.class);
         if (syncDate != null) {
-            criteria.add(Restrictions.or(
+            criteriaform.add(Restrictions.or(
                     Restrictions.or(
                             Restrictions.and(
                                     Restrictions.and(Restrictions.isNotNull("dateCreated"), Restrictions.ge("dateCreated", syncDate)),
-                                    Restrictions.and(Restrictions.isNull("dateChanged"), Restrictions.isNull("dateVoided"))),
+                                    Restrictions.and(Restrictions.isNull("dateChanged"), Restrictions.isNull("dateRetired"))),
                             Restrictions.and(
                                     Restrictions.and(Restrictions.isNotNull("dateChanged"), Restrictions.ge("dateChanged", syncDate)),
-                                    Restrictions.and(Restrictions.isNotNull("dateCreated"), Restrictions.isNull("dateVoided")))),
+                                    Restrictions.and(Restrictions.isNotNull("dateCreated"), Restrictions.isNull("dateRetired")))),
                     Restrictions.and(
-                            Restrictions.and(Restrictions.isNotNull("dateVoided"), Restrictions.ge("dateVoided", syncDate)),
+                            Restrictions.and(Restrictions.isNotNull("dateRetired"), Restrictions.ge("dateRetired", syncDate)),
                             Restrictions.and(Restrictions.isNotNull("dateCreated"), Restrictions.isNotNull("dateChanged")))));
         }
+        Criteria criteria  = criteriaform.createCriteria("formDefinition").add(Restrictions.ilike("name", name, MatchMode.ANYWHERE));
         return criteria.list();
     }
 

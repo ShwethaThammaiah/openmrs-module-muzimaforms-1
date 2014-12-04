@@ -18,6 +18,7 @@ import org.openmrs.module.webservices.rest.web.representation.Representation;
 import org.openmrs.module.webservices.rest.web.resource.api.PageableResult;
 import org.openmrs.module.webservices.rest.web.resource.impl.DataDelegatingCrudResource;
 import org.openmrs.module.webservices.rest.web.resource.impl.DelegatingResourceDescription;
+import org.openmrs.module.webservices.rest.web.resource.impl.MetadataDelegatingCrudResource;
 import org.openmrs.module.webservices.rest.web.resource.impl.NeedsPaging;
 import org.openmrs.module.webservices.rest.web.response.ResourceDoesNotSupportOperationException;
 import org.openmrs.module.webservices.rest.web.response.ResponseException;
@@ -32,7 +33,7 @@ import java.util.List;
 @Resource(name = RestConstants.VERSION_1 + "/" + MuzimaConstants.MODULE_ID + "/form",
         supportedClass = MuzimaForm.class, supportedOpenmrsVersions = {"1.8.*", "1.9.*"})
 @Handler(supports = MuzimaForm.class)
-public class MuzimaFormResource extends DataDelegatingCrudResource<MuzimaForm> {
+public class MuzimaFormResource extends MetadataDelegatingCrudResource<MuzimaForm> {
     private static final Log log = LogFactory.getLog(MuzimaFormResource.class);
 
     @Override
@@ -85,7 +86,7 @@ public class MuzimaFormResource extends DataDelegatingCrudResource<MuzimaForm> {
     }
 
     @Override
-    protected void delete(MuzimaForm muzimaForm, String s, RequestContext requestContext) throws ResponseException {
+    public void delete(MuzimaForm muzimaForm, String s, RequestContext requestContext) throws ResponseException {
         throw new ResourceDoesNotSupportOperationException();
     }
 

@@ -22,7 +22,6 @@ function FormViewCtrl($location, $scope, $window,FileUploadService, FormService,
        var setForm = function (result) {
            $scope.fetchingForms = false;
            $scope.forms = result.data;
-           console.log($scope.forms);
            $scope.muzimaforms = {form: result.data,
                            newTag: ""}
        };
@@ -190,4 +189,8 @@ $scope.saveTag = function (muzimaform) {
        $scope.cancelUpdate = function () {
            $location.path('/list/forms');
        }
+
+       $scope.go = function (path) {
+             $location.path(path);
+           };
    }

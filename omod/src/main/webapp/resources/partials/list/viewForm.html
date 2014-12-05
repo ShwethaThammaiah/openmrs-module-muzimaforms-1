@@ -1,7 +1,7 @@
 </br>
    <header id="style-guide-header">
         <div  class="col-lg-8">
-            <h2><a href=""><i class="icon-home"></i> </a> Edit Muzima Forms</h2>
+            <h2><i class="icon-home" ng-click="go('/list/forms')"></i>  Edit Muzima Forms</h2>
         </div>
     </header>
 
@@ -109,9 +109,10 @@
                                         <option value="javarosa">JavaRosa</option>
                                     </select>
                                 </div>
-                                <div ng-show="hasFile()" style="display: none;">
-                                    <a ng-click="validate(file,formType)" class="button">Validate</a>
+                                <div ng-show="hasFile()">
+                                    <input type="button" ng-click="validate(file,formType)" class="btn btn-success" value="Validate">
                                 </div>
+
                             </div>
                             <div ng-show="isValidXForm()" style="display: none;">
                                 <div class="alert alert-success">The Form is valid! Use the upload button to import it.</div>
